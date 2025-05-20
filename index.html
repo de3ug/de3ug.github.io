@@ -1,21 +1,167 @@
-<html><head><title>Home page of Douglas Gray</title></head>
-  <body>
-    <h1>Douglas Gray</h1><hr />
-    <pre>
-Sr. Manager, Applied Science
-Visual Search & AR
-611 Cowper St.
-Palo Alto, CA 94301
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Douglas Gray - Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+    nav {
+      width: 200px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: #f0f0f0;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    nav a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
+    }
+    main {
+      margin-left: 220px;
+      margin-right: 300px;
+      padding: 20px;
+      max-width: 800px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    #three-container {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 300px;
+      pointer-events: none;
+    }
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+</head>
+<body>
+  <nav>
+    <h2>Navigate</h2>
+    <a href="#about">About</a>
+    <a href="#publications">Publications & Service</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-(my full name with dots as spaces, my middle name is Ryan) at gmail
-    </pre>
-    <ul>
-      <li><a href="https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en">Google Scholar</a></li>
-      <li><a href="https://www.linkedin.com/in/de3ug/">LinkedIn</a></li>
-      <li><a href="https://twitter.com/de3ug">Twitter</a></li>
-      <li><a href="https://www.threads.net/@de3ug">Threads</a></li>
-    </ul>
-    <hr />
-    <i>Last updated: 8/29/2024</i>
-  </body>
+  <main>
+    <section id="about">
+      <h1>Douglas Gray</h1>
+      <p>Senior Applied Science Manager &mdash; Visual Search &amp; AR at Amazon.</p>
+      <p>Based in Palo Alto, CA. Ph.D. candidate (ABD) in Computer Engineering at UC Santa Cruz (2005&ndash;2010).</p>
+    </section>
+
+    <section id="publications">
+      <h2>Selected Publications and Service</h2>
+      <ul>
+        <li><a href="https://ainote.ddlee.cc/2020/12/29/person-re-id-datasets/">Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features</a>, ECCV&nbsp;2008 &mdash; <a href="https://scholar.google.de/scholar?q=Viewpoint+Invariant+Pedestrian+Recognition+with+an+Ensemble+of+Localized+Features">[cite]</a></li>
+        <li><a href="https://www.amazon.science/publications/amazon-shop-the-look-a-visual-search-system-for-fashion-and-home">Amazon Shop the Look: A Visual Search System for Fashion and Home</a>, KDD&nbsp;2022 &mdash; <a href="https://scholar.google.de/scholar?q=Amazon+Shop+the+Look:+A+visual+search+system+for+fashion+and+home">[cite]</a></li>
+        <li><a href="https://dblp.org/rec/conf/wacv/YangBZGS22">Hierarchical Proxy-Based Loss for Deep Metric Learning</a>, WACV&nbsp;2022 &mdash; <a href="https://scholar.google.de/scholar?q=Hierarchical+Proxy+Based+Loss+for+Deep+Metric+Learning">[cite]</a></li>
+        <li><a href="https://dblp.org/pid/78/2781">Bringing Multimodality to Amazon Visual Search System</a>, KDD&nbsp;2024 &mdash; <a href="https://scholar.google.de/scholar?q=Bringing+Multimodality+to+Amazon+Visual+Search+System">[cite]</a></li>
+        <li><a href="https://www.amazon.science/publications/genius-a-generative-framework-for-universal-multimodal-search">GENIUS: A Generative Framework for Universal Multimodal Search</a>, CVPR&nbsp;2025 &mdash; <a href="https://scholar.google.de/scholar?q=GENIUS:+A+Generative+Framework+for+Universal+Multimodal+Search">[cite]</a></li>
+        <li><a href="https://ar5iv.org/abs/2101.06770">Improving Apparel Detection with Category Grouping and Multi-grained Branches</a>, Multimedia Tools and Applications&nbsp;2023 &mdash; <a href="https://scholar.google.de/scholar?q=Improving+Apparel+Detection+with+Category+Grouping+and+Multi-grained+Branches">[cite]</a></li>
+        <li>Co-organizer, <a href="https://mrr-workshop.github.io/">Multimodal Representation and Retrieval Workshop</a> (SIGIR&nbsp;2024).</li>
+        <li>Reviewer for CVPR, ICCV, ECCV, and WACV.</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Major Projects</h2>
+      <ul>
+        <li>Amazon Lens &mdash; visual search across the Amazon catalog.</li>
+        <li>StyleSnap for fashion and home.</li>
+        <li><a href="https://www.theverge.com/2011/11/3/2535286/a9-flow-app-augmented-reality-amazon-shopping">A9 Flow</a> augmented reality shopping app (2011).</li>
+        <li><a href="https://www.aboutamazon.com/news/retail/visual-search-shopping-features">Visual Suggestions and More like This</a> for enhanced product discovery.</li>
+      </ul>
+    </section>
+
+    <section id="experience">
+      <h2>Education &amp; Work History</h2>
+      <p><strong>Principal Scientist</strong>, Amazon Visual Search &amp; AR (2025&ndash;Present)</p>
+      <p><strong>Senior Manager, Applied Science</strong>, Amazon Visual Search &amp; AR (2020&ndash;2025)</p>
+      <p><strong>Manager, Applied Science</strong>, Amazon Visual Search &amp; AR (2016&ndash;2020)</p>
+      <p><strong>Applied Scientist</strong>, A9.com Visual Search (2011&ndash;2016)</p>
+      <p><strong>Research Scientist</strong>, Akiira Media Systems, Palo Alto (2010&ndash;2011)</p>
+      <p><strong>Graduate Research Assistant &amp; Teaching Assistant</strong>, UC Santa Cruz (2005&ndash;2010)</p>
+      <p><strong>Ph.D. Candidate (ABD)</strong>, Computer Engineering, UC Santa Cruz (2005&ndash;2010)</p>
+      <p><strong>B.S.</strong>, Computer Engineering, UC Santa Cruz (2005)</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>611 Cowper St.<br>Palo Alto, CA 94301</p>
+      <p>Email: (my full name with dots as spaces, my middle name is Ryan) at gmail</p>
+      <ul>
+        <li><a href="https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en">Google Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/de3ug/">LinkedIn</a></li>
+        <li><a href="https://twitter.com/de3ug">Twitter</a></li>
+        <li><a href="https://www.threads.net/@de3ug">Threads</a></li>
+      </ul>
+      <p><em>Last updated: 5/20/2025</em></p>
+    </section>
+  </main>
+
+  <div id="three-container"></div>
+
+  <script>
+    const container = document.getElementById('three-container');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshNormalMaterial();
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 3;
+
+    let scrollY = 0;
+    let mouseX = 0;
+
+    function onScroll() {
+      scrollY = window.scrollY;
+    }
+    function onMouseMove(e) {
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+    }
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('mousemove', onMouseMove);
+
+    function onWindowResize() {
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+    window.addEventListener('resize', onWindowResize);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x = scrollY * 0.002;
+      cube.rotation.y = mouseX * Math.PI;
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
 </html>
