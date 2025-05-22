@@ -13,11 +13,6 @@ Open your browser at the printed local URL.
 
 ## Demo
 
-<!-- TODO: Add a demo GIF of `SEA-LHR-DXB-SIN` here. The binary file was
-removed to avoid repository push issues. Place your GIF at `public/demo.gif`
-and uncomment the image link below when ready. -->
-<!-- ![Demo](public/demo.gif) -->
-
 Type a route such as `SEA-LHR-DXB-SIN` to see arcs drawn on the map and leg-by-leg distances reported below.
 
 This project uses Leaflet, GeographicLib and Tailwind CSS. The airports data is loaded from `public/airports.json` at runtime. Replace it with the full OpenFlights dataset for complete coverage.
