@@ -1,0 +1,12 @@
+[
+  {"iata": "SEA", "name": "Seattle Tacoma Intl", "city": "Seattle", "country": "USA", "latitude": 47.44898, "longitude": -122.30931},
+  {"iata": "LHR", "name": "Heathrow", "city": "London", "country": "United Kingdom", "latitude": 51.4706, "longitude": -0.461941},
+  {"iata": "DXB", "name": "Dubai Intl", "city": "Dubai", "country": "UAE", "latitude": 25.2528, "longitude": 55.3644},
+  {"iata": "SIN", "name": "Changi Intl", "city": "Singapore", "country": "Singapore", "latitude": 1.35019, "longitude": 103.994},
+  {"iata": "JFK", "name": "John F Kennedy Intl", "city": "New York", "country": "USA", "latitude": 40.63975, "longitude": -73.7789},
+  {"iata": "LAX", "name": "Los Angeles Intl", "city": "Los Angeles", "country": "USA", "latitude": 33.9425, "longitude": -118.4081},
+  {"iata": "SFO", "name": "San Francisco Intl", "city": "San Francisco", "country": "USA", "latitude": 37.6188, "longitude": -122.375},
+  {"iata": "DAL", "name": "Dallas Love Field", "city": "Dallas", "country": "USA", "latitude": 32.8471, "longitude": -96.8517},
+  {"iata": "NRT", "name": "Narita Intl", "city": "Tokyo", "country": "Japan", "latitude": 35.7647, "longitude": 140.386},
+  {"iata": "ORD", "name": "Chicago O'Hare Intl", "city": "Chicago", "country": "USA", "latitude": 41.9786, "longitude": -87.9048}
+]
