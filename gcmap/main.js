@@ -2,8 +2,26 @@ let airportData = {};
 let map, layerGroup;
 
 async function loadAirports() {
-  const res = await fetch('public/airports.json');
-  airportData = await res.json();
+  const res = await fetch('public/airports.dat');
+  const text = await res.text();
+  airportData = {};
+  for (const line of text.trim().split(/\r?\n/)) {
+    if (!line) continue;
+    const parts = line.split(',');
+    if (parts.length < 8) continue;
+    const code = parts[4].replace(/"/g, '');
+    if (!code || code === '\\N') continue;
+    const lat = parseFloat(parts[6]);
+    const lon = parseFloat(parts[7]);
+    if (isNaN(lat) || isNaN(lon)) continue;
+    airportData[code] = {
+      name: parts[1].replace(/"/g, ''),
+      city: parts[2].replace(/"/g, ''),
+      country: parts[3].replace(/"/g, ''),
+      lat,
+      lon
+    };
+  }
 }
 
 function showToast(msg) {
