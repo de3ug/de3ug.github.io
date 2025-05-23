@@ -1,6 +1,8 @@
 # Great Circle Map
 
-This is a lightweight single-page web app for plotting great-circle flight paths. Enter a series of airport codes (e.g. `SEA-LHR` or `JFK-LAX-SFO`) and see the route drawn on an interactive map along with distance calculations.
+This is a lightweight single-page web app for plotting great-circle flight paths. Enter a series of airport codes (e.g. `SEA-LHR` or `JFK-LAX-SFO`) and see the route drawn on an interactive map along with distance calculations. Circles of equal range can be drawn using the `distance@airport` syntax, e.g. `500nm@SFO`.
+
+Multiple sets of segments can be provided by separating them with spaces, commas or newlines. Sets are not connected to each other when drawn.
 
 ## Setup
 
