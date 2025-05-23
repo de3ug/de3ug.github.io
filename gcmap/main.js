@@ -48,41 +48,52 @@ function initMap() {
 }
 
 function parseRoute(str) {
-  const parts = str
-    .split(/[-,\n]+/)
-    .map(p => p.trim())
-    .filter(p => p);
-  if (parts.length < 2) {
-    showToast('Enter at least 2 segments');
+  const groups = str
+    .trim()
+    .split(/[\s,]+/)
+    .map(g => g.trim())
+    .filter(g => g);
+
+  if (!groups.length) {
+    showToast('Enter at least one segment');
     return null;
   }
+
   const route = [];
-  for (const part of parts) {
-    const circleMatch = part.match(/^(\d+(?:\.\d+)?)(nm|mi|km)?@([A-Z]{3})$/i);
-    if (circleMatch) {
-      const radius = parseFloat(circleMatch[1]);
-      const units = (circleMatch[2] || 'nm').toLowerCase();
-      const code = circleMatch[3].toUpperCase();
-      const airport = airportData[code];
-      if (!airport) {
-        showToast(`Unknown airport code: ${code}`);
-        return null;
+  for (let gi = 0; gi < groups.length; gi++) {
+    const parts = groups[gi].split(/-/).map(p => p.trim()).filter(p => p);
+    if (!parts.length) continue;
+    for (const part of parts) {
+      const circleMatch = part.match(/^(\d+(?:\.\d+)?)(nm|mi|km)?@([A-Z]{3})$/i);
+      if (circleMatch) {
+        const radius = parseFloat(circleMatch[1]);
+        const units = (circleMatch[2] || 'nm').toLowerCase();
+        const code = circleMatch[3].toUpperCase();
+        const airport = airportData[code];
+        if (!airport) {
+          showToast(`Unknown airport code: ${code}`);
+          return null;
+        }
+        let km = radius;
+        if (units === 'nm') km = nmToKm(radius);
+        else if (units === 'mi') km = miToKm(radius);
+        route.push({ type: 'circle', center: [airport.lat, airport.lon], km });
+      } else {
+        const code = part.toUpperCase();
+        const airport = airportData[code];
+        if (!airport) {
+          showToast(`Unknown airport code: ${code}`);
+          return null;
+        }
+        route.push({ type: 'airport', code, lat: airport.lat, lon: airport.lon });
       }
-      let km = radius;
-      if (units === 'nm') km = nmToKm(radius);
-      else if (units === 'mi') km = miToKm(radius);
-      route.push({ type: 'circle', center: [airport.lat, airport.lon], km });
-    } else {
-      const code = part.toUpperCase();
-      const airport = airportData[code];
-      if (!airport) {
-        showToast(`Unknown airport code: ${code}`);
-        return null;
-      }
-      route.push({ type: 'airport', code, lat: airport.lat, lon: airport.lon });
+    }
+    if (gi < groups.length - 1) {
+      route.push({ type: 'separator' });
     }
   }
-  // remove duplicate consecutive airports
+
+  // remove duplicate consecutive airports within a segment set
   const cleaned = [];
   for (const seg of route) {
     if (seg.type === 'airport') {
@@ -91,6 +102,12 @@ function parseRoute(str) {
     }
     cleaned.push(seg);
   }
+
+  if (!cleaned.length) {
+    showToast('Enter at least one valid segment');
+    return null;
+  }
+
   return cleaned;
 }
 
