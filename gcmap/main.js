@@ -185,8 +185,8 @@ function drawRoute(route) {
         fillOpacity: 1
       }).addTo(layerGroup);
       marker.bindTooltip(code, { permanent: true, direction: 'top', className: 'airport-label' });
-      bounds.push(marker.getBounds());
-    }
+      bounds.push(marker.getLatLng());
+      }
   }
 
   // draw segments using counts
