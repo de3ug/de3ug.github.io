@@ -48,9 +48,12 @@ function initMap() {
 }
 
 function parseRoute(str) {
-  const parts = str.split('-').map(p => p.trim()).filter(p => p);
-  if (parts.length < 2 || parts.length > 10) {
-    showToast('Enter 2-10 segments');
+  const parts = str
+    .split(/[-,\n]+/)
+    .map(p => p.trim())
+    .filter(p => p);
+  if (parts.length < 2) {
+    showToast('Enter at least 2 segments');
     return null;
   }
   const route = [];
@@ -146,11 +149,32 @@ function drawRoute(route) {
 async function setup() {
   await loadAirports();
   initMap();
+  const inputEl = document.getElementById('route-input');
   document.getElementById('draw-btn').addEventListener('click', () => {
-    const input = document.getElementById('route-input').value.trim().toUpperCase();
+    const input = inputEl.value.trim().toUpperCase();
     const route = parseRoute(input);
     if (route) drawRoute(route);
   });
+  inputEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      document.getElementById('draw-btn').click();
+    }
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('file')) {
+    const file = params.get('file');
+    try {
+      const res = await fetch('public/' + file);
+      const text = await res.text();
+      inputEl.value = text.trim();
+      document.getElementById('draw-btn').click();
+    } catch (err) {
+      console.error(err);
+      showToast('Unable to load file');
+    }
+  }
 }
 
 setup();

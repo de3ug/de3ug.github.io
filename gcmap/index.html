@@ -14,9 +14,12 @@
 <body class="bg-gray-100">
   <div class="container mx-auto p-4">
     <h1 class="text-2xl font-bold mb-4">Great Circle Mapper</h1>
-    <div class="flex mb-4 gap-2">
-      <input id="route-input" class="border p-2 flex-grow" placeholder="Enter route e.g. SEA-LHR or 8000nm@LHR" />
+    <div class="flex mb-2 gap-2">
+      <textarea id="route-input" rows="3" class="border p-2 flex-grow resize-y" placeholder="Enter route e.g. SEA-LHR or 8000nm@LHR"></textarea>
       <button id="draw-btn" class="bg-blue-500 text-white px-4 py-2">Draw</button>
+    </div>
+    <div class="mb-4">
+      <a href="?file=flight.history.doug.txt" id="doug-link" class="text-blue-500 underline">Doug's flight history</a>
     </div>
     <div id="map" class="mb-4"></div>
     <table id="results" class="table-auto w-full text-left border-collapse">
