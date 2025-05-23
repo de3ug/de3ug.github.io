@@ -1,18 +1,21 @@
-# GCMap
+# Great Circle Map
 
-A simple single-page React app for plotting great-circle routes between airports.
+This is a lightweight single-page web app for plotting great-circle flight paths. Enter a series of airport codes (e.g. `SEA-LHR` or `JFK-LAX-SFO`) and see the route drawn on an interactive map along with distance calculations.
 
 ## Setup
 
+1. Install dependencies
+
 ```bash
-npm install
+npm i
+```
+
+2. Start the dev server
+
+```bash
 npm run dev
 ```
 
-Open your browser at the printed local URL.
+Then open <http://localhost:3000/gcmap/> in your browser.
 
-## Demo
-
-Type a route such as `SEA-LHR-DXB-SIN` to see arcs drawn on the map and leg-by-leg distances reported below.
-
-This project uses Leaflet, GeographicLib and Tailwind CSS. The airports data is loaded from `public/airports.json` at runtime. Replace it with the full OpenFlights dataset for complete coverage.
+The app is completely static and pulls Leaflet, Turf.js and Tailwind from public CDNs. For production you may wish to self-host these assets or bundle them locally.
