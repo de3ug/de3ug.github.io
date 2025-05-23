@@ -1,5 +1,6 @@
 let airportData = {};
 let map, layerGroup;
+let segmentPopup;
 
 // display options controlled by checkboxes in the UI
 let showMarkers = true;
@@ -38,6 +39,13 @@ function showToast(msg) {
   setTimeout(() => div.remove(), 3000);
 }
 
+function showSegmentPopup(text, latlng) {
+  if (segmentPopup) {
+    map.closePopup(segmentPopup);
+  }
+  segmentPopup = L.popup().setLatLng(latlng).setContent(text).openOn(map);
+}
+
 function nmToKm(nm) { return nm * 1.852; }
 function miToKm(mi) { return mi * 1.60934; }
 function kmToNm(km) { return km * 0.539957; }
@@ -59,6 +67,13 @@ function initMap() {
   }).addTo(map);
   layerGroup = L.layerGroup().addTo(map);
   map.setView([20,0],2);
+
+  map.on('click', () => {
+    if (segmentPopup) {
+      map.closePopup(segmentPopup);
+      segmentPopup = null;
+    }
+  });
 }
 
 function parseRoute(str) {
@@ -199,6 +214,12 @@ function drawRoute(route) {
       color = jetColor(t);
     }
     const gj = L.geoJSON(line, { style: { color, weight: 2 } }).addTo(layerGroup);
+    gj.on('click', (e) => {
+      const segText = key.replace('-', ' \u2192 ');
+      const label = `${segText}: ${count}`;
+      showSegmentPopup(label, e.latlng);
+      L.DomEvent.stopPropagation(e);
+    });
     bounds.push(gj.getBounds());
   }
 
@@ -208,12 +229,17 @@ function drawRoute(route) {
   if (colorByFrequency && maxCount > 1) {
     for (let i = 1; i <= maxCount; i++) {
       const t = (i - 1) / (maxCount - 1);
+      const container = document.createElement('div');
+      container.className = 'flex flex-col items-center';
+      const label = document.createElement('div');
+      label.className = 'text-xs';
+      label.textContent = `${i}`;
       const swatch = document.createElement('div');
-      swatch.style.width = '20px';
-      swatch.style.height = '20px';
+      swatch.className = 'legend-swatch';
       swatch.style.background = jetColor(t);
-      swatch.title = `${i}`;
-      legend.appendChild(swatch);
+      container.appendChild(label);
+      container.appendChild(swatch);
+      legend.appendChild(container);
     }
   }
 
