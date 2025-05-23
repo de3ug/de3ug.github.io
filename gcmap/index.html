@@ -9,6 +9,8 @@
   <style>
     #map { height: 60vh; }
     .toast { position: fixed; top: 1rem; right: 1rem; background: #ef4444; color: white; padding: 0.5rem 1rem; border-radius: 0.25rem; }
+    .airport-label { font-size: 0.75rem; font-weight: bold; }
+    #legend div { width: 20px; height: 20px; }
   </style>
 </head>
 <body class="bg-gray-100">
@@ -22,6 +24,11 @@
       <a href="?file=flight.history.doug.txt" id="doug-link" class="text-blue-500 underline">Doug's flight history</a>
     </div>
     <div id="map" class="mb-4"></div>
+    <div class="flex items-center gap-4 mb-2">
+      <label class="flex items-center gap-1"><input type="checkbox" id="markers-cb" checked> Show airport markers</label>
+      <label class="flex items-center gap-1"><input type="checkbox" id="color-cb" checked> Color by frequency</label>
+    </div>
+    <div id="legend" class="flex items-center gap-1 mb-4"></div>
     <table id="results" class="table-auto w-full text-left border-collapse">
       <thead>
         <tr class="bg-gray-200">
