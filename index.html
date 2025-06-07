@@ -49,6 +49,25 @@
       height: 100%;
       display: block;
     }
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      nav {
+        width: 100%;
+        position: relative;
+        top: auto;
+        bottom: auto;
+      }
+      main {
+        margin: 0;
+        padding: 10px;
+        max-width: none;
+      }
+      #three-container {
+        display: none;
+      }
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 </head>
