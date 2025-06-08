@@ -29,13 +29,18 @@ server.listen(port, () => {
   const chrome = spawn('chromium-browser', [
     '--headless',
     '--no-sandbox',
+    '--dump-dom',
     `http://localhost:${port}/`,
   ]);
   let stderr = '';
+  const timeout = setTimeout(() => {
+    chrome.kill('SIGKILL');
+  }, 10000);
   chrome.stderr.on('data', d => {
     stderr += d.toString();
   });
   chrome.on('close', () => {
+    clearTimeout(timeout);
     server.close(() => {
       if (/Uncaught|Error/i.test(stderr)) {
         console.error(stderr);
