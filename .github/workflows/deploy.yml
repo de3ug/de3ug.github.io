@@ -22,8 +22,10 @@ jobs:
           fi
       - name: Validate HTML
         run: |
+          set +e
           tidy -qe site/index.html
           rc=$?
+          set -e
           if [ "$rc" -gt 1 ]; then exit $rc; fi
       - name: JS smoke test
         run: node smoke.js
