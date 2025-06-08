@@ -21,7 +21,10 @@ jobs:
             sudo apt-get install -y chromium-browser
           fi
       - name: Validate HTML
-        run: tidy -qe site/index.html
+        run: |
+          tidy -qe site/index.html
+          rc=$?
+          if [ "$rc" -gt 1 ]; then exit $rc; fi
       - name: JS smoke test
         run: node smoke.js
       - name: Copy site to dist
