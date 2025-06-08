@@ -9,9 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Validate HTML
-        run: |
-          curl -s -F "file=@site/index.html;type=text/html" https://validator.w3.org/nu/?out=json | \
-          grep -q '"type":"error"' && { echo "HTML validation failed"; exit 1; } || echo "HTML valid"
+        run: tidy -qe site/index.html
       - name: Copy site to dist
         run: |
           mkdir -p dist
