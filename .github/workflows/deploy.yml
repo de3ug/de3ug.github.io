@@ -8,10 +8,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Validate HTML
+      - name: Install tidy if needed
         run: |
-          curl -s -F "file=@site/index.html;type=text/html" https://validator.w3.org/nu/?out=json | \
-          grep -q '"type":"error"' && { echo "HTML validation failed"; exit 1; } || echo "HTML valid"
+          if ! command -v tidy >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y tidy
+          fi
+      - name: Install chromium-browser if needed
+        run: |
+          if ! command -v chromium-browser >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y chromium-browser
+          fi
+      - name: Validate HTML
+        run: tidy -qe site/index.html
+      - name: JS smoke test
+        run: node smoke.js
       - name: Copy site to dist
         run: |
           mkdir -p dist
