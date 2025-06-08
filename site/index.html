@@ -69,7 +69,6 @@
       }
     }
   </style>
-  <script src="js/three/three.core.min.js"></script>
 </head>
 <body>
   <nav>
@@ -138,7 +137,9 @@
 
   <div id="three-container"></div>
 
-  <script>
+  <script type="module">
+    import * as THREE from './js/three/three.module.min.js';
+
     const container = document.getElementById('three-container');
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 1000);
