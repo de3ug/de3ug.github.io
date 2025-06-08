@@ -8,8 +8,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Install chromium-browser if needed
+        run: |
+          if ! command -v chromium-browser >/dev/null; then
+            sudo apt-get update
+            sudo apt-get install -y chromium-browser
+          fi
       - name: Validate HTML
-        run: tidy -qe site/index.html
+        run: |
+          set +e
+          tidy -qe site/index.html
+          rc=$?
+          set -e
+          if [ "$rc" -gt 1 ]; then exit $rc; fi
+      - name: JS smoke test
+        run: node smoke.js
       - name: Copy site to dist
         run: |
           mkdir -p dist
