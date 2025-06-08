@@ -1,10 +1,29 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { spawn } = require('child_process');
+const { spawn, execSync } = require('child_process');
 
 const root = path.join(__dirname, 'site');
 const port = 8123;
+
+function findBrowser() {
+  const candidates = ['chromium-browser', 'chromium', 'google-chrome'];
+  for (const c of candidates) {
+    try {
+      execSync(`command -v ${c}`, { stdio: 'ignore' });
+      return c;
+    } catch (e) {
+      // ignore
+    }
+  }
+  return null;
+}
+
+const browser = findBrowser();
+if (!browser) {
+  console.log('No headless browser found, skipping smoke test');
+  process.exit(0);
+}
 
 const server = http.createServer((req, res) => {
   const reqPath = req.url === '/' ? '/index.html' : req.url;
@@ -26,7 +45,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-  const chrome = spawn('chromium-browser', [
+  const chrome = spawn(browser, [
     '--headless',
     '--no-sandbox',
     '--dump-dom',
