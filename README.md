@@ -19,3 +19,7 @@ Two GitHub Actions workflows keep the site up to date:
 2. **Preview** – runs on pull requests. It also copies `site/` into `dist/` and posts a preview link in the PR via `rossjrw/pr-preview-action`.
 
 Both workflows run `tidy -qe site/index.html` (warnings ignored) and `node smoke.js` to catch JavaScript errors. The smoke test launches Chromium with `--dump-dom` and kills it after 10 seconds to avoid hanging. `chromium-browser` is installed automatically if not present.
+
+## Privacy notice
+
+The privacy policy required for Login with Amazon lives at `/privacy.html`. It is a simple static page automatically deployed along with the rest of the files in `site/`.
