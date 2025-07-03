@@ -2,6 +2,8 @@
 
 This repository contains the sources for [de3ug.github.io](https://de3ug.github.io/). All public files live in the `site/` directory and are deployed automatically to GitHub Pages.
 
+The homepage includes sections for publications, projects, work experience and a Personal/Hobbies area with links to travel, astrophotography and racing content.
+
 ## Local dev
 
 Run a simple static server and open the site:
