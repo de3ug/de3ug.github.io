@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Douglas Gray - Portfolio</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --text: #111111;
+      --nav-bg: #f0f0f0;
+      --link: #333333;
+      --link-hover: #0b5fff;
+      --button-bg: #ffffff;
+      --button-text: #111111;
+      --button-border: #c7c7c7;
+    }
+    [data-theme="dark"] {
+      --bg: #0f1115;
+      --text: #f5f5f5;
+      --nav-bg: #1a1f27;
+      --link: #d9e2ff;
+      --link-hover: #9db6ff;
+      --button-bg: #1f2530;
+      --button-text: #f5f5f5;
+      --button-border: #2f3644;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      background: var(--bg);
+      color: var(--text);
+    }
+    nav {
+      width: 200px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--nav-bg);
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    nav a {
+      display: block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: var(--link);
+      transition: color 0.2s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: var(--link-hover);
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .profile-pic {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--button-border);
+    }
+    .theme-toggle {
+      width: 100%;
+      padding: 8px 12px;
+      margin-top: auto;
+      border-radius: 6px;
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: var(--button-text);
+      cursor: pointer;
+      font-size: 14px;
+      text-align: left;
+    }
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--link-hover);
+      outline-offset: 2px;
+    }
+    main {
+      margin-left: 220px;
+      padding: 20px;
+      max-width: 800px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      nav {
+        width: 100%;
+        position: relative;
+        top: auto;
+        bottom: auto;
+      }
+      main {
+        margin: 0;
+        padding: 10px;
+        max-width: none;
+      }
+      #three-container {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="profile">
+      <img class="profile-pic" src="assets/img/profile_pic.jpg" alt="Portrait of Douglas Gray">
+      <strong>Douglas Gray</strong>
+    </div>
+    <h2>Navigate</h2>
+    <a href="#about">About</a>
+    <a href="#publications">Publications & Service</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#hobbies">Personal/Hobbies</a>
+    <a href="#contact">Contact</a>
+    <button class="theme-toggle" type="button" data-theme-toggle>🌙 Dark</button>
+  </nav>
+
+  <main>
+    <section id="about">
+      <h1>Douglas Gray</h1>
+      <p>Principal Applied Scientist &mdash; Visual Search at Amazon.</p>
+      <p>Based in Portola Valley, CA.</p>
+    </section>
+
+    <section id="publications">
+      <h2>Selected Publications and Service</h2>
+      <ul>
+        <li>Co-organizer, <a href="https://mrr-workshop.github.io/">Multimodal Representation and Retrieval Workshop</a> (SIGIR&nbsp;2024, ICCV 2025).</li>
+        <li><a href="https://www.amazon.science/publications/genius-a-generative-framework-for-universal-multimodal-search">GENIUS: A Generative Framework for Universal Multimodal Search</a>, CVPR&nbsp;2025</li>
+        <li><a href="https://www.amazon.science/publications/bringing-multimodality-to-amazon-visual-search-system">Bringing Multimodality to Amazon Visual Search System</a>, KDD&nbsp;2024</li>   
+        <li><a href="https://www.amazon.science/publications/amazon-shop-the-look-a-visual-search-system-for-fashion-and-home">Amazon Shop the Look: A Visual Search System for Fashion and Home</a>, KDD&nbsp;2022</li>
+        <li><a href="https://www.amazon.science/publications/hierarchical-proxy-based-loss-for-deep-metric-learning">Hierarchical Proxy-Based Loss for Deep Metric Learning</a>, WACV&nbsp;2022</li>
+        <li><a href="https://ainote.ddlee.cc/2020/12/29/person-re-id-datasets/">Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features</a>, ECCV&nbsp;2008</li> 
+        <li>Reviewer for CVPR, ICCV, ECCV, and WACV.</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Selected Projects and News Articles</h2>
+      <ul>
+	<li><a href="https://www.aboutamazon.com/news/retail/search-image-amazon-lens-live-shopping-rufus">Amazon Lens Live</a>, realtime search ingights about products.</li> 
+        <li><a href="https://www.aboutamazon.com/news/retail/visual-search-shopping-features">Amazon Lens, Visual Search Suggestions, and More like This</a> for enhanced product discovery.</li>
+        <li><a href="https://www.aboutamazon.com/news/retail/stylesnap-will-change-the-way-you-shop-forever">StyleSnap for fashion</a> (2019) and for <a href="https://www.amazon.science/latest-news/the-science-behind-amazons-new-stylesnap-for-home-feature">home</a> (2020).</li>
+        <li><a href="https://www.theverge.com/2011/11/3/2535286/a9-flow-app-augmented-reality-amazon-shopping">A9 Flow</a> augmented reality shopping app (2011).</li>
+      </ul>
+    </section>
+
+    <section id="experience">
+      <h2>Education &amp; Work History</h2>
+      <p><strong>Principal Applied Scientist</strong>, Amazon Visual Search (2025&ndash;Present)</p>
+      <p><strong>Senior Manager, Applied Science</strong>, Amazon Visual Shopping (2020&ndash;2025)</p>
+      <p><strong>Manager, Applied Science</strong>, Amazon Visual Search &amp; AR (2016&ndash;2020)</p>
+      <p><strong>Applied Scientist</strong>, A9.com Visual Search (2011&ndash;2016)</p>
+      <p><strong>Research Scientist</strong>, Akiira Media Systems, Palo Alto (2010&ndash;2011)</p>
+      <p><strong>Graduate Research Assistant &amp; Teaching Assistant</strong>, UC Santa Cruz (2005&ndash;2010)</p>
+      <p><strong>Ph.D. Candidate (ABD)</strong>, Computer Engineering, UC Santa Cruz (2005&ndash;2010)</p>
+      <p><strong>B.S.</strong>, Computer Engineering, UC Santa Cruz (2001&ndash;2005)</p>
+    </section>
+
+    <section id="hobbies">
+      <h2>Personal &amp; Hobbies</h2>
+      <ul>
+        <li><a href="https://de3ug.github.io/gcmap/?file=flight.history.doug.txt">Where I've been Map</a> &ndash; Travel</li>
+        <li><a href="https://app.astrobin.com/u/de3ug#gallery">AstroBin</a> &ndash; Astrophotography</li>
+        <li><a href="https://www.instagram.com/de3ug/">Instagram</a> &ndash; Mostly Astrophotography</li>
+        <li><a href="https://www.facebook.com/GrayMatterRacing">Chumpcar / Champcar / 24 Hours of Lemons</a> &ndash; Amateur racing</li>
+        <li><a href="https://www.youtube.com/channel/UCevbEIVnSl9-qb0gwvUeQTA">YouTube</a> &ndash; Mostly Racing</li>
+        <li><a href="https://www.tiktok.com/@de3ug">TikTok</a> &ndash; Mostly Snowboarding</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>611 Cowper St.<br>Palo Alto, CA 94301</p>
+      <p>Email: (my full name with dots as spaces, my middle name is Ryan) at gmail</p>
+      <ul>
+        <li><a href="https://scholar.google.com/citations?user=YliQcmwAAAAJ&amp;hl=en">Google Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/de3ug/">LinkedIn</a></li>
+        <li><a href="https://twitter.com/de3ug">Twitter</a></li>
+        <li><a href="https://www.threads.net/@de3ug">Threads</a></li>
+      </ul>
+      <p><em>Last updated: 10/24/2025 — <a href="privacy.html">Privacy notice</a></em></p>
+    </section>
+  </main>
+
+
+
+  <script src="js/theme-toggle.js" defer></script>
+</body>
+</html>
