@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Douglas Gray - Portfolio</title>
   <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --text: #111111;
+      --nav-bg: #f0f0f0;
+      --link: #333333;
+      --link-hover: #0b5fff;
+      --button-bg: #ffffff;
+      --button-text: #111111;
+      --button-border: #c7c7c7;
+    }
+    [data-theme="dark"] {
+      --bg: #0f1115;
+      --text: #f5f5f5;
+      --nav-bg: #1a1f27;
+      --link: #d9e2ff;
+      --link-hover: #9db6ff;
+      --button-bg: #1f2530;
+      --button-text: #f5f5f5;
+      --button-border: #2f3644;
+    }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       display: flex;
+      background: var(--bg);
+      color: var(--text);
     }
     nav {
       width: 200px;
@@ -16,7 +39,9 @@
       top: 0;
       bottom: 0;
       left: 0;
-      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      background: var(--nav-bg);
       padding: 20px;
       box-sizing: border-box;
       overflow-y: auto;
@@ -25,7 +50,41 @@
       display: block;
       margin-bottom: 10px;
       text-decoration: none;
-      color: #333;
+      color: var(--link);
+      transition: color 0.2s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: var(--link-hover);
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .profile-pic {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--button-border);
+    }
+    .theme-toggle {
+      width: 100%;
+      padding: 8px 12px;
+      margin-top: auto;
+      border-radius: 6px;
+      border: 1px solid var(--button-border);
+      background: var(--button-bg);
+      color: var(--button-text);
+      cursor: pointer;
+      font-size: 14px;
+      text-align: left;
+    }
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--link-hover);
+      outline-offset: 2px;
     }
     main {
       margin-left: 220px;
@@ -59,6 +118,10 @@
 </head>
 <body>
   <nav>
+    <div class="profile">
+      <img class="profile-pic" src="assets/img/profile_pic.jpg" alt="Portrait of Douglas Gray">
+      <strong>Douglas Gray</strong>
+    </div>
     <h2>Navigate</h2>
     <a href="#about">About</a>
     <a href="#publications">Publications & Service</a>
@@ -66,6 +129,7 @@
     <a href="#experience">Experience</a>
     <a href="#hobbies">Personal/Hobbies</a>
     <a href="#contact">Contact</a>
+    <button class="theme-toggle" type="button" data-theme-toggle>🌙 Dark</button>
   </nav>
 
   <main>
@@ -138,6 +202,6 @@
 
 
 
-
+  <script src="js/theme-toggle.js" defer></script>
 </body>
 </html>
