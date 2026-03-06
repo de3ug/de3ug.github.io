@@ -7,7 +7,7 @@ const root = path.join(__dirname, 'site');
 const port = 8123;
 
 function findBrowser() {
-  const candidates = ['chromium-browser', 'chromium', 'google-chrome'];
+  const candidates = ['google-chrome', 'chromium-browser', 'chromium'];
   for (const c of candidates) {
     try {
       execSync(`command -v ${c}`, { stdio: 'ignore' });
@@ -61,12 +61,18 @@ server.listen(port, () => {
   chrome.on('close', () => {
     clearTimeout(timeout);
     server.close(() => {
-      if (/Uncaught|Error/i.test(stderr)) {
-        console.error(stderr);
+      // Filter out Chrome's own internal messages, only fail on actual JS errors
+      const jsErrors = stderr
+        .split('\n')
+        .filter(line => /Uncaught|Exception/.test(line))
+        .filter(line => !/\[ERROR:/.test(line))
+        .join('\n')
+        .trim();
+      if (jsErrors) {
+        console.error('JS errors detected:\n' + jsErrors);
         process.exit(1);
-      } else {
-        console.log('Smoke test passed');
       }
+      console.log('Smoke test passed');
     });
   });
 });

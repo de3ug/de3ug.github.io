@@ -8,13 +8,7 @@ jobs:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install chromium-browser if needed
-        run: |
-          if ! command -v chromium-browser >/dev/null; then
-            sudo apt-get update
-            sudo apt-get install -y chromium-browser
-          fi
+      - uses: actions/checkout@v4
       - name: Install tidy if needed
         run: |
           if ! command -v tidy >/dev/null; then
@@ -23,14 +17,17 @@ jobs:
           fi
       - name: Validate HTML
         run: |
-          set +e
-          tidy -qe site/index.html
-          rc=$?
-          set -e
-          if [ "$rc" -gt 1 ]; then exit $rc; fi
+          fail=0
+          for f in $(find site -name '*.html'); do
+            set +e
+            tidy -qe "$f"
+            rc=$?
+            set -e
+            if [ "$rc" -gt 1 ]; then fail=1; fi
+          done
+          exit $fail
       - name: JS smoke test
         run: node smoke.js
-        continue-on-error: true
       - name: Copy site to dist
         run: |
           mkdir -p dist
@@ -40,3 +37,15 @@ jobs:
         with:
           preview-branch: gh-pages
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  cleanup:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove PR preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          preview-branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          action: remove
