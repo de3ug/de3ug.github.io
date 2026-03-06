@@ -1,0 +1,8 @@
+{
+  "SEA": {"name": "Seattle Tacoma Intl", "city": "Seattle", "country": "United States", "lat": 47.449, "lon": -122.309},
+  "LHR": {"name": "Heathrow", "city": "London", "country": "United Kingdom", "lat": 51.4706, "lon": -0.461941},
+  "JFK": {"name": "John F Kennedy Intl", "city": "New York", "country": "United States", "lat": 40.6398, "lon": -73.7789},
+  "LAX": {"name": "Los Angeles Intl", "city": "Los Angeles", "country": "United States", "lat": 33.9425, "lon": -118.4081},
+  "SFO": {"name": "San Francisco Intl", "city": "San Francisco", "country": "United States", "lat": 37.618999, "lon": -122.375},
+  "DAL": {"name": "Dallas Love Field", "city": "Dallas", "country": "United States", "lat": 32.8471, "lon": -96.8518}
+}
