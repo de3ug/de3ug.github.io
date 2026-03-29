@@ -4,9 +4,7 @@ const toggleButton = document.querySelector('[data-theme-toggle]');
 const applyTheme = (theme) => {
   root.dataset.theme = theme;
   if (toggleButton) {
-    toggleButton.textContent = theme === 'dark'
-      ? '☀️ Light'
-      : '🌙 Dark';
+    toggleButton.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
     toggleButton.setAttribute('aria-pressed', theme === 'dark');
   }
 };
@@ -21,3 +19,4 @@ if (toggleButton) {
     localStorage.setItem('theme', nextTheme);
   });
 }
+

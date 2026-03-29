@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# AI crawlers explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Structured data endpoints
+# resume.json  — machine-readable resume
+# llms.txt     — plain-text summary for LLMs
+# schema.org/Person JSON-LD is embedded in index.html
