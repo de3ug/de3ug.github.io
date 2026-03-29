@@ -1,0 +1,56 @@
+{
+  "name": "Douglas Gray",
+  "title": "Principal Applied Scientist",
+  "tagline": "Multimodal Retrieval, Vision-Language Systems, and Visual Search.",
+  "about": "Current research interests: real-time generative search interfaces, retrieval-grounded multimodal QA, multimodal orchestration, and stateful visual assistants with persistent memory and personalization (i.e., world models).",
+  "location": "Portola Valley, CA (near Palo Alto, 30 min south of SF)",
+  "email_hint": "(my full name with dots as spaces, my middle name is Ryan) at gmail",
+  "last_updated": "03/05/2026",
+  "publications": [
+    {"parts": ["Co-organizer, ", {"text": "Multimodal Representation and Retrieval Workshop", "url": "https://mrr-workshop.github.io/"}, " (SIGIR\u00a02024, ICCV 2025)."]},
+    {"parts": [{"text": "GENIUS: A Generative Framework for Universal Multimodal Search", "url": "https://www.amazon.science/publications/genius-a-generative-framework-for-universal-multimodal-search"}, ", CVPR\u00a02025"]},
+    {"parts": [{"text": "Bringing Multimodality to Amazon Visual Search System", "url": "https://www.amazon.science/publications/bringing-multimodality-to-amazon-visual-search-system"}, ", KDD\u00a02024"]},
+    {"parts": [{"text": "Amazon Shop the Look: A Visual Search System for Fashion and Home", "url": "https://www.amazon.science/publications/amazon-shop-the-look-a-visual-search-system-for-fashion-and-home"}, ", KDD\u00a02022"]},
+    {"parts": [{"text": "Hierarchical Proxy-Based Loss for Deep Metric Learning", "url": "https://www.amazon.science/publications/hierarchical-proxy-based-loss-for-deep-metric-learning"}, ", WACV\u00a02022"]},
+    {"parts": [{"text": "Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features", "url": "https://ainote.ddlee.cc/2020/12/29/person-re-id-datasets/"}, ", ECCV\u00a02008"]},
+    {"parts": ["Reviewer for CVPR, ICCV, ECCV, and WACV."]}
+  ],
+  "patents_intro": "Named inventor on 40+ patents in computer vision, visual search, and camera/AR systems.",
+  "patents": [
+    {"parts": [{"text": "Neural Network-Based Image Manipulation", "url": "https://patents.google.com/patent/US10956784B2/en"}, " \u2014 US10956784B2, first filed 2016-06-06."]},
+    {"parts": [{"text": "Object Tracking in Zoomed Video", "url": "https://patents.google.com/patent/CA2942377C/en"}, " \u2014 CA2942377C, first filed 2014-03-21 (co-authored with Jeff Bezos)."]},
+    {"parts": [{"text": "Visual Search Suggestions", "url": "https://patents.google.com/patent/US10540378B1/en"}, " \u2014 US10540378B1, first filed 2016-06-28."]},
+    {"parts": [{"text": "Self-Portrait Enhancement Techniques", "url": "https://patents.google.com/patent/US10121229B2/en"}, " \u2014 US10121229B2, first filed 2013-08-30."]},
+    {"parts": [{"text": "Augmented Reality Camera Lucida", "url": "https://patents.google.com/patent/US9965895B1/en"}, " \u2014 US9965895B1, first filed 2014-03-20."]}
+  ],
+  "projects": [
+    {"parts": [{"text": "Amazon Lens Live", "url": "https://www.aboutamazon.com/news/retail/search-image-amazon-lens-live-shopping-rufus"}, ", realtime search insights about products."]},
+    {"parts": [{"text": "Amazon Lens, Visual Search Suggestions, and More like This", "url": "https://www.aboutamazon.com/news/retail/visual-search-shopping-features"}, " for enhanced product discovery."]},
+    {"parts": [{"text": "StyleSnap for fashion", "url": "https://www.aboutamazon.com/news/retail/stylesnap-will-change-the-way-you-shop-forever"}, " (2019) and for ", {"text": "home", "url": "https://www.amazon.science/latest-news/the-science-behind-amazons-new-stylesnap-for-home-feature"}, " (2020)."]},
+    {"parts": [{"text": "A9 Flow", "url": "https://www.theverge.com/2011/11/3/2535286/a9-flow-app-augmented-reality-amazon-shopping"}, " augmented reality shopping app (2011)."]}
+  ],
+  "experience": [
+    {"role": "Principal Applied Scientist", "org": "Amazon Visual Search", "years": "2025\u2013Present"},
+    {"role": "Senior Manager, Applied Science", "org": "Amazon Visual Shopping", "years": "2020\u20132025"},
+    {"role": "Manager, Applied Science", "org": "Amazon Visual Search & AR", "years": "2016\u20132020"},
+    {"role": "Applied Scientist", "org": "A9.com Visual Search", "years": "2011\u20132016"},
+    {"role": "Research Scientist", "org": "Akiira Media Systems, Palo Alto", "years": "2010\u20132011"},
+    {"role": "Graduate Research Assistant & Teaching Assistant", "org": "UC Santa Cruz", "years": "2005\u20132010"},
+    {"role": "Ph.D. Candidate (ABD)", "org": "Computer Engineering, UC Santa Cruz", "years": "2005\u20132010"},
+    {"role": "B.S.", "org": "Computer Engineering, UC Santa Cruz", "years": "2001\u20132005"}
+  ],
+  "hobbies": [
+    {"parts": [{"text": "Where I\u2019ve been Map", "url": "https://de3ug.github.io/gcmap/?file=flight.history.doug.txt"}, " \u2013 Travel"]},
+    {"parts": [{"text": "AstroBin", "url": "https://app.astrobin.com/u/de3ug#gallery"}, " \u2013 Astrophotography"]},
+    {"parts": [{"text": "Instagram", "url": "https://www.instagram.com/de3ug/"}, " \u2013 Mostly Astrophotography"]},
+    {"parts": [{"text": "Chumpcar / Champcar / 24 Hours of Lemons", "url": "https://www.facebook.com/GrayMatterRacing"}, " \u2013 Amateur racing"]},
+    {"parts": [{"text": "YouTube", "url": "https://www.youtube.com/channel/UCevbEIVnSl9-qb0gwvUeQTA"}, " \u2013 Mostly Racing"]},
+    {"parts": [{"text": "TikTok", "url": "https://www.tiktok.com/@de3ug"}, " \u2013 Mostly Snowboarding"]}
+  ],
+  "social": [
+    {"name": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"},
+    {"name": "LinkedIn", "url": "https://www.linkedin.com/in/de3ug/"},
+    {"name": "Twitter", "url": "https://twitter.com/de3ug"},
+    {"name": "Threads", "url": "https://www.threads.net/@de3ug"}
+  ]
+}
