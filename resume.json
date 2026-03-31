@@ -1,51 +1,154 @@
 {
   "name": "Douglas Gray",
   "title": "Principal Applied Scientist",
-  "tagline": "Multimodal Retrieval, Vision-Language Systems, and Visual Search.",
-  "about": "Current research interests: real-time generative search interfaces, retrieval-grounded multimodal QA, multimodal orchestration, and stateful visual assistants with persistent memory and personalization (i.e., world models).",
+  "about": "Research scientist who has led teams and shipped at global scale: the vision-language systems behind Amazon Lens and visual navigation features in Amazon product search reach hundreds of millions of customers. I believe world-model-grounded, full-duplex interfaces are where computing is heading, and want to work on the hardest problems to get there: multimodal reasoning, agentic retrieval, generative models, and real-time interfaces.",
+  "_about_extended": "Research scientist who has led teams and shipped vision-language systems at global scale. My work at Amazon has been a series of incremental steps toward a longer-term conviction: that the next great leap in computing isn't a better chat interface, but full-duplex interaction — video, audio, and language flowing through systems that persistently model the world. I think world models are the key technology, and the problems I most want to work on are multimodal reasoning, agentic retrieval, generative models, and real-time interfaces. At Amazon I've led the vision-language systems behind Amazon Lens, which lets customers point a camera at anything and find it, along with visual navigation features in Amazon product search used by hundreds of millions of customers globally. My research has appeared at CVPR, KDD, ECCV, and WACV, and I've co-organized the Multimodal Representation and Retrieval workshop at SIGIR and ICCV.",
   "location": "Portola Valley, CA (near Palo Alto, 30 min south of SF)",
-  "email_hint": "(my full name with dots as spaces, my middle name is Ryan) at gmail",
-  "last_updated": "03/05/2026",
+  "email": "douglas.ryan.gray@gmail.com",
+  "last_updated": "03/30/2026",
+  "publications_intro": {"parts": ["5,200+ citations \u00b7 h-index\u00a021 (19 since 2021) \u00b7 ", {"text": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"}, " \u00b7 Reviewer: CVPR, ICCV, ECCV, WACV"]},
   "publications": [
     {"parts": ["Co-organizer, ", {"text": "Multimodal Representation and Retrieval Workshop", "url": "https://mrr-workshop.github.io/"}, " (SIGIR\u00a02024, ICCV 2025)."]},
     {"parts": [{"text": "GENIUS: A Generative Framework for Universal Multimodal Search", "url": "https://www.amazon.science/publications/genius-a-generative-framework-for-universal-multimodal-search"}, ", CVPR\u00a02025"]},
     {"parts": [{"text": "Bringing Multimodality to Amazon Visual Search System", "url": "https://www.amazon.science/publications/bringing-multimodality-to-amazon-visual-search-system"}, ", KDD\u00a02024"]},
     {"parts": [{"text": "Amazon Shop the Look: A Visual Search System for Fashion and Home", "url": "https://www.amazon.science/publications/amazon-shop-the-look-a-visual-search-system-for-fashion-and-home"}, ", KDD\u00a02022"]},
     {"parts": [{"text": "Hierarchical Proxy-Based Loss for Deep Metric Learning", "url": "https://www.amazon.science/publications/hierarchical-proxy-based-loss-for-deep-metric-learning"}, ", WACV\u00a02022"]},
-    {"parts": [{"text": "Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features", "url": "https://ainote.ddlee.cc/2020/12/29/person-re-id-datasets/"}, ", ECCV\u00a02008"]},
-    {"parts": ["Reviewer for CVPR, ICCV, ECCV, and WACV."]}
+    {"parts": [{"text": "Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features", "url": "papers/gray_eccv2008_pedestrian.pdf"}, ", ECCV\u00a02008 (1,953 citations)"]},
+    {"parts": [{"text": "Evaluating Appearance Models for Recognition, Reacquisition, and Tracking", "url": "papers/gray_pets2007_appearance.pdf"}, ", PETS\u00a02007 (1,380 citations)"]},
+    {"hide_from": ["resume", "web"], "parts": ["Reviewer for CVPR, ICCV, ECCV, and WACV."]}
   ],
   "patents_intro": "Named inventor on 40+ patents in computer vision, visual search, and camera/AR systems.",
   "patents": [
-    {"parts": [{"text": "Neural Network-Based Image Manipulation", "url": "https://patents.google.com/patent/US10956784B2/en"}, " \u2014 US10956784B2, first filed 2016-06-06."]},
-    {"parts": [{"text": "Object Tracking in Zoomed Video", "url": "https://patents.google.com/patent/CA2942377C/en"}, " \u2014 CA2942377C, first filed 2014-03-21 (co-authored with Jeff Bezos)."]},
-    {"parts": [{"text": "Visual Search Suggestions", "url": "https://patents.google.com/patent/US10540378B1/en"}, " \u2014 US10540378B1, first filed 2016-06-28."]},
-    {"parts": [{"text": "Self-Portrait Enhancement Techniques", "url": "https://patents.google.com/patent/US10121229B2/en"}, " \u2014 US10121229B2, first filed 2013-08-30."]},
-    {"parts": [{"text": "Augmented Reality Camera Lucida", "url": "https://patents.google.com/patent/US9965895B1/en"}, " \u2014 US9965895B1, first filed 2014-03-20."]}
+    {"hide_from": ["resume"], "parts": [{"text": "Multimodal Search and Refinement", "url": "https://patents.google.com/patent/US12210516B2/en"}, " (2022)"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Neural Network-Based Image Manipulation", "url": "https://patents.google.com/patent/US10956784B2/en"}, " (2016)"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Object Tracking in Zoomed Video", "url": "https://patents.google.com/patent/US9626084B2/en"}, " (2014) \u2014 co-inventor with Jeff Bezos"]},
+    {"hide_from": ["resume"], "_notes": "Solo author. Future plan: build a web demo of this concept.", "parts": [{"text": "Augmented Reality Camera Lucida", "url": "https://patents.google.com/patent/US9965895B1/en"}, " (2014) \u2014 sole inventor"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Providing Overlays Based on Text in a Live Camera View", "url": "https://patents.google.com/patent/US9165406B2/en"}, " (2013)"]}
   ],
   "projects": [
-    {"parts": [{"text": "Amazon Lens Live", "url": "https://www.aboutamazon.com/news/retail/search-image-amazon-lens-live-shopping-rufus"}, ", realtime search insights about products."]},
-    {"parts": [{"text": "Amazon Lens, Visual Search Suggestions, and More like This", "url": "https://www.aboutamazon.com/news/retail/visual-search-shopping-features"}, " for enhanced product discovery."]},
-    {"parts": [{"text": "StyleSnap for fashion", "url": "https://www.aboutamazon.com/news/retail/stylesnap-will-change-the-way-you-shop-forever"}, " (2019) and for ", {"text": "home", "url": "https://www.amazon.science/latest-news/the-science-behind-amazons-new-stylesnap-for-home-feature"}, " (2020)."]},
-    {"parts": [{"text": "A9 Flow", "url": "https://www.theverge.com/2011/11/3/2535286/a9-flow-app-augmented-reality-amazon-shopping"}, " augmented reality shopping app (2011)."]}
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon Lens Live", "url": "https://www.aboutamazon.com/news/retail/search-image-amazon-lens-live-shopping-rufus"}, " \u2014 real-time visual search with Rufus integration for product insights (2025)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon Lens, Visual Search Suggestions, and More Like This", "url": "https://www.aboutamazon.com/news/retail/visual-search-shopping-features"}, " \u2014 visual navigation features in Amazon product search (2024)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon visual search, AR search, and more", "url": "https://techcrunch.com/2023/09/14/amazon-updates-visual-search-ar-search-and-more-in-challenge-to-google/"}, " \u2014 TechCrunch coverage of multimodal search and visual search updates (2023)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "StyleSnap for fashion", "url": "https://www.aboutamazon.com/news/retail/stylesnap-will-change-the-way-you-shop-forever"}, " (2019) and ", {"text": "for home", "url": "https://www.amazon.science/latest-news/the-science-behind-amazons-new-stylesnap-for-home-feature"}, " (2020) \u2014 instance-level visual search for apparel and home products."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon and Snapchat visual search integration", "url": "https://fortune.com/2018/07/09/snapchat-amazon-visual-search-snap-camera/"}, " \u2014 Fortune coverage of Amazon visual search partnership with Snapchat (2018)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Samsung Bixby Vision with Amazon shopping", "url": "https://www.engadget.com/2017-03-29-samsungs-bixby-ai-assistant-can-see-as-well-as-talk.html"}, " \u2014 Engadget coverage of Amazon visual search integration in Samsung Bixby Vision (2017)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon FireFly", "url": "https://techcrunch.com/2014/06/18/amazons-fire-phone-introduces-firefly-a-feature-that-lets-you-identify-and-buy-things-you-see-the-real-world/"}, " \u2014 real-world object, text, and barcode recognition on the Amazon Fire Phone (2014)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon visual search for shoes by shape", "url": "https://www.geekwire.com/2012/amazons-fabulous-ipad-app-searches-shoes-shape/"}, " \u2014 GeekWire coverage of early Amazon visual search on iPad (2012)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "A9 Flow", "url": "https://www.theverge.com/2011/11/3/2535286/a9-flow-app-augmented-reality-amazon-shopping"}, " \u2014 AR-based multi-object product recognition and tracking (2011)."]}
   ],
   "experience": [
-    {"role": "Principal Applied Scientist", "org": "Amazon Visual Search", "years": "2025\u2013Present"},
-    {"role": "Senior Manager, Applied Science", "org": "Amazon Visual Shopping", "years": "2020\u20132025"},
-    {"role": "Manager, Applied Science", "org": "Amazon Visual Search & AR", "years": "2016\u20132020"},
-    {"role": "Applied Scientist", "org": "A9.com Visual Search", "years": "2011\u20132016"},
-    {"role": "Research Scientist", "org": "Akiira Media Systems, Palo Alto", "years": "2010\u20132011"},
-    {"role": "Graduate Research Assistant & Teaching Assistant", "org": "UC Santa Cruz", "years": "2005\u20132010"},
-    {"role": "Ph.D. Candidate (ABD)", "org": "Computer Engineering, UC Santa Cruz", "years": "2005\u20132010"},
-    {"role": "B.S.", "org": "Computer Engineering, UC Santa Cruz", "years": "2001\u20132005"}
+    {
+      "role": "Principal Applied Scientist", "org": "Amazon Visual Search", "years": "2025\u2013Present",
+      "bullets": [
+        "Led Lens Live as principal technical lead \u2014 real-time visual search integrated with Rufus for product insights, deployed to tens of millions of customers.",
+        "Architected the mobile ML pipeline (on-device detection, tracking, and state management) enabling continuous low-latency product identification as customers scan; coordinated development across multiple VP orgs in four locations."
+      ],
+      "_notes": "Transitioned to full IC focus in early 2025 to lead Lens Live end-to-end. Day-to-day technical lead coordinating across multiple VP orgs \u2014 Lens (Palo Alto), Rufus engineering and science (Palo Alto, Seattle, NYC), and Rufus product (London) \u2014 teams that often didn\u2019t agree. Core technical contribution was the mobile client architecture: on-device object detection, object tracking, and session state management (a lightweight world model of the scene). Scene understanding work focused on product-market fit: short \u201cpills\u201d for customers to tap and ask questions, and taglines surfacing what\u2019s distinctive about a product. Latency was a core challenge \u2014 the pipeline had to deliver results continuously in real time as the camera moved."
+    },
+    {
+      "role": "Senior Manager, Applied Science", "org": "Amazon Visual Shopping", "years": "2020\u20132025",
+      "bullets": [
+        "Led a team of up to 20 applied scientists and engineers; completed the transformation of Amazon Lens into a deep learning, embedding-based system matching against over 1 billion products, driving significant gains in CTR and usage.",
+        "Launched Visual Search Suggestions, multimodal search (image + text reformulation), and More Like This \u2014 growing the latter from zero to over 90% of Amazon search result pages.",
+        "Built and developed a high-performing research team across all levels; organized Amazon\u2019s Computer Vision Conference (ACVC, 200+ attendees) and co-organized the Multimodal Representation and Retrieval workshop (MRR) at SIGIR and ICCV as lead organizer and advisor."
+      ],
+      "_notes": "Core technical achievement was completing the Lens transformation: the deep learning embedding-based system grew to match against over 1 billion products across the full Amazon catalog, ultimately retiring the classical CV pipeline. Features launched: multimodal search (image + text reformulation), Visual Search Suggestions (image-based pivots in text autocomplete), and More Like This (visual similarity within search results, scaled from zero to 90%+ of search result pages). Built and promoted team members across all levels. Organized ACVC with 200+ attendees as lead organizer and as advisor in other years; co-organized the MRR workshop at SIGIR 2024 and ICCV 2025."
+    },
+    {
+      "role": "Manager, Applied Science", "org": "Amazon Visual Search & AR", "years": "2016\u20132020",
+      "bullets": [
+        "Led a team of up to 12 applied scientists and engineers; introduced deep learning to Amazon\u2019s visual search stack from scratch \u2014 from first launch at ~100 categories, expanding to 100,000+ fine-grained search strings via query-log-trained models, then to instance-level matching against ~10M products \u2014 culminating in StyleSnap (2019) and StyleSnap for Home (2020)."
+      ],
+      "_notes": "The existing classical CV system matched against ~100M products but was architecturally limited to flat and printed objects and had reached its ceiling. This role built a deep learning visual search system from the ground up: first launch covered ~100 product categories; a query-log-trained model then expanded the output vocabulary to over 100,000 fine-grained search strings, mapping images to the most relevant terms from Amazon\u2019s actual query traffic; then instance-level product matching within specific categories \u2014 apparel first, then home \u2014 against roughly 10 million specific products. The public milestones were StyleSnap (2019) and StyleSnap for Home (2020). The subsequent role completed the journey, scaling to over 1 billion products and retiring the classic CV pipeline entirely."
+    },
+    {
+      "role": "Applied Scientist", "org": "A9.com Visual Search", "years": "2011\u20132016",
+      "bullets": [
+        "Early applied scientist on A9\u2019s visual search team; built A9 Flow (AR-based multi-object product recognition and tracking, initially a standalone demo app), with the underlying recognition, tracking, and scene text/OCR libraries later integrated into both the Amazon mobile app and the Amazon Fire Phone. Also developed video content alignment tools that automated annotation workflows for the IMDB X-Ray feature. Classical CV in high-performance C++."
+      ],
+      "_notes": "A9 Flow was an augmented reality shopping interface and technology demonstrator \u2014 recognized and tracked multiple products in the scene simultaneously, overlaying results in real time. The Flow libraries (recognition, tracking, scene text detection, OCR) were later integrated into the main Amazon app and the Amazon Fire Phone. OCR covered phone numbers, addresses, and business card scanning. Video work was with IMDB and what became the Prime Video team: built tools to automatically align visual content from video against existing annotations, saving the team from manually redoing timestamp work each time studios redelivered content (see video content alignment patent)."
+    },
+    {
+      "role": "Research Scientist", "org": "Akiira Media Systems, Palo Alto", "years": "2010\u20132011",
+      "bullets": [
+        "Research scientist at an early-stage computer vision startup; built a video content search engine and developed multimedia summarization products \u2014 automated news article summarization and story clustering, and a video summarization API \u2014 using SVD of hand-crafted features."
+      ],
+      "_notes": "Recruited by a former NEC Labs manager after an internship there. Initial project was a video content search engine. After lead investor Max Palevsky died and most of the science team was laid off, the company pivoted to commercializing multimedia summarization technology licensed from NEC. Products included itwips.com (automated 5-line summaries of top news articles, with story/theme clustering) and iBlips (a video summarization API). Added novel IP including the news clustering approach and contributed UX design. All summarization was SVD-based on hand-crafted features. The company folded when the products didn\u2019t gain commercial traction."
+    },
+    {
+      "for": ["resume"],
+      "role": "B.S. / Ph.D. Candidate (ABD)", "org": "Computer Engineering, UC Santa Cruz", "years": "2001\u20132010",
+      "bullets": [
+        "Proposed: Privacy Preserving Pedestrian Recognition; advanced to candidacy 2008. Collected the VIPeR benchmark dataset for person re-identification; two publications from this period have accumulated 3,300+ combined citations."
+      ]
+    },
+    {
+      "hide_from": ["resume"],
+      "role": "Ph.D. Candidate (ABD)", "org": "Computer Engineering, UC Santa Cruz", "years": "2005\u20132010",
+      "bullets": [
+        "Proposed: Privacy Preserving Pedestrian Recognition; advanced to candidacy 2008. Collected the VIPeR benchmark dataset for person re-identification; two publications from this period have accumulated 3,300+ combined citations."
+      ],
+      "_notes": "Advisor: Dr. Hai Tao, who recruited Douglas as an undergraduate and later left to found Vion Vision in China (a successful venture). Advanced to candidacy in 2008. Did not finish: advisor\u2019s departure, transitions through Smith Kettlewell Eye Research Institute and Akiira, and getting married made returning to grad school impractical. The two highly cited papers from this period: \u201cViewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features\u201d (ECCV 2008, 1,953 citations) and \u201cEvaluating Appearance Models for Recognition, Reacquisition, and Tracking\u201d (PETS 2007, 1,380 citations). Combined: 3,333 citations as of early 2026."
+    },
+    {"hide_from": ["resume", "web"], "role": "B.S.", "org": "Computer Engineering, UC Santa Cruz", "years": "2001\u20132005"},
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Research Associate", "org": "Smith-Kettlewell Eye Research Institute, San Francisco", "years": "2009",
+      "_notes": "Working with Dr. James Coughlan. Prototyped assistive technology for the blind: a Nokia N95 app that recognized fiducial targets to help visually impaired users navigate and identify objects. Summer/fall 2009, between grad school and Akiira."
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Graduate Intern", "org": "Intel Corporation, Santa Clara", "years": "2008\u20132009",
+      "bullets": [
+        "Developed a prototype mobile augmented reality system for mobile internet devices (MIDs).",
+        "Improved large-scale image matching with keypoint indexing and geolocation filtering.",
+        "Built a database of geotagged Wikipedia articles and images; led to WikiReality paper (ICME 2009)."
+      ]
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Summer Research Intern", "org": "NEC Labs America, Cupertino", "years": "2007\u20132008",
+      "bullets": [
+        "Researched facial beauty quantification, prediction, and enhancement from web images; work published at ECCV 2010.",
+        "Contributed to age/gender/ethnicity recognition demo and face alignment software."
+      ]
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Engineering Intern", "org": "SAIC Advanced Concepts Division", "years": "2006",
+      "bullets": [
+        "Built a multi-object tracking demo using a multiple hypothesis framework.",
+        "Extended to multi-camera tracking and explored homography estimation from tracking data."
+      ]
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Graduate Student Researcher", "org": "Visual Computing Lab, UC Santa Cruz", "years": "2006\u20132009",
+      "_notes": "Collected the VIPeR (Viewpoint Invariant Pedestrian Recognition) dataset, which became the standard benchmark for person re-identification and is the primary reason the ECCV 2008 and PETS 2007 papers are so highly cited. Worked independently for much of this period while advisor Dr. Hai Tao was away."
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Teaching Assistant", "org": "Computer Engineering, UC Santa Cruz", "years": "2006\u20132009",
+      "_notes": "Multiple terms: CMPE 121 (Microprocessor Design), CMPE 107 (Stochastic Methods), AMS 27L (Matlab), CMPE 80A (Universal Access), CMPE 185 (Technical Writing)."
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Undergraduate Research Assistant", "org": "Visual Computing Lab, UC Santa Cruz", "years": "2004\u20132005",
+      "_notes": "Active camera tracking (mean-shift + PTZ), multi-hypothesis object tracking for SAIC, and crowd density estimation tools."
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Art Director & CFO", "org": "Static Printing Inc.", "years": "2003\u20132005",
+      "_notes": "Co-founded custom apparel business. Company later renamed Your Logo Here, LLC and still operates; no longer affiliated."
+    }
   ],
   "hobbies": [
-    {"parts": [{"text": "Where I\u2019ve been Map", "url": "https://de3ug.github.io/gcmap/?file=flight.history.doug.txt"}, " \u2013 Travel"]},
-    {"parts": [{"text": "AstroBin", "url": "https://app.astrobin.com/u/de3ug#gallery"}, " \u2013 Astrophotography"]},
-    {"parts": [{"text": "Instagram", "url": "https://www.instagram.com/de3ug/"}, " \u2013 Mostly Astrophotography"]},
-    {"parts": [{"text": "Chumpcar / Champcar / 24 Hours of Lemons", "url": "https://www.facebook.com/GrayMatterRacing"}, " \u2013 Amateur racing"]},
-    {"parts": [{"text": "YouTube", "url": "https://www.youtube.com/channel/UCevbEIVnSl9-qb0gwvUeQTA"}, " \u2013 Mostly Racing"]},
-    {"parts": [{"text": "TikTok", "url": "https://www.tiktok.com/@de3ug"}, " \u2013 Mostly Snowboarding"]}
+    {"hide_from": ["resume"], "parts": [{"text": "Where I\u2019ve been Map", "url": "https://de3ug.github.io/gcmap/?file=flight.history.doug.txt"}, " \u2013 Travel"]},
+    {"hide_from": ["resume"], "parts": [{"text": "AstroBin", "url": "https://app.astrobin.com/u/de3ug#gallery"}, " \u2013 Astrophotography"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Instagram", "url": "https://www.instagram.com/de3ug/"}, " \u2013 Mostly Astrophotography"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Chumpcar / Champcar / 24 Hours of Lemons", "url": "https://www.facebook.com/GrayMatterRacing"}, " \u2013 Amateur racing"]},
+    {"hide_from": ["resume"], "parts": [{"text": "YouTube", "url": "https://www.youtube.com/channel/UCevbEIVnSl9-qb0gwvUeQTA"}, " \u2013 Mostly Racing"]},
+    {"hide_from": ["resume"], "parts": [{"text": "TikTok", "url": "https://www.tiktok.com/@de3ug"}, " \u2013 Mostly Snowboarding"]}
   ],
   "social": [
     {"name": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"},
