@@ -1,6 +1,7 @@
 // Renders all page content from resume.json.
 // Each list item uses a "parts" array where each part is either
 // a plain string or {text, url} for a hyperlink.
+// Visibility: items with hide_from:["web"] or for:["resume"] are skipped.
 
 function esc(str) {
   return String(str)
@@ -8,6 +9,13 @@ function esc(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function visible(item, target) {
+  let allowed = new Set(['web', 'resume']);
+  if (item.for) allowed = new Set(item.for);
+  if (item.hide_from) item.hide_from.forEach(t => allowed.delete(t));
+  return allowed.has(target);
 }
 
 function renderParts(parts) {
@@ -18,8 +26,24 @@ function renderParts(parts) {
   ).join('');
 }
 
-function renderList(items) {
-  return '<ul>' + items.map(item => `<li>${renderParts(item.parts)}</li>`).join('') + '</ul>';
+function renderList(items, target = 'web') {
+  const rows = items
+    .filter(item => visible(item, target))
+    .map(item => `<li>${renderParts(item.parts)}</li>`)
+    .join('');
+  return rows ? `<ul>${rows}</ul>` : '';
+}
+
+function renderExperience(entries) {
+  return entries
+    .filter(e => visible(e, 'web'))
+    .map(e => {
+      let html = `<p><strong>${esc(e.role)}</strong>, ${esc(e.org)} (${esc(e.years)})</p>`;
+      if (e.bullets && e.bullets.length) {
+        html += '<ul>' + e.bullets.map(b => `<li>${esc(b)}</li>`).join('') + '</ul>';
+      }
+      return html;
+    }).join('');
 }
 
 function injectJsonLd(r) {
@@ -28,7 +52,8 @@ function injectJsonLd(r) {
     '@type': 'Person',
     'name': r.name,
     'jobTitle': r.title,
-    'description': r.tagline + ' ' + r.about,
+    'description': r.about,
+    'email': r.email,
     'url': 'https://de3ug.github.io/',
     'sameAs': r.social.map(s => s.url)
   };
@@ -47,12 +72,12 @@ async function render() {
   // About
   document.querySelector('#about').innerHTML =
     `<h1>${esc(r.name)}</h1>` +
-    `<p>${esc(r.title)} &mdash; ${esc(r.tagline)}</p>` +
     `<p>${esc(r.about)}</p>`;
 
   // Publications
   document.querySelector('#publications').innerHTML =
     `<h2>Selected Publications and Service</h2>` +
+    `<p>${renderParts(r.publications_intro.parts)}</p>` +
     renderList(r.publications);
 
   // Patents
@@ -62,16 +87,15 @@ async function render() {
     renderList(r.patents);
 
   // Projects
-  document.querySelector('#projects').innerHTML =
-    `<h2>Selected Projects and News Articles</h2>` +
-    renderList(r.projects);
+  const projectsHtml = renderList(r.projects);
+  document.querySelector('#projects').innerHTML = projectsHtml
+    ? `<h2>Selected Media Mentions</h2>${projectsHtml}`
+    : '';
 
   // Experience
   document.querySelector('#experience').innerHTML =
     `<h2>Education &amp; Work History</h2>` +
-    r.experience.map(e =>
-      `<p><strong>${esc(e.role)}</strong>, ${esc(e.org)} (${esc(e.years)})</p>`
-    ).join('');
+    renderExperience(r.experience);
 
   // Hobbies
   document.querySelector('#hobbies').innerHTML =
@@ -82,11 +106,10 @@ async function render() {
   document.querySelector('#contact').innerHTML =
     `<h2>Contact</h2>` +
     `<p>Based in ${esc(r.location)}.</p>` +
-    `<p>Email: ${esc(r.email_hint)}</p>` +
+    `<p>Email: <a href="mailto:${esc(r.email)}">${esc(r.email)}</a></p>` +
     `<ul>${r.social.map(s => `<li><a href="${esc(s.url)}">${esc(s.name)}</a></li>`).join('')}</ul>` +
     `<p><em>Last updated: ${esc(r.last_updated)} &mdash; <a href="privacy.html">Privacy notice</a></em></p>`;
 
-  // Always inject JSON-LD for structured data (helps all modes including agent)
   injectJsonLd(r);
 }
 

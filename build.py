@@ -27,6 +27,24 @@ def load():
         return json.load(f)
 
 
+ALL_TARGETS = {'web', 'resume'}
+
+
+def visible(node, target, parent_for=None):
+    """Return True if node should appear for the given target ('web' or 'resume').
+
+    Visibility is inherited from parent, then narrowed by the node's own
+    'for' and/or 'hide_from' fields.  Keys starting with '_' are always
+    context/notes and are never rendered.
+    """
+    allowed = set(parent_for) if parent_for else set(ALL_TARGETS)
+    if 'for' in node:
+        allowed &= set(node['for'])
+    if 'hide_from' in node:
+        allowed -= set(node['hide_from'])
+    return target in allowed
+
+
 def parts_to_html(parts):
     out = []
     for p in parts:
@@ -37,22 +55,49 @@ def parts_to_html(parts):
     return ''.join(out)
 
 
-def ul(items):
-    rows = '\n'.join(f'  <li>{parts_to_html(item["parts"])}</li>' for item in items)
-    return f'<ul>\n{rows}\n</ul>'
+def ul(items, target, parent_for=None):
+    """Render a <ul>, filtering items by visibility for the given target."""
+    section_for = None
+    if parent_for is not None:
+        section_for = parent_for
+
+    rows = []
+    for item in items:
+        if not visible(item, target, section_for):
+            continue
+        rows.append(f'  <li>{parts_to_html(item["parts"])}</li>')
+    if not rows:
+        return ''
+    return f'<ul>\n' + '\n'.join(rows) + '\n</ul>'
 
 
-def render_html(r):
-    exp_rows = '\n'.join(
-        f'  <tr>'
-        f'<td class="role">{e["role"]}</td>'
-        f'<td class="org">{e["org"]}</td>'
-        f'<td class="years">{e["years"]}</td>'
-        f'</tr>'
-        for e in r['experience']
-    )
+def render_experience(entries, target):
+    out = []
+    for e in entries:
+        if not visible(e, target):
+            continue
+        row = (
+            f'<div class="exp-entry">'
+            f'<div class="exp-header">'
+            f'<span class="role">{e["role"]}</span>'
+            f'<span class="org">{e["org"]}</span>'
+            f'<span class="years">{e["years"]}</span>'
+            f'</div>'
+        )
+        if e.get('bullets'):
+            bullets = '\n'.join(f'  <li>{b}</li>' for b in e['bullets'])
+            row += f'<ul class="exp-bullets">\n{bullets}\n</ul>'
+        row += '</div>'
+        out.append(row)
+    return '\n'.join(out)
+
+
+def render_html(r, target='resume'):
+    exp_html = render_experience(r['experience'], target)
     social = ' &nbsp;&middot;&nbsp; '.join(
-        f'<a href="{s["url"]}">{s["name"]}</a>' for s in r['social']
+        f'<a href="{s["url"]}">{s["name"]}</a>'
+        for s in r['social']
+        if visible(s, target)
     )
 
     return f"""<!DOCTYPE html>
@@ -67,47 +112,49 @@ def render_html(r):
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{
     font-family: Georgia, 'Times New Roman', serif;
-    font-size: 10pt;
-    line-height: 1.5;
+    font-size: 9pt;
+    line-height: 1.35;
     color: #111;
   }}
   h1 {{
-    font-size: 22pt;
+    font-size: 20pt;
     font-weight: normal;
     letter-spacing: 0.02em;
     margin-bottom: 2pt;
   }}
   .subtitle {{
-    font-size: 10.5pt;
+    font-size: 9.5pt;
     color: #444;
-    margin-bottom: 10pt;
+    margin-bottom: 6pt;
   }}
   hr {{
     border: none;
     border-top: 0.75pt solid #999;
-    margin: 8pt 0;
+    margin: 5pt 0;
   }}
   h2 {{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 8pt;
+    font-size: 7.5pt;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.14em;
     color: #333;
-    margin: 12pt 0 3pt;
+    margin: 7pt 0 2pt;
   }}
-  p {{ margin-bottom: 4pt; }}
+  p {{ margin-bottom: 3pt; }}
   ul {{
-    padding-left: 13pt;
-    margin-bottom: 2pt;
+    padding-left: 12pt;
+    margin-bottom: 1pt;
   }}
-  li {{ margin-bottom: 2pt; }}
+  li {{ margin-bottom: 1pt; }}
   a {{ color: #111; text-decoration: none; }}
-  table {{ width: 100%; border-collapse: collapse; margin-bottom: 2pt; }}
-  td {{ padding: 1.5pt 0; vertical-align: top; }}
-  td.role  {{ font-weight: bold; width: 38%; }}
-  td.org   {{ width: 40%; color: #333; }}
-  td.years {{ width: 22%; text-align: right; color: #555; white-space: nowrap; }}
+  .exp-entry {{ margin-bottom: 3pt; }}
+  .exp-header {{ display: flex; width: 100%; }}
+  .exp-header .role  {{ font-weight: bold; width: 38%; }}
+  .exp-header .org   {{ width: 40%; color: #333; }}
+  .exp-header .years {{ width: 22%; text-align: right; color: #555; white-space: nowrap; }}
+  .exp-bullets {{ padding-left: 12pt; margin: 1pt 0 1pt; }}
+  .exp-bullets li {{ margin-bottom: 1pt; }}
   .footer {{
     margin-top: 10pt;
     font-size: 8.5pt;
@@ -120,29 +167,27 @@ def render_html(r):
 <body>
 
   <h1>{r['name']}</h1>
-  <div class="subtitle">{r['title']} &mdash; {r['tagline']}</div>
+  <div class="subtitle">{r['title']}</div>
   <hr>
 
   <h2>About</h2>
   <p>{r['about']}</p>
 
   <h2>Selected Publications &amp; Service</h2>
-  {ul(r['publications'])}
+  <p>{parts_to_html(r['publications_intro']['parts'])}</p>
+  {ul(r['publications'], target)}
 
   <h2>Selected Patents</h2>
   <p>{r['patents_intro']}</p>
-  {ul(r['patents'])}
+  {ul(r['patents'], target)}
 
-  <h2>Selected Projects</h2>
-  {ul(r['projects'])}
+  {f'<h2>Selected Projects</h2>{ul(r["projects"], target)}' if ul(r['projects'], target) else ''}
 
   <h2>Education &amp; Work History</h2>
-  <table>
-{exp_rows}
-  </table>
+  {exp_html}
 
   <div class="footer">
-    {r['location']} &nbsp;&middot;&nbsp; {social}
+    {r['email']} &nbsp;&middot;&nbsp; {r['location']} &nbsp;&middot;&nbsp; {social}
     &nbsp;&middot;&nbsp; de3ug.github.io
     <span style="float:right">Last updated: {r['last_updated']}</span>
   </div>
@@ -165,19 +210,34 @@ def build_pdf():
     r = load()
     html = render_html(r)
 
+    # Printable area: Letter (11in) minus top+bottom margins (0.7in each) = 9.6in
+    # At 96 CSS px/in, usable height = 921.6px; width (8.5in - 2*0.75in) = 7in = 672px
+    PRINT_W_PX = int(7.0 * 96)    # 672
+    PRINT_H_PX = int(9.6 * 96)    # 921
+
     tmp = REPO_ROOT / '_resume_tmp.html'
     try:
         tmp.write_text(html, encoding='utf-8')
         with sync_playwright() as p:
             browser = p.chromium.launch()
             page = browser.new_page()
+            page.set_viewport_size({'width': PRINT_W_PX, 'height': PRINT_H_PX})
             page.goto(tmp.as_uri())
+            page.emulate_media(media='print')
+
+            # Measure rendered content height in print layout and compute scale to fit one page
+            content_h = page.evaluate('document.documentElement.scrollHeight')
+            scale = min(1.0, PRINT_H_PX / content_h)
+            if scale < 1.0:
+                print(f'Content height {content_h}px > {PRINT_H_PX}px; scaling to {scale:.3f}')
+
             page.pdf(
                 path=str(OUTPUT_PDF),
                 format='Letter',
                 margin={'top': '0.7in', 'right': '0.75in',
                         'bottom': '0.7in', 'left': '0.75in'},
                 print_background=True,
+                scale=scale,
             )
             browser.close()
     finally:
