@@ -90,6 +90,31 @@
     main { margin-left: 220px; padding: 20px; max-width: 800px; }
     section { margin-bottom: 60px; }
 
+    /* ── Hobbies poem ─────────────────────────────────────────── */
+    .poem {
+      margin: 24px 0 0;
+      padding: 4px 0 4px 16px;
+      border-left: 2px solid var(--button-border);
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--text);
+      opacity: 0.85;
+    }
+    .poem cite {
+      display: block;
+      margin-top: 10px;
+      font-style: normal;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    .poem cite a { color: inherit; }
+    [data-theme="dark"] .poem {
+      font-family: 'Courier New', Courier, monospace;
+      font-style: normal;
+      border-left-color: var(--term-border);
+    }
+
     /* ── Terminal dark mode ───────────────────────────────────── */
 
     [data-theme="dark"] body {
