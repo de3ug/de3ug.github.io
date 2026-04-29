@@ -90,38 +90,6 @@
     main { margin-left: 220px; padding: 20px; max-width: 800px; }
     section { margin-bottom: 60px; }
 
-    /* ── Poem block ───────────────────────────────────────────── */
-    .poem {
-      margin: 0;
-      padding: 20px 24px;
-      border-left: 3px solid var(--button-border);
-      background: var(--nav-bg);
-      border-radius: 6px;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.02em;
-      line-height: 1.55;
-      font-style: italic;
-      white-space: pre-line;
-      color: var(--text);
-    }
-    .poem-attribution {
-      margin-top: 14px;
-      font-style: normal;
-      font-size: 0.9em;
-      opacity: 0.75;
-      display: block;
-    }
-    .poem-attribution a { color: var(--link); text-decoration: none; border-bottom: 1px dotted var(--button-border); }
-    .poem-attribution a:hover, .poem-attribution a:focus { color: var(--link-hover); border-bottom-color: var(--link-hover); }
-    /* Dark terminal theme overrides */
-    [data-theme="dark"] .poem {
-      font-family: 'Courier New', Courier, monospace;
-      font-style: normal;
-      border-left-color: var(--term-border);
-      background: var(--term-nav);
-    }
-    [data-theme="dark"] .poem-attribution a { border-bottom-style: dashed; }
-
     /* ── Terminal dark mode ───────────────────────────────────── */
 
     [data-theme="dark"] body {
@@ -189,7 +157,6 @@
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#hobbies">Personal/Hobbies</a>
-    <a href="#poem">Poem</a>
     <a href="#contact">Contact</a>
     <hr class="nav-divider">
     <button class="theme-toggle" type="button" data-theme-toggle>🌙 Dark</button>
@@ -222,17 +189,6 @@
     <section id="projects"></section>
     <section id="experience"></section>
     <section id="hobbies"></section>
-    <section id="poem">
-      <h2>Poem</h2>
-      <blockquote class="poem">Eradicate the optimist
-who takes the easy view
-that human values will persist
-no matter what we do.
-Annihilate the pessimist
-whose ineffectual cry
-is that the goal's already missed
-however hard we try.<cite class="poem-attribution">&mdash; <a href="https://en.wikipedia.org/wiki/Piet_Hein_(scientist)">Piet Hein</a></cite></blockquote>
-    </section>
     <section id="contact"></section>
   </main>
 
