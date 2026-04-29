@@ -98,9 +98,18 @@ async function render() {
     renderExperience(r.experience);
 
   // Hobbies
-  document.querySelector('#hobbies').innerHTML =
-    `<h2>Personal &amp; Hobbies</h2>` +
-    renderList(r.hobbies);
+  let hobbiesHtml = `<h2>Personal &amp; Hobbies</h2>` + renderList(r.hobbies);
+  if (r.hobby_poem && visible(r.hobby_poem, 'web')) {
+    const p = r.hobby_poem;
+    const body = p.lines.map(esc).join('<br>');
+    const author = p.author_url
+      ? `<a href="${esc(p.author_url)}">${esc(p.author)}</a>`
+      : esc(p.author);
+    hobbiesHtml +=
+      `<blockquote class="poem">${body}` +
+      `<cite>&mdash; ${author}</cite></blockquote>`;
+  }
+  document.querySelector('#hobbies').innerHTML = hobbiesHtml;
 
   // Contact
   document.querySelector('#contact').innerHTML =

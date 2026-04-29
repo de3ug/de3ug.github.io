@@ -183,6 +183,21 @@
     {"hide_from": ["resume"], "parts": [{"text": "YouTube", "url": "https://www.youtube.com/channel/UCevbEIVnSl9-qb0gwvUeQTA"}, " \u2013 Mostly Racing"]},
     {"hide_from": ["resume"], "parts": [{"text": "TikTok", "url": "https://www.tiktok.com/@de3ug"}, " \u2013 Mostly Snowboarding"]}
   ],
+  "hobby_poem": {
+    "hide_from": ["resume"],
+    "lines": [
+      "Eradicate the optimist",
+      "who takes the easy view",
+      "that human values will persist",
+      "no matter what we do.",
+      "Annihilate the pessimist",
+      "whose ineffectual cry",
+      "is that the goal\u2019s already missed",
+      "however hard we try."
+    ],
+    "author": "Piet Hein",
+    "author_url": "https://en.wikipedia.org/wiki/Piet_Hein_(scientist)"
+  },
   "social": [
     {"name": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"},
     {"name": "LinkedIn", "url": "https://www.linkedin.com/in/de3ug/"},
