@@ -3,3 +3,6 @@
 
 # Node modules (not included)
 node_modules/
+
+# Local static server state
+.server/

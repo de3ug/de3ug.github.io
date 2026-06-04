@@ -3,8 +3,9 @@
 build.py — Generate resume artifacts from site/resume.json
 
 Usage:
-  python build.py                # generate site/resume.pdf
+  python build.py                # generate site/resume.pdf and site/llms.txt
   python build.py --format=pdf   # same
+  python build.py --format=llms  # generate site/llms.txt only
   python build.py --format=web   # start local dev server at localhost:8000
 
 Requirements for PDF:
@@ -20,6 +21,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent
 RESUME_JSON = REPO_ROOT / 'site' / 'resume.json'
 OUTPUT_PDF  = REPO_ROOT / 'site' / 'resume.pdf'
+OUTPUT_LLMS = REPO_ROOT / 'site' / 'llms.txt'
 
 
 def load():
@@ -90,6 +92,35 @@ def render_experience(entries, target):
         row += '</div>'
         out.append(row)
     return '\n'.join(out)
+
+
+def render_llms(r):
+    social = '\n'.join(
+        f'- {s["name"]}: {s["url"]}'
+        for s in r['social']
+        if visible(s, 'web')
+    )
+
+    return f"""# {r['name']}
+
+> {r['title']} based in {r['location']}.
+
+{r['about']}
+
+Last updated: {r['last_updated']}
+
+Contact:
+- Email: {r['email']}
+- Website: https://de3ug.github.io/
+{social}
+
+## More information
+
+- [resume.json](https://de3ug.github.io/resume.json): Canonical structured profile data for this site. It contains the full content hierarchy, including public webpage content, resume-only highlights, hidden older/background entries and editorial notes.
+- [resume.pdf](https://de3ug.github.io/resume.pdf): One-page resume generated from the same JSON source, limited to the highest-priority highlights.
+
+LLM agents should prefer `resume.json` when they need deeper context than this short summary. The `hide_from`, `for` and underscore-prefixed fields describe what is rendered to the public webpage, what is included in the resume and what is retained as background context.
+"""
 
 
 def render_html(r, target='resume'):
@@ -246,6 +277,12 @@ def build_pdf():
     print(f'PDF written -> {OUTPUT_PDF.relative_to(REPO_ROOT)}')
 
 
+def build_llms():
+    r = load()
+    OUTPUT_LLMS.write_text(render_llms(r), encoding='utf-8')
+    print(f'llms.txt written -> {OUTPUT_LLMS.relative_to(REPO_ROOT)}')
+
+
 def serve_web():
     import http.server
     import os
@@ -260,15 +297,18 @@ def serve_web():
 def main():
     parser = argparse.ArgumentParser(description='Build resume artifacts from resume.json')
     parser.add_argument(
-        '--format', choices=['pdf', 'web'], default='pdf',
-        help='pdf: generate site/resume.pdf  |  web: start local dev server'
+        '--format', choices=['pdf', 'llms', 'web'], default='pdf',
+        help='pdf: generate site/resume.pdf and site/llms.txt  |  llms: generate site/llms.txt  |  web: start local dev server'
     )
     args = parser.parse_args()
 
     if args.format == 'web':
         serve_web()
+    elif args.format == 'llms':
+        build_llms()
     else:
         build_pdf()
+        build_llms()
 
 
 if __name__ == '__main__':
