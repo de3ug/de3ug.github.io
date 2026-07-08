@@ -1,23 +1,30 @@
 User-agent: *
+Disallow: /unlisted/
 Allow: /
 
 # AI crawlers explicitly welcome
 User-agent: GPTBot
+Disallow: /unlisted/
 Allow: /
 
 User-agent: ClaudeBot
+Disallow: /unlisted/
 Allow: /
 
 User-agent: PerplexityBot
+Disallow: /unlisted/
 Allow: /
 
 User-agent: YouBot
+Disallow: /unlisted/
 Allow: /
 
 User-agent: anthropic-ai
+Disallow: /unlisted/
 Allow: /
 
 User-agent: Google-Extended
+Disallow: /unlisted/
 Allow: /
 
 # Structured data endpoints
