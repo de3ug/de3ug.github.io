@@ -1754,6 +1754,381 @@
       }
     }
 
+    @media (max-width: 600px) {
+      body {
+        font-size: 15px;
+      }
+
+      .hero {
+        min-height: auto;
+        background-position: center top;
+      }
+
+      .hero-inner {
+        padding: 96px 0 28px;
+      }
+
+      .hero-inner,
+      .wrap {
+        width: min(100% - 24px, 1180px);
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: clamp(2rem, 12vw, 2.72rem);
+        line-height: 1.02;
+      }
+
+      .hero-copy {
+        margin-top: 16px;
+        font-size: 0.98rem;
+        line-height: 1.48;
+      }
+
+      .hero-meta,
+      .hero-actions {
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .pill {
+        min-height: 30px;
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+
+      .export-button,
+      .export-copy,
+      .export-close {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .site-nav {
+        top: 0;
+      }
+
+      .site-nav .wrap {
+        width: 100%;
+        padding: 8px 12px;
+        gap: 4px;
+        scroll-padding-inline: 12px;
+      }
+
+      .site-nav a {
+        padding: 7px 9px;
+        font-size: 0.78rem;
+        border-radius: 7px;
+      }
+
+      section {
+        padding: 38px 0;
+      }
+
+      .section-head {
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .section-head h2 {
+        font-size: 1.48rem;
+        line-height: 1.14;
+      }
+
+      .section-head p,
+      .rec-card p,
+      .destination-card p,
+      .day-card p,
+      .decision p {
+        font-size: 0.92rem;
+      }
+
+      .card-pad,
+      .decision,
+      .chart-shell,
+      .map-shell,
+      .timeline-shell,
+      .calendar-head,
+      .calc,
+      .export-panel {
+        padding: 14px;
+      }
+
+      .rec-card img,
+      .destination-card img,
+      .day-card img {
+        height: 170px;
+      }
+
+      .stat-card {
+        min-height: 0;
+        padding: 14px;
+      }
+
+      .stat-value {
+        font-size: 1.28rem;
+      }
+
+      .route-map {
+        min-height: 220px;
+      }
+
+      .map-shell {
+        overflow-x: auto;
+      }
+
+      .map-shell .route-map {
+        width: 720px;
+        max-width: none;
+      }
+
+      .map-legend {
+        gap: 8px;
+        font-size: 0.78rem;
+      }
+
+      .timeline-strip {
+        border-radius: 8px;
+      }
+
+      .time-seg {
+        padding: 12px;
+      }
+
+      .time-seg strong {
+        font-size: 0.92rem;
+      }
+
+      .time-seg span {
+        font-size: 0.78rem;
+      }
+
+      .actual-calendar {
+        overflow: hidden;
+      }
+
+      .calendar-head {
+        display: block;
+      }
+
+      .calendar-head h3 {
+        font-size: 1.05rem;
+      }
+
+      .calendar-head p {
+        margin-top: 6px;
+        font-size: 0.84rem;
+      }
+
+      .calendar-month {
+        min-width: 0;
+        padding: 10px;
+      }
+
+      .calendar-month h4 {
+        font-size: 0.92rem;
+      }
+
+      .calendar-grid {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 3px;
+      }
+
+      .calendar-dow {
+        font-size: 0.55rem;
+      }
+
+      .calendar-day {
+        min-height: 48px;
+        padding: 4px;
+        border-radius: 6px;
+        font-size: 0.58rem;
+      }
+
+      .calendar-day strong {
+        font-size: 0.7rem;
+      }
+
+      .day-banner {
+        margin-top: 3px;
+        padding: 3px 4px;
+        border-radius: 5px;
+        font-size: 0.52rem;
+        line-height: 1.12;
+      }
+
+      .booking-ledger {
+        max-width: none;
+      }
+
+      .booking-group {
+        margin-top: 20px;
+        padding-top: 16px;
+      }
+
+      .booking-entry {
+        margin-top: 14px;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfa;
+      }
+
+      .booking-entry h4 {
+        font-size: 0.95rem;
+      }
+
+      .booking-entry p,
+      .booking-entry li,
+      .booking-group > p {
+        font-size: 0.86rem;
+        line-height: 1.46;
+      }
+
+      .cost-sheet,
+      .cost-sheet thead,
+      .cost-sheet tbody,
+      .cost-sheet tr,
+      .cost-sheet th,
+      .cost-sheet td {
+        display: block;
+      }
+
+      .cost-sheet {
+        border: 0;
+        font-size: 0.85rem;
+      }
+
+      .cost-sheet thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+
+      .cost-sheet tr {
+        margin: 0 0 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        overflow: hidden;
+      }
+
+      .cost-sheet td {
+        display: grid;
+        grid-template-columns: minmax(92px, 36%) minmax(0, 1fr);
+        gap: 10px;
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 8px 10px;
+      }
+
+      .cost-sheet td:last-child {
+        border-bottom: 0;
+      }
+
+      .cost-sheet td::before {
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 850;
+        text-transform: uppercase;
+      }
+
+      .cost-sheet td:nth-child(1)::before {
+        content: "Category";
+      }
+
+      .cost-sheet td:nth-child(2)::before {
+        content: "Line item";
+      }
+
+      .cost-sheet td:nth-child(3)::before {
+        content: "Per-night / unit";
+      }
+
+      .cost-sheet td:nth-child(4)::before {
+        content: "Original amount";
+      }
+
+      .cost-sheet td:nth-child(5)::before {
+        content: "USD estimate";
+      }
+
+      .cost-sheet td:nth-child(6)::before {
+        content: "Notes";
+      }
+
+      .cost-sheet .num {
+        text-align: left;
+        white-space: normal;
+      }
+
+      .cost-sheet .subtotal-row td,
+      .cost-sheet .total-row td {
+        display: block;
+      }
+
+      .cost-sheet .subtotal-row td::before,
+      .cost-sheet .total-row td::before {
+        content: none;
+      }
+
+      .table-wrap {
+        margin-inline: -12px;
+        padding-inline: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .flight-table {
+        min-width: 720px;
+        font-size: 0.82rem;
+      }
+
+      .flight-table th,
+      .flight-table td {
+        padding: 9px 10px;
+      }
+
+      .calc {
+        align-items: stretch;
+      }
+
+      .calc-field,
+      .calc-out {
+        width: 100%;
+      }
+
+      .calc-field {
+        justify-content: space-between;
+      }
+
+      .calc-out {
+        text-align: left;
+      }
+
+      .day-list {
+        gap: 8px;
+        font-size: 0.86rem;
+      }
+
+      .day-list li {
+        padding-left: 12px;
+      }
+
+      .photo-strip {
+        gap: 8px;
+      }
+
+      .photo-strip img {
+        height: 140px;
+      }
+
+      .source-grid div {
+        padding: 12px;
+      }
+    }
+
     @media print {
       .site-nav,
       .hero-actions,
