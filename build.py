@@ -47,12 +47,14 @@ def visible(node, target, parent_for=None):
     return target in allowed
 
 
-def parts_to_html(parts):
+def parts_to_html(parts, target):
     out = []
     for p in parts:
         if isinstance(p, str):
             out.append(p)
         else:
+            if not visible(p, target):
+                continue
             out.append(f'<a href="{p["url"]}">{p["text"]}</a>')
     return ''.join(out)
 
@@ -67,7 +69,7 @@ def ul(items, target, parent_for=None):
     for item in items:
         if not visible(item, target, section_for):
             continue
-        rows.append(f'  <li>{parts_to_html(item["parts"])}</li>')
+        rows.append(f'  <li>{parts_to_html(item["parts"], target)}</li>')
     if not rows:
         return ''
     return f'<ul>\n' + '\n'.join(rows) + '\n</ul>'
@@ -205,7 +207,7 @@ def render_html(r, target='resume'):
   <p>{r['about']}</p>
 
   <h2>Selected Publications &amp; Service</h2>
-  <p>{parts_to_html(r['publications_intro']['parts'])}</p>
+  <p>{parts_to_html(r['publications_intro']['parts'], target)}</p>
   {ul(r['publications'], target)}
 
   <h2>Selected Patents</h2>

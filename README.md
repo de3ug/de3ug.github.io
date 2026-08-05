@@ -29,7 +29,7 @@ The JSON has a hierarchy of information:
 - Some older school, internship and early-career details are kept in the JSON for context but hidden from the webpage because they are no longer central to the public portfolio.
 - Only the most important highlights are included in the one-page resume PDF.
 
-Visibility is controlled with fields such as `hide_from` and `for`. For example, an item can appear on the webpage but not the resume, appear only in the resume, or remain in the JSON as background context. Underscore-prefixed fields such as `_notes` are editorial/context notes and are not rendered.
+Visibility is controlled with fields such as `hide_from` and `for`. These fields can be applied to a whole item or an individual linked part. For example, an item can appear on the webpage but not the resume, a supplementary link can remain web-only, or an entry can remain in the JSON as background context. Underscore-prefixed fields such as `_notes` are editorial/context notes and are not rendered.
 
 `build.py` reads the same JSON and generates `site/resume.pdf`, keeping the resume concise while preserving a richer content hierarchy for the website and future edits.
 

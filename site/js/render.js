@@ -1,7 +1,7 @@
 // Renders all page content from resume.json.
 // Each list item uses a "parts" array where each part is either
-// a plain string or {text, url} for a hyperlink.
-// Visibility: items with hide_from:["web"] or for:["resume"] are skipped.
+// a plain string or {text, url} for a hyperlink. Visibility controls can be
+// applied to an entire item or an individual linked part.
 
 function esc(str) {
   return String(str)
@@ -18,18 +18,19 @@ function visible(item, target) {
   return allowed.has(target);
 }
 
-function renderParts(parts) {
-  return parts.map(p =>
-    typeof p === 'string'
+function renderParts(parts, target = 'web') {
+  return parts
+    .filter(p => typeof p === 'string' || visible(p, target))
+    .map(p => typeof p === 'string'
       ? esc(p)
-      : `<a href="${esc(p.url)}">${esc(p.text)}</a>`
-  ).join('');
+      : `<a href="${esc(p.url)}">${esc(p.text)}</a>`)
+    .join('');
 }
 
 function renderList(items, target = 'web') {
   const rows = items
     .filter(item => visible(item, target))
-    .map(item => `<li>${renderParts(item.parts)}</li>`)
+    .map(item => `<li>${renderParts(item.parts, target)}</li>`)
     .join('');
   return rows ? `<ul>${rows}</ul>` : '';
 }
