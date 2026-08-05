@@ -6,7 +6,7 @@
   "location": "Portola Valley, CA (near Palo Alto, 30 min south of SF)",
   "email": "douglas.ryan.gray@gmail.com",
   "last_updated": "08/05/2026",
-  "publications_intro": {"parts": ["5,300+ citations \u00b7 h-index\u00a021 (19 since 2021) \u00b7 ", {"text": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"}, " \u00b7 Reviewer: CVPR, ICCV, ECCV, WACV"]},
+  "publications_intro": {"parts": ["5,300+ citations \u00b7 h-index\u00a021 (17 since 2019) \u00b7 ", {"text": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"}, " \u00b7 Reviewer: NeurIPS, CVPR, ICCV, ECCV, WACV"]},
   "publications": [
     {"parts": [{"text": "Eliciting Self-Verification in Multimodal Reasoning Agents with Reinforcement Learning", "url": "papers/gray_eccv2026_svrl.pdf"}, ", ECCV\u00a02026", {"text": "\u00a0\u00b7\u00a0Supplementary\u00a0material", "url": "papers/gray_eccv2026_svrl_supplementary.pdf", "hide_from": ["resume"]}]},
     {"parts": ["Co-organizer, ", {"text": "Multimodal Representation and Retrieval Workshop", "url": "https://mrr-workshop.github.io/"}, " (SIGIR\u00a02024, ICCV 2025)."]},
@@ -16,7 +16,7 @@
     {"parts": [{"text": "Hierarchical Proxy-Based Loss for Deep Metric Learning", "url": "https://www.amazon.science/publications/hierarchical-proxy-based-loss-for-deep-metric-learning"}, ", WACV\u00a02022"]},
     {"parts": [{"text": "Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features", "url": "papers/gray_eccv2008_pedestrian.pdf"}, ", ECCV\u00a02008 (1,900+ citations)"]},
     {"parts": [{"text": "Evaluating Appearance Models for Recognition, Reacquisition, and Tracking", "url": "papers/gray_pets2007_appearance.pdf"}, ", PETS\u00a02007 (1,300+ citations)"]},
-    {"hide_from": ["resume", "web"], "parts": ["Reviewer for CVPR, ICCV, ECCV, and WACV."]}
+    {"hide_from": ["resume", "web"], "parts": ["Reviewer for NeurIPS, CVPR, ICCV, ECCV, and WACV."]}
   ],
   "patents_intro": "Named inventor on 40+ patents in computer vision, visual search, and camera/AR systems.",
   "patents": [
