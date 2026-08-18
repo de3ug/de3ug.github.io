@@ -1,0 +1,210 @@
+{
+  "name": "Douglas Gray",
+  "title": "Principal Applied Scientist",
+  "about": "Research scientist who has led teams and shipped at global scale: the vision-language systems behind Amazon Lens and visual navigation features in Amazon product search reach hundreds of millions of customers. I believe world-model-grounded, full-duplex interfaces are where computing is heading, and want to work on the hardest problems to get there: multimodal reasoning, agentic retrieval, generative models, and real-time interfaces.",
+  "_about_extended": "Research scientist who has led teams and shipped vision-language systems at global scale. My work at Amazon has been a series of incremental steps toward a longer-term conviction: that the next great leap in computing isn't a better chat interface, but full-duplex interaction — video, audio, and language flowing through systems that persistently model the world. I think world models are the key technology, and the problems I most want to work on are multimodal reasoning, agentic retrieval, generative models, and real-time interfaces. At Amazon I've led the vision-language systems behind Amazon Lens, which lets customers point a camera at anything and find it, along with visual navigation features in Amazon product search used by hundreds of millions of customers globally. My research has appeared at CVPR, KDD, ECCV, and WACV, and I've co-organized the Multimodal Representation and Retrieval workshop at SIGIR and ICCV.",
+  "location": "Portola Valley, CA (near Palo Alto, 30 min south of SF)",
+  "email": "douglas.ryan.gray@gmail.com",
+  "last_updated": "08/05/2026",
+  "publications_intro": {"parts": ["5,300+ citations \u00b7 h-index\u00a021 (17 since 2019) \u00b7 ", {"text": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"}, " \u00b7 Reviewer: NeurIPS, CVPR, ICCV, ECCV, WACV"]},
+  "publications": [
+    {"parts": [{"text": "Eliciting Self-Verification in Multimodal Reasoning Agents with Reinforcement Learning", "url": "papers/gray_eccv2026_svrl.pdf"}, ", ECCV\u00a02026", {"text": "\u00a0\u00b7\u00a0Supplementary\u00a0material", "url": "papers/gray_eccv2026_svrl_supplementary.pdf", "hide_from": ["resume"]}]},
+    {"parts": ["Co-organizer, ", {"text": "Multimodal Representation and Retrieval Workshop", "url": "https://mrr-workshop.github.io/"}, " (SIGIR\u00a02024, ICCV 2025)."]},
+    {"parts": [{"text": "GENIUS: A Generative Framework for Universal Multimodal Search", "url": "https://www.amazon.science/publications/genius-a-generative-framework-for-universal-multimodal-search"}, ", CVPR\u00a02025"]},
+    {"parts": [{"text": "Bringing Multimodality to Amazon Visual Search System", "url": "https://www.amazon.science/publications/bringing-multimodality-to-amazon-visual-search-system"}, ", KDD\u00a02024"]},
+    {"parts": [{"text": "Amazon Shop the Look: A Visual Search System for Fashion and Home", "url": "https://www.amazon.science/publications/amazon-shop-the-look-a-visual-search-system-for-fashion-and-home"}, ", KDD\u00a02022"]},
+    {"parts": [{"text": "Hierarchical Proxy-Based Loss for Deep Metric Learning", "url": "https://www.amazon.science/publications/hierarchical-proxy-based-loss-for-deep-metric-learning"}, ", WACV\u00a02022"]},
+    {"parts": [{"text": "Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features", "url": "papers/gray_eccv2008_pedestrian.pdf"}, ", ECCV\u00a02008 (1,900+ citations)"]},
+    {"parts": [{"text": "Evaluating Appearance Models for Recognition, Reacquisition, and Tracking", "url": "papers/gray_pets2007_appearance.pdf"}, ", PETS\u00a02007 (1,300+ citations)"]},
+    {"hide_from": ["resume", "web"], "parts": ["Reviewer for NeurIPS, CVPR, ICCV, ECCV, and WACV."]}
+  ],
+  "patents_intro": "Named inventor on 40+ patents in computer vision, visual search, and camera/AR systems.",
+  "patents": [
+    {"hide_from": ["resume"], "parts": [{"text": "Multimodal Search and Refinement", "url": "https://patents.google.com/patent/US12210516B2/en"}, " (2022)"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Neural Network-Based Image Manipulation", "url": "https://patents.google.com/patent/US10956784B2/en"}, " (2016)"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Object Tracking in Zoomed Video", "url": "https://patents.google.com/patent/US9626084B2/en"}, " (2014) \u2014 co-inventor with Jeff Bezos"]},
+    {"hide_from": ["resume"], "_notes": "Solo author. Future plan: build a web demo of this concept.", "parts": [{"text": "Augmented Reality Camera Lucida", "url": "https://patents.google.com/patent/US9965895B1/en"}, " (2014) \u2014 sole inventor"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Providing Overlays Based on Text in a Live Camera View", "url": "https://patents.google.com/patent/US9165406B2/en"}, " (2013)"]}
+  ],
+  "projects": [
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon Lens Live", "url": "https://www.aboutamazon.com/news/retail/search-image-amazon-lens-live-shopping-rufus"}, " \u2014 real-time visual search with Rufus integration for product insights (2025)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon Lens, Visual Search Suggestions, More Like This, and AI-generated autocomplete images", "url": "https://www.aboutamazon.com/news/retail/visual-search-shopping-features"}, " \u2014 visual navigation features in Amazon product search (2024; updated in 2026 to include real-time AI image generation in autocomplete; ", {"text": "Gizmodo coverage", "url": "https://gizmodo.com/amazons-rolling-out-another-ai-feature-so-youll-buy-even-more-stuff-2000767112"}, ")."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon visual search, AR search, and more", "url": "https://techcrunch.com/2023/09/14/amazon-updates-visual-search-ar-search-and-more-in-challenge-to-google/"}, " \u2014 TechCrunch coverage of multimodal search and visual search updates (2023)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "StyleSnap for fashion", "url": "https://www.aboutamazon.com/news/retail/stylesnap-will-change-the-way-you-shop-forever"}, " (2019) and ", {"text": "for home", "url": "https://www.amazon.science/latest-news/the-science-behind-amazons-new-stylesnap-for-home-feature"}, " (2020) \u2014 instance-level visual search for apparel and home products."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon and Snapchat visual search integration", "url": "https://fortune.com/2018/07/09/snapchat-amazon-visual-search-snap-camera/"}, " \u2014 Fortune coverage of Amazon visual search partnership with Snapchat (2018)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Samsung Bixby Vision with Amazon shopping", "url": "https://www.engadget.com/2017-03-29-samsungs-bixby-ai-assistant-can-see-as-well-as-talk.html"}, " \u2014 Engadget coverage of Amazon visual search integration in Samsung Bixby Vision (2017)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon FireFly", "url": "https://techcrunch.com/2014/06/18/amazons-fire-phone-introduces-firefly-a-feature-that-lets-you-identify-and-buy-things-you-see-the-real-world/"}, " \u2014 real-world object, text, and barcode recognition on the Amazon Fire Phone (2014)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "Amazon visual search for shoes by shape", "url": "https://www.geekwire.com/2012/amazons-fabulous-ipad-app-searches-shoes-shape/"}, " \u2014 GeekWire coverage of early Amazon visual search on iPad (2012)."]},
+    {"hide_from": ["resume"], "parts": [{"text": "A9 Flow", "url": "https://www.theverge.com/2011/11/3/2535286/a9-flow-app-augmented-reality-amazon-shopping"}, " \u2014 AR-based multi-object product recognition and tracking (2011)."]}
+  ],
+  "experience": [
+    {
+      "role": "Principal Applied Scientist", "org": "Amazon Visual Search", "years": "2025\u2013Present",
+      "bullets": [
+        "Originated and drove Amazon's real-time AI image generation in search autocomplete, turning descriptive shopping queries into tappable visual suggestions for similar products; scoped the work, aligned science and engineering design, built evaluation for safety and quality, and launched in four months.",
+        "Led Lens Live as principal technical lead \u2014 real-time visual search integrated with Rufus for product insights, deployed to tens of millions of customers; architected the mobile ML pipeline enabling continuous low-latency product identification as customers scan."
+      ],
+      "_notes": [
+        "In early 2025, had the idea that image generation might be fast enough to run inside autocomplete and turn descriptive shopping queries into visual suggestions before customers reached a results page. Asked a member of the team to prototype it, and the prototype showed that Black Forest Labs' FLUX.1 Schnell model was well matched to the latency and visual-quality needs of the experience.",
+        "Advocated for AI-generated autocomplete images for nearly a year before the idea finally broke through. Once the VP of Shopping saw it, the concept became a flagship S-team goal within 48 hours. Scoped the work needed to build it, worked with the engineering team on the high-level design, and worked with the science team to build the safety and quality evaluation framework. The feature launched in only four months.",
+        "Transitioned to full IC focus in early 2025 to lead Lens Live end-to-end. Day-to-day technical lead coordinating across multiple VP orgs \u2014 Lens (Palo Alto), Rufus engineering and science (Palo Alto, Seattle, NYC), and Rufus product (London) \u2014 teams that often didn\u2019t agree. Core technical contribution was the mobile client architecture: on-device detection, tracking, and session state management (a lightweight world model of the scene). Scene understanding work focused on product-market fit: short \u201cpills\u201d for customers to tap and ask questions, and taglines surfacing what\u2019s distinctive about a product. Latency was a core challenge \u2014 the pipeline had to deliver results continuously in real time as the camera moved.",
+        "Kept Lens Live collaboration across Lens and Rufus working by establishing clear ownership boundaries. The Lens team owned product identification, including detection, tracking, recognition, and the infrastructure needed to perform it. The Rufus team owned LLM-generated product insights and questions, which were precomputed for each identified product, as well as the experience after a customer clicked one of those questions. This let the teams work independently and gave a clear answer for which organization needed to do each task.",
+        "The 2025 move back to Principal Applied Scientist happened during Amazon's broader organizational flattening. It fit because I had remained a highly technical science leader and had deliberately passed on opportunities to manage adjacent mobile engineering, ground truth, or QA teams when they would have pulled me away from my core specialization in visual search, retrieval, and multimodal AI. The transition was framed and executed around providing hands-on principal-level technical ownership for Lens Live, an S-team goal for the organization and the key S-team goal for the search org that year.",
+        "Agentic coding made the timing especially good for returning to principal IC execution. I was an early advocate in the science org, pushing adoption of Cline with Claude 3.5 in February 2025 and later kiro-cli, Amazon's Claude Code-like tool, starting in November 2025. These tools changed the leverage model for senior IC work by making it easier to return to hands-on coding, prototype ideas directly, and delegate implementation work to agents rather than only through people.",
+        "In 2025, had an internship hiring/evaluation miss during a period when AI-assisted interviewing made candidate signal harder to interpret. The intern could discuss the project at a high level and produced plausible intermediate artifacts, but a later deep review of code and result provenance showed they could not explain how key results were produced. No return offer was made. Lesson: in an AI-assisted workflow, evaluation needs earlier direct evidence of ownership through code walkthroughs, artifact provenance, experiment reproducibility, and detailed technical questioning, while still recognizing that AI tools themselves can be legitimate productivity tools when the person owns the work."
+      ]
+    },
+    {
+      "role": "Senior Manager, Applied Science", "org": "Amazon Visual Shopping", "years": "2020\u20132025",
+      "bullets": [
+        "Led a team of up to 20 applied scientists and engineers; completed the transformation of Amazon Lens into a deep learning, embedding-based system matching against over 1 billion products, driving significant gains in CTR and usage.",
+        "Launched Visual Search Suggestions, multimodal search (image + text reformulation), and More Like This \u2014 growing the latter from zero to over 90% of Amazon search result pages.",
+        "Built and developed a high-performing research team across all levels; organized Amazon\u2019s Computer Vision Conference (ACVC, 200+ attendees) and co-organized the Multimodal Representation and Retrieval workshop (MRR) at SIGIR and ICCV as lead organizer and advisor."
+      ],
+      "_notes": [
+        "Core technical achievement was completing the Lens transformation: the deep learning embedding-based system grew to match against over 1 billion products across the full Amazon catalog, ultimately retiring the classical CV pipeline.",
+        "From 2020-2024, as Senior Applied Science Manager, managed 15-20 people, mostly applied scientists, with up to 4 SDEs and 1 applied science manager; responsible for all science goals and artifacts related to visual search.",
+        "Set team direction through science roadmap documents, typically 1-2 per quarter; often delegated initial drafts to senior or principal scientist leads, then worked hands-on to jointly own the final document for review with the director and stakeholders across product and engineering.",
+        "Ran a weekly science review with rotating topics: a document-focused meeting where team members wrote project updates, reviewed them as a team, and discussed next steps. This mechanism worked better than traditional scrum or sprint planning for applied science work because plans changed after experiments and tasks were often ambiguous.",
+        "Created accountability by maintaining swim lanes for the team, typically using a spreadsheet mapping people to project areas so it was clear who owned which project, who was overloaded, and who needed more scope. More senior people owned broader areas rather than only specific deliverables, making accountability for success or failure clear without micromanaging each experiment.",
+        "Manager-of-manager experience included adding one applied science manager because the team was too large to manage everyone directly at the desired quality bar. My normal cadence for direct reports was biweekly 1:1s; for people under the manager, I moved to skip-level 1:1s once or twice a quarter plus on-demand office hours.",
+        "Tried to give the manager's sub-team a specific ownership area. Initially this was upload mode within Amazon Lens, which had more fashion and home queries and required focus on multi-object detection for specific categories. Over time boundaries blurred as people were pulled into high-priority projects, but in 2024-2025 the sub-team owned Visual Search Suggestions, scaled it significantly, and created over $600MM in incremental revenue measured through A/B tests.",
+        "In 2021, managed a difficult SDE-2 performance situation from Amazon's PathFinder centralized hiring and team-matching program. The hire was excited about computer vision and search but had little industry experience and appeared closer to SDE-1 level after joining. Gave SDE-2-scoped MLOps/tooling work, but he struggled to work backward from actual internal customers, where scientists on the team needed reliable tools rather than demos. Provided direct coaching, narrowed feedback around customer problems and production usefulness, and assigned a senior mentor in addition to the onboarding buddy. After about nine months, communicated that he was not delivering at the expected SDE-2 bar; he took the feedback professionally and ultimately chose to leave.",
+        "Used a standing science deep-dive meeting where everyone was expected to present periodically. The meeting created durable artifacts, such as slides and video recordings, that could be revisited during review cycles to assess what the person owned, what decisions were made, and how the work evolved over time.",
+        "Over longer time horizons, used major artifacts such as paper publications and feature launches as requirements or strong evidence for promotions and higher performance ratings.",
+        "Defined high-performing applied research teams around product impact, scientific contribution, and strategic adaptability. Product impact came first: the work needed to change customer experience through metrics such as result quality, CTR, feature coverage, latency, or incremental revenue from A/B tests. Scientific contribution was the difference between a science team and an engineering team: high-quality artifacts such as internal papers, external publications, evaluations, and technical documents showed that the team was advancing or nontrivially adapting the state of the art rather than simply repackaging existing methods. Strategic adaptability meant not running on autopilot, but identifying new important areas or gaps, changing the roadmap quickly when evidence or product needs shifted, and keeping product, engineering, and leadership stakeholders aligned on the tradeoffs.",
+        "Balanced publication and product pressure with a ship-first philosophy: external publication was valuable, but production launches and customer impact came first. Scientists were typically self-motivated to publish, so the management challenge was finding publication paths that did not distract from critical-path product work. Internships were often the best mechanism because the work was timebound, usually not on the critical path for production launches, and typically did not require customer data.",
+        "Educated senior leaders who needed to approve publications on why publishing helped Amazon customers. The framing was that visual search and multimodal retrieval are hard problems where Amazon benefits from the wider scientific community making progress; if others build on Amazon's published work, Amazon can bring those learnings back into its own systems and combine them with customer data that Amazon does not release.",
+        "In 2023, disagreed with a new director's decision to stop most partner-team support for the organization's visual search API and focus narrowly on core result-quality goals. Historically shared the API broadly so other Amazon teams did not need to rebuild visual search infrastructure, and often had to convince teams through tests that the mature visual search system outperformed their local attempts. I believed some partner support was low-effort and high-value and worried about burning bridges, but committed to the director's decision. The intense focus helped the team meet an aggressive quality goal, roughly doubling results-page CTR from around 20% to over 40%, with major retention and usage impact. Carrying the policy into 2024 created increasing partner pressure, including an escalation to the CEO, and the team eventually reversed course. Lesson: locking in and narrowing focus can be right for a time, but needs an explicit point where the team reopens to strategic partnerships after the core objective is achieved.",
+        "Most impactful product story was Amazon Lens itself. Over multiple years, transformed Lens from a constrained, classical-CV-powered visual search feature into a dependable deep-learning, embedding-based shopping system over more than 1 billion products. In 2023, intensely focused the team on result quality and relevance ranking, narrowing the roadmap and taking the ranking/evaluation loop more seriously; this roughly doubled results-page CTR from under 20% to over 40%, helping Lens move from a novelty feature to a tool customers could depend on when shopping for something they could already see. Lens handled over 1B queries in the following year.",
+        "When models or algorithms were ready for production, scientists embedded with engineering teams and joined their sprints as long as needed.",
+        "Features launched: multimodal search (image + text reformulation), Visual Search Suggestions (image-based pivots in text autocomplete), and More Like This (visual similarity within search results, scaled from zero to 90%+ of search result pages).",
+        "Built and promoted team members across all levels, including a principal engineer in 2022 who owned embedding-based index builds for visual search and More Like This, and a principal scientist in 2024 who was the single-threaded science owner for More Like This as it grew from zero to 90%+ search result page coverage.",
+        "The 2024 principal scientist promotion was part of a longer development arc: previously promoted the same scientist to Senior Applied Scientist in 2019 after major contributions to StyleSnap; he later published a KDD system paper on that work.",
+        "More Like This scaling story: in 2021, launched a visual discovery feature that added a 'more like this' icon to search result faceouts; clicking the icon used multimodal similarity to retrieve similar products. The first experiment on women's dresses won, and the team began expanding cautiously one fashion category at a time. Another organization tested a home-items version with their model and also won. I felt coverage was growing too slowly and creating an inconsistent search result page where the icon appeared only sometimes. After a VP review where I was pushed for being too cautious, I pushed the team to try a broader high-coverage view-sims approach ('customers who viewed this also viewed that') despite concerns that it would hurt customer trust. The A/B test lost, but it produced per-category evidence about where the feature was and was not useful. We followed with a multimodal-model experiment that excluded poorly performing categories such as media and grocery and used click data from the broad test to train a new ranker. That experiment won, and later iterations scaled More Like This to roughly 90% of search result page impressions.",
+        "Visual search relevance evaluation combined online customer metrics with offline annotation pipelines. Online, CTR and purchase rate were strong proxies for quality and could be measured through A/B tests and tracked over time sliced by market, device type, or ingress. Offline, the team used monthly or experiment-specific samples reviewed by trained vendor annotators, including teams in lower-cost labor markets such as Madagascar. Simple Likert scoring did not work well because annotators used inconsistent personal scales, so evaluation moved toward objective criteria such as whether the product was packaged in both query and result, whether the brand matched, whether category matched, and what product category was present. Logic mapped these annotations into relevance classes such as exact, similar, complementary, or irrelevant, enabling metrics like nDCG, exact@1, and irrelevant@10 with sample sizes chosen for known error bounds. Ongoing challenges included score drift as annotation workforces changed, such as drops after holidays or changes when large batches required onboarding new workers. Multimodal search was especially hard because image-plus-text query variations made the relevance definition itself ambiguous; it took months to agree internally on scoring, and scientists sometimes had to annotate golden datasets themselves to validate automated or vendor judgments. More recently, the team added LLM-as-judge evaluation as a layer between scientist annotation and vendor annotation: while large LLMs may not be usable to answer every question in production, heavier models can approximate metrics on samples before going to vendors, making evaluation iteration much faster while still requiring human calibration and final judgment.",
+        "Evaluated applied scientists using dimensions such as science depth, science breadth, and science application, along with leadership principles that become increasingly important at senior levels: Hire and Develop the Best, Ownership, Dive Deep, and Are Right a Lot. Science depth meant the scientist could explain the technical complexity, core insight, tradeoffs, failure modes, and evidence behind the work, often through strong internal or external publications. Science breadth meant they could connect modeling, retrieval, evaluation, data quality, product constraints, engineering realities, and ground truth operations rather than optimizing one narrow experiment. Science application meant the work improved customer experience through metrics such as CTR, feature coverage, or incremental revenue measured by A/B tests. At senior levels, these dimensions overlapped with influence: growing junior team members, bringing co-authors into papers, and aligning product, engineering, and ground truth teams to get the work completed.",
+        "Organized ACVC with 200+ attendees as lead organizer and as advisor in other years; co-organized the MRR workshop at SIGIR 2024 and ICCV 2025."
+      ]
+    },
+    {
+      "role": "Manager, Applied Science", "org": "Amazon Visual Search & AR", "years": "2016\u20132020",
+      "bullets": [
+        "Led a team of up to 12 applied scientists and engineers; introduced deep learning to Amazon\u2019s visual search stack from scratch \u2014 from first launch at ~100 categories, expanding to 100,000+ fine-grained search strings via query-log-trained models, then to instance-level matching against ~10M products \u2014 culminating in StyleSnap (2019) and StyleSnap for Home (2020)."
+      ],
+      "_notes": [
+        "The existing classical CV system matched against ~100M products but was architecturally limited to flat and printed objects and had reached its ceiling. This role built a deep learning visual search system from the ground up: first launch covered ~100 product categories; a query-log-trained model then expanded the output vocabulary to over 100,000 fine-grained search strings, mapping images to the most relevant terms from Amazon\u2019s actual query traffic; then instance-level product matching within specific categories \u2014 apparel first, then home \u2014 against roughly 10 million specific products. The public milestones were StyleSnap (2019) and StyleSnap for Home (2020). The subsequent role completed the journey, scaling to over 1 billion products and retiring the classic CV pipeline entirely.",
+        "Early as a science manager around 2016-2017, tried applying engineering-style scrum mechanisms to applied science work, including burndown charts, points, and T-shirt-size estimates. Found that the mechanism did not fit ambiguous science tasks: plans changed after experiments, burndown charts often went up, and roughly 60% of tasks could be punted to the next sprint. Concluded that sprint planning created administrative overhead without improving scientific control, which led to adopting the Weekly Science Review model focused on ownership, written updates, experimental learning, and technical decision-making."
+      ]
+    },
+    {
+      "role": "Applied Scientist", "org": "A9.com Visual Search", "years": "2011\u20132016",
+      "bullets": [
+        "Early applied scientist on A9\u2019s visual search team; built A9 Flow (AR-based multi-object product recognition and tracking, initially a standalone demo app), with the underlying recognition, tracking, and scene text/OCR libraries later integrated into both the Amazon mobile app and the Amazon Fire Phone. Also developed video content alignment tools that automated annotation workflows for the IMDB X-Ray feature. Classical CV in high-performance C++."
+      ],
+      "_notes": "A9 Flow was an augmented reality shopping interface and technology demonstrator \u2014 recognized and tracked multiple products in the scene simultaneously, overlaying results in real time. The Flow libraries (recognition, tracking, scene text detection, OCR) were later integrated into the main Amazon app and the Amazon Fire Phone. OCR covered phone numbers, addresses, and business card scanning. Video work was with IMDB and what became the Prime Video team: built tools to automatically align visual content from video against existing annotations, saving the team from manually redoing timestamp work each time studios redelivered content (see video content alignment patent)."
+    },
+    {
+      "role": "Research Scientist", "org": "Akiira Media Systems, Palo Alto", "years": "2010\u20132011",
+      "bullets": [
+        "Research scientist at an early-stage computer vision startup; built a video content search engine and developed multimedia summarization products \u2014 automated news article summarization and story clustering, and a video summarization API \u2014 using SVD of hand-crafted features."
+      ],
+      "_notes": "Recruited by a former NEC Labs manager after an internship there. Initial project was a video content search engine. After lead investor Max Palevsky died and most of the science team was laid off, the company pivoted to commercializing multimedia summarization technology licensed from NEC. Products included itwips.com (automated 5-line summaries of top news articles, with story/theme clustering) and iBlips (a video summarization API). Added novel IP including the news clustering approach and contributed UX design. All summarization was SVD-based on hand-crafted features. The company folded when the products didn\u2019t gain commercial traction."
+    },
+    {
+      "for": ["resume"],
+      "role": "B.S. / Ph.D. Candidate (ABD)", "org": "Computer Engineering, UC Santa Cruz", "years": "2001\u20132010",
+      "bullets": [
+        "Proposed: Privacy Preserving Pedestrian Recognition; advanced to candidacy 2008. Collected the VIPeR benchmark dataset for person re-identification; two publications from this period have accumulated 3,300+ combined citations."
+      ]
+    },
+    {
+      "hide_from": ["resume"],
+      "role": "Ph.D. Candidate (ABD)", "org": "Computer Engineering, UC Santa Cruz", "years": "2005\u20132010",
+      "bullets": [
+        "Proposed: Privacy Preserving Pedestrian Recognition; advanced to candidacy 2008. Collected the VIPeR benchmark dataset for person re-identification; two publications from this period have accumulated 3,300+ combined citations."
+      ],
+      "_notes": "Advisor: Dr. Hai Tao, who recruited Douglas as an undergraduate and later left to found Vion Vision in China (a successful venture). Advanced to candidacy in 2008. Did not finish: advisor\u2019s departure, transitions through Smith Kettlewell Eye Research Institute and Akiira, and getting married made returning to grad school impractical. The two highly cited papers from this period are \u201cViewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features\u201d (ECCV 2008) and \u201cEvaluating Appearance Models for Recognition, Reacquisition, and Tracking\u201d (PETS 2007). Google Scholar counts checked June 2026: 1,981 and 1,384 citations respectively; 3,365 combined. Public-facing text rounds these counts down to stable 1,900+, 1,300+, and 3,300+ figures."
+    },
+    {"hide_from": ["resume", "web"], "role": "B.S.", "org": "Computer Engineering, UC Santa Cruz", "years": "2001\u20132005"},
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Research Associate", "org": "Smith-Kettlewell Eye Research Institute, San Francisco", "years": "2009",
+      "_notes": "Working with Dr. James Coughlan. Prototyped assistive technology for the blind: a Nokia N95 app that recognized fiducial targets to help visually impaired users navigate and identify objects. Summer/fall 2009, between grad school and Akiira."
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Graduate Intern", "org": "Intel Corporation, Santa Clara", "years": "2008\u20132009",
+      "bullets": [
+        "Developed a prototype mobile augmented reality system for mobile internet devices (MIDs).",
+        "Improved large-scale image matching with keypoint indexing and geolocation filtering.",
+        "Built a database of geotagged Wikipedia articles and images; led to WikiReality paper (ICME 2009)."
+      ]
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Summer Research Intern", "org": "NEC Labs America, Cupertino", "years": "2007\u20132008",
+      "bullets": [
+        "Researched facial beauty quantification, prediction, and enhancement from web images; work published at ECCV 2010.",
+        "Contributed to age/gender/ethnicity recognition demo and face alignment software."
+      ]
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Engineering Intern", "org": "SAIC Advanced Concepts Division", "years": "2006",
+      "bullets": [
+        "Built a multi-object tracking demo using a multiple hypothesis framework.",
+        "Extended to multi-camera tracking and explored homography estimation from tracking data."
+      ]
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Graduate Student Researcher", "org": "Visual Computing Lab, UC Santa Cruz", "years": "2006\u20132009",
+      "_notes": "Collected the VIPeR (Viewpoint Invariant Pedestrian Recognition) dataset, which became the standard benchmark for person re-identification and is the primary reason the ECCV 2008 and PETS 2007 papers are so highly cited. Worked independently for much of this period while advisor Dr. Hai Tao was away."
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Teaching Assistant", "org": "Computer Engineering, UC Santa Cruz", "years": "2006\u20132009",
+      "_notes": "Multiple terms: CMPE 121 (Microprocessor Design), CMPE 107 (Stochastic Methods), AMS 27L (Matlab), CMPE 80A (Universal Access), CMPE 185 (Technical Writing)."
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Undergraduate Research Assistant", "org": "Visual Computing Lab, UC Santa Cruz", "years": "2004\u20132005",
+      "_notes": "Active camera tracking (mean-shift + PTZ), multi-hypothesis object tracking for SAIC, and crowd density estimation tools."
+    },
+    {
+      "hide_from": ["resume", "web"],
+      "role": "Art Director & CFO", "org": "Static Printing Inc.", "years": "2003\u20132005",
+      "_notes": "Co-founded custom apparel business. Company later renamed Your Logo Here, LLC and still operates; no longer affiliated."
+    }
+  ],
+  "hobbies": [
+    {"hide_from": ["resume"], "parts": [{"text": "Where I\u2019ve been Map", "url": "https://de3ug.github.io/gcmap/?file=flight.history.doug.txt"}, " \u2013 Travel"]},
+    {"hide_from": ["resume"], "parts": [{"text": "AstroBin", "url": "https://app.astrobin.com/u/de3ug#gallery"}, " \u2013 Astrophotography"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Instagram", "url": "https://www.instagram.com/de3ug/"}, " \u2013 Mostly Astrophotography"]},
+    {"hide_from": ["resume"], "parts": [{"text": "Chumpcar / Champcar / 24 Hours of Lemons", "url": "https://www.facebook.com/GrayMatterRacing"}, " \u2013 Amateur racing"]},
+    {"hide_from": ["resume"], "parts": [{"text": "YouTube", "url": "https://www.youtube.com/channel/UCevbEIVnSl9-qb0gwvUeQTA"}, " \u2013 Mostly Racing"]},
+    {"hide_from": ["resume"], "parts": [{"text": "TikTok", "url": "https://www.tiktok.com/@de3ug"}, " \u2013 Mostly Snowboarding"]}
+  ],
+  "hobby_poem": {
+    "hide_from": ["resume"],
+    "lines": [
+      "Eradicate the optimist",
+      "who takes the easy view",
+      "that human values will persist",
+      "no matter what we do.",
+      "Annihilate the pessimist",
+      "whose ineffectual cry",
+      "is that the goal\u2019s already missed",
+      "however hard we try."
+    ],
+    "author": "Piet Hein",
+    "author_url": "https://en.wikipedia.org/wiki/Piet_Hein_(scientist)"
+  },
+  "social": [
+    {"name": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"},
+    {"name": "LinkedIn", "url": "https://www.linkedin.com/in/de3ug/"},
+    {"name": "Twitter", "url": "https://twitter.com/de3ug"},
+    {"name": "Threads", "url": "https://www.threads.net/@de3ug"}
+  ]
+}
