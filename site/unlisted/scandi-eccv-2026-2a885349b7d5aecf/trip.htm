@@ -2318,7 +2318,8 @@
     }
 
     #base .rail-board,
-    #hotels {
+    #hotels,
+    #stockholm #stockholmHotelDecision {
       display: none;
     }
 
@@ -2330,6 +2331,10 @@
 
     #decisionArchiveContent #hotels > .wrap {
       width: 100%;
+    }
+
+    #decisionArchiveContent #stockholmHotelDecision {
+      display: block;
     }
 
     .checklist-shell {
@@ -2944,7 +2949,7 @@
         <span class="pill">Family of four · two young children</span>
         <span class="pill">About 8 missed school days</span>
         <span class="pill">ECCV September 8–12</span>
-        <span class="pill">Flights + Malmö booked · about $8.9k</span>
+        <span class="pill">Flights + Stockholm + Malmö booked · about $10.4k</span>
       </div>
       <div class="hero-actions">
         <a class="button button-primary" href="#verdict">See the recommendation</a>
@@ -2962,7 +2967,7 @@
       <a href="#routes">Route + calendar</a>
       <a href="#map">Map</a>
       <a href="#bookings">Booked + costs</a>
-      <a href="#stockholm">Stockholm decision</a>
+      <a href="#stockholm">Stockholm</a>
       <a href="#base">Malmö commute</a>
       <a href="#conference">ECCV plan</a>
       <a href="#family">Malmö family days</a>
@@ -2994,10 +2999,10 @@
           </article>
           <article class="card stat-card">
             <div>
-              <div class="stat-label">Malmö hotel · booked</div>
-              <div class="stat-value">Baltzar</div>
+              <div class="stat-label">Hotels · booked</div>
+              <div class="stat-value">9 nights</div>
             </div>
-            <div class="stat-note">A Junior Suite is confirmed September 7–13 for four guests, with breakfast, fika, and dinner simplifying the conference week.</div>
+            <div class="stat-note">Scandic Continental covers Stockholm September 4–7; Baltzar covers Malmö September 7–13.</div>
           </article>
           <article class="card stat-card">
             <div>
@@ -3019,7 +3024,7 @@
           <div class="recommendation-mark" aria-hidden="true">R</div>
           <div>
             <h3>Recommended working plan</h3>
-            <p>The SAS flights and Malmö hotel are locked: SK936 and SK1426 to Stockholm, Home Hotel Baltzar September 7–13, then SK935 nonstop home. The active decision is now a jet-lag-friendly Stockholm Central hotel for September 4–7.</p>
+            <p>The SAS flights, Scandic Continental Master Suite, and Malmö hotel are locked: SK936 and SK1426 to Stockholm, Scandic Continental September 4–7, Home Hotel Baltzar September 7–13, then SK935 nonstop home.</p>
           </div>
           <span class="tag blue">Best balance</span>
         </div>
@@ -3031,9 +3036,9 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Confirmed trip framework</p>
-            <h2>The flights and six Malmö nights now anchor the calendar.</h2>
+            <h2>The flights and nine booked hotel nights anchor the calendar.</h2>
           </div>
-          <p>This is the operating itinerary. Earlier route alternatives have moved to the decision archive; the remaining open choices are Stockholm lodging, the western transfer, and the final Billund–Copenhagen split.</p>
+          <p>This is the operating itinerary. Earlier route and lodging comparisons have moved to the decision archive; the remaining open choices are the western transfer and final Billund–Copenhagen stays.</p>
         </div>
 
         <div class="scenario-controls" role="group" aria-label="Archived itinerary scenarios" hidden>
@@ -3051,7 +3056,7 @@
             </div>
             <div class="scenario-verdict">
               <strong id="scenarioVerdictTitle">Locked framework</strong>
-              <span id="scenarioVerdictCopy">The booked flights and September 7–13 Baltzar stay protect the conference and preserve the nonstop flight home.</span>
+              <span id="scenarioVerdictCopy">The booked flights, Stockholm stay, and September 7–13 Baltzar stay protect the conference and preserve the nonstop flight home.</span>
             </div>
           </div>
           <div class="route-line" id="scenarioRoute" aria-label="Selected scenario route">
@@ -3203,8 +3208,8 @@
         <div class="booking-summary" aria-label="Booked cost summary">
           <article class="booking-summary-card">
             <span>Total booked</span>
-            <strong>≈$8.9k</strong>
-            <p>Confirmed airfare plus the six-night Malmö stay.</p>
+            <strong>≈$10.4k</strong>
+            <p>Confirmed airfare plus nine booked hotel nights.</p>
           </article>
           <article class="booking-summary-card">
             <span>Flights</span>
@@ -3212,14 +3217,14 @@
             <p>Family of four, round trip, including taxes.</p>
           </article>
           <article class="booking-summary-card">
-            <span>Malmö hotel</span>
-            <strong>≈$2.8k</strong>
-            <p>Home Hotel Baltzar · Junior Suite · six nights.</p>
+            <span>Hotels</span>
+            <strong>≈$4.3k</strong>
+            <p>Scandic Continental · 3 nights + Home Hotel Baltzar · 6 nights.</p>
           </article>
           <article class="booking-summary-card">
-            <span>Free-cancel deadline</span>
-            <strong>Sep 5</strong>
-            <p>11:59pm Malmö time; after that, the stated penalty begins at one night plus taxes and fees.</p>
+            <span>Stockholm rate</span>
+            <strong>Locked</strong>
+            <p>The Scandic Continental Master Suite is prepaid and non-refundable.</p>
           </article>
         </div>
 
@@ -3309,10 +3314,48 @@
           <article class="booking-group">
             <div class="booking-group-head">
               <div>
+                <h3>Scandic Continental · Stockholm</h3>
+                <p>Master Suite · confirmed for a family of four</p>
+              </div>
+              <span class="booking-reference">Confirmed · 3 nights</span>
+            </div>
+
+            <div class="flight-booking-grid" aria-label="Confirmed Scandic Continental stay">
+              <div class="flight-leg">
+                <div class="flight-date">Check-in · Fri, Sep 4</div>
+                <h4>4:00pm</h4>
+                <p>SK1426 arrives ARN at 3:05pm; continue by Arlanda Express to Stockholm Central.</p>
+              </div>
+              <div class="flight-leg">
+                <div class="flight-date">Room · Sep 4–7</div>
+                <h4>Suite (Master)</h4>
+                <p>Non-smoking · 1 room · family of four · maximum occupancy 4</p>
+              </div>
+              <div class="flight-leg">
+                <div class="flight-date">Check-out · Mon, Sep 7</div>
+                <h4>12:00pm</h4>
+                <p>Walk directly to Stockholm Central for the onward train to Malmö.</p>
+              </div>
+            </div>
+
+            <ul class="booking-detail-list">
+              <li><strong>Address</strong>Vasagatan 22, Stockholm, 111 21 Sweden</li>
+              <li><strong>Cancellation</strong>Non-refundable; no refund for cancellation, late check-in, or early check-out</li>
+              <li><strong>Check-in window</strong>4:00pm to midnight; contact the property in advance for check-in instructions</li>
+              <li><strong>Approximate total</strong>About $1.5k including prepaid taxes</li>
+              <li><strong>Booking record</strong>Reservation, payment, and rewards identifiers retained only in the private master</li>
+            </ul>
+
+            <p class="decision-note"><strong>Operational note:</strong> the booked Master Suite is confirmed for all four travelers. Because the rate is non-refundable, the only remaining hotel task is to advise the property if arrival may slip past midnight.</p>
+          </article>
+
+          <article class="booking-group">
+            <div class="booking-group-head">
+              <div>
                 <h3>Booked cost rollup</h3>
                 <p>USD ledger. Only confirmed, paid costs count toward the total.</p>
               </div>
-              <span class="tag blue">Airfare booked</span>
+              <span class="tag blue">Flights + hotels booked</span>
             </div>
 
             <div class="cost-table-wrap">
@@ -3396,8 +3439,29 @@
                   </tr>
                   <tr>
                     <td>Hotels</td>
-                    <td>Stockholm, Billund, Copenhagen</td>
-                    <td>6 remaining room nights planned</td>
+                    <td>Scandic Continental · room</td>
+                    <td>Master Suite · 3 nights</td>
+                    <td class="num">≈$1.3k</td>
+                    <td class="num">≈$1.3k</td>
+                    <td>Confirmed; reservation identifier redacted</td>
+                  </tr>
+                  <tr>
+                    <td>Hotels</td>
+                    <td>Scandic Continental · taxes</td>
+                    <td>Prepaid taxes shown by Hotels.com</td>
+                    <td class="num">≈$0.2k</td>
+                    <td class="num">≈$0.2k</td>
+                    <td>Property may collect additional required fees/taxes</td>
+                  </tr>
+                  <tr class="subtotal-row">
+                    <td colspan="4">Scandic Continental subtotal · 3 nights</td>
+                    <td class="num">≈$1.5k</td>
+                    <td>Approximately $500/night · prepaid and non-refundable</td>
+                  </tr>
+                  <tr>
+                    <td>Hotels</td>
+                    <td>Billund and Copenhagen</td>
+                    <td>3 remaining room nights planned</td>
                     <td class="num">—</td>
                     <td class="num">—</td>
                     <td class="pending">Not yet booked</td>
@@ -3420,8 +3484,8 @@
                   </tr>
                   <tr class="total-row">
                     <td colspan="4">Grand total · confirmed booked costs</td>
-                    <td class="num">≈$8.9k</td>
-                    <td>Flights + Malmö hotel; add remaining confirmations here as they are booked.</td>
+                    <td class="num">≈$10.4k</td>
+                    <td>Flights + Stockholm and Malmö hotels; add remaining confirmations here as they are booked.</td>
                   </tr>
                 </tbody>
               </table>
@@ -3433,22 +3497,38 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Next decision · Stockholm · Sep 4–7</p>
-            <h2>Optimize the first 18 hours, not the prettiest address.</h2>
+            <p class="eyebrow">Stockholm stay · booked · Sep 4–7</p>
+            <h2>Scandic Continental is the jet-lag landing pad.</h2>
           </div>
-          <p>This is the family's first Stockholm visit, but the Friday arrival follows a 13-hour, 20-minute itinerary and a nine-hour time change. A true four-person room beside Stockholm Central is more valuable than Gamla Stan atmosphere or an outlying apartment.</p>
+          <p>The Master Suite is confirmed for the family beside Stockholm Central. The active work is now planning a forgiving first visit after the 13-hour, 20-minute itinerary and nine-hour time change.</p>
         </div>
 
         <div class="active-decision">
           <div>
-            <span class="tag yellow">Book next · refundable</span>
-            <h3>First hold: Scandic Continental · Superior Family</h3>
+            <span class="tag blue">Booked · non-refundable</span>
+            <h3>Scandic Continental · Suite (Master)</h3>
+            <p>The location removes friction from both ends of the stay: Arlanda Express arrives at Central after the Friday flight, and the Monday Malmö train leaves from the same complex. The 4:00pm check-in is well aligned with the scheduled 3:05pm ARN arrival.</p>
+          </div>
+          <ul class="decision-action-list">
+            <li><strong>Dates</strong>September 4–7 · three nights</li>
+            <li><strong>Occupancy</strong>Master Suite · family of four</li>
+            <li><strong>Address</strong>Vasagatan 22 · at Stockholm Central</li>
+            <li><strong>Check-in/out</strong>4:00pm Friday · noon Monday</li>
+            <li><strong>Rate</strong>About $1.5k · prepaid and non-refundable</li>
+          </ul>
+        </div>
+
+        <div id="stockholmHotelDecision">
+        <div class="active-decision">
+          <div>
+            <span class="tag yellow">Archived shortlist</span>
+            <h3>Original first hold: Scandic Continental · Superior Family</h3>
             <p>It is effectively at Stockholm Central, so the Arlanda Express arrival and Monday train departure require almost no extra logistics. The 27–34 m² Superior Family category officially sleeps four and includes a bunk bed, blackout curtains, and air cooling—the most useful combination for jet-lagged children.</p>
           </div>
           <ul class="decision-action-list">
             <li><strong>Dates</strong>September 4–7 · three nights</li>
             <li><strong>Room wording</strong>Superior Family · maximum four guests</li>
-            <li><strong>Rate</strong>Prefer free cancellation; do not book a generic Superior</li>
+            <li><strong>Rate</strong>Research preference was free cancellation; the final Master Suite booking is non-refundable</li>
             <li><strong>Ask</strong>Early bag drop, exact bunk setup, and a quiet exterior-facing room</li>
             <li><strong>Airport rail</strong>Arlanda Express: 18 minutes; current two-adult group fare SEK 460, children 0–17 free with adults</li>
           </ul>
@@ -3484,6 +3564,7 @@
         </div>
 
         <p class="decision-note"><strong>Apartment verdict:</strong> for only three nights, with jet lag on arrival and a long-distance train on departure, a kitchen and laundry are not worth adding a metro ride. Choose an apartment only if it provides genuinely separate sleeping space at a compelling rate; otherwise stay at Central.</p>
+        </div>
 
         <div class="shortlist-callout">
           <div>
@@ -3972,7 +4053,7 @@
           <div class="checklist" id="checklist">
             <label class="check-item"><input type="checkbox" data-check="flights" checked disabled><span class="check-copy"><strong>SAS flights booked</strong><span>SK936 + SK1426 outbound and SK935 nonstop home are confirmed for four travelers. Approximate paid total: $6.1k.</span></span><span class="priority later">Booked</span></label>
             <label class="check-item"><input type="checkbox" data-check="malmo-hotel" checked disabled><span class="check-copy"><strong>Home Hotel Baltzar booked · Sep 7–13</strong><span>Junior Suite for four · approximately $2.8k · free cancellation until Sep 5 at 11:59pm local. Reservation number redacted.</span></span><span class="priority later">Booked</span></label>
-            <label class="check-item"><input type="checkbox" data-check="stockholm-hotel"><span class="check-copy"><strong>Hold Scandic Continental Superior Family · Sep 4–7</strong><span>First choice for a jet-lagged arrival: true four-person room with bunk bed and blackout curtains directly at Stockholm Central. Compare Nordic Light Deluxe King and Radisson Royal Viking Family Room before the refundable deadline.</span></span><span class="priority">Now</span></label>
+            <label class="check-item"><input type="checkbox" data-check="stockholm-hotel" checked disabled><span class="check-copy"><strong>Scandic Continental Master Suite booked · Sep 4–7</strong><span>Family of four · about $1.5k · non-refundable; reservation and payment details redacted.</span></span><span class="priority later">Booked</span></label>
             <label class="check-item"><input type="checkbox" data-check="billund-hotel"><span class="check-copy"><strong>Hold Billund for Sep 13–15</strong><span>Choose a base that will hold bags before check-in so the partial September 13 LEGOLAND day remains usable.</span></span><span class="priority">Now</span></label>
             <label class="check-item"><input type="checkbox" data-check="cph-hotel"><span class="check-copy"><strong>Hold Copenhagen for Sep 15</strong><span>Central Copenhagen is more enjoyable; Kastrup is safer if the family wants a frictionless SK935 morning.</span></span><span class="priority">Now</span></label>
             <label class="check-item"><input type="checkbox" data-check="transfer"><span class="check-copy"><strong>Book Stockholm → Malmö; price Malmö → Billund</strong><span>SJ direct trains take about 4½ hours; current family fares are dynamic. Compare driver and one-way rental for September 13.</span></span><span class="priority soon">Soon</span></label>
@@ -4059,6 +4140,7 @@
           <div class="source-group">
             <h3>Stockholm with kids + food</h3>
             <ul>
+              <li>A private booking record confirms Scandic Continental, Suite (Master), September 4–7 for four guests.</li>
               <li><a href="https://www.arlandaexpress.se/biljetter/biljetter-priser" target="_blank" rel="noreferrer">Arlanda Express · 18-minute trip, current adult and child rules</a></li>
               <li><a href="https://www.scandichotels.com/en/hotels/scandic-continental" target="_blank" rel="noreferrer">Scandic Continental · Superior Family room and station location</a></li>
               <li><a href="https://nordiclighthotel.com/rooms-and-suites/" target="_blank" rel="noreferrer">Nordic Light · Deluxe King size, occupancy, and soundproofing</a></li>
@@ -4085,8 +4167,8 @@
           <div class="source-group">
             <h3>Important caveats</h3>
             <ul>
-              <li>Home Hotel Baltzar is confirmed; availability for the remaining Stockholm, Billund, and Copenhagen stays is not asserted.</li>
-              <li>Stockholm hotel rankings use official room capacities and locations; confirm live September 4–7 inventory, exact bedding, and refundable pricing before booking.</li>
+              <li>Home Hotel Baltzar and Scandic Continental are confirmed; availability for the remaining Billund and Copenhagen stays is not asserted.</li>
+              <li>The Scandic Continental Master Suite rate is non-refundable; contact the property in advance if arrival may be after midnight.</li>
               <li>Drive time and door-to-door commute times are planning estimates.</li>
               <li>The main-conference program and poster session assignment are not yet public.</li>
               <li>Flight times are tied to the private SAS reservation; recheck for operational schedule changes before travel.</li>
@@ -4094,7 +4176,7 @@
             </ul>
           </div>
         </div>
-        <p class="as-of">Public planning edition updated August 15, 2026. The SAS itinerary and Home Hotel Baltzar stay are confirmed, with approximate combined booked costs of $8.9k. Passenger names, reservation identifiers, assigned seats, account credits, payment details, and the conference paper identity are omitted. Stockholm room configurations and Central-station access were refreshed from official Scandic Continental, Nordic Light, Radisson Blu Royal Viking, and Arlanda Express pages; live September 4–7 inventory is not asserted. A live SJ search for September 7 showed direct Stockholm–Malmö X 2000 journeys around 4h31–4h33 and family fares from SEK 2,196. The official calendars show both LEGO anchors open during September 13–14 and closed September 15.</p>
+        <p class="as-of">Public planning edition updated August 18, 2026. The SAS itinerary, Scandic Continental stay, and Home Hotel Baltzar stay are confirmed, with approximate combined booked costs of $10.4k. Passenger names, reservation identifiers, assigned seats, account credits, payment details, and the conference paper identity are omitted. A live SJ search for September 7 showed direct Stockholm–Malmö X 2000 journeys around 4h31–4h33 and family fares from SEK 2,196. The official calendars show both LEGO anchors open during September 13–14 and closed September 15.</p>
       </div>
     </section><section id="archive" class="archive-section">
       <div class="wrap">
@@ -4120,6 +4202,7 @@
                 </ul>
               </div>
             </details>
+            <div id="stockholmHotelArchive" aria-label="Archived Stockholm hotel comparison"></div>
             <div class="archive-area-shell" id="malmoAreaArchive" aria-label="Archived Malmö base comparison"></div>
             <div id="malmoHotelArchive" aria-label="Archived Malmö hotel comparison"></div>
           </div>
@@ -4161,10 +4244,13 @@
     const tripMain = document.querySelector("main");
     const archivedAreaComparison = document.querySelector("#base .rail-board");
     const archivedHotelComparison = document.getElementById("hotels");
+    const archivedStockholmHotelComparison = document.getElementById("stockholmHotelDecision");
     const malmoAreaArchive = document.getElementById("malmoAreaArchive");
     const malmoHotelArchive = document.getElementById("malmoHotelArchive");
+    const stockholmHotelArchive = document.getElementById("stockholmHotelArchive");
     if (archivedAreaComparison && malmoAreaArchive) malmoAreaArchive.appendChild(archivedAreaComparison);
     if (archivedHotelComparison && malmoHotelArchive) malmoHotelArchive.appendChild(archivedHotelComparison);
+    if (archivedStockholmHotelComparison && stockholmHotelArchive) stockholmHotelArchive.appendChild(archivedStockholmHotelComparison);
     chronologicalSectionOrder.forEach((sectionId) => {
       const section = document.getElementById(sectionId);
       if (section && tripMain) tripMain.appendChild(section);
@@ -4181,7 +4267,7 @@
         title: "Stockholm, ECCV, Billund, Copenhagen",
         summary: "Three Stockholm nights, six Malmö nights, two Billund nights, and one Copenhagen night before the nonstop home.",
         verdictTitle: "Locked framework",
-        verdictCopy: "The booked flights and September 7–13 Baltzar stay protect the conference and preserve the nonstop flight home.",
+        verdictCopy: "The booked flights, Stockholm stay, and September 7–13 Baltzar stay protect the conference and preserve the nonstop flight home.",
         route: [
           ["Stockholm", "Sep 4–7", "3 nights"],
           ["Malmö", "Sep 7–13", "Baltzar + ECCV"],
@@ -4360,12 +4446,13 @@ COMPLETED BOOKINGS · PUBLIC SUMMARY
 • Home Hotel Baltzar: Sep 7–13 · Junior Suite · family of four; reservation identifier redacted
 • Approximate Baltzar total: $2.8k after an applied travel credit
 • Baltzar free cancellation: Sep 5 at 11:59pm Malmö time
-• Approximate booked-trip total: $8.9k; remaining hotels, rail, transfers, registration, and attractions not yet included
+• Scandic Continental: Sep 4–7 · Suite (Master) · family of four; reservation identifier redacted
+• Approximate Scandic total: $1.5k including prepaid taxes · non-refundable
+• Approximate booked-trip total: $10.4k; remaining hotels, rail, transfers, registration, and attractions not yet included
 
 CURRENT RECOMMENDATION
 • SK936 + SK1426 + SK935 are confirmed; the outbound connection is 1h50
-• First Stockholm hold: Scandic Continental Superior Family, September 4–7, on a refundable rate
-• Stockholm backups: Nordic Light Deluxe King, then Radisson Blu Royal Viking Family Room; verify exact children's beds
+• Scandic Continental Master Suite is booked September 4–7 for the family; the rate is non-refundable
 • Arlanda Express: 18 minutes; current two-adult group fare SEK 460, with children 0–17 free when accompanied
 • Jet-lag arrival: Arlanda Express, check in around 16:30, short daylight walk, dinner around 17:30, bed around 19:30–20:30
 • Saturday: Vasa is the guaranteed anchor; add Junibacken only if the children still have energy
@@ -4393,10 +4480,8 @@ ${scenario.title}
 ${scenario.dates}
 ${scenario.summary}
 
-ACTIVE STOCKHOLM LODGING ORDER
-1. Scandic Continental — Superior Family; true four-person bunk setup, blackout curtains, directly at Central
-2. Nordic Light — Deluxe King; 28–35 m² and soundproofed, but verify the extra-bed layout
-3. Radisson Blu Royal Viking — Family Room; 28 m² and 150 m from Central, but verify children's beds and pool reopening
+LODGING STATUS
+• Stockholm lodging decision is complete: Scandic Continental Master Suite is booked; its old comparison is archived in the page
 • Malmö lodging decision is complete: Home Hotel Baltzar Junior Suite is booked; its old comparison is archived in the page
 
 FLIGHTS
@@ -4406,7 +4491,6 @@ FLIGHTS
 • Recheck the private SAS reservation for operational schedule changes before travel
 
 OPEN DECISIONS
-• Book a refundable Stockholm family room for September 4–7; first hold is Scandic Continental Superior Family
 • Preferred September 7 Stockholm → Malmö departure and live fare
 • Confirm Baltzar sofa-bed preparation and any property-collected mandatory fees before Sep 5
 • Billund and Copenhagen family rooms
@@ -4417,7 +4501,7 @@ CHECKLIST ITEMS COMPLETED ON THIS DEVICE
 ${selectedChecks.length ? selectedChecks.map((item) => `• ${item}`).join("\n") : "• None yet"}
 
 RESEARCH CHECKED
-August 10, 2026. Flights and Home Hotel Baltzar are confirmed. Stockholm room configurations were refreshed from official hotel pages, but live September 4–7 inventory and pricing are not asserted; reconfirm before purchase.`;
+August 18, 2026. Flights, Scandic Continental, and Home Hotel Baltzar are confirmed. The Stockholm comparison is archived because the selected Master Suite rate is prepaid and non-refundable.`;
     }
 
     function openExportModal() {
