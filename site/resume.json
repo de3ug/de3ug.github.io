@@ -6,6 +6,64 @@
   "location": "Portola Valley, CA (near Palo Alto, 30 min south of SF)",
   "email": "douglas.ryan.gray@gmail.com",
   "last_updated": "08/21/2026",
+  "career_chronology": [
+    {
+      "year": 2026,
+      "highlights": [
+        "Launched real-time AI-generated images in Amazon search autocomplete to select customers 124 days after goal setting.",
+        "Mobilized a 45-person organization across seven parallel workstreams; defined the high-level architecture, GPU-saving prefix cache, safety mechanisms, and L8 stakeholder approval path.",
+        "Eliciting Self-Verification in Multimodal Reasoning Agents with Reinforcement Learning accepted at ECCV 2026."
+      ]
+    },
+    {
+      "year": 2025,
+      "highlights": [
+        "Served as principal technical lead for Lens Live across Lens and Rufus teams in four cities and multiple VP organizations; launched to tens of millions of customers.",
+        "Moved from Senior Applied Science Manager to Principal Applied Scientist while retaining end-to-end technical and organizational leadership.",
+        "Published GENIUS at CVPR 2025, co-organized MRR at ICCV 2025, and saw Lens traffic reach approximately 2 billion annual queries."
+      ]
+    },
+    {
+      "year": 2024,
+      "highlights": [
+        "Amazon Lens handled more than 1 billion annual queries after the prior year's quality and retention gains.",
+        "Visual Search Suggestions scaled to more than $600MM in measured incremental revenue, while More Like This reached more than 90% of search-result-page impressions.",
+        "Developed and promoted a principal scientist; published the multimodal Lens production system at KDD and co-organized MRR at SIGIR."
+      ]
+    },
+    {
+      "year": 2023,
+      "highlights": [
+        "Led an approximately 18-person Lens results-quality program that moved CTR from roughly 19% to about 40% during the goal period and roughly 42% shortly afterward, while improving retention by four percentage points.",
+        "Built a bottom-up plan for an approximately 19.7-percentage-point CTR goal spanning image-embedding data, a linear-to-GBDT ranker upgrade, category-aware UI, barcode-result behavior, and evaluation inputs.",
+        "Paused most partner work to concentrate on relevance through the holiday launch freeze, then learned to add an explicit reopening checkpoint to time-bounded prioritization."
+      ]
+    },
+    {
+      "year": 2022,
+      "highlights": [
+        "Developed and promoted a principal engineer who owned embedding-based index builds for visual search and More Like This.",
+        "Published Amazon Shop the Look at KDD 2022 and Hierarchical Proxy-Based Loss for Deep Metric Learning at WACV 2022.",
+        "Continued scaling Amazon Lens toward a unified deep-learning system matching the full billion-product catalog."
+      ]
+    },
+    {
+      "year": 2021,
+      "highlights": [
+        "Launched More Like This on women's dresses and began the experiment path from category-specific wins to broad search-result coverage.",
+        "Managed a difficult SDE-2 performance case over approximately nine months using direct coaching, narrower customer-facing scope, and a senior mentor.",
+        "Continued the transition from category and instance-specific visual search systems toward unified embedding-based catalog retrieval."
+      ]
+    },
+    {
+      "year": 2020,
+      "highlights": [
+        "Became Senior Manager of Applied Science and expanded leadership of the visual-search organization toward a 15-to-20-person span.",
+        "Launched StyleSnap for Home, extending deep-learning, instance-level visual shopping beyond apparel.",
+        "As lead organizer for Amazon's Computer Vision Conference, converted a planned roughly 200-person event at a local hotel into a virtual conference on short notice; attendance roughly doubled to about 400."
+      ]
+    }
+  ],
   "publications_intro": {"parts": ["5,300+ citations \u00b7 h-index\u00a021 (17 since 2019) \u00b7 ", {"text": "Google Scholar", "url": "https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en"}, " \u00b7 Reviewer: NeurIPS, CVPR, ICCV, ECCV, WACV"]},
   "publications": [
     {"parts": [{"text": "Eliciting Self-Verification in Multimodal Reasoning Agents with Reinforcement Learning", "url": "papers/gray_eccv2026_svrl.pdf"}, ", ECCV\u00a02026", {"text": "\u00a0\u00b7\u00a0Supplementary\u00a0material", "url": "papers/gray_eccv2026_svrl_supplementary.pdf", "hide_from": ["resume"]}]},
@@ -84,7 +142,7 @@
         "More Like This scaling story: in 2021, launched a visual discovery feature that added a 'more like this' icon to search result faceouts; clicking the icon used multimodal similarity to retrieve similar products. The first experiment on women's dresses won, and the team began expanding cautiously one fashion category at a time. Another organization tested a home-items version with their model and also won. I felt coverage was growing too slowly and creating an inconsistent search result page where the icon appeared only sometimes. After a VP review where I was pushed for being too cautious, I pushed the team to try a broader high-coverage view-sims approach ('customers who viewed this also viewed that') despite concerns that it would hurt customer trust. The A/B test lost, but it produced per-category evidence about where the feature was and was not useful. We followed with a multimodal-model experiment that excluded poorly performing categories such as media and grocery and used click data from the broad test to train a new ranker. That experiment won, and later iterations scaled More Like This to roughly 90% of search result page impressions.",
         "Visual search relevance evaluation combined online customer metrics with offline annotation pipelines. Online, CTR and purchase rate were strong proxies for quality and could be measured through A/B tests and tracked over time sliced by market, device type, or ingress. Offline, the team used monthly or experiment-specific samples reviewed by trained vendor annotators, including teams in lower-cost labor markets such as Madagascar. Simple Likert scoring did not work well because annotators used inconsistent personal scales, so evaluation moved toward objective criteria such as whether the product was packaged in both query and result, whether the brand matched, whether category matched, and what product category was present. Logic mapped these annotations into relevance classes such as exact, similar, complementary, or irrelevant, enabling metrics like nDCG, exact@1, and irrelevant@10 with sample sizes chosen for known error bounds. Ongoing challenges included score drift as annotation workforces changed, such as drops after holidays or changes when large batches required onboarding new workers. Multimodal search was especially hard because image-plus-text query variations made the relevance definition itself ambiguous; it took months to agree internally on scoring, and scientists sometimes had to annotate golden datasets themselves to validate automated or vendor judgments. More recently, the team added LLM-as-judge evaluation as a layer between scientist annotation and vendor annotation: while large LLMs may not be usable to answer every question in production, heavier models can approximate metrics on samples before going to vendors, making evaluation iteration much faster while still requiring human calibration and final judgment.",
         "Evaluated applied scientists using dimensions such as science depth, science breadth, and science application, along with leadership principles that become increasingly important at senior levels: Hire and Develop the Best, Ownership, Dive Deep, and Are Right a Lot. Science depth meant the scientist could explain the technical complexity, core insight, tradeoffs, failure modes, and evidence behind the work, often through strong internal or external publications. Science breadth meant they could connect modeling, retrieval, evaluation, data quality, product constraints, engineering realities, and ground truth operations rather than optimizing one narrow experiment. Science application meant the work improved customer experience through metrics such as CTR, feature coverage, or incremental revenue measured by A/B tests. At senior levels, these dimensions overlapped with influence: growing junior team members, bringing co-authors into papers, and aligning product, engineering, and ground truth teams to get the work completed.",
-        "Organized ACVC with 200+ attendees as lead organizer and as advisor in other years; co-organized the MRR workshop at SIGIR 2024 and ICCV 2025."
+        "In 2020, served as lead organizer for Amazon's Computer Vision Conference. The team had booked a local hotel for an approximately 200-person in-person event, but the COVID-19 pandemic forced an indefinite postponement and then a short-notice redesign as a virtual conference. Removing the venue constraint roughly doubled attendance to about 400. Served as an ACVC advisor in other years and later co-organized the MRR workshop at SIGIR 2024 and ICCV 2025."
       ]
     },
     {
