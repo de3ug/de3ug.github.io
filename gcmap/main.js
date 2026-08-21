@@ -1,305 +1,656 @@
-let airportData = {};
-let map, layerGroup;
-let segmentPopup;
+import {
+  distanceKm,
+  greatCirclePoints,
+  jet,
+  kmToMi,
+  kmToNm,
+  logScale,
+  normalizeLon
+} from './geo.js';
+import { aggregateLegs, parseRoute } from './parse.js';
 
-// display options controlled by checkboxes in the UI
-let showMarkers = true;
-let colorByFrequency = true;
+// Leaflet renders vector layers once, in the [-180, 180] world, while the tile
+// layer repeats forever. Zoomed out that leaves flight paths cut off in every
+// copy but one, so each path is drawn in the neighbouring copies too.
+//
+// Three copies is enough: the map is capped at ~1100px wide and minZoom 1 puts
+// a whole world in 512px, so at most ~2.2 copies are ever on screen, and
+// worldCopyJump keeps panning from wandering further out.
+const WORLD_OFFSETS = [-360, 0, 360];
 
-const DEFAULT_COLOR = '#d92b2b';
+const ARC_POINTS = 64;
+const EQUATOR_KM = 40075;
+
+// ?file= only ever addresses a data file shipped next to the page.
+const DATA_FILE = /^[A-Za-z0-9][A-Za-z0-9._-]*\.txt$/;
+
+const state = {
+  airports: {},
+  parsed: null,
+  legs: [],
+  maxCount: 1,
+  showMarkers: true,
+  showLabels: true,
+  colorByFrequency: true,
+  sort: { key: 'count', dir: -1 },
+  airportSort: { key: 'flights', dir: -1 }
+};
+
+let map;
+let routeLayer;
+let labelLayer;
+let labelMarkers = [];
+let labelShift = 0;
+// Canvas paints with literal colour strings, so CSS custom properties have to
+// be resolved up front and refreshed whenever the theme flips.
+let theme = { route: '#d92b2b', airport: '#d92b2b' };
+
+const el = (id) => document.getElementById(id);
+const lookup = (code) => state.airports[code];
+
+const fmt = (n, digits = 0) =>
+  n.toLocaleString(undefined, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits
+  });
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[c]));
+}
+
+function notify(message, kind = 'info') {
+  const box = el('notice');
+  box.textContent = message || '';
+  box.className = `notice notice-${kind}`;
+  box.hidden = !message;
+}
+
+/** "San Francisco, United States" — whatever of the two we actually have. */
+function placeOf(code) {
+  const airport = state.airports[code];
+  if (!airport) return '';
+  return [airport.city, airport.country].filter(Boolean).join(', ');
+}
 
 async function loadAirports() {
-  const res = await fetch('public/airports.dat');
-  const text = await res.text();
-  airportData = {};
-  for (const line of text.trim().split(/\r?\n/)) {
-    if (!line) continue;
-    const parts = line.split(',');
-    if (parts.length < 8) continue;
-    const code = parts[4].replace(/"/g, '');
-    if (!code || code === '\\N') continue;
-    const lat = parseFloat(parts[6]);
-    const lon = parseFloat(parts[7]);
-    if (isNaN(lat) || isNaN(lon)) continue;
-    airportData[code] = {
-      name: parts[1].replace(/"/g, ''),
-      city: parts[2].replace(/"/g, ''),
-      country: parts[3].replace(/"/g, ''),
-      lat,
-      lon
-    };
+  const res = await fetch('public/airports.json');
+  if (!res.ok) throw new Error(`airports.json: HTTP ${res.status}`);
+  const raw = await res.json();
+  const out = {};
+  for (const code of Object.keys(raw)) {
+    const [lat, lon, city, country] = raw[code];
+    out[code] = { code, lat, lon, city, country };
   }
-}
-
-function showToast(msg) {
-  const div = document.createElement('div');
-  div.className = 'toast';
-  div.textContent = msg;
-  document.body.appendChild(div);
-  setTimeout(() => div.remove(), 3000);
-}
-
-function showSegmentPopup(text, latlng) {
-  if (segmentPopup) {
-    map.closePopup(segmentPopup);
-  }
-  segmentPopup = L.popup().setLatLng(latlng).setContent(text).openOn(map);
-}
-
-function nmToKm(nm) { return nm * 1.852; }
-function miToKm(mi) { return mi * 1.60934; }
-function kmToNm(km) { return km * 0.539957; }
-function kmToMi(km) { return km * 0.621371; }
-
-// return a color from the jet colormap for a value in [0,1]
-function jetColor(t) {
-  const r = Math.min(1, Math.max(0, Math.min(4 * t - 1.5, -4 * t + 4.5)));
-  const g = Math.min(1, Math.max(0, Math.min(4 * t - 0.5, -4 * t + 3.5)));
-  const b = Math.min(1, Math.max(0, Math.min(4 * t + 0.5, -4 * t + 2.5)));
-  return `rgb(${Math.round(r * 255)},${Math.round(g * 255)},${Math.round(b * 255)})`;
+  state.airports = out;
 }
 
 function initMap() {
-  map = L.map('map');
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 8,
-    attribution: '&copy; OpenStreetMap'
-  }).addTo(map);
-  layerGroup = L.layerGroup().addTo(map);
-  map.setView([20,0],2);
-
-  map.on('click', () => {
-    if (segmentPopup) {
-      map.closePopup(segmentPopup);
-      segmentPopup = null;
-    }
+  map = L.map('map', {
+    minZoom: 1,
+    worldCopyJump: true,
+    // Canvas keeps hundreds of wrapped paths cheap, and `tolerance` gives the
+    // 2px-wide lines a forgiving hit area so they can actually be clicked.
+    renderer: L.canvas({ tolerance: 6 })
   });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 12,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  routeLayer = L.layerGroup().addTo(map);
+  labelLayer = L.layerGroup().addTo(map);
+  map.setView([20, 0], 2);
+
+  // Labels sit in one world copy and are thinned to fit; both only need
+  // recomputing once the view has settled.
+  map.on('moveend', positionLabels);
+  map.on('zoomend', positionLabels);
 }
 
-function parseRoute(str) {
-  const groups = str
-    .trim()
-    .split(/[\s,]+/)
-    .map(g => g.trim())
-    .filter(g => g);
+// Approximate on-screen footprint of a three-letter label, including the
+// offset that lifts it clear of its dot.
+const LABEL_BOX = { dx: 6, dy: -14, w: 28, h: 14 };
 
-  if (!groups.length) {
-    showToast('Enter at least one segment');
-    return null;
+function positionLabels() {
+  if (!labelMarkers.length) return;
+
+  // Keep the labels in whichever world copy is being looked at.
+  const shift = Math.round(map.getCenter().lng / 360) * 360;
+  if (shift !== labelShift) {
+    labelShift = shift;
+    for (const item of labelMarkers) item.marker.setLatLng([item.lat, item.lon + shift]);
   }
 
-  const route = [];
-  for (let gi = 0; gi < groups.length; gi++) {
-    const parts = groups[gi].split(/-/).map(p => p.trim()).filter(p => p);
-    if (!parts.length) continue;
-    for (const part of parts) {
-      const circleMatch = part.match(/^(\d+(?:\.\d+)?)(nm|mi|km)?@([A-Z]{3})$/i);
-      if (circleMatch) {
-        const radius = parseFloat(circleMatch[1]);
-        const units = (circleMatch[2] || 'nm').toLowerCase();
-        const code = circleMatch[3].toUpperCase();
-        const airport = airportData[code];
-        if (!airport) {
-          showToast(`Unknown airport code: ${code}`);
-          return null;
-        }
-        let km = radius;
-        if (units === 'nm') km = nmToKm(radius);
-        else if (units === 'mi') km = miToKm(radius);
-        route.push({ type: 'circle', center: [airport.lat, airport.lon], km });
-      } else {
-        const code = part.toUpperCase();
-        const airport = airportData[code];
-        if (!airport) {
-          showToast(`Unknown airport code: ${code}`);
-          return null;
-        }
-        route.push({ type: 'airport', code, lat: airport.lat, lon: airport.lon });
+  // Greedy declutter: 76 airports zoomed out to the whole world is an
+  // unreadable smear, so busier airports claim their space first and anything
+  // that would land on top of an already-placed label is hidden.
+  const placed = [];
+  for (const item of labelMarkers) {
+    const point = map.latLngToContainerPoint([item.lat, item.lon + labelShift]);
+    const box = {
+      x1: point.x + LABEL_BOX.dx,
+      y1: point.y + LABEL_BOX.dy,
+      x2: point.x + LABEL_BOX.dx + LABEL_BOX.w,
+      y2: point.y + LABEL_BOX.dy + LABEL_BOX.h
+    };
+    const clash = placed.some(
+      (other) => box.x1 < other.x2 && box.x2 > other.x1 && box.y1 < other.y2 && box.y2 > other.y1
+    );
+    const node = item.marker.getElement();
+    if (node) node.style.visibility = clash ? 'hidden' : '';
+    if (!clash) placed.push(box);
+  }
+}
+
+function legPopupHtml(leg) {
+  const a = leg.from.code;
+  const b = leg.to.code;
+  const nm = fmt(kmToNm(leg.km));
+  const mi = fmt(kmToMi(leg.km));
+  const km = fmt(leg.km);
+  const total = leg.km * leg.count;
+
+  const rows = [
+    [`${escapeHtml(a)} &rarr; ${escapeHtml(b)}`, fmt(leg.forward)],
+    [`${escapeHtml(b)} &rarr; ${escapeHtml(a)}`, fmt(leg.reverse)],
+    ['Total', `${fmt(leg.count)} flight${leg.count === 1 ? '' : 's'}`]
+  ]
+    .map(([k, v]) => `<tr><th scope="row">${k}</th><td>${v}</td></tr>`)
+    .join('');
+
+  return `
+    <div class="leg-popup">
+      <h3>${escapeHtml(a)} &harr; ${escapeHtml(b)}</h3>
+      <p class="leg-places">${escapeHtml(placeOf(a))} &harr; ${escapeHtml(placeOf(b))}</p>
+      <table><tbody>${rows}</tbody></table>
+      <p class="leg-dist">Each way ${nm} nm &middot; ${mi} mi &middot; ${km} km</p>
+      <p class="leg-dist">Flown ${fmt(kmToMi(total))} mi &middot; ${fmt(total)} km</p>
+    </div>`;
+}
+
+function airportPopupHtml(code, legCount) {
+  const place = placeOf(code);
+  return `
+    <div class="leg-popup">
+      <h3>${escapeHtml(code)}</h3>
+      ${place ? `<p class="leg-places">${escapeHtml(place)}</p>` : ''}
+      <p class="leg-dist">${fmt(legCount)} route${legCount === 1 ? '' : 's'} from here</p>
+    </div>`;
+}
+
+function readTheme() {
+  const styles = getComputedStyle(document.documentElement);
+  const read = (name, fallback) => styles.getPropertyValue(name).trim() || fallback;
+  theme = {
+    route: read('--route', '#d92b2b'),
+    airport: read('--airport', '#d92b2b')
+  };
+}
+
+function colorFor(count) {
+  if (!state.colorByFrequency || state.maxCount < 2) return theme.route;
+  return jet(logScale(count, state.maxCount));
+}
+
+function drawLegs() {
+  for (const leg of state.legs) {
+    if (!leg.points) leg.points = greatCirclePoints(leg.from, leg.to, ARC_POINTS);
+    const color = colorFor(leg.count);
+    const weight = state.colorByFrequency && state.maxCount > 1
+      ? 2.5 + 2 * logScale(leg.count, state.maxCount)
+      : 3;
+
+    for (const offset of WORLD_OFFSETS) {
+      const shifted = leg.points.map(([lat, lon]) => [lat, lon + offset]);
+      const line = L.polyline(shifted, { color, weight, opacity: 0.85 });
+      line.bindPopup(() => legPopupHtml(leg));
+      line.addTo(routeLayer);
+    }
+  }
+  // Deliberately not contributing to fitBounds: these longitudes are unwrapped
+  // and can sit outside [-180, 180], which would throw the fit into another
+  // world copy. The airports they connect bound the same area.
+}
+
+function drawAirports(bounds) {
+  // How many distinct routes touch each airport — shown in its popup.
+  const degree = new Map();
+  for (const leg of state.legs) {
+    degree.set(leg.from.code, (degree.get(leg.from.code) || 0) + 1);
+    degree.set(leg.to.code, (degree.get(leg.to.code) || 0) + 1);
+  }
+
+  labelMarkers = [];
+  labelShift = 0;
+
+  // Busiest airports first, so they win the decluttering pass below.
+  const byBusiest = [...state.parsed.airports].sort(
+    (a, b) => (degree.get(b[0]) || 0) - (degree.get(a[0]) || 0)
+  );
+
+  for (const [code, airport] of byBusiest) {
+    const lat = airport.lat;
+    const lon = normalizeLon(airport.lon);
+    bounds.push(L.latLng(lat, lon));
+
+    if (state.showMarkers) {
+      for (const offset of WORLD_OFFSETS) {
+        const dot = L.circleMarker([lat, lon + offset], {
+          radius: 4,
+          color: theme.airport,
+          weight: 1,
+          fillOpacity: 1
+        });
+        dot.bindPopup(airportPopupHtml(code, degree.get(code) || 0));
+        dot.addTo(routeLayer);
       }
     }
-    if (gi < groups.length - 1) {
-      route.push({ type: 'separator' });
+
+    if (state.showLabels) {
+      const marker = L.marker([lat, lon], {
+        interactive: false, // never swallow a click meant for a line beneath
+        keyboard: false,
+        icon: L.divIcon({
+          className: 'airport-label',
+          html: escapeHtml(code),
+          iconSize: null
+        })
+      });
+      marker.addTo(labelLayer);
+      labelMarkers.push({ marker, lat, lon });
     }
   }
-
-  // remove duplicate consecutive airports within a segment set
-  const cleaned = [];
-  for (const seg of route) {
-    if (seg.type === 'airport') {
-      const prev = cleaned[cleaned.length - 1];
-      if (prev && prev.type === 'airport' && prev.code === seg.code) continue;
-    }
-    cleaned.push(seg);
-  }
-
-  if (!cleaned.length) {
-    showToast('Enter at least one valid segment');
-    return null;
-  }
-
-  return cleaned;
+  positionLabels();
 }
 
-function drawRoute(route) {
-  layerGroup.clearLayers();
-  const tbody = document.querySelector('#results tbody');
-  tbody.innerHTML = '';
-  let totalKm = 0;
-  const bounds = [];
-
-  const airportSet = new Map();
-  const segmentCounts = {};
-  const segmentLines = {};
-
-  for (let i = 0; i < route.length; i++) {
-    const seg = route[i];
-    if (seg.type === 'circle') {
-      const circle = L.circle([seg.center[0], seg.center[1]], {
-        radius: seg.km * 1000,
-        color: DEFAULT_COLOR,
-        weight: 2
-      }).addTo(layerGroup);
-      bounds.push(circle.getBounds());
-    }
-    if (seg.type === 'airport') {
-      airportSet.set(seg.code, [seg.lat, seg.lon]);
+function drawRings(bounds) {
+  for (const ring of state.parsed.rings) {
+    for (const offset of WORLD_OFFSETS) {
+      const circle = L.circle([ring.center.lat, normalizeLon(ring.center.lon) + offset], {
+        radius: ring.km * 1000,
+        color: colorFor(1),
+        weight: 3,
+        fill: false
+      }).addTo(routeLayer);
+      if (offset === 0) bounds.push(circle.getBounds());
     }
   }
+}
 
-  for (let i = 0; i < route.length - 1; i++) {
-    const a = route[i];
-    const b = route[i+1];
-    if (a.type !== 'airport' || b.type !== 'airport') continue;
-    const from = [a.lon, a.lat];
-    const to = [b.lon, b.lat];
-    const line = turf.greatCircle(from, to, { npoints: 100 });
-    const km = turf.length(line, { units: 'kilometers' });
-    totalKm += km;
-
-    const key = [a.code, b.code].sort().join('-');
-    segmentCounts[key] = (segmentCounts[key] || 0) + 1;
-    if (!segmentLines[key]) segmentLines[key] = line;
-
-    const nm = kmToNm(km).toFixed(0);
-    const mi = kmToMi(km).toFixed(0);
-    const kmStr = km.toFixed(0);
-    const row = `<tr class="border-b"><td class="p-2">${a.code} → ${b.code}</td><td class="p-2">${nm}</td><td class="p-2">${mi}</td><td class="p-2">${kmStr}</td></tr>`;
-    tbody.insertAdjacentHTML('beforeend', row);
-  }
-
-  const totalRow = `<tr class="font-bold"><td class="p-2">Total</td><td class="p-2">${kmToNm(totalKm).toFixed(0)}</td><td class="p-2">${kmToMi(totalKm).toFixed(0)}</td><td class="p-2">${totalKm.toFixed(0)}</td></tr>`;
-  tbody.insertAdjacentHTML('beforeend', totalRow);
-
-  // draw airport markers if enabled
-  if (showMarkers) {
-    for (const [code, coord] of airportSet.entries()) {
-      const marker = L.circleMarker([coord[0], coord[1]], {
-        radius: 4,
-        color: DEFAULT_COLOR,
-        weight: 1,
-        fillOpacity: 1
-      }).addTo(layerGroup);
-      marker.bindTooltip(code, { permanent: true, direction: 'top', className: 'airport-label' });
-      bounds.push(marker.getLatLng());
+/**
+ * Tick values for the legend: 1, the max, and the 1/2/5-per-decade values
+ * between them. Anything that would land on top of a neighbour is dropped, so
+ * a short scale gets a few ticks and a long one does not turn into a smear.
+ */
+function legendTicks(max) {
+  const candidates = [1];
+  for (let decade = 1; decade <= max; decade *= 10) {
+    for (const step of [1, 2, 5]) {
+      const value = decade * step;
+      if (value > 1 && value < max) candidates.push(value);
     }
   }
+  candidates.push(max);
 
-  // draw segments using counts
-  const maxCount = Math.max(...Object.values(segmentCounts), 1);
-  for (const [key, line] of Object.entries(segmentLines)) {
-    const count = segmentCounts[key];
-    let color = DEFAULT_COLOR;
-    if (colorByFrequency && maxCount > 1) {
-      const t = (count - 1) / (maxCount - 1);
-      color = jetColor(t);
+  const out = [];
+  for (const value of candidates) {
+    const pos = logScale(value, max) * 100;
+    // Keep the max even if it crowds its neighbour — drop the neighbour instead.
+    if (out.length && pos - out[out.length - 1].pos < 9) {
+      if (value !== max) continue;
+      out.pop();
     }
-    const gj = L.geoJSON(line, { style: { color, weight: 2 } }).addTo(layerGroup);
-    gj.on('click', (e) => {
-      const segText = key.replace('-', ' \u2192 ');
-      const label = `${segText}: ${count}`;
-      showSegmentPopup(label, e.latlng);
-      L.DomEvent.stopPropagation(e);
-    });
-    bounds.push(gj.getBounds());
+    out.push({ value, pos });
   }
+  return out;
+}
 
-  // update legend
-  const legend = document.getElementById('legend');
+function renderLegend() {
+  const legend = el('legend');
   legend.innerHTML = '';
-  if (colorByFrequency && maxCount > 1) {
-    for (let i = 1; i <= maxCount; i++) {
-      const t = (i - 1) / (maxCount - 1);
-      const container = document.createElement('div');
-      container.className = 'flex flex-col items-center';
-      const label = document.createElement('div');
-      label.className = 'text-xs';
-      label.textContent = `${i}`;
-      const swatch = document.createElement('div');
-      swatch.className = 'legend-swatch';
-      swatch.style.background = jetColor(t);
-      container.appendChild(label);
-      container.appendChild(swatch);
-      legend.appendChild(container);
+  if (!state.colorByFrequency || state.maxCount < 2) {
+    legend.hidden = true;
+    return;
+  }
+  legend.hidden = false;
+
+  // A continuous ramp. The old legend emitted one swatch per value, which for
+  // this data meant 59 swatches in a row.
+  const stops = [];
+  for (let i = 0; i <= 10; i++) stops.push(jet(i / 10));
+
+  // Counts are placed logarithmically, so the ticks are not evenly spaced —
+  // without them a reader would assume the midpoint of the bar is half the max.
+  const ticks = legendTicks(state.maxCount)
+    .map(({ value, pos }) => `<span class="legend-tick" style="left:${pos.toFixed(2)}%">${fmt(value)}</span>`)
+    .join('');
+
+  legend.innerHTML = `
+    <span class="legend-scale">
+      <span class="legend-bar" style="background:linear-gradient(to right, ${stops.join(',')})"></span>
+      <span class="legend-ticks">${ticks}</span>
+    </span>
+    <span class="legend-caption">flights per route (log scale)</span>`;
+}
+
+function totals() {
+  let km = 0;
+  let flights = 0;
+  for (const leg of state.legs) {
+    km += leg.km * leg.count;
+    flights += leg.count;
+  }
+  return { km, flights };
+}
+
+function renderSummary() {
+  const { km, flights } = totals();
+  const stats = [
+    [fmt(flights), 'flights'],
+    [fmt(state.legs.length), 'routes'],
+    [fmt(state.parsed ? state.parsed.airports.size : 0), 'airports'],
+    [fmt(kmToNm(km)), 'nm'],
+    [fmt(kmToMi(km)), 'mi'],
+    [fmt(km), 'km'],
+    [`${fmt(km / EQUATOR_KM, 1)}&times;`, 'round the equator']
+  ];
+
+  el('summary').innerHTML = stats
+    .map(([value, label]) => `<div class="stat"><strong>${value}</strong><span>${label}</span></div>`)
+    .join('');
+}
+
+const SORTERS = {
+  route: (a, b) => a.from.localeCompare(b.from) || a.to.localeCompare(b.to),
+  count: (a, b) => a.count - b.count,
+  distance: (a, b) => a.km - b.km,
+  total: (a, b) => a.km * a.count - b.km * b.count
+};
+
+/**
+ * Split the merged legs back into one row per direction.
+ *
+ * Merging A<->B is right for the map — the two share a geodesic, so drawing
+ * both stacks identical lines — but in the table it hides the asymmetry, and
+ * an open-jaw trip flown one way only should not read the same as a return.
+ */
+function directedRoutes() {
+  const out = [];
+  for (const leg of state.legs) {
+    const a = leg.from.code;
+    const b = leg.to.code;
+    if (leg.forward) out.push({ from: a, to: b, count: leg.forward, km: leg.km });
+    if (leg.reverse) out.push({ from: b, to: a, count: leg.reverse, km: leg.km });
+  }
+  return out;
+}
+
+function renderTable() {
+  const tbody = document.querySelector('#results tbody');
+  const { key, dir } = state.sort;
+  const sorted = directedRoutes().sort((a, b) => SORTERS[key](a, b) * dir);
+
+  const rows = sorted.map((route) => {
+    const total = route.km * route.count;
+    return `<tr>
+      <td class="route">${escapeHtml(route.from)} &rarr; ${escapeHtml(route.to)}</td>
+      <td class="num">${fmt(route.count)}</td>
+      <td class="num">${fmt(kmToNm(route.km))}</td>
+      <td class="num">${fmt(kmToMi(route.km))}</td>
+      <td class="num">${fmt(route.km)}</td>
+      <td class="num">${fmt(total)}</td>
+    </tr>`;
+  });
+
+  const { km, flights } = totals();
+  rows.push(`<tr class="total-row">
+    <th scope="row">Total</th>
+    <td class="num">${fmt(flights)}</td>
+    <td class="num"></td>
+    <td class="num"></td>
+    <td class="num"></td>
+    <td class="num">${fmt(km)}</td>
+  </tr>`);
+
+  tbody.innerHTML = rows.join('');
+
+  for (const th of document.querySelectorAll('#results th[data-sort]')) {
+    const active = th.dataset.sort === key;
+    th.setAttribute('aria-sort', active ? (dir === 1 ? 'ascending' : 'descending') : 'none');
+  }
+}
+
+const AIRPORT_SORTERS = {
+  airport: (a, b) => a.code.localeCompare(b.code),
+  place: (a, b) => a.place.localeCompare(b.place),
+  flights: (a, b) => a.flights - b.flights || a.code.localeCompare(b.code),
+  arrivals: (a, b) => a.arrivals - b.arrivals,
+  departures: (a, b) => a.departures - b.departures,
+  routes: (a, b) => a.routes - b.routes
+};
+
+/**
+ * Every airport, with how much traffic it saw.
+ *
+ * `flights` counts legs touching the airport, so a connection through it
+ * scores 2 — one arrival and one departure. That is the honest reading of
+ * this data: the history records legs, not how long anyone stayed.
+ */
+function airportTraffic() {
+  const stats = new Map();
+  const ensure = (code) => {
+    let row = stats.get(code);
+    if (!row) {
+      row = { code, place: placeOf(code), flights: 0, arrivals: 0, departures: 0, routes: 0 };
+      stats.set(code, row);
     }
+    return row;
+  };
+
+  // Airports with no legs at all (a lone code, or a bare range ring) still
+  // belong in the list — at zero.
+  if (state.parsed) for (const [code] of state.parsed.airports) ensure(code);
+
+  for (const leg of state.legs) {
+    const a = ensure(leg.from.code);
+    const b = ensure(leg.to.code);
+    a.departures += leg.forward;
+    a.arrivals += leg.reverse;
+    b.arrivals += leg.forward;
+    b.departures += leg.reverse;
+    a.flights += leg.count;
+    b.flights += leg.count;
+    a.routes++;
+    b.routes++;
   }
 
-  if (bounds.length) {
-    const combo = bounds[0].extend ? bounds[0] : L.latLngBounds(bounds[0]);
-    for (let i = 1; i < bounds.length; i++) {
-      combo.extend(bounds[i]);
-    }
-    map.fitBounds(combo.pad(0.25));
+  return [...stats.values()];
+}
+
+function renderAirportTable() {
+  const tbody = document.querySelector('#airports tbody');
+  const { key, dir } = state.airportSort;
+  const sorted = airportTraffic().sort((a, b) => AIRPORT_SORTERS[key](a, b) * dir);
+
+  tbody.innerHTML = sorted
+    .map((row) => `<tr>
+      <td class="route">${escapeHtml(row.code)}</td>
+      <td>${escapeHtml(row.place)}</td>
+      <td class="num">${fmt(row.flights)}</td>
+      <td class="num">${fmt(row.arrivals)}</td>
+      <td class="num">${fmt(row.departures)}</td>
+      <td class="num">${fmt(row.routes)}</td>
+    </tr>`)
+    .join('');
+
+  for (const th of document.querySelectorAll('#airports th[data-sort]')) {
+    const active = th.dataset.sort === key;
+    th.setAttribute('aria-sort', active ? (dir === 1 ? 'ascending' : 'descending') : 'none');
   }
+}
+
+/**
+ * Redraw everything from `state`. Never re-reads or re-parses the textarea.
+ * `fit` is only set for a fresh route — a display toggle must not yank the
+ * map back out of wherever the reader had panned to.
+ */
+function render({ fit = false } = {}) {
+  if (!state.parsed) return;
+
+  readTheme();
+  routeLayer.clearLayers();
+  labelLayer.clearLayers();
+
+  const bounds = [];
+  drawRings(bounds);
+  drawLegs();
+  drawAirports(bounds);
+
+  renderLegend();
+  renderSummary();
+  renderTable();
+  renderAirportTable();
+
+  // Seed an empty bounds and extend uniformly — L.latLngBounds(singleLatLng)
+  // silently yields an *empty* bounds, which used to drop the first marker.
+  if (fit && bounds.length) {
+    const combined = L.latLngBounds([]);
+    for (const b of bounds) combined.extend(b);
+    if (combined.isValid()) map.fitBounds(combined.pad(0.15));
+  }
+}
+
+/** Parse the textarea, then render. */
+function draw() {
+  const parsed = parseRoute(el('route-input').value, lookup);
+
+  if (!parsed.paths.length && !parsed.rings.length) {
+    notify(
+      parsed.unknown.length
+        ? `No usable segments. Unrecognised: ${parsed.unknown.join(', ')}`
+        : 'Enter at least one segment, e.g. SEA-LHR',
+      'error'
+    );
+    return;
+  }
+
+  state.parsed = parsed;
+  state.legs = aggregateLegs(parsed.paths, distanceKm);
+  state.maxCount = state.legs.reduce((max, leg) => Math.max(max, leg.count), 1);
+
+  notify(
+    parsed.unknown.length
+      ? `Skipped ${parsed.unknown.length} unrecognised code${parsed.unknown.length === 1 ? '' : 's'}: ${parsed.unknown.join(', ')}`
+      : '',
+    'warn'
+  );
+
+  render({ fit: true });
+}
+
+async function loadFile(name) {
+  if (!DATA_FILE.test(name)) throw new Error('Invalid file name');
+  const res = await fetch(`public/${name}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return (await res.text()).trim();
+}
+
+function wireControls() {
+  const input = el('route-input');
+
+  el('draw-btn').addEventListener('click', draw);
+
+  input.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      draw();
+    }
+  });
+
+  // Display toggles only need a redraw — the parse is already in state.
+  const toggles = [
+    ['markers-cb', 'showMarkers'],
+    ['labels-cb', 'showLabels'],
+    ['color-cb', 'colorByFrequency']
+  ];
+  for (const [id, key] of toggles) {
+    const box = el(id);
+    state[key] = box.checked;
+    box.addEventListener('change', () => {
+      state[key] = box.checked;
+      render();
+    });
+  }
+
+  // Both tables sort the same way: click or Enter/Space on a heading, and a
+  // repeat click on the active heading flips the direction. Text columns open
+  // ascending, numeric ones descending — biggest-first is what you want there.
+  const TEXT_KEYS = new Set(['route', 'airport', 'place']);
+  const wireSort = (tableId, sortState, rerender) => {
+    for (const th of document.querySelectorAll(`#${tableId} th[data-sort]`)) {
+      const toggleSort = () => {
+        const key = th.dataset.sort;
+        if (state[sortState].key === key) state[sortState].dir *= -1;
+        else state[sortState] = { key, dir: TEXT_KEYS.has(key) ? 1 : -1 };
+        rerender();
+      };
+      th.addEventListener('click', toggleSort);
+      th.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleSort();
+        }
+      });
+    }
+  };
+
+  wireSort('results', 'sort', renderTable);
+  wireSort('airports', 'airportSort', renderAirportTable);
 }
 
 async function setup() {
-  await loadAirports();
+  const button = el('draw-btn');
+  button.disabled = true;
+  notify('Loading airport data…');
+
+  try {
+    await loadAirports();
+  } catch (error) {
+    console.error(error);
+    notify('Could not load airport data. Try reloading the page.', 'error');
+    return;
+  }
+
   initMap();
-  const inputEl = document.getElementById('route-input');
-  const markersCb = document.getElementById('markers-cb');
-  const colorCb = document.getElementById('color-cb');
+  wireControls();
+  readTheme();
 
-  showMarkers = markersCb.checked;
-  colorByFrequency = colorCb.checked;
-
-  markersCb.addEventListener('change', () => {
-    showMarkers = markersCb.checked;
-    document.getElementById('draw-btn').click();
+  // Canvas strokes are baked-in colours, so the shared site theme toggle has
+  // to trigger an actual repaint rather than just restyling the DOM.
+  new MutationObserver(() => render()).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
   });
 
-  colorCb.addEventListener('change', () => {
-    colorByFrequency = colorCb.checked;
-    document.getElementById('draw-btn').click();
-  });
-  document.getElementById('draw-btn').addEventListener('click', () => {
-    const input = inputEl.value.trim().toUpperCase();
-    const route = parseRoute(input);
-    if (route) drawRoute(route);
-  });
-  inputEl.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      document.getElementById('draw-btn').click();
-    }
-  });
+  button.disabled = false;
+  notify('');
 
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('file')) {
-    const file = params.get('file');
-    try {
-      const res = await fetch('public/' + file);
-      const text = await res.text();
-      inputEl.value = text.trim();
-      document.getElementById('draw-btn').click();
-    } catch (err) {
-      console.error(err);
-      showToast('Unable to load file');
-    }
+  const file = new URLSearchParams(window.location.search).get('file');
+  if (!file) return;
+
+  try {
+    el('route-input').value = await loadFile(file);
+    draw();
+  } catch (error) {
+    console.error(error);
+    notify(`Unable to load "${file}".`, 'error');
   }
 }
 
-setup();
-
-// TODO: Autocomplete dropdown for IATA codes
-// TODO: Choice of map style (roadmap / satellite)
-// TODO: Orthographic globe projection toggle
+setup().catch((error) => {
+  console.error(error);
+  notify('Something went wrong starting the map.', 'error');
+});
