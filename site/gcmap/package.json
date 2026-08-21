@@ -1,9 +1,11 @@
 {
   "name": "gcmap",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Great Circle Mapper",
+  "type": "module",
   "scripts": {
-    "dev": "live-server --port=3000 --open=gcmap/index.html"
+    "dev": "live-server --port=3000 --open=gcmap/index.html",
+    "test": "node test.js"
   },
   "devDependencies": {
     "live-server": "^1.2.2"

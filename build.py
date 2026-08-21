@@ -3,10 +3,11 @@
 build.py — Generate resume artifacts from site/resume.json
 
 Usage:
-  python build.py                # generate site/resume.pdf and site/llms.txt
-  python build.py --format=pdf   # same
-  python build.py --format=llms  # generate site/llms.txt only
-  python build.py --format=web   # start local dev server at localhost:8000
+  python build.py                    # generate site/resume.pdf and site/llms.txt
+  python build.py --format=pdf       # same
+  python build.py --format=llms      # generate site/llms.txt only
+  python build.py --format=airports  # regenerate site/gcmap/public/airports.json
+  python build.py --format=web       # start local dev server at localhost:8000
 
 Requirements for PDF:
   pip install playwright
@@ -14,6 +15,7 @@ Requirements for PDF:
 """
 
 import argparse
+import csv
 import json
 import sys
 from pathlib import Path
@@ -22,6 +24,9 @@ REPO_ROOT = Path(__file__).resolve().parent
 RESUME_JSON = REPO_ROOT / 'site' / 'resume.json'
 OUTPUT_PDF  = REPO_ROOT / 'site' / 'resume.pdf'
 OUTPUT_LLMS = REPO_ROOT / 'site' / 'llms.txt'
+
+AIRPORTS_DAT  = REPO_ROOT / 'data' / 'airports.dat'
+AIRPORTS_JSON = REPO_ROOT / 'site' / 'gcmap' / 'public' / 'airports.json'
 
 
 def load():
@@ -285,6 +290,67 @@ def build_llms():
     print(f'llms.txt written -> {OUTPUT_LLMS.relative_to(REPO_ROOT)}')
 
 
+# OpenFlights airports.dat column indices (headerless CSV).
+_COL_NAME, _COL_CITY, _COL_COUNTRY, _COL_IATA = 1, 2, 3, 4
+_COL_LAT, _COL_LON, _COL_TYPE = 6, 7, 12
+
+
+def build_airports():
+    """Convert data/airports.dat into the compact lookup the gcmap page loads.
+
+    The source is the full OpenFlights dump (~1.1 MB) and is *not* deployed.
+    Several rows quote commas inside a field ("Svalbard Airport, Longyear"),
+    so it has to go through a real CSV reader rather than a split on ','.
+
+    Output shape, chosen to stay small over the wire:
+        {"SFO": [lat, lon, "city", "country"], ...}
+    """
+    if not AIRPORTS_DAT.exists():
+        print(f'missing {AIRPORTS_DAT.relative_to(REPO_ROOT)}', file=sys.stderr)
+        sys.exit(1)
+
+    out = {}
+    skipped = 0
+    with open(AIRPORTS_DAT, encoding='utf-8', newline='') as f:
+        for row in csv.reader(f):
+            if len(row) <= _COL_TYPE:
+                skipped += 1
+                continue
+            iata = row[_COL_IATA].strip()
+            # OpenFlights uses \N for "no IATA code assigned".
+            if len(iata) != 3 or not iata.isalpha():
+                continue
+            if row[_COL_TYPE] != 'airport':
+                continue
+            try:
+                # 4 decimal places is ~11 m at the equator — far finer than
+                # anything a great-circle overview needs, and a third smaller.
+                lat = round(float(row[_COL_LAT]), 4)
+                lon = round(float(row[_COL_LON]), 4)
+            except ValueError:
+                skipped += 1
+                continue
+            if not (-90 <= lat <= 90) or not (-180 <= lon <= 180):
+                skipped += 1
+                continue
+            # Duplicate IATA codes exist; first row wins, matching OpenFlights order.
+            out.setdefault(iata.upper(), [lat, lon, row[_COL_CITY], row[_COL_COUNTRY]])
+
+    AIRPORTS_JSON.parent.mkdir(parents=True, exist_ok=True)
+    # One airport per line: still valid JSON, but reviewable in a diff.
+    body = ',\n'.join(
+        f'{json.dumps(code)}:{json.dumps(vals, ensure_ascii=False, separators=(",", ":"))}'
+        for code, vals in sorted(out.items())
+    )
+    AIRPORTS_JSON.write_text('{\n' + body + '\n}\n', encoding='utf-8')
+
+    size_kb = AIRPORTS_JSON.stat().st_size / 1024
+    print(
+        f'airports.json written -> {AIRPORTS_JSON.relative_to(REPO_ROOT)} '
+        f'({len(out)} airports, {size_kb:.0f} KB, {skipped} rows skipped)'
+    )
+
+
 def serve_web():
     import http.server
     import os
@@ -299,8 +365,9 @@ def serve_web():
 def main():
     parser = argparse.ArgumentParser(description='Build resume artifacts from resume.json')
     parser.add_argument(
-        '--format', choices=['pdf', 'llms', 'web'], default='pdf',
-        help='pdf: generate site/resume.pdf and site/llms.txt  |  llms: generate site/llms.txt  |  web: start local dev server'
+        '--format', choices=['pdf', 'llms', 'airports', 'web'], default='pdf',
+        help='pdf: generate site/resume.pdf and site/llms.txt  |  llms: generate site/llms.txt  |  '
+             'airports: regenerate site/gcmap/public/airports.json  |  web: start local dev server'
     )
     args = parser.parse_args()
 
@@ -308,6 +375,8 @@ def main():
         serve_web()
     elif args.format == 'llms':
         build_llms()
+    elif args.format == 'airports':
+        build_airports()
     else:
         build_pdf()
         build_llms()

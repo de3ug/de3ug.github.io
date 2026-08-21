@@ -25,6 +25,8 @@ jobs:
             if [ "$rc" -gt 1 ]; then fail=1; fi
           done
           exit $fail
+      - name: gcmap unit tests
+        run: node site/gcmap/test.js
       - name: JS smoke test
         run: node smoke.js
       - name: Copy site to dist
