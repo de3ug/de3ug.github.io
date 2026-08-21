@@ -102,21 +102,39 @@ export function greatCirclePoints(from, to, npoints = 64) {
   return unwrapLons(points);
 }
 
-// Viridis control points. Perceptually uniform and safe for the common
-// colour-vision deficiencies, unlike the jet ramp this replaced.
-const VIRIDIS = [
-  [68, 1, 84], [72, 40, 120], [62, 73, 137], [49, 104, 142], [38, 130, 142],
-  [31, 158, 137], [53, 183, 121], [109, 205, 89], [253, 231, 37]
+// Jet control points, evenly spaced over [0, 1]: dark blue through cyan and
+// yellow to dark red. Not perceptually uniform, and the cyan/yellow bands read
+// brighter than their values warrant — but the high-saturation endpoints make a
+// single hot route obvious at a glance, which is what this map is for.
+const JET = [
+  [0, 0, 131], [0, 0, 255], [0, 127, 255], [0, 255, 255], [127, 255, 127],
+  [255, 255, 0], [255, 127, 0], [255, 0, 0], [128, 0, 0]
 ];
 
-/** Sample the viridis ramp at t in [0, 1]; returns an `rgb(...)` string. */
-export function viridis(t) {
+/** Sample the jet ramp at t in [0, 1]; returns an `rgb(...)` string. */
+export function jet(t) {
   const clamped = Number.isFinite(t) ? Math.min(1, Math.max(0, t)) : 0;
-  const x = clamped * (VIRIDIS.length - 1);
-  const i = Math.min(VIRIDIS.length - 2, Math.floor(x));
+  const x = clamped * (JET.length - 1);
+  const i = Math.min(JET.length - 2, Math.floor(x));
   const f = x - i;
-  const lo = VIRIDIS[i];
-  const hi = VIRIDIS[i + 1];
+  const lo = JET[i];
+  const hi = JET[i + 1];
   const ch = (k) => Math.round(lo[k] + (hi[k] - lo[k]) * f);
   return `rgb(${ch(0)},${ch(1)},${ch(2)})`;
+}
+
+/**
+ * Position a flight count on [0, 1] logarithmically.
+ *
+ * A linear ramp is useless on this data: one commuter route flown dozens of
+ * times pins the top of the scale and squashes every other route into the
+ * bottom bucket. log keeps the single-flight routes distinguishable from the
+ * handful-of-flights ones, which is where nearly all the routes actually live.
+ *
+ * count = 1 maps to 0 and count = max maps to 1, so both ends stay anchored.
+ */
+export function logScale(count, max) {
+  if (!(max > 1) || !Number.isFinite(count)) return 0;
+  const c = Math.min(max, Math.max(1, count));
+  return Math.log(c) / Math.log(max);
 }

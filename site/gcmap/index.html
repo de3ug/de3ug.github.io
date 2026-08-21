@@ -44,16 +44,32 @@
 
     <div class="table-scroll">
       <table id="results">
-        <caption>One row per route. Both directions are merged; the split column counts each way separately. Click a heading to sort.</caption>
+        <caption>One row per direction flown. The map merges each pair into a single line; this table keeps them apart. Click a heading to sort.</caption>
         <thead>
           <tr>
             <th scope="col" data-sort="route" aria-sort="none" tabindex="0">Route</th>
             <th scope="col" data-sort="count" aria-sort="descending" tabindex="0">Flights</th>
-            <th scope="col">Split</th>
             <th scope="col" data-sort="distance" aria-sort="none" tabindex="0">nm</th>
             <th scope="col">mi</th>
             <th scope="col">km</th>
             <th scope="col" data-sort="total" aria-sort="none" tabindex="0">Total km</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll">
+      <table id="airports">
+        <caption>Every airport in the history, busiest first. A connection counts twice &mdash; once arriving, once leaving. Click a heading to sort.</caption>
+        <thead>
+          <tr>
+            <th scope="col" data-sort="airport" aria-sort="none" tabindex="0">Airport</th>
+            <th scope="col" data-sort="place" aria-sort="none" tabindex="0">Place</th>
+            <th scope="col" data-sort="flights" aria-sort="descending" tabindex="0">Flights</th>
+            <th scope="col" data-sort="arrivals" aria-sort="none" tabindex="0">In</th>
+            <th scope="col" data-sort="departures" aria-sort="none" tabindex="0">Out</th>
+            <th scope="col" data-sort="routes" aria-sort="none" tabindex="0">Routes</th>
           </tr>
         </thead>
         <tbody></tbody>

@@ -1,10 +1,11 @@
 import {
   distanceKm,
   greatCirclePoints,
+  jet,
   kmToMi,
   kmToNm,
-  normalizeLon,
-  viridis
+  logScale,
+  normalizeLon
 } from './geo.js';
 import { aggregateLegs, parseRoute } from './parse.js';
 
@@ -31,7 +32,8 @@ const state = {
   showMarkers: true,
   showLabels: true,
   colorByFrequency: true,
-  sort: { key: 'count', dir: -1 }
+  sort: { key: 'count', dir: -1 },
+  airportSort: { key: 'flights', dir: -1 }
 };
 
 let map;
@@ -190,7 +192,7 @@ function readTheme() {
 
 function colorFor(count) {
   if (!state.colorByFrequency || state.maxCount < 2) return theme.route;
-  return viridis((count - 1) / (state.maxCount - 1));
+  return jet(logScale(count, state.maxCount));
 }
 
 function drawLegs() {
@@ -198,8 +200,8 @@ function drawLegs() {
     if (!leg.points) leg.points = greatCirclePoints(leg.from, leg.to, ARC_POINTS);
     const color = colorFor(leg.count);
     const weight = state.colorByFrequency && state.maxCount > 1
-      ? 1.5 + 2 * ((leg.count - 1) / (state.maxCount - 1))
-      : 2;
+      ? 2.5 + 2 * logScale(leg.count, state.maxCount)
+      : 3;
 
     for (const offset of WORLD_OFFSETS) {
       const shifted = leg.points.map(([lat, lon]) => [lat, lon + offset]);
@@ -270,12 +272,40 @@ function drawRings(bounds) {
       const circle = L.circle([ring.center.lat, normalizeLon(ring.center.lon) + offset], {
         radius: ring.km * 1000,
         color: colorFor(1),
-        weight: 2,
+        weight: 3,
         fill: false
       }).addTo(routeLayer);
       if (offset === 0) bounds.push(circle.getBounds());
     }
   }
+}
+
+/**
+ * Tick values for the legend: 1, the max, and the 1/2/5-per-decade values
+ * between them. Anything that would land on top of a neighbour is dropped, so
+ * a short scale gets a few ticks and a long one does not turn into a smear.
+ */
+function legendTicks(max) {
+  const candidates = [1];
+  for (let decade = 1; decade <= max; decade *= 10) {
+    for (const step of [1, 2, 5]) {
+      const value = decade * step;
+      if (value > 1 && value < max) candidates.push(value);
+    }
+  }
+  candidates.push(max);
+
+  const out = [];
+  for (const value of candidates) {
+    const pos = logScale(value, max) * 100;
+    // Keep the max even if it crowds its neighbour — drop the neighbour instead.
+    if (out.length && pos - out[out.length - 1].pos < 9) {
+      if (value !== max) continue;
+      out.pop();
+    }
+    out.push({ value, pos });
+  }
+  return out;
 }
 
 function renderLegend() {
@@ -290,13 +320,20 @@ function renderLegend() {
   // A continuous ramp. The old legend emitted one swatch per value, which for
   // this data meant 59 swatches in a row.
   const stops = [];
-  for (let i = 0; i <= 10; i++) stops.push(viridis(i / 10));
+  for (let i = 0; i <= 10; i++) stops.push(jet(i / 10));
+
+  // Counts are placed logarithmically, so the ticks are not evenly spaced —
+  // without them a reader would assume the midpoint of the bar is half the max.
+  const ticks = legendTicks(state.maxCount)
+    .map(({ value, pos }) => `<span class="legend-tick" style="left:${pos.toFixed(2)}%">${fmt(value)}</span>`)
+    .join('');
 
   legend.innerHTML = `
-    <span class="legend-label">1&times;</span>
-    <span class="legend-bar" style="background:linear-gradient(to right, ${stops.join(',')})"></span>
-    <span class="legend-label">${fmt(state.maxCount)}&times;</span>
-    <span class="legend-caption">flights per route</span>`;
+    <span class="legend-scale">
+      <span class="legend-bar" style="background:linear-gradient(to right, ${stops.join(',')})"></span>
+      <span class="legend-ticks">${ticks}</span>
+    </span>
+    <span class="legend-caption">flights per route (log scale)</span>`;
 }
 
 function totals() {
@@ -327,29 +364,43 @@ function renderSummary() {
 }
 
 const SORTERS = {
-  route: (a, b) => a.key.localeCompare(b.key),
+  route: (a, b) => a.from.localeCompare(b.from) || a.to.localeCompare(b.to),
   count: (a, b) => a.count - b.count,
   distance: (a, b) => a.km - b.km,
   total: (a, b) => a.km * a.count - b.km * b.count
 };
 
+/**
+ * Split the merged legs back into one row per direction.
+ *
+ * Merging A<->B is right for the map — the two share a geodesic, so drawing
+ * both stacks identical lines — but in the table it hides the asymmetry, and
+ * an open-jaw trip flown one way only should not read the same as a return.
+ */
+function directedRoutes() {
+  const out = [];
+  for (const leg of state.legs) {
+    const a = leg.from.code;
+    const b = leg.to.code;
+    if (leg.forward) out.push({ from: a, to: b, count: leg.forward, km: leg.km });
+    if (leg.reverse) out.push({ from: b, to: a, count: leg.reverse, km: leg.km });
+  }
+  return out;
+}
+
 function renderTable() {
   const tbody = document.querySelector('#results tbody');
   const { key, dir } = state.sort;
-  const sorted = [...state.legs].sort((a, b) => SORTERS[key](a, b) * dir);
+  const sorted = directedRoutes().sort((a, b) => SORTERS[key](a, b) * dir);
 
-  // One row per route rather than one per leg. The old table repeated an
-  // identical SEA-SFO row once for every time it had been flown.
-  const rows = sorted.map((leg) => {
-    const total = leg.km * leg.count;
-    const split = `${fmt(leg.forward)}&nbsp;/&nbsp;${fmt(leg.reverse)}`;
+  const rows = sorted.map((route) => {
+    const total = route.km * route.count;
     return `<tr>
-      <td class="route">${escapeHtml(leg.from.code)} &harr; ${escapeHtml(leg.to.code)}</td>
-      <td class="num">${fmt(leg.count)}</td>
-      <td class="num split">${split}</td>
-      <td class="num">${fmt(kmToNm(leg.km))}</td>
-      <td class="num">${fmt(kmToMi(leg.km))}</td>
-      <td class="num">${fmt(leg.km)}</td>
+      <td class="route">${escapeHtml(route.from)} &rarr; ${escapeHtml(route.to)}</td>
+      <td class="num">${fmt(route.count)}</td>
+      <td class="num">${fmt(kmToNm(route.km))}</td>
+      <td class="num">${fmt(kmToMi(route.km))}</td>
+      <td class="num">${fmt(route.km)}</td>
       <td class="num">${fmt(total)}</td>
     </tr>`;
   });
@@ -361,13 +412,81 @@ function renderTable() {
     <td class="num"></td>
     <td class="num"></td>
     <td class="num"></td>
-    <td class="num"></td>
     <td class="num">${fmt(km)}</td>
   </tr>`);
 
   tbody.innerHTML = rows.join('');
 
   for (const th of document.querySelectorAll('#results th[data-sort]')) {
+    const active = th.dataset.sort === key;
+    th.setAttribute('aria-sort', active ? (dir === 1 ? 'ascending' : 'descending') : 'none');
+  }
+}
+
+const AIRPORT_SORTERS = {
+  airport: (a, b) => a.code.localeCompare(b.code),
+  place: (a, b) => a.place.localeCompare(b.place),
+  flights: (a, b) => a.flights - b.flights || a.code.localeCompare(b.code),
+  arrivals: (a, b) => a.arrivals - b.arrivals,
+  departures: (a, b) => a.departures - b.departures,
+  routes: (a, b) => a.routes - b.routes
+};
+
+/**
+ * Every airport, with how much traffic it saw.
+ *
+ * `flights` counts legs touching the airport, so a connection through it
+ * scores 2 — one arrival and one departure. That is the honest reading of
+ * this data: the history records legs, not how long anyone stayed.
+ */
+function airportTraffic() {
+  const stats = new Map();
+  const ensure = (code) => {
+    let row = stats.get(code);
+    if (!row) {
+      row = { code, place: placeOf(code), flights: 0, arrivals: 0, departures: 0, routes: 0 };
+      stats.set(code, row);
+    }
+    return row;
+  };
+
+  // Airports with no legs at all (a lone code, or a bare range ring) still
+  // belong in the list — at zero.
+  if (state.parsed) for (const [code] of state.parsed.airports) ensure(code);
+
+  for (const leg of state.legs) {
+    const a = ensure(leg.from.code);
+    const b = ensure(leg.to.code);
+    a.departures += leg.forward;
+    a.arrivals += leg.reverse;
+    b.arrivals += leg.forward;
+    b.departures += leg.reverse;
+    a.flights += leg.count;
+    b.flights += leg.count;
+    a.routes++;
+    b.routes++;
+  }
+
+  return [...stats.values()];
+}
+
+function renderAirportTable() {
+  const tbody = document.querySelector('#airports tbody');
+  const { key, dir } = state.airportSort;
+  const sorted = airportTraffic().sort((a, b) => AIRPORT_SORTERS[key](a, b) * dir);
+
+  tbody.innerHTML = sorted
+    .map((row) => `<tr>
+      <td class="route">${escapeHtml(row.code)}</td>
+      <td>${escapeHtml(row.place)}</td>
+      <td class="num">${fmt(row.flights)}</td>
+      <td class="num">${fmt(row.arrivals)}</td>
+      <td class="num">${fmt(row.departures)}</td>
+      <td class="num">${fmt(row.routes)}</td>
+    </tr>`)
+    .join('');
+
+  for (const th of document.querySelectorAll('#airports th[data-sort]')) {
     const active = th.dataset.sort === key;
     th.setAttribute('aria-sort', active ? (dir === 1 ? 'ascending' : 'descending') : 'none');
   }
@@ -393,6 +512,7 @@ function render({ fit = false } = {}) {
   renderLegend();
   renderSummary();
   renderTable();
+  renderAirportTable();
 
   // Seed an empty bounds and extend uniformly — L.latLngBounds(singleLatLng)
   // silently yields an *empty* bounds, which used to drop the first marker.
@@ -465,21 +585,30 @@ function wireControls() {
     });
   }
 
-  for (const th of document.querySelectorAll('#results th[data-sort]')) {
-    const toggleSort = () => {
-      const key = th.dataset.sort;
-      if (state.sort.key === key) state.sort.dir *= -1;
-      else state.sort = { key, dir: key === 'route' ? 1 : -1 };
-      renderTable();
-    };
-    th.addEventListener('click', toggleSort);
-    th.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        toggleSort();
-      }
-    });
-  }
+  // Both tables sort the same way: click or Enter/Space on a heading, and a
+  // repeat click on the active heading flips the direction. Text columns open
+  // ascending, numeric ones descending — biggest-first is what you want there.
+  const TEXT_KEYS = new Set(['route', 'airport', 'place']);
+  const wireSort = (tableId, sortState, rerender) => {
+    for (const th of document.querySelectorAll(`#${tableId} th[data-sort]`)) {
+      const toggleSort = () => {
+        const key = th.dataset.sort;
+        if (state[sortState].key === key) state[sortState].dir *= -1;
+        else state[sortState] = { key, dir: TEXT_KEYS.has(key) ? 1 : -1 };
+        rerender();
+      };
+      th.addEventListener('click', toggleSort);
+      th.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          toggleSort();
+        }
+      });
+    }
+  };
+
+  wireSort('results', 'sort', renderTable);
+  wireSort('airports', 'airportSort', renderAirportTable);
 }
 
 async function setup() {

@@ -176,11 +176,23 @@ button:focus-visible, textarea:focus-visible, th:focus-visible { outline: 2px so
 
 /* ── Legend ───────────────────────────────────────────────── */
 
-#legend { display: flex; align-items: center; gap: 8px; margin: 12px 0; font-size: 0.8rem; }
+#legend { display: flex; align-items: flex-start; gap: 10px; margin: 12px 0; font-size: 0.8rem; }
 #legend[hidden] { display: none; }
-.legend-bar { width: 220px; height: 12px; border: 1px solid var(--border); border-radius: 2px; }
-.legend-label { color: var(--muted); font-variant-numeric: tabular-nums; }
-.legend-caption { color: var(--muted); }
+.legend-scale { display: block; width: 220px; }
+.legend-bar { display: block; height: 12px; border: 1px solid var(--border); border-radius: 2px; }
+
+/* Ticks are placed by percentage along the bar, so the row has to be as wide
+   as the bar and each label centred on its own position rather than laid out
+   in flow. Height is reserved to stop the row collapsing onto the bar. */
+.legend-ticks { position: relative; display: block; height: 1.1em; }
+.legend-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.legend-caption { color: var(--muted); line-height: 12px; }
 
 /* ── Summary stats ────────────────────────────────────────── */
 
@@ -201,18 +213,22 @@ button:focus-visible, textarea:focus-visible, th:focus-visible { outline: 2px so
 
 .table-scroll { overflow-x: auto; }
 
-table#results { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-#results caption { text-align: left; color: var(--muted); font-size: 0.8rem; padding-bottom: 6px; }
-#results th, #results td { padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: left; }
-#results thead th { background: var(--panel); white-space: nowrap; }
-#results th[data-sort] { cursor: pointer; user-select: none; }
-#results th[data-sort]::after { content: ' \2195'; opacity: 0.25; }
-#results th[aria-sort="ascending"]::after { content: ' \2191'; opacity: 1; }
-#results th[aria-sort="descending"]::after { content: ' \2193'; opacity: 1; }
-#results td.num { text-align: right; font-variant-numeric: tabular-nums; }
-#results td.split { color: var(--muted); white-space: nowrap; }
-#results .route { white-space: nowrap; }
+table#results, table#airports { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+#results caption, #airports caption { text-align: left; color: var(--muted); font-size: 0.8rem; padding-bottom: 6px; }
+#results th, #results td,
+#airports th, #airports td { padding: 6px 8px; border-bottom: 1px solid var(--border); text-align: left; }
+#results thead th, #airports thead th { background: var(--panel); white-space: nowrap; }
+#results th[data-sort], #airports th[data-sort] { cursor: pointer; user-select: none; }
+#results th[data-sort]::after, #airports th[data-sort]::after { content: ' \2195'; opacity: 0.25; }
+#results th[aria-sort="ascending"]::after, #airports th[aria-sort="ascending"]::after { content: ' \2191'; opacity: 1; }
+#results th[aria-sort="descending"]::after, #airports th[aria-sort="descending"]::after { content: ' \2193'; opacity: 1; }
+#results td.num, #airports td.num { text-align: right; font-variant-numeric: tabular-nums; }
+#results .route, #airports .route { white-space: nowrap; }
 #results .total-row th, #results .total-row td { font-weight: bold; border-top: 2px solid var(--border); }
+
+/* The airport table follows the route table directly; keep them from
+   colliding without turning the pair into one undifferentiated block. */
+#airports { margin-top: 28px; }
 
 @media (max-width: 640px) {
   .wrap { padding: 12px; }

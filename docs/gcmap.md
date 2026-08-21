@@ -64,9 +64,15 @@ history still resolves. Run in CI alongside the HTML validator.
   the edge. Arcs are built with *unwrapped* longitudes (they may run past
   ±180 so a transpacific route stays one continuous line) and each is drawn in
   the neighbouring world copies too.
-* **Both directions merged.** `SFO-SEA` and `SEA-SFO` share a geodesic, so they
-  are collapsed into one line carrying both counts. Clicking it shows the split
-  each way and the combined total.
+* **Both directions merged — on the map only.** `SFO-SEA` and `SEA-SFO` share a
+  geodesic, so they are collapsed into one line carrying both counts. Clicking
+  it shows the split each way and the combined total. The routes table splits
+  them back out into one row per direction, and a second table below it lists
+  every airport by how many flights touched it.
+* **Log colour scale.** Routes are coloured and weighted by `log(count)` on a
+  jet ramp. Linear was useless here: one commuter route flown 60-odd times
+  pinned the top of the scale and dumped every other route in the bottom
+  bucket. The legend ticks are placed logarithmically to match.
 * **Canvas renderer.** Hundreds of wrapped paths stay cheap, and a click
   tolerance gives the thin lines a usable hit area.
 * **Labels.** Drawn in whichever world copy is on screen and thinned greedily —

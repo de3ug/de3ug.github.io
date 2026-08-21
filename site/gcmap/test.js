@@ -7,12 +7,13 @@ import assert from 'node:assert/strict';
 import {
   distanceKm,
   greatCirclePoints,
+  jet,
   kmToMi,
   kmToNm,
+  logScale,
   normalizeLon,
   shortestLonDelta,
-  unwrapLons,
-  viridis
+  unwrapLons
 } from './geo.js';
 import { aggregateLegs, parseRoute } from './parse.js';
 
@@ -120,11 +121,38 @@ test('unwrapLons removes the 360-degree seam', () => {
   assert.deepEqual(out, [[0, 179], [0, 181], [0, 183]]);
 });
 
-test('viridis returns clamped rgb strings', () => {
+test('jet returns clamped rgb strings', () => {
   for (const t of [-1, 0, 0.5, 1, 2, NaN]) {
-    assert.match(viridis(t), /^rgb\(\d{1,3},\d{1,3},\d{1,3}\)$/);
+    assert.match(jet(t), /^rgb\(\d{1,3},\d{1,3},\d{1,3}\)$/);
   }
-  assert.notEqual(viridis(0), viridis(1));
+  assert.notEqual(jet(0), jet(1));
+});
+
+test('jet runs cold to hot', () => {
+  const blue = jet(0).match(/\d+/g).map(Number);
+  const red = jet(1).match(/\d+/g).map(Number);
+  assert.ok(blue[2] > blue[0], 'low end is blue-dominant');
+  assert.ok(red[0] > red[2], 'high end is red-dominant');
+});
+
+test('logScale anchors both ends', () => {
+  assert.equal(logScale(1, 50), 0);
+  assert.equal(logScale(50, 50), 1);
+});
+
+test('logScale lifts the low counts clear of the floor', () => {
+  // The whole point: with max 50, a 2nd flight has to be visibly separated
+  // from a 1st. Linear would put it at 1/49 ~ 0.02.
+  assert.ok(logScale(2, 50) > 0.15, `got ${logScale(2, 50)}`);
+  assert.ok(logScale(2, 50) < logScale(5, 50));
+  assert.ok(logScale(5, 50) < logScale(20, 50));
+});
+
+test('logScale clamps out-of-range and degenerate input', () => {
+  assert.equal(logScale(100, 50), 1);
+  assert.equal(logScale(0, 50), 0);
+  assert.equal(logScale(5, 1), 0);
+  assert.equal(logScale(NaN, 50), 0);
 });
 
 // ── parse ────────────────────────────────────────────────────
