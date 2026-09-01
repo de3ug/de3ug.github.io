@@ -2,7 +2,7 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A public, privacy-safe September 2026 family trip guide for Stockholm, ECCV in Malmö, and a LEGOLAND–Aarhus road trip across Denmark.">
+  <meta name="description" content="A public, privacy-safe September 2026 family trip guide for Stockholm, ECCV in Malmö, and a Vejle-based LEGOLAND road trip across Denmark.">
   <meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
   <meta name="googlebot" content="noindex,nofollow,noarchive,noimageindex">
   <meta name="referrer" content="no-referrer">
@@ -1654,7 +1654,7 @@
       min-height: 480px;
       background:
         linear-gradient(180deg, transparent 48%, rgba(13, 41, 50, 0.44)),
-        url("https://commons.wikimedia.org/wiki/Special:FilePath/LEGO%20house%20exterior%2001.jpg?width=1500") center / cover no-repeat;
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Legoland%20Billund%20-%20Indgangen%2001.jpg?width=1500") center / cover no-repeat;
     }
 
     .image-feature-copy {
@@ -1676,6 +1676,288 @@
     .image-feature-copy > p {
       margin: 18px 0 0;
       color: var(--muted);
+    }
+
+    .decision-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .decision-photo {
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .decision-photo-art {
+      min-height: 238px;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .photo-vejle .decision-photo-art {
+      background-image: linear-gradient(180deg, transparent 45%, rgba(7, 59, 87, 0.42)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Fjordenhus%20Vejle%20Fjord%20Denmark%2006.jpg?width=1200");
+    }
+
+    .photo-aarhus .decision-photo-art {
+      background-image: linear-gradient(180deg, transparent 45%, rgba(7, 59, 87, 0.42)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Den%20Gamle%20By%2C%20Aarhus%2C%20Denmark%2028.jpg?width=1200");
+    }
+
+    .photo-jelling .decision-photo-art {
+      background-image: linear-gradient(180deg, transparent 45%, rgba(7, 59, 87, 0.42)), url("https://commons.wikimedia.org/wiki/Special:FilePath/The%20Jelling%20mounds%20and%20church.jpg?width=1200");
+    }
+
+    .photo-egeskov .decision-photo-art {
+      background-image: linear-gradient(180deg, transparent 45%, rgba(7, 59, 87, 0.42)), url("https://commons.wikimedia.org/wiki/Special:FilePath/Egeskov%20Castle%20%28Denmark%29.jpg?width=1200");
+    }
+
+    .decision-photo figcaption {
+      padding: 15px 16px 17px;
+    }
+
+    .decision-photo strong,
+    .decision-photo span {
+      display: block;
+    }
+
+    .decision-photo strong {
+      font-size: 0.91rem;
+    }
+
+    .decision-photo span {
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      line-height: 1.45;
+    }
+
+    .option-map-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.48fr) minmax(280px, 0.52fr);
+      margin: 28px 0;
+      overflow: hidden;
+      border-radius: 24px;
+      background: var(--blue-dark);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .option-map-stage,
+    #denmarkDecisionMap {
+      width: 100%;
+      min-height: 440px;
+    }
+
+    #denmarkDecisionMap {
+      display: block;
+      background: #d7edf0;
+    }
+
+    .option-map-country {
+      fill: #f4f1e8;
+      stroke: rgba(7, 59, 87, 0.25);
+      stroke-width: 0.8;
+    }
+
+    .option-map-country.is-focus {
+      fill: #f8eab9;
+    }
+
+    .option-map-route {
+      fill: none;
+      stroke: var(--red);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .option-map-marker-halo {
+      fill: rgba(255, 255, 255, 0.82);
+    }
+
+    .option-map-marker-core {
+      fill: var(--red);
+      stroke: #fff;
+      stroke-width: 1.5;
+    }
+
+    .option-map-label {
+      fill: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 850;
+      paint-order: stroke;
+      stroke: rgba(255, 255, 255, 0.92);
+      stroke-width: 4px;
+      stroke-linejoin: round;
+    }
+
+    .option-map-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .option-map-copy h3,
+    .option-map-copy p {
+      margin: 0;
+    }
+
+    .option-map-copy h3 {
+      margin-top: 9px;
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .option-map-copy p {
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.84rem;
+    }
+
+    .option-map-facts {
+      display: grid;
+      gap: 9px;
+      margin-top: 20px;
+    }
+
+    .option-map-fact {
+      padding: 11px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      font-size: 0.76rem;
+    }
+
+    .option-map-fact strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--yellow);
+      font-size: 0.67rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .option-matrix-shell {
+      margin: 26px 0;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .option-matrix {
+      width: 100%;
+      min-width: 820px;
+      border-collapse: collapse;
+    }
+
+    .option-matrix th,
+    .option-matrix td {
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: 0.77rem;
+    }
+
+    .option-matrix th {
+      background: #eef5f3;
+      color: var(--blue-dark);
+      font-size: 0.67rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .option-matrix tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .option-matrix .matrix-lead {
+      color: var(--blue);
+      font-weight: 850;
+    }
+
+    .return-verdict,
+    .toll-ledger {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .return-card,
+    .toll-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+
+    .return-card.recommended {
+      border-color: rgba(7, 91, 141, 0.38);
+      background: #edf6f7;
+    }
+
+    .return-card.avoid {
+      border-color: rgba(212, 80, 65, 0.34);
+      background: #fdf0ec;
+    }
+
+    .return-card strong,
+    .return-card span,
+    .toll-card strong,
+    .toll-card span {
+      display: block;
+    }
+
+    .return-card strong,
+    .toll-card strong {
+      font-size: 0.9rem;
+    }
+
+    .return-card span,
+    .toll-card span {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 920px) {
+      .decision-photo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .option-map-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .return-verdict,
+      .toll-ledger {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .decision-photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .decision-photo-art,
+      .option-map-stage,
+      #denmarkDecisionMap {
+        min-height: 330px;
+      }
     }
 
     .opening-pair {
@@ -2942,8 +3224,8 @@
   <header class="hero">
     <div class="hero-copy-panel">
       <p class="kicker">Public planning edition · September 2026</p>
-      <h1>A Scandi ECCV 2026<span>Stockholm → Malmö → LEGOLAND + Aarhus · nonstop home</span></h1>
-      <p class="hero-deck">A north-to-west Nordic family trip built around ECCV: three nights in Stockholm, a rail-simple conference week in central Malmö, then a compact Denmark road trip with LEGOLAND, Aarhus, and an airport-side launch pad for the nonstop flight home.</p>
+      <h1>A Scandi ECCV 2026<span>Stockholm → Malmö → Vejle + LEGOLAND · nonstop home</span></h1>
+      <p class="hero-deck">A north-to-west Nordic family trip built around ECCV: three nights in Stockholm, a rail-simple conference week in central Malmö, then a four-night Denmark road trip based around Vejle, LEGOLAND, and a protected airport finish.</p>
       <div class="hero-meta" aria-label="Trip facts">
         <span class="pill">September 3–16, 2026</span>
         <span class="pill">Family of four · two young children</span>
@@ -2957,7 +3239,7 @@
       </div>
     </div>
     <div class="hero-photo" role="img" aria-label="The Öresund Bridge connecting Denmark and Sweden">
-      <div class="photo-note">The organizing idea: fly north first, take the train to Malmö, then make a short Denmark road loop through LEGOLAND and Aarhus.</div>
+      <div class="photo-note">The organizing idea: fly north first, take the train to Malmö, then use Vejle as the family road-trip hub for LEGOLAND and western Denmark.</div>
     </div>
   </header>
 
@@ -2984,7 +3266,7 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">The short answer</p>
-            <h2>Stockholm first. Malmö for ECCV. Then a LEGOLAND–Aarhus loop.</h2>
+            <h2>Stockholm first. Malmö for ECCV. Then a Vejle–LEGOLAND road loop.</h2>
           </div>
           <p>The reversed September 3–16 shape is stronger for the family: the only flight connection happens on arrival with a sensible buffer, Stockholm gets two full days, and the final night protects SK935 nonstop to SFO.</p>
         </div>
@@ -3007,9 +3289,9 @@
           <article class="card stat-card">
             <div>
               <div class="stat-label">Trip hinge</div>
-              <div class="stat-value">Sep 13</div>
+              <div class="stat-value">Sep 12</div>
             </div>
-            <div class="stat-note">Stay in Malmö through Saturday night, collect a car at Copenhagen Airport Sunday morning, visit LEGOLAND, then sleep two nights in Aarhus.</div>
+            <div class="stat-note">Leave Malmö after the conference Saturday, collect the car at Copenhagen Airport, and drive to a western base. The final booked Baltzar night may go unused.</div>
           </article>
           <article class="card stat-card">
             <div>
@@ -3024,7 +3306,7 @@
           <div class="recommendation-mark" aria-hidden="true">R</div>
           <div>
             <h3>Recommended working plan</h3>
-            <p>The booked flights and first nine hotel nights are locked. For September 13–16, the best working plan is LEGOLAND on Sunday, two nights in Aarhus, an optional Funen stop Tuesday, and a final night beside Copenhagen Airport.</p>
+            <p>The best working plan is now a 3+1 finish: collect the car at Copenhagen Airport on September 12, stay three nights in Vejle, use it for LEGOLAND and one Aarhus-or-Jelling day, then return the car and sleep beside the airport September 15.</p>
           </div>
           <span class="tag blue">Best balance</span>
         </div>
@@ -3038,25 +3320,26 @@
             <p class="eyebrow">Confirmed trip framework</p>
             <h2>The flights and nine booked hotel nights anchor the calendar.</h2>
           </div>
-          <p>The booked framework is fixed through Malmö. The final three nights are now an active Denmark road-trip decision: LEGOLAND is the constraint; Aarhus, LEGO House, and the final-night location are the variables.</p>
+          <p>The booked framework is fixed through the final ECCV day. The Denmark decision now covers four nights, September 12–16: pickup at CPH Airport is fixed; the sleep pattern and September 15 versus 16 car return are the variables.</p>
         </div>
 
         <div class="scenario-controls" role="group" aria-label="Denmark road-trip scenarios">
-          <button class="scenario-button" type="button" data-scenario="aarhusLoop" aria-pressed="true">Recommended · 2 Aarhus nights</button>
-          <button class="scenario-button" type="button" data-scenario="legoHouse" aria-pressed="false">LEGO House · 3 one-night stays</button>
-          <button class="scenario-button" type="button" data-scenario="billundCalm" aria-pressed="false">Calmest · 2 Billund nights</button>
+          <button class="scenario-button" type="button" data-scenario="vejleHub" aria-pressed="true">Recommended · Vejle 3 + airport 1</button>
+          <button class="scenario-button" type="button" data-scenario="aarhusCph" aria-pressed="false">Two hotels · Aarhus 2 + CPH 2</button>
+          <button class="scenario-button" type="button" data-scenario="legoMax" aria-pressed="false">Maximum LEGO · 2 + 1 + 1</button>
+          <button class="scenario-button" type="button" data-scenario="vejleFour" aria-pressed="false">One base · Vejle 4</button>
         </div>
 
         <div class="scenario-shell" aria-live="polite">
           <div class="scenario-top">
             <div>
-              <span class="tag blue" id="scenarioDates">Sep 3–16 · about 8 school days</span>
-              <h3 id="scenarioTitle">Stockholm, ECCV, LEGOLAND, Aarhus, CPH</h3>
-              <p id="scenarioSummary">Keep the booked first nine nights, use LEGOLAND on Sunday, sleep twice in Aarhus, and finish beside Copenhagen Airport.</p>
+              <span class="tag blue" id="scenarioDates">Sep 12–16 · 3 + 1 nights</span>
+              <h3 id="scenarioTitle">Vejle hub, then Copenhagen Airport</h3>
+              <p id="scenarioSummary">Three nights in one useful Jutland base put LEGOLAND 30 minutes away and Aarhus within day-trip range; one airport night protects SK935.</p>
             </div>
             <div class="scenario-verdict">
-              <strong id="scenarioVerdictTitle">Best new balance</strong>
-              <span id="scenarioVerdictCopy">It fulfills the LEGOLAND promise, gives Aarhus a real day, avoids three consecutive one-night hotels, and removes the rental car from flight morning.</span>
+              <strong id="scenarioVerdictTitle">Best balance</strong>
+              <span id="scenarioVerdictCopy">Only two hotels, a full LEGOLAND day, flexible access to Aarhus or Jelling, and no rental return on flight morning.</span>
             </div>
           </div>
           <div class="route-line" id="scenarioRoute" aria-label="Selected scenario route">
@@ -3067,18 +3350,18 @@
         </div>
         <div class="route-stop">
           <div class="route-dot">02</div>
-          <strong>Malmö</strong>
-          <span>Sep 7–13 · Baltzar + ECCV</span>
+          <strong>Malmö → CPH rental</strong>
+          <span>Sep 7–12 · ECCV + Saturday pickup</span>
         </div>
         <div class="route-stop">
           <div class="route-dot">03</div>
-          <strong>LEGOLAND → Aarhus</strong>
-          <span>Sep 13–15 · 2 Aarhus nights</span>
+          <strong>Vejle hub</strong>
+          <span>Sep 12–15 · 3 nights</span>
         </div>
         <div class="route-stop">
           <div class="route-dot">04</div>
           <strong>CPH Airport → SFO</strong>
-          <span>Sep 15–16 · return car + SK935</span>
+          <span>Sep 15–16 · return car + 1 night</span>
         </div></div>
           <div class="scenario-days" id="scenarioDays">
         <article class="scenario-day">
@@ -3097,19 +3380,19 @@
           <p>Direct X 2000 takes about 4½ hours; current family fares are roughly SEK 2,200–3,500.</p>
         </article>
         <article class="scenario-day">
-          <div class="scenario-day-date">Tue–Sat · Sep 8–12</div>
-          <strong>ECCV</strong>
-          <p>Direct Malmö C → Hyllie commute; sleep in Malmö after the final program.</p>
+          <div class="scenario-day-date">Sat · Sep 12</div>
+          <strong>ECCV → CPH rental → Vejle</strong>
+          <p>Check out, store bags, finish the conference, train to Copenhagen Airport, collect the car, and drive about 2¼ hours to Vejle.</p>
         </article>
         <article class="scenario-day">
           <div class="scenario-day-date">Sun · Sep 13</div>
-          <strong>CPH rental → LEGOLAND → Aarhus</strong>
-          <p>Train directly to Copenhagen Airport, collect the car, use the Sunday park hours, then drive about 70 minutes to Aarhus.</p>
+          <strong>Full LEGOLAND day</strong>
+          <p>Vejle is about 30 minutes from the park, making the complete 10:00–18:00 window realistic without another hotel move.</p>
         </article>
         <article class="scenario-day">
           <div class="scenario-day-date">Mon · Sep 14</div>
-          <strong>Aarhus family day</strong>
-          <p>Make Den Gamle By the anchor, then use Dokk1 and its harbor playground as the flexible release valve.</p>
+          <strong>Aarhus—or a closer recovery day</strong>
+          <p>Choose Den Gamle By in Aarhus, or swap to Jelling + Givskud if the family needs a shorter driving day.</p>
         </article>
         <article class="scenario-day">
           <div class="scenario-day-date">Tue–Wed · Sep 15–16</div>
@@ -3137,10 +3420,10 @@
             <div class="calendar-day"><strong>9</strong><span class="day-label conf">Workshops / tutorials</span></div>
             <div class="calendar-day"><strong>10</strong><span class="day-label conf">Main conference</span></div>
             <div class="calendar-day"><strong>11</strong><span class="day-label conf">Main conference</span></div>
-            <div class="calendar-day"><strong>12</strong><span class="day-label conf">Main conference</span></div>
-            <div class="calendar-day"><strong>13</strong><span class="day-label lego">LEGOLAND</span><span class="day-label travel">Drive to Aarhus</span></div>
-            <div class="calendar-day"><strong>14</strong><span class="day-label home">Aarhus family day</span></div>
-            <div class="calendar-day"><strong>15</strong><span class="day-label travel">Funen → CPH Airport</span></div>
+            <div class="calendar-day"><strong>12</strong><span class="day-label conf">Main conference</span><span class="day-label travel">CPH car → Vejle</span></div>
+            <div class="calendar-day"><strong>13</strong><span class="day-label lego">Full LEGOLAND day</span></div>
+            <div class="calendar-day"><strong>14</strong><span class="day-label home">Aarhus or Jelling</span></div>
+            <div class="calendar-day"><strong>15</strong><span class="day-label travel">Funen · return car · CPH</span></div>
             <div class="calendar-day"><strong>16</strong><span class="day-label travel">SK935 nonstop home</span></div>
             <div class="calendar-day"><strong>17</strong></div>
             <div class="calendar-day"><strong>18</strong></div>
@@ -3167,24 +3450,24 @@
             <p class="eyebrow">The Nordic corridor</p>
             <h2>Fly north first, then work south and west.</h2>
           </div>
-          <p>The route avoids a connection on the way home: CPH to Stockholm by air, Stockholm to Malmö by rail, then an airport rental loop through LEGOLAND, Aarhus, Funen, and back to CPH.</p>
+          <p>The route avoids a connection on the way home: CPH to Stockholm by air, Stockholm to Malmö by rail, then an airport rental loop with Vejle as the hub for LEGOLAND, Aarhus, and the return across Funen.</p>
         </div>
 
         <div class="map-shell">
           <div class="map-stage">
             <svg id="nordicMap" role="img" aria-labelledby="mapTitle mapDescription" viewBox="0 0 894 620">
               <title id="mapTitle">Southern Nordic map of the ECCV family trip</title>
-              <desc id="mapDescription">A map highlighting Copenhagen Airport, Billund, Aarhus, Malmö and Hyllie, Lund, and the route to Stockholm.</desc>
+              <desc id="mapDescription">A map highlighting Copenhagen Airport, Vejle, Billund, Aarhus, Malmö and Hyllie, Lund, and the route to Stockholm.</desc>
             <g><g><path class="map-country" d="M1216.915,-906.105L1141.341,-855.603L1105.551,-843.931L1124.245,-932.715L1067.365,-984.234L998.501,-940.079L976.612,-847.384L934.272,-792.865L886.658,-822.662L828.82,-816.463L779.449,-882.158L752.766,-849.112L725.285,-844.147L718.734,-763.6L635.171,-782.935L623.348,-716.057L580.688,-716.469L551.449,-633.541L507.031,-508.772L438.168,-358.255L454.305,-322.838L438.807,-282.396L394.869,-284.158L366.109,-190.56L368.825,-63.006L397.106,-15.772L382.406,90.873L345.498,151.348L326.005,201.236L296.127,148.012L208.57,247.367L149.293,267.109L87.94,224.095L72.122,131.124L58.062,-79.033L98.964,-140.53L156.679,-181.883L216.08,-222.625L303.797,-327.129L384.963,-474.427L436.225,-581.824L491.693,-692.49L565.989,-782.513L625.188,-860.404L687.897,-939.185L785.361,-996.07L858.378,-989.008L925.963,-1099.782L1006.81,-1093.862L1086.538,-1121.204L1157.237,-1072.143L1225.383,-1022.202L1168.183,-986.961ZM508.629,-2662.832L525.406,-2748.949L590.594,-2757.855L646.516,-2669.72L722.136,-2579.898L792.71,-2491.096L735.902,-2446.43L681.027,-2401.338L656.262,-2241.571L617.436,-2202.398L596.346,-2035.761L542.821,-2028.342L447.275,-2149.303L487.539,-2222.636L421.072,-2283.571L379.413,-2375.981L334.633,-2471.057L300.122,-2657.677L359.544,-2702.963L421.072,-2747.616L445.358,-2659.394ZM1052.985,-2759.193L987.157,-2624.424L922.411,-2610.863L858.378,-2595.778L793.463,-2616.793L727.522,-2636.312L719.533,-2704.876L655.942,-2709.25L607.37,-2827.477L674.919,-2865.543L744.458,-2902.331L808.848,-2838.038L853.745,-2918.42L910.56,-2885.076L965.907,-2850.954ZM933.792,-2247.425L834.731,-2162.387L756.441,-2210.33L786.958,-2264.698L760.276,-2333.444L852.147,-2377.354L869.722,-2295.484Z"></path><path class="map-country is-focus" d="M326.005,201.236L345.498,151.348L382.406,90.873L397.106,-15.772L368.825,-63.006L366.109,-190.56L394.869,-284.158L438.807,-282.396L454.305,-322.838L438.168,-358.255L507.031,-508.772L551.449,-633.541L580.688,-716.469L623.348,-716.057L635.171,-782.935L718.734,-763.6L725.285,-844.147L752.766,-849.112L812.043,-788.846L881.226,-707.221L882.504,-531.2L897.363,-488.228L820.991,-457.505L778.011,-383.333L784.881,-319.624L714.42,-238.187L628.621,-153.629L596.346,-20.268L627.982,44.253L670.322,94.12L629.579,192.73L583.404,212.836L566.468,353.031L541.383,428.442L487.539,420.831L462.294,483.363L411.006,487.026L396.786,412.23L359.718,320.13Z"></path><path class="map-country" d="M709.148,559.261L763.791,567.859L845.436,566.67L868.124,574.853L878.829,598.098L880.747,631.288L893.049,659.517L892.73,688.896L866.207,703.738L879.788,737.353L880.747,769.382L902.956,831.049L898.322,850.704L876.273,858.799L836.01,916.103L847.354,946.683L837.767,942.685L795.586,916.578L763.631,926.17L742.701,919.186L716.338,933.73L693.969,909.573L675.755,918.83L673.198,914.798L652.907,880.929L619.833,876.731L615.679,855.056L585.162,847.315L578.611,865.189L554.485,850.825L557.201,831.657L524.127,825.568L503.037,802.817L484.823,757.455L488.338,732.59L477.313,693.724L461.176,667.591L473.478,647.817L463.253,609.852L493.45,587.745L562.793,552.63L618.715,526.635L662.972,539.593L666.328,558.201Z"></path><path class="map-country" d="M845.436,566.67L841.761,547.182L846.555,526.233L826.902,513.891L780.408,500.421L770.981,434.24L821.79,409.867L896.245,415.007L939.864,407.085L946.095,423.739L969.742,428.856L1012.402,467.167L1016.556,502.175L980.127,526.902L969.902,570.105L921.649,598.622L878.829,598.098L868.124,574.853Z"></path><path class="map-country" d="M1047.553,317.408L1068.963,336.412L1072.797,375.893L1087.017,423.324L1039.404,453.901L1012.402,467.167L969.742,428.856L946.095,423.739L939.864,407.085L896.245,415.007L821.79,409.867L770.981,434.24L772.579,373.924L794.308,322.564L836.169,294.387L871.48,355.863L907.11,354.306L915.578,291.063L953.445,276.278L972.778,286.432L1010.964,317.265Z"></path><path class="map-country" d="M1078.389,147.557L1078.389,147.557L1085.1,162.691L1053.464,212.391L1066.726,291.063L1047.553,317.408L1010.964,317.265L972.778,286.432L953.445,276.278L915.578,291.063L920.691,241.493L904.394,252.059L876.273,222.024L872.438,172.638L928.52,148.315L984.441,135.698L1032.534,150.135L1078.389,147.557Z"></path><path class="map-country" d="M167.987,1040.574L173.579,993.373L195.948,947.271L132.038,934.791L111.107,916.933L113.664,886.917L104.716,871.325L109.829,824.227L102.319,749.729L129.002,749.729L140.186,722.54L151.211,655.536L143.062,630.381L151.69,614.542L188.758,610.504L197.066,627.012L227.104,589.976L217.038,561.512L214.961,518.055L248.514,528.241L276.954,516.444L277.593,546.118L322.49,564.026L322.011,590.894L367.228,576.698L392.153,555.814L442.162,585.906L463.253,609.852L473.478,647.817L461.176,667.591L477.313,693.724L488.338,732.59L484.823,757.455L503.037,802.817L483.225,810.173L471.561,802.08L460.377,815.558L428.422,829.101L411.965,846.589L379.69,861.694L387.519,882.247L392.312,911.237L414.841,927.707L439.926,956.776L424.268,987.804L408.29,996.27L414.681,1039.43L410.527,1050.621L396.626,1037.142L375.376,1035.081L343.581,1046.971L304.436,1044.117L298.204,1061.434L275.676,1043.203L262.415,1046.857L214.802,1026.711L205.694,1041.031Z"></path><path class="map-country is-focus" d="M276.954,516.444L248.514,528.241L214.961,518.055L196.907,474.799L195.628,393.557L202.978,371.813L215.76,347.36L254.745,342.246L270.403,319.557L306.033,296.264L304.595,338.69L291.494,365.33L296.766,387.96L320.893,400.119L310.028,430.238L296.766,421.663L264.811,478.609ZM385.602,427.889L399.662,467.576L373.139,530.514L326.645,486.755L320.413,454.176Z"></path><path class="map-country" d="M1105.551,-843.931L1099,-758.369L1166.905,-679.461L1126.003,-592.503L1177.61,-466.517L1147.732,-375.131L1187.676,-298.114L1169.621,-232.471L1235.289,-165.097L1218.513,-115.84L1177.291,-61.05L1082.384,56.33L1082.384,56.33L1082.384,56.33L1001.857,63.521L923.726,96.282L851.508,114.906L825.784,66.33L782.804,36.699L792.71,-54.05L771.141,-139.86L792.391,-196.534L832.654,-259.07L934.112,-370.221L963.67,-392.292L959.197,-437.148L897.363,-488.228L882.504,-531.2L881.226,-707.221L812.043,-788.846L752.766,-849.112L779.449,-882.158L828.82,-816.463L886.658,-822.662L934.272,-792.865L976.612,-847.384L998.501,-940.079L1067.365,-984.234L1124.245,-932.715Z"></path></g><path class="map-route-core" d="M412.447,471.247L326.956,463.562L241.103,458.246L319.66,461.59L397.997,466.927"></path><path class="map-route-stockholm" d="M638.448,160.28L577.47,239.415L519.624,317.657L464.686,394.948L412.447,471.247"></path><path class="map-route-flight" d="M397.997,466.927L451.699,385.028L508.393,301.893L568.332,217.557L631.79,132.078"></path><g><g class="map-location" transform="translate(241.1027910098316,458.2464342147464)"><line class="map-leader" x2="-18" y2="-24"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="-23" y="-24" text-anchor="end"><tspan x="-23">Billund</tspan><tspan class="map-label-note" x="-23" dy="14">2 nights · LEGO finish</tspan></text></g><g class="map-location" transform="translate(397.9965474945027,466.9274139160475)"><line class="map-leader" x2="-62" y2="33"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="-67" y="33" text-anchor="end"><tspan x="-67">Copenhagen / CPH</tspan><tspan class="map-label-note" x="-67" dy="14">final night + SK935</tspan></text></g><g class="map-location" transform="translate(412.447229826377,471.24697490668586)"><line class="map-leader" x2="54" y2="28"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="59" y="28" text-anchor="start"><tspan x="59">Malmö / Hyllie</tspan><tspan class="map-label-note" x="59" dy="14">Radisson + ECCV</tspan></text></g><g class="map-location" transform="translate(421.79401637150204,460.1137693956457)"><line class="map-leader" x2="50" y2="-30"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="55" y="-30" text-anchor="start"><tspan x="55">Lund</tspan><tspan class="map-label-note" x="55" dy="14">easy family day</tspan></text></g><g class="map-location is-stockholm" transform="translate(638.4477352636325,160.28024557227445)"><line class="map-leader" x2="18" y2="-24"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="23" y="-24" text-anchor="start"><tspan x="23">Stockholm</tspan><tspan class="map-label-note" x="23" dy="14">first 3 nights</tspan></text></g></g></g></svg>
           </div>
           <aside class="map-panel" aria-label="Map legend and route notes">
             <div>
               <h3>Three travel zones</h3>
-              <p>Stockholm is the arrival chapter, Malmö–Lund is the conference corridor, and the airport–Billund–Aarhus loop is the family road-trip finish.</p>
+              <p>Stockholm is the arrival chapter, Malmö–Lund is the conference corridor, and the CPH–Vejle loop is the family road-trip finish.</p>
               <div class="map-legend">
                 <div class="map-key"><span class="map-key-line flight"></span><span>Air · CPH to Stockholm</span></div>
                 <div class="map-key"><span class="map-key-line stockholm"></span><span>Rail · Stockholm to Malmö</span></div>
-                <div class="map-key"><span class="map-key-line"></span><span>Road · CPH to Billund to Aarhus to CPH</span></div>
+                <div class="map-key"><span class="map-key-line"></span><span>Road · CPH to Vejle; LEGOLAND + Aarhus day trips</span></div>
                 <div class="map-key"><span class="map-key-dot"></span><span>Trip location</span></div>
               </div>
             </div>
@@ -3460,8 +3743,8 @@
                   </tr>
                   <tr>
                     <td>Hotels</td>
-                    <td>Aarhus and Copenhagen Airport</td>
-                    <td>3 remaining room nights planned · recommended 2 + 1 split</td>
+                    <td>Vejle and Copenhagen Airport</td>
+                    <td>4 remaining room nights planned · recommended 3 + 1 split</td>
                     <td class="num">—</td>
                     <td class="num">—</td>
                     <td class="pending">Not yet booked</td>
@@ -3469,7 +3752,7 @@
                   <tr>
                     <td>Rail + ground</td>
                     <td>Stockholm → Malmö · CPH Airport rental loop</td>
-                    <td>Family of four · LEGOLAND, Aarhus, Funen</td>
+                    <td>Family of four · Vejle hub, LEGOLAND, Aarhus/Jelling, Funen</td>
                     <td class="num">—</td>
                     <td class="num">—</td>
                     <td class="pending">Not yet booked</td>
@@ -3961,81 +4244,149 @@
             </article>
             <article class="day-plan">
               <div class="day-plan-date"><strong>12</strong><span>Saturday</span></div>
-              <div><h3>Slow Malmö + final conference day</h3><p>Let the conference parent finish without a transfer deadline. Meet for dinner in the old town, pack after the children settle, and leave for Billund Sunday morning.</p></div>
+              <div><h3>Final conference day + westbound move</h3><p>Check out and leave luggage at Baltzar, finish the priority conference sessions, then train to Copenhagen Airport for the rental. Drive to Vejle that evening; ask Hotels.com and Baltzar whether the unused September 12 night can be shortened or credited.</p></div>
             </article>
           </div>
         </div>
       </div>
-    </section><section id="billund" class="section-white">
+    </section>
+    <section id="billund" class="section-white">
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Three-night Denmark road trip</p>
-            <h2>LEGOLAND is fixed. Where the family sleeps is not.</h2>
+            <p class="eyebrow">Four-night Denmark road trip · Sep 12–16</p>
+            <h2>One car, four nights, and four credible ways to arrange them.</h2>
           </div>
-          <p>A car changes the design space. The best current plan is to collect it at Copenhagen Airport, visit LEGOLAND Sunday, continue to Aarhus for two nights, and return the car Tuesday evening before sleeping beside the airport.</p>
+          <p>The family needs a full LEGOLAND day, not a Billund-only vacation. Moving west after ECCV on Saturday makes Vejle the most useful hub: close to the park, central for Jelling and Aarhus, and directly on the eastbound route to Copenhagen Airport.</p>
         </div>
 
         <div class="image-feature">
-          <div class="image-feature-photo" role="img" aria-label="Exterior of LEGO House in Billund"></div>
+          <div class="image-feature-photo" role="img" aria-label="Entrance to LEGOLAND Billund"></div>
           <div class="image-feature-copy">
-            <span class="tag yellow">The immovable window</span>
-            <h3>LEGOLAND must happen Sunday.</h3>
-            <p>LEGOLAND is open September 13 from 10:00–18:00, with rides closing one hour before the park. Leave Baltzar around 06:45, take the direct train to Copenhagen Airport, collect the car around 08:00, and aim to reach the park near 11:00.</p>
+            <span class="tag yellow">The move that unlocks the trip</span>
+            <h3>Drive west Saturday. Give LEGOLAND all of Sunday.</h3>
+            <p>Check out of Baltzar on September 12, store the bags, attend the last priority ECCV sessions, then take the direct train to Copenhagen Airport and collect the car. The evening drive to Vejle is about 2¼ hours. That avoids a rushed park arrival and turns September 13 into a complete 10:00–18:00 LEGOLAND day.</p>
             <div class="opening-pair">
-              <div class="opening-card critical"><strong>Sun · Sep 13</strong><span>LEGOLAND · 10:00–18:00 · rides close 17:00</span></div>
-              <div class="opening-card"><strong>After the park</strong><span>Billund → Aarhus · about 70 minutes</span></div>
+              <div class="opening-card critical"><strong>Sun · Sep 13</strong><span>LEGOLAND · 10:00–18:00 · Vejle is about 30 minutes away</span></div>
+              <div class="opening-card"><strong>Important booking wrinkle</strong><span>Baltzar is paid through Sep 13; leaving Sep 12 may sacrifice the final night unless the hotel grants a change.</span></div>
             </div>
           </div>
         </div>
 
         <div class="mini-steps" aria-label="Recommended Denmark road-trip sequence">
-          <article class="mini-step"><strong>Saturday, Sep 12</strong><span>Finish ECCV without watching the clock. Eat and sleep in Malmö, with bags packed for a prompt Sunday departure.</span></article>
-          <article class="mini-step"><strong>Sunday, Sep 13</strong><span>Train Malmö C → CPH Airport, pick up the reserved family car and child seats, drive about 2h50 to LEGOLAND, then continue to Aarhus after closing.</span></article>
-          <article class="mini-step"><strong>Monday, Sep 14</strong><span>Give Aarhus a real day: Den Gamle By as the anchor, then Dokk1, the harbor playground, or an early dinner depending on energy.</span></article>
-          <article class="mini-step"><strong>Tuesday, Sep 15</strong><span>Cross Funen with one optional stop, return the car at CPH that evening, and sleep by Terminal 3 before SK935.</span></article>
+          <article class="mini-step"><strong>Saturday, Sep 12</strong><span>Finish the essential ECCV program, train Hyllie or Malmö C → CPH Airport, pick up the car, and sleep in Vejle.</span></article>
+          <article class="mini-step"><strong>Sunday, Sep 13</strong><span>Use the complete LEGOLAND day. Return to the same Vejle room rather than repacking after the park.</span></article>
+          <article class="mini-step"><strong>Monday, Sep 14</strong><span>Choose one: Aarhus + Den Gamle By, or a lower-energy Jelling + Givskud/Økolariet day.</span></article>
+          <article class="mini-step"><strong>Tuesday, Sep 15</strong><span>Drive east with Egeskov, Odense, or no stop; return the car at CPH Airport and sleep by the terminal.</span></article>
         </div>
 
-        <div class="flight-strategy">
-          <article class="strategy-card recommended"><span class="tag">Recommended</span><h3>LEGOLAND + 2 Aarhus nights + CPH</h3><p>Drive directly from the park to Aarhus Sunday evening. Monday becomes a full city day; Tuesday can include Odense or Egeskov. The cost is giving up LEGO House.</p></article>
-          <article class="strategy-card"><span class="tag blue">Maximum LEGO</span><h3>Billund + Aarhus + CPH</h3><p>Sleep in Billund Sunday, visit LEGO House Monday, then sleep in Aarhus. It includes both LEGO anchors but creates three consecutive one-night stays and compresses Aarhus.</p></article>
-          <article class="strategy-card"><span class="tag yellow">Calmest</span><h3>2 Billund nights + CPH</h3><p>Keep the previous Hotel LEGOLAND plan and use Tuesday for Egeskov or Odense. It minimizes Sunday fatigue but drops Aarhus from the trip.</p></article>
+        <div class="decision-photo-grid" aria-label="Possible Denmark road-trip experiences">
+          <figure class="decision-photo photo-vejle"><div class="decision-photo-art" role="img" aria-label="Fjordenhus on Vejle Fjord"></div><figcaption><strong>Vejle · the practical hub</strong><span>Three unpacked nights, waterfront walks, and the shortest balanced access to Billund, Jelling, and Aarhus.</span></figcaption></figure>
+          <figure class="decision-photo photo-aarhus"><div class="decision-photo-art" role="img" aria-label="Historic buildings at Den Gamle By in Aarhus"></div><figcaption><strong>Aarhus · the city day</strong><span>Den Gamle By is the family anchor; Dokk1 and its playground are the pressure-release valve.</span></figcaption></figure>
+          <figure class="decision-photo photo-jelling"><div class="decision-photo-art" role="img" aria-label="Jelling mounds and church"></div><figcaption><strong>Jelling · close and distinctive</strong><span>Viking history only about 15 minutes from Vejle, easy to pair with Givskud Zoo.</span></figcaption></figure>
+          <figure class="decision-photo photo-egeskov"><div class="decision-photo-art" role="img" aria-label="Egeskov Castle in Denmark"></div><figcaption><strong>Egeskov · the eastbound stop</strong><span>Castle, gardens, maze, treetop route, and play forest make the return drive part of the trip.</span></figcaption></figure>
         </div>
 
-        <div class="program-watch"><div><p class="eyebrow">Why Aarhus earns two nights</p><h3>One major museum, one free play valve, and no pressure to “complete” the city.</h3><p>Aarhus—roughly “OR-hoos”—is Denmark’s second city. For this family, its appeal is the mix of tactile history, good design, harbor life, and easy spaces where the children can move.</p></div><div class="watch-grid">
-          <div class="watch-topic"><strong>Den Gamle By · first choice</strong><span>The open-air Old Town is open 10:00–17:00 and recommends 4–5 hours. Children 0–17 enter free. It is the best single Aarhus anchor for both adults and young children.</span></div>
-          <div class="watch-topic"><strong>Dokk1 + Kloden · perfect release valve</strong><span>The harbor library has indoor family spaces and a free outdoor playground themed around five world regions. Use it after the museum or whenever attention runs out.</span></div>
-          <div class="watch-topic"><strong>Moesgaard · rainy-day swap</strong><span>Interactive archaeology, Vikings, Grauballe Man, and a junior lab make this the strongest indoor alternative. Children under 18 are free, and the grassy museum roof supplies needed movement.</span></div>
-          <div class="watch-topic"><strong>ARoS · short iconic add-on</strong><span>The rainbow panorama is visually memorable and children under 18 are free. September 14 is an exception day closing at 16:00, so use it first thing or save it for Tuesday morning.</span></div>
-          <div class="watch-topic"><strong>Marselisborg Deer Park · outdoor reset</strong><span>A free forest walk among deer and wild boar, best when everyone needs nature more than another ticket. The car makes it easy to combine with Moesgaard.</span></div>
-          <div class="watch-topic"><strong>Monday rhythm</strong><span>Choose Den Gamle By or Moesgaard—not both. Add Dokk1, the Latin Quarter, or an early dinner only if the children still have fuel.</span></div>
-        </div></div>
+        <div class="option-map-shell">
+          <div class="option-map-stage"><svg id="denmarkDecisionMap" role="img" aria-labelledby="decisionMapTitle decisionMapNote"></svg></div>
+          <div class="option-map-copy">
+            <span class="tag yellow">Map changes with the scenario above</span>
+            <h3 id="decisionMapTitle">Vejle hub + airport night</h3>
+            <p id="decisionMapNote">CPH Airport → Vejle, with LEGOLAND and Aarhus as day trips, then east through Funen.</p>
+            <div class="option-map-facts">
+              <div class="option-map-fact"><strong>Car return</strong><span id="decisionMapReturn">September 15 · before the airport hotel</span></div>
+              <div class="option-map-fact"><strong>Bridge plan</strong><span id="decisionMapToll">Two Great Belt crossings · Little Belt is free</span></div>
+            </div>
+          </div>
+        </div>
 
-        <div class="program-watch"><div><p class="eyebrow">Aarhus hotel shortlist · Sep 13–15</p><h3>Prioritize two real beds for the children and uncomplicated parking.</h3><p>These rankings use official room capacities and parking information, not live September inventory or rates.</p></div><div class="watch-grid">
-          <div class="watch-topic"><strong>1 · Comwell Aarhus · best room setup</strong><span>Standard and Superior Quadruple rooms have two double beds in 28 m², a major improvement over a shared sofa bed. Paid on-site parking and a walkable design-hotel location fit the road trip well.</span></div>
-          <div class="watch-topic"><strong>2 · Scandic Aarhus City · best central base</strong><span>The official Family Four sleeps four in 25 m², with ARoS 400 m away and paid Q-Park below. The hotel cannot guarantee parking, and the room may use a sofa bed for the children.</span></div>
-          <div class="watch-topic"><strong>3 · Scandic The Mayor · best space splurge</strong><span>The 40 m² Master Suite adds a separate bedroom, living room, kitchenette, terrace, and space for four. Choose it only if the premium is reasonable and parking logistics are confirmed.</span></div>
-          <div class="watch-topic"><strong>Car-first fallback · Scandic Aarhus Vest</strong><span>Free fenced parking and Family Four rooms remove city-garage anxiety, but the hotel is 4 km outside the center and gives up the walkable Aarhus evening.</span></div>
-        </div></div>
+        <div class="program-watch">
+          <div><p class="eyebrow">The sleep-pattern decision</p><h3>The 3+1 Vejle plan wins on hotel stability, park access, and flight protection.</h3><p>These are route structures, not claims of live room availability. The interactive scenario selector above changes both the detailed daily plan and this route map.</p></div>
+          <div class="option-matrix-shell"><table class="option-matrix">
+            <thead><tr><th>Pattern</th><th>Where you sleep</th><th>LEGOLAND</th><th>What it adds</th><th>Cost / friction</th><th>Verdict</th></tr></thead>
+            <tbody>
+              <tr><td class="matrix-lead">3+1 Vejle</td><td>Vejle Sep 12–15<br>CPH Airport Sep 15</td><td>30 min each way; full Sunday</td><td>Aarhus or Jelling day; possible Funen stop</td><td>Two hotels; car Sep 12–15</td><td class="matrix-lead">Best balance</td></tr>
+              <tr><td>2+2 Aarhus / CPH</td><td>Aarhus Sep 12–14<br>Copenhagen Sep 14–16</td><td>About 1½ hours each way</td><td>Best Aarhus evenings; last Copenhagen day</td><td>Early car return; long park commute</td><td>Choose for cities</td></tr>
+              <tr><td>2+1+1 LEGO-max</td><td>Billund Sep 12–14<br>Aarhus Sep 14–15<br>CPH Airport Sep 15</td><td>At the gate</td><td>LEGOLAND + LEGO House + Aarhus taste</td><td>Three hotels in four nights</td><td>Choose for LEGO</td></tr>
+              <tr><td>4 nights Vejle</td><td>Vejle Sep 12–16</td><td>30 min each way</td><td>Only one unpacking</td><td>~2¼-hour drive, fuel, and return before flight</td><td>Avoid for SK935</td></tr>
+            </tbody>
+          </table></div>
+        </div>
 
-        <div class="program-watch"><div><p class="eyebrow">Tuesday across Funen</p><h3>Choose one road-trip stop—or skip both and reach Copenhagen early.</h3><p>Do not turn September 15 into another checklist. Both options work only because the car is already moving east toward Copenhagen Airport.</p></div><div class="watch-grid">
-          <div class="watch-topic"><strong>Rain or imagination · Odense</strong><span>H.C. Andersen’s House is open 10:00–17:00 and recommends 1.5–2 hours. The play-and-costume children’s world, Ville Vau, opens at 13:00 on Tuesday; reserve timed entry and target roughly 13:00–15:30.</span></div>
-          <div class="watch-topic"><strong>Dry weather · Egeskov</strong><span>The castle, gardens, vintage collections, maze, TreeTop Walking, and large Play Forest are a bigger all-family draw. The 2026 summer season covers September 15; allow 3–4 hours and skip ARoS that morning.</span></div>
-          <div class="watch-topic"><strong>Low-energy option · direct to CPH</strong><span>Have a slow Aarhus breakfast, drive straight east, return the car, and use the metro for a familiar Copenhagen dinner. This is the correct choice if the children are saturated.</span></div>
-        </div></div>
+        <div class="program-watch">
+          <div>
+            <p class="eyebrow">Vejle lodging shortlist · Sep 12–15</p>
+            <h3>Search for a real four-person room and easy parking—not merely “central.”</h3>
+            <p>Vejle works because it is a genuine small city rather than an attraction campus. Confirm the exact bedding for children ages seven and five, total parking charge, and a cancellable rate before paying.</p>
+          </div>
+          <div class="watch-grid">
+            <div class="watch-topic"><strong>1 · The Note · best overall</strong><span>Stylish central setting beside the park, with several roughly 40 m² suites listed for up to four guests. Its official room descriptions show one double bed, so confirm exactly how the children’s beds are supplied.</span></div>
+            <div class="watch-topic"><strong>2 · Munkebjerg Hotel · best resort reset</strong><span>Forest-and-fjord setting, pool/wellness, free parking, and family occupancy up to four. It is about 8.5 km outside central Vejle, making it car-friendly but less useful for walking to dinner.</span></div>
+            <div class="watch-topic"><strong>3 · CABINN Vejle · best simple logistics</strong><span>Central, 24-hour reception, paid parking, and an official Family Room for four. Expect a compact, bunk-oriented room rather than suite space; verify the exact live bed layout.</span></div>
+            <div class="watch-topic"><strong>4 · BB-Hotel Vejle Park · best basic value</strong><span>Very central and publishes a four-bed room, with fridge and microwave access in the common area. The format is self-service and intentionally spare, so it is a value fallback rather than a special family stay.</span></div>
+          </div>
+        </div>
 
-        <div class="program-watch"><div><p class="eyebrow">Car + final-night operating plan</p><h3>Airport round trip, Sunday morning to Tuesday evening.</h3><p>The Malmö train stops at Copenhagen Airport before Copenhagen Central. The airport rental center is reached by a free terminal bus and major desks operate much longer on Sunday than the central-city branch.</p></div><div class="watch-grid">
-          <div class="watch-topic"><strong>Pickup</strong><span>Reserve CPH Airport around 08:00 on September 13. Book an automatic family-size wagon/crossover with luggage hidden below the cargo cover, full damage terms, unlimited mileage, and two appropriate child restraints.</span></div>
-          <div class="watch-topic"><strong>Road costs</strong><span>The western loop crosses the Great Belt twice. Budget two tolls plus fuel, Aarhus parking, and the rental; verify whether the company passes tolls through automatically or adds an administration fee.</span></div>
-          <div class="watch-topic"><strong>Return</strong><span>Return the car at CPH Airport on September 15 before hotel check-in. Photograph the vehicle, fuel/charge level, mileage, and return bay. Do not carry rental-return risk into the SK935 morning.</span></div>
-          <div class="watch-topic"><strong>Child seats</strong><span>Danish rules require an appropriate restraint until a child is at least 135 cm tall. Reserve by child height and weight, or bring familiar travel seats rather than accepting an unspecified “booster.”</span></div>
-          <div class="watch-topic"><strong>Final-night splurge · Clarion CPH</strong><span>Two minutes from Terminal 3; the 45 m² Family Room has a double bed and sofa bed. Best when maximum morning ease and a full-service finish justify the rate.</span></div>
-          <div class="watch-topic"><strong>Final-night value · Comfort CPH</strong><span>The official Family Room uses two 140 cm double beds, a better sleep layout for four. It is the practical first price comparison against Clarion.</span></div>
-        </div></div>
+        <div class="program-watch">
+          <div>
+            <p class="eyebrow">What to do from the Vejle hub</p>
+            <h3>Pick one anchor per day and keep a recovery option close.</h3>
+            <p>After jet lag, Stockholm, and five conference days, flexibility is more valuable than collecting cities. Monday should be chosen at breakfast based on weather and family energy.</p>
+          </div>
+          <div class="watch-grid">
+            <div class="watch-topic"><strong>LEGOLAND · guaranteed Sunday</strong><span>Vejle is officially about 30 km / 30 minutes from the park. Leave around 09:00, use the 10:00–18:00 opening window, and sleep in the same room afterward.</span></div>
+            <div class="watch-topic"><strong>Aarhus · ambitious Monday</strong><span>About an hour by car. Make Den Gamle By the one ticketed anchor; add Dokk1, the harbor, or dinner only if the children still have energy.</span></div>
+            <div class="watch-topic"><strong>Jelling + Givskud · lower-energy Monday</strong><span>Kongernes Jelling is close, free for children, and open 10:00–17:00. Givskud Zoo is open 10:00–16:00; combine them only if the family wants a fuller day.</span></div>
+            <div class="watch-topic"><strong>Vejle recovery · easiest swap</strong><span>Økolariet is a free hands-on science and sustainability center open 10:00–16:00. Add the waterfront, playground, or a slow lunch rather than another drive.</span></div>
+            <div class="watch-topic"><strong>Funen · Tuesday bonus</strong><span>Egeskov is the strongest all-family eastbound stop; H.C. Andersen’s House in Odense is the indoor alternative. Skip both if everyone needs a calm airport arrival.</span></div>
+            <div class="watch-topic"><strong>LEGO House · only in LEGO-max</strong><span>Adding the indoor Billund anchor is possible, but it displaces Aarhus/Jelling and makes a Billund stay more useful. Do not squeeze it into the recommended route by sacrificing recovery.</span></div>
+          </div>
+        </div>
 
-        <p class="decision-note"><strong>Current recommendation:</strong> reserve a cancellable two-night Aarhus room and one airport night, then price a same-location CPH Airport rental for September 13–15. Keep one cancellable Billund room only while deciding whether LEGO House is important enough to replace a full Aarhus day.</p>
+        <div class="program-watch">
+          <div>
+            <p class="eyebrow">Car return decision</p>
+            <h3>Return September 15. The extra rental night buys risk, not vacation.</h3>
+            <p>SK935 leaves at 12:45 on September 16. A Vejle-to-airport drive, refueling, rental inspection, luggage transfer, and airline check-in on the same morning create several avoidable failure points.</p>
+          </div>
+          <div class="return-verdict">
+            <div class="return-card recommended"><strong>Sep 15 · recommended</strong><span>Use Tuesday for a Funen stop or easy eastbound drive, return by evening, photograph the car, and walk to the terminal Wednesday. This is the cleanest end to the trip.</span></div>
+            <div class="return-card"><strong>Sep 14 · works for the 2+2</strong><span>If the family chooses two Aarhus nights plus two Copenhagen nights, return Monday evening. That buys a car-free city day but makes LEGOLAND a 1½-hour-each-way trip.</span></div>
+            <div class="return-card avoid"><strong>Sep 16 · avoid</strong><span>It saves one hotel move only in the four-night Vejle plan, while adding another rental day, parking, an early departure, and flight-day operational risk.</span></div>
+          </div>
+        </div>
 
-        <details class="decision-archive"><summary>Earlier Billund-base and train-first research</summary><div class="archive-body">
+        <div class="program-watch">
+          <div>
+            <p class="eyebrow">Bridge tolls · what actually applies</p>
+            <h3>The Great Belt is the material cost. The Little Belt is free.</h3>
+            <p>Collecting and returning the car at Copenhagen Airport is strategically important: the family crosses the Øresund by train before pickup, avoiding a car toll and likely cross-border or international one-way rental charges.</p>
+          </div>
+          <div class="toll-ledger">
+            <div class="toll-card"><strong>Great Belt · 2 crossings</strong><span>2026 passenger-car price is DKK 205 each way with an active automatic-payment agreement, or DKK 235 by card/cash. Budget DKK 410–470 round trip, plus any rental-company administration fee.</span></div>
+            <div class="toll-card"><strong>Little Belt · no toll</strong><span>The E20 bridge between Funen and Jutland is free. There is no extra bridge charge on the Vejle/Billund side of the road loop.</span></div>
+            <div class="toll-card"><strong>Øresund · avoid in the rental</strong><span>If driven, a car up to 6 m is DKK 465 prepaid online or DKK 520 at the toll station each way in the 2026 price period. The recommended train-to-CPH pickup makes this car toll zero.</span></div>
+          </div>
+          <p class="decision-note"><strong>At the rental counter:</strong> ask whether the vehicle is enrolled in automatic bridge payment, what price is passed through, whether an administration fee is added, and whether child seats are confirmed by each child’s height and weight.</p>
+        </div>
+
+        <div class="program-watch">
+          <div>
+            <p class="eyebrow">Airport rental + final-night operating plan</p>
+            <h3>CPH round trip, Saturday evening to Tuesday evening.</h3>
+            <p>Copenhagen Airport’s rental center is connected to the terminals by the free shuttle bus. Published airport-desk hours cover Saturday evening, and major firms provide after-hours return; verify the exact desk and shuttle timetable on the final booking.</p>
+          </div>
+          <div class="watch-grid">
+            <div class="watch-topic"><strong>Pickup · Sep 12</strong><span>Reserve a realistic collection time after the last must-attend ECCV session and direct train from Malmö/Hyllie. Avoid a prepaid rate with a narrow no-show window.</span></div>
+            <div class="watch-topic"><strong>Vehicle</strong><span>Book an automatic wagon or crossover with four people’s luggage hidden below the cargo cover, unlimited mileage, clear damage terms, and two specified child restraints.</span></div>
+            <div class="watch-topic"><strong>Return · Sep 15</strong><span>Refuel near the airport, photograph every side, fuel level, mileage, and return bay, then check into the airport hotel. Keep the final morning task-free.</span></div>
+            <div class="watch-topic"><strong>Final-night first comparison</strong><span>Clarion Copenhagen Airport is the maximum-ease splurge; Comfort Copenhagen Airport’s Family Room with two 140 cm beds is the practical family-value comparison.</span></div>
+          </div>
+        </div>
+
+        <p class="decision-note"><strong>Current recommendation:</strong> hold a cancellable Vejle room for September 12–15 and an airport room for September 15. Price a same-location CPH Airport rental for September 12–15, reserve LEGOLAND for Sunday, and treat Aarhus versus Jelling as a weather-and-energy choice rather than another hotel decision.</p>
+
+        <details class="decision-archive">
 
         <div class="program-watch">
           <div>
@@ -4143,13 +4494,13 @@
             <label class="check-item"><input type="checkbox" data-check="flights" checked disabled><span class="check-copy"><strong>SAS flights booked</strong><span>SK936 + SK1426 outbound and SK935 nonstop home are confirmed for four travelers. Approximate paid total: $6.1k.</span></span><span class="priority later">Booked</span></label>
             <label class="check-item"><input type="checkbox" data-check="malmo-hotel" checked disabled><span class="check-copy"><strong>Home Hotel Baltzar booked · Sep 7–13</strong><span>Junior Suite for four · approximately $2.8k · free cancellation until Sep 5 at 11:59pm local. Reservation number redacted.</span></span><span class="priority later">Booked</span></label>
             <label class="check-item"><input type="checkbox" data-check="stockholm-hotel" checked disabled><span class="check-copy"><strong>Scandic Continental Master Suite booked · Sep 4–7</strong><span>Family of four · about $1.5k · non-refundable; reservation and payment details redacted.</span></span><span class="priority later">Booked</span></label>
-            <label class="check-item"><input type="checkbox" data-check="billund-hotel"><span class="check-copy"><strong>Hold Aarhus · Sep 13–15</strong><span>Price Comwell Quadruple first, then Scandic Aarhus City Family Four and The Mayor Master Suite. Keep the rate cancellable while the LEGO House tradeoff is open.</span></span><span class="priority">Now</span></label>
+            <label class="check-item"><input type="checkbox" data-check="billund-hotel"><span class="check-copy"><strong>Hold Vejle · Sep 12–15</strong><span>Price The Note first, then Munkebjerg, CABINN, and BB-Hotel Vejle Park. Confirm a true four-person bed setup, parking total, and a cancellable rate.</span></span><span class="priority">Now</span></label>
             <label class="check-item"><input type="checkbox" data-check="cph-hotel"><span class="check-copy"><strong>Hold CPH Airport · Sep 15</strong><span>Compare Clarion’s 45 m² Family Room with Comfort’s two-double-bed Family Room. Both remove airport logistics from the flight morning.</span></span><span class="priority">Now</span></label>
-            <label class="check-item"><input type="checkbox" data-check="transfer"><span class="check-copy"><strong>Reserve CPH Airport car · Sep 13–15</strong><span>Same-location airport rental, automatic family car with covered luggage space, unlimited mileage, clear damage terms, and two height/weight-appropriate child seats.</span></span><span class="priority">Now</span></label>
-            <label class="check-item"><input type="checkbox" data-check="lego"><span class="check-copy"><strong>Book LEGOLAND · Sep 13</strong><span>This Sunday is the only park window in the final three nights. Decide separately whether LEGO House is worth replacing a full Aarhus day.</span></span><span class="priority">Now</span></label>
+            <label class="check-item"><input type="checkbox" data-check="transfer"><span class="check-copy"><strong>Reserve CPH Airport car · Sep 12–15</strong><span>Same-location airport rental, automatic family car with covered luggage space, unlimited mileage, clear damage terms, two child seats, and explicit Great Belt toll handling.</span></span><span class="priority">Now</span></label>
+            <label class="check-item"><input type="checkbox" data-check="lego"><span class="check-copy"><strong>Book LEGOLAND · Sep 13</strong><span>Vejle puts the full Sunday park window about 30 minutes away. Treat LEGO House as a separate choice only in the LEGO-max scenario.</span></span><span class="priority">Now</span></label>
             <label class="check-item"><input type="checkbox" data-check="eccv"><span class="check-copy"><strong>Register and lock the Sep 8–9 workshop plan</strong><span>Primary plan: Multimodal Digital Agents on Tuesday and World Models for Embodied AI on Wednesday.</span></span><span class="priority">Now</span></label>
             <label class="check-item"><input type="checkbox" data-check="poster"><span class="check-copy"><strong>Capture the poster's exact assignment</strong><span>Date, session, time, room, and board are still TBA; watch the author inbox and official program. Paper identity is redacted publicly.</span></span><span class="priority soon">Soon</span></label>
-            <label class="check-item"><input type="checkbox" data-check="rail"><span class="check-copy"><strong>Book SJ; keep local trains flexible</strong><span>Reserve Stockholm → Malmö now. Use Skånetrafiken for the September 13 direct Malmö → CPH Airport train and carry valid ID.</span></span><span class="priority soon">Soon</span></label>
+            <label class="check-item"><input type="checkbox" data-check="rail"><span class="check-copy"><strong>Book SJ; keep local trains flexible</strong><span>Reserve Stockholm → Malmö now. Use Skånetrafiken for the September 12 direct Malmö/Hyllie → CPH Airport train and carry valid ID.</span></span><span class="priority soon">Soon</span></label>
             <label class="check-item"><input type="checkbox" data-check="dinner"><span class="check-copy"><strong>Pick one Stockholm classic dinner</strong><span>Tradition in Gamla Stan is a straightforward first-timer option; keep the other meals flexible.</span></span><span class="priority later">Later</span></label>
           </div>
         </div>
@@ -4202,8 +4553,11 @@
               <li><a href="https://www.dsb.dk/togture-i-danmark/kobenhavn-vejle/" target="_blank" rel="noreferrer">DSB: Copenhagen–Vejle InterCityLyn</a></li>
               <li><a href="https://www.dsb.dk/en/find-produkter-og-services/orange-fri/" target="_blank" rel="noreferrer">DSB Orange Fri flexibility, child, and sale-window rules</a></li>
               <li><a href="https://www.storebaelt.dk/en/prices-and-discounts/private/" target="_blank" rel="noreferrer">Great Belt 2026 car tolls</a></li>
+              <li><a href="https://www.visitdenmark.com/faq/toll-bridges" target="_blank" rel="noreferrer">VisitDenmark: tolled and free Danish bridges</a></li>
+              <li><a href="https://www.oresundsbron.com/de/preise" target="_blank" rel="noreferrer">Øresund Bridge 2026 car prices</a></li>
               <li><a href="https://www.cph.dk/en/parking-transport/other-parking-options/car%20rental" target="_blank" rel="noreferrer">Copenhagen Airport Car Rental Centre + terminal bus</a></li>
               <li><a href="https://www.sixt.dk/billeje/danmark/kobenhavn/kobenhavns-lufthavn/" target="_blank" rel="noreferrer">CPH Airport rental hours · 07:00–23:00 daily</a></li>
+              <li><a href="https://www.enterprise.dk/en/car-hire-locations/dk/copenhagen-airport-kd20.html" target="_blank" rel="noreferrer">Enterprise CPH hours, after-hours returns, and cross-border fee policy</a></li>
               <li><a href="https://www.sixt.com/car-rental/denmark/copenhagen/copenhagen-city-centre/" target="_blank" rel="noreferrer">Copenhagen city rental hours · Sunday comparison</a></li>
               <li><a href="https://www.sikkertrafik.dk/rad-og-viden/bil/born-i-bilen/born-i-bilen-hvad-siger-loven/" target="_blank" rel="noreferrer">Danish child-restraint rule · 135 cm</a></li>
             </ul>
@@ -4212,11 +4566,14 @@
             <h3>Billund dates + alternatives</h3>
             <ul>
               <li><a href="https://www.legoland.dk/en/plan-your-day/pre-visit/opening-hours/" target="_blank" rel="noreferrer">LEGOLAND 2026 opening calendar</a></li>
+              <li><a href="https://www.legoland.dk/planlaeg-din-dag/foer-dit-besoeg/find-vej/" target="_blank" rel="noreferrer">LEGOLAND directions · Vejle and Aarhus drive estimates</a></li>
               <li><a href="https://legohouse.com/en-gb/plan-your-visit/opening-hours" target="_blank" rel="noreferrer">LEGO House 2026 opening calendar</a></li>
               <li><a href="https://www.lalandia.dk/en/billund/go-exploring/the-aquadome" target="_blank" rel="noreferrer">Lalandia Aquadome day visits</a></li>
               <li><a href="https://wowpark.dk/en" target="_blank" rel="noreferrer">WOW PARK Billund</a></li>
               <li><a href="https://www.givskudzoo.dk/da/besoeg-zoo/aabningstider/" target="_blank" rel="noreferrer">Givskud Zoo 2026 season</a></li>
               <li><a href="https://kongernesjelling.dk/en/visit-us" target="_blank" rel="noreferrer">Kongernes Jelling visitor information</a></li>
+              <li><a href="https://www.okolariet.dk/en" target="_blank" rel="noreferrer">Økolariet Vejle · free family science center</a></li>
+              <li><a href="https://www.visitvejle.com/vejle/experiences/family-holidays" target="_blank" rel="noreferrer">VisitVejle family guide</a></li>
             </ul>
           </div>
           <div class="source-group">
@@ -4254,6 +4611,11 @@
               <li><a href="https://www.tivolihotel.com/facilities-and-services/swimming-pool-and-sauna" target="_blank" rel="noreferrer">Tivoli Hotel indoor pool</a></li>
               <li><a href="https://www.scandichotels.com/en/hotels/scandic-copenhagen" target="_blank" rel="noreferrer">Scandic Copenhagen Standard Family Four</a></li>
               <li><a href="https://www.scandichotels.com/en/hotels/scandic-cph-strandpark" target="_blank" rel="noreferrer">Scandic CPH Strandpark family rooms</a></li>
+              <li><a href="https://thenote.dk/rooms/" target="_blank" rel="noreferrer">The Note Vejle suite capacities</a></li>
+              <li><a href="https://thenote.dk/general-info/" target="_blank" rel="noreferrer">The Note parking and practical details</a></li>
+              <li><a href="https://munkebjerg.dk/en/stay-at-munkebjerg-hotel-vejle/post-year-stay/" target="_blank" rel="noreferrer">Munkebjerg family occupancy and stay details</a></li>
+              <li><a href="https://en.cabinn.com/hotel/cabinn-vejle" target="_blank" rel="noreferrer">CABINN Vejle Family Room and parking</a></li>
+              <li><a href="https://bbhotels.dk/hotel-i-vejle/" target="_blank" rel="noreferrer">BB-Hotel Vejle Park four-bed room</a></li>
               <li><a href="https://www.comwell.com/en/hotels/comwell-hotel-aarhus" target="_blank" rel="noreferrer">Comwell Aarhus quadruple rooms</a></li>
               <li><a href="https://www.comwell.com/en/hotels/comwell-hotel-aarhus/faq" target="_blank" rel="noreferrer">Comwell Aarhus parking</a></li>
               <li><a href="https://www.scandichotels.com/en/hotels/scandic-aarhus-city" target="_blank" rel="noreferrer">Scandic Aarhus City Family Four + parking</a></li>
@@ -4285,14 +4647,18 @@
             <ul>
               <li><a href="https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/" target="_blank" rel="noreferrer">Map geometry · Natural Earth 1:110m</a></li>
               <li><a href="https://commons.wikimedia.org/wiki/File:Oresund_Bridge_-_Malmo,_Sweden.jpg" target="_blank" rel="noreferrer">Öresund Bridge · Richard Dennis · CC BY 2.0</a></li>
-              <li><a href="https://commons.wikimedia.org/wiki/File:LEGO_house_exterior_01.jpg" target="_blank" rel="noreferrer">LEGO House · Sintakso · Wikimedia Commons</a></li>
+              <li><a href="https://commons.wikimedia.org/wiki/File:Legoland_Billund_-_Indgangen_01.jpg" target="_blank" rel="noreferrer">LEGOLAND entrance · Leif Jørgensen · CC BY-SA 4.0</a></li>
+              <li><a href="https://commons.wikimedia.org/wiki/File:Fjordenhus_Vejle_Fjord_Denmark_06.jpg" target="_blank" rel="noreferrer">Vejle Fjord + Fjordenhus · Ciara Ní Riain · CC BY-SA 4.0</a></li>
+              <li><a href="https://commons.wikimedia.org/wiki/File:Den_Gamle_By,_Aarhus,_Denmark_28.jpg" target="_blank" rel="noreferrer">Den Gamle By · Simon Burchell · CC BY-SA 4.0</a></li>
+              <li><a href="https://commons.wikimedia.org/wiki/File:The_Jelling_mounds_and_church.jpg" target="_blank" rel="noreferrer">Jelling mounds and church · Htawmonzel · CC BY-SA 4.0</a></li>
+              <li><a href="https://commons.wikimedia.org/wiki/File:Egeskov_Castle_(Denmark).jpg" target="_blank" rel="noreferrer">Egeskov Castle · César González Palomo · CC BY-SA 2.0</a></li>
               <li><a href="https://commons.wikimedia.org/wiki/File:Malm%C3%B6_central_station.jpg" target="_blank" rel="noreferrer">Malmö Central · Jiří Komárek · CC BY-SA 4.0</a></li>
             </ul>
           </div>
           <div class="source-group">
             <h3>Important caveats</h3>
             <ul>
-              <li>Home Hotel Baltzar and Scandic Continental are confirmed; the Aarhus, Billund, and CPH Airport hotel rankings compare official room types and locations, not live September 2026 inventory or rates.</li>
+              <li>Home Hotel Baltzar and Scandic Continental are confirmed; the Vejle and CPH Airport hotel rankings compare official room types and locations, not live September 2026 inventory or rates.</li>
               <li>The Scandic Continental Master Suite rate is non-refundable; contact the property in advance if arrival may be after midnight.</li>
               <li>Drive time and door-to-door commute times are planning estimates.</li>
               <li>The main-conference program and poster session assignment are not yet public.</li>
@@ -4301,7 +4667,7 @@
             </ul>
           </div>
         </div>
-        <p class="as-of">Public planning edition updated August 18, 2026. The SAS itinerary, Scandic Continental stay, and Home Hotel Baltzar stay are confirmed, with approximate combined booked costs of $10.4k. Passenger names, reservation identifiers, assigned seats, account credits, payment details, and the conference paper identity are omitted. The current western recommendation is a CPH Airport rental, LEGOLAND Sunday, two Aarhus nights, a Funen stop, and a protected CPH Airport night.</p>
+        <p class="as-of">Public planning edition updated September 1, 2026. The SAS itinerary, Scandic Continental stay, and Home Hotel Baltzar stay are confirmed, with approximate combined booked costs of $10.4k. Passenger names, reservation identifiers, assigned seats, account credits, payment details, and the conference paper identity are omitted. The current western recommendation is a September 12–15 CPH Airport rental, three Vejle nights, full-day LEGOLAND, optional Aarhus or Jelling, and a protected CPH Airport night.</p>
       </div>
     </section><section id="archive" class="archive-section">
       <div class="wrap">
@@ -4388,111 +4754,91 @@
     });
 
     const scenarios = {
-      reverse: {
-        dates: "Sep 3–16 · about 8 school days",
-        title: "Stockholm, ECCV, Billund, Copenhagen",
-        summary: "Three Stockholm nights, six Malmö nights, two Billund nights, and one Copenhagen night before the nonstop home.",
-        verdictTitle: "Locked framework",
-        verdictCopy: "The booked flights, Stockholm stay, and September 7–13 Baltzar stay protect the conference and preserve the nonstop flight home.",
+      vejleHub: {
+        dates: "Sep 3–16 · Denmark road trip Sep 12–15",
+        title: "Vejle hub, then Copenhagen Airport",
+        summary: "Three nights in one useful Jutland base put LEGOLAND 30 minutes away and Aarhus within day-trip range; one airport night protects SK935.",
+        verdictTitle: "Recommended · 3+1",
+        verdictCopy: "Only two hotels, a full LEGOLAND day, flexible access to Aarhus or Jelling, and no rental return on flight morning.",
         route: [
           ["Stockholm", "Sep 4–7", "3 nights"],
-          ["Malmö", "Sep 7–13", "Baltzar + ECCV"],
-          ["Billund", "Sep 13–15", "2 nights"],
-          ["Copenhagen → SFO", "Sep 15–16", "SK935 nonstop"]
+          ["Malmö", "Sep 7–12", "Baltzar + ECCV"],
+          ["Vejle", "Sep 12–15", "3-night road-trip hub"],
+          ["CPH Airport → SFO", "Sep 15–16", "return car + SK935"]
         ],
         days: [
-          ["Thu–Fri · Sep 3–4", "SK936 + SK1426", "Confirmed SFO → CPH → ARN itinerary, with SK1426 at 13:50–15:05 and a 1h50 protected connection."],
-          ["Fri–Mon · Sep 4–7", "Stockholm", "Gamla Stan arrival walk, Vasa + Djurgården, then one flexible family day."],
-          ["Mon · Sep 7", "Train to Malmö", "Direct X 2000 takes about 4½ hours; current family fares are roughly SEK 2,200–3,500."],
-          ["Tue–Sat · Sep 8–12", "ECCV", "Direct Malmö C → Hyllie commute; sleep in Malmö after the final program."],
-          ["Sun · Sep 13", "Malmö → LEGOLAND", "Transfer early and use a partial park day; official hours are 10:00–18:00."],
-          ["Mon · Sep 14", "LEGO House", "Book a full 10:00–16:00 visit."],
-          ["Tue–Wed · Sep 15–16", "Copenhagen + SK935", "Move east Tuesday, sleep in Copenhagen, and fly nonstop Wednesday."]
+          ["Sat · Sep 12", "ECCV → CPH rental → Vejle", "Check out, store bags, attend the last essential sessions, take the direct train to Copenhagen Airport, and drive about 2¼ hours to Vejle."],
+          ["Sun · Sep 13", "Full LEGOLAND day", "Drive about 30 minutes each way and use the complete 10:00–18:00 park window without changing hotels."],
+          ["Mon · Sep 14", "Aarhus—or Jelling + Givskud", "Choose one city-scale museum day or a closer Viking-history and zoo day based on weather and energy."],
+          ["Tue · Sep 15", "Funen → return car", "Choose Egeskov, Odense, or a direct drive; return the car at CPH Airport and sleep beside the terminal."],
+          ["Wed · Sep 16", "SK935 nonstop", "Walk to check-in for the confirmed 12:45 departure with no road or rental task remaining."]
         ]
       },
-      posterSafe: {
-        dates: "Sep 3–16 · about 8 school days",
-        title: "Leave after ECCV for three Billund nights",
-        summary: "This variation checks out of the Malmö hotel on September 12, transfers west after the conference, and creates two full LEGO days.",
-        verdictTitle: "Verdict: more Billund, less calm",
-        verdictCopy: "It buys a full third night and avoids a partial park day, but restores the Saturday-evening transfer you prefer to avoid.",
+      aarhusCph: {
+        dates: "Sep 3–16 · Denmark road trip Sep 12–14",
+        title: "Two Aarhus nights, then two Copenhagen nights",
+        summary: "Prioritize Denmark’s second city and a final car-free Copenhagen day, accepting a long Sunday commute to LEGOLAND.",
+        verdictTitle: "Best for city time",
+        verdictCopy: "Aarhus gets real evenings and Copenhagen gets a full day, but LEGOLAND is about 1½ hours each way and the family still changes hotels once.",
         route: [
           ["Stockholm", "Sep 4–7", "3 nights"],
-          ["Malmö", "Sep 7–12", "5 nights"],
-          ["Billund", "Sep 12–15", "3 nights"],
-          ["Copenhagen → SFO", "Sep 15–16", "SK935 nonstop"]
+          ["Malmö", "Sep 7–12", "Baltzar + ECCV"],
+          ["Aarhus", "Sep 12–14", "2 nights + LEGOLAND day trip"],
+          ["Copenhagen", "Sep 14–16", "2 nights · return car Sep 14"]
         ],
         days: [
-          ["Thu–Mon · Sep 3–7", "Stockholm arrival", "Use SK1426 and the same three-night Stockholm plan."],
-          ["Mon–Sat · Sep 7–12", "Malmö + ECCV", "Check out Saturday and store luggage at the hotel during the final program."],
-          ["Sat · Sep 12", "Malmö → Billund", "Transfer after ECCV and sleep in Billund."],
-          ["Sun–Mon · Sep 13–14", "Two full LEGO days", "Use LEGO House and LEGOLAND in either order based on tickets and weather."],
-          ["Tue · Sep 15", "Copenhagen", "Both LEGO anchors are closed; transfer east and sleep near the airport route."],
-          ["Wed · Sep 16", "SK935", "Nonstop Copenhagen → San Francisco."],
-          ["Tradeoff", "Late transfer", "This is the better choice only if two full attraction days matter more than a relaxed final ECCV evening."]
+          ["Sat · Sep 12", "CPH rental → Aarhus", "Collect the car after ECCV and drive directly to Aarhus."],
+          ["Sun · Sep 13", "LEGOLAND day trip", "Budget about 1½ hours each way; leave Aarhus early and return after the park."],
+          ["Mon · Sep 14", "Aarhus → Copenhagen", "Use Den Gamle By in the morning only if timing works, then drive east and return the car."],
+          ["Tue · Sep 15", "Copenhagen day", "Enjoy a familiar, car-free city day and keep the flight-eve logistics simple."],
+          ["Tradeoff", "Longer park day", "Choose this only if Aarhus and Copenhagen matter more than road-trip efficiency."]
         ]
       },
-      billundLate: {
-        dates: "Sep 3–16 · about 8 school days",
-        title: "Malmö through Sunday, then three Billund nights",
-        summary: "This preserves a relaxed ECCV finish and three Billund nights, but leaves the family in Billund on the morning of SK935.",
-        verdictTitle: "Verdict: not recommended",
-        verdictCopy: "The final transfer is about three hours before airport buffer; it undermines the entire reason for choosing the nonstop.",
+      legoMax: {
+        dates: "Sep 3–16 · Denmark road trip Sep 12–15",
+        title: "Two Billund nights, one Aarhus night, one airport night",
+        summary: "Keep both LEGO anchors and still sample Aarhus, at the cost of three hotels in four nights.",
+        verdictTitle: "Maximum LEGO",
+        verdictCopy: "LEGOLAND and LEGO House both fit cleanly, but repeated packing makes this the least restful option.",
         route: [
           ["Stockholm", "Sep 4–7", "3 nights"],
-          ["Malmö", "Sep 7–13", "6 nights"],
-          ["Billund", "Sep 13–16", "3 nights"],
-          ["CPH → SFO", "Sep 16", "Early transfer"]
+          ["Malmö", "Sep 7–12", "Baltzar + ECCV"],
+          ["Billund → Aarhus", "Sep 12–15", "2 nights + 1 night"],
+          ["CPH Airport", "Sep 15–16", "return car + SK935"]
         ],
         days: [
-          ["Thu–Mon · Sep 3–7", "Stockholm arrival", "Same protected SAS outbound and three-night Stockholm plan."],
-          ["Mon–Sun · Sep 7–13", "Malmö + ECCV", "No pressure to leave after Saturday’s program."],
-          ["Sun · Sep 13", "Billund arrival", "LEGO House may be partial depending on departure time."],
-          ["Mon · Sep 14", "LEGOLAND", "Use the full official operating day."],
-          ["Tue · Sep 15", "Non-LEGO day", "Lalandia, WOW PARK, Jelling, or quiet Billund; both LEGO anchors are closed."],
-          ["Wed · Sep 16", "Pre-dawn transfer", "Billund → CPH before SK935; high consequence if road or rail is disrupted."],
-          ["Better fix", "Sleep Copenhagen", "Drop one Billund night or depart Malmö Saturday to regain a protected final night."]
+          ["Sat · Sep 12", "CPH rental → Billund", "Drive to Billund after ECCV and stay beside the attractions."],
+          ["Sun · Sep 13", "LEGOLAND", "Use the complete park day and return to the same Billund room."],
+          ["Mon · Sep 14", "LEGO House → Aarhus", "Visit LEGO House, then drive about 70 minutes and check into Aarhus."],
+          ["Tue · Sep 15", "Aarhus → CPH Airport", "Choose one short Aarhus anchor, cross Denmark, return the car, and sleep at the airport."],
+          ["Tradeoff", "Three hotels", "Choose this only if LEGO House clearly outranks a slower Jutland day."]
+        ]
+      },
+      vejleFour: {
+        dates: "Sep 3–16 · rental Sep 12–16",
+        title: "Four nights in Vejle",
+        summary: "Unpack once and use Vejle for every western-Denmark day, then drive to the airport on departure morning.",
+        verdictTitle: "Simplest lodging · risky finish",
+        verdictCopy: "One room is appealing, but the final morning carries a 2¼-hour drive, refueling, car return, luggage handling, and check-in before SK935.",
+        route: [
+          ["Stockholm", "Sep 4–7", "3 nights"],
+          ["Malmö", "Sep 7–12", "Baltzar + ECCV"],
+          ["Vejle", "Sep 12–16", "4-night single base"],
+          ["CPH → SFO", "Sep 16", "drive + return + SK935"]
+        ],
+        days: [
+          ["Sat–Tue · Sep 12–15", "One Vejle room", "LEGOLAND Sunday, Aarhus or Jelling Monday, and a flexible local Tuesday."],
+          ["Wed · Sep 16", "Early drive to CPH", "Leave around 06:45, cross the Great Belt, refuel, return the car, and reach airline check-in."],
+          ["Tradeoff", "No hotel move", "The saved packing does not offset the flight-day consequence of a crash, bridge delay, queue, or rental dispute."],
+          ["Better fix", "Return Sep 15", "Use the 3+1 Vejle pattern and make the final airport night part of the protection for the nonstop."]
         ]
       }
     };
 
-    Object.assign(scenarios, {
-      aarhusLoop: {
-        dates: "Sep 3–16 · western loop Sep 13–15",
-        title: "LEGOLAND, two Aarhus nights, CPH Airport",
-        summary: "Fulfill the Sunday LEGOLAND promise, give Aarhus a complete family day, and finish with a protected airport night.",
-        verdictTitle: "Recommended",
-        verdictCopy: "This is the best balance of novelty, hotel stability, and flight protection; the deliberate sacrifice is LEGO House.",
-        route: [["Stockholm", "Sep 4–7", "3 nights"], ["Malmö", "Sep 7–13", "Baltzar + ECCV"], ["LEGOLAND → Aarhus", "Sep 13–15", "2 Aarhus nights"], ["CPH Airport → SFO", "Sep 15–16", "return car + SK935"]],
-        days: [["Sep 3–13", "Booked framework", "Confirmed SAS travel, Stockholm, direct rail to Malmö, and six nights at Baltzar through the full ECCV program."], ["Sun · Sep 13", "CPH rental → LEGOLAND → Aarhus", "Leave Malmö early, collect the car at CPH Airport around 08:00, use the park until 18:00, then drive about 70 minutes to Aarhus."], ["Mon · Sep 14", "Aarhus family day", "Choose Den Gamle By or Moesgaard as the anchor; add Dokk1 and its free playground only if energy remains."], ["Tue · Sep 15", "Funen → CPH Airport", "Choose Odense, Egeskov, or a direct drive; return the car Tuesday evening and sleep beside Terminal 3."], ["Wed · Sep 16", "SK935 nonstop", "Walk to the terminal for the confirmed 12:45 departure without a rental-car task remaining."]]
-      },
-      legoHouse: {
-        dates: "Sep 3–16 · western loop Sep 13–15",
-        title: "Billund, LEGO House, Aarhus, CPH Airport",
-        summary: "Use one night in each place to keep both LEGO anchors and still sample Aarhus before the flight.",
-        verdictTitle: "Maximum LEGO, maximum churn",
-        verdictCopy: "It delivers the richest LEGO finish but creates three one-night stays in a row and reduces Aarhus to an evening plus one partial day.",
-        route: [["Stockholm", "Sep 4–7", "3 nights"], ["Malmö", "Sep 7–13", "Baltzar + ECCV"], ["Billund → Aarhus", "Sep 13–15", "1 night each"], ["CPH Airport → SFO", "Sep 15–16", "1 night"]],
-        days: [["Sun · Sep 13", "LEGOLAND + Billund", "Drive from CPH Airport, use the Sunday park window, and sleep at Hotel LEGOLAND or The Lodge."], ["Mon · Sep 14", "LEGO House → Aarhus", "Visit LEGO House 10:00–16:00, then drive about 70 minutes and check into Aarhus."], ["Tue · Sep 15", "Aarhus → CPH Airport", "Choose one Aarhus anchor, leave by mid-afternoon, return the car, and sleep at the airport."], ["Tradeoff", "Every night is a move", "Choose this only if LEGO House matters more than an unhurried Aarhus day and two nights in one room."]]
-      },
-      billundCalm: {
-        dates: "Sep 3–16 · western loop Sep 13–15",
-        title: "Two Billund nights, Funen, CPH Airport",
-        summary: "Keep the original LEGO-centered base, then use the car to add one distinctive stop while crossing Denmark Tuesday.",
-        verdictTitle: "Calmest logistics",
-        verdictCopy: "Sunday ends early and only Tuesday is a moving day, but Aarhus drops out of the trip.",
-        route: [["Stockholm", "Sep 4–7", "3 nights"], ["Malmö", "Sep 7–13", "Baltzar + ECCV"], ["Billund", "Sep 13–15", "2 nights"], ["Funen → CPH Airport", "Sep 15–16", "1 night"]],
-        days: [["Sun · Sep 13", "LEGOLAND + Billund", "Drive from CPH Airport, visit the park, and sleep beside the attraction."], ["Mon · Sep 14", "LEGO House", "Use the full 10:00–16:00 indoor day and keep the same hotel."], ["Tue · Sep 15", "Egeskov or Odense", "Choose one Funen stop on the eastbound drive, return the car, and sleep at CPH Airport."], ["Tradeoff", "No Aarhus", "This is the recovery-friendly answer if the conference week leaves the family short on energy."]]
-      }
-    });
-    delete scenarios.reverse;
-    delete scenarios.posterSafe;
-    delete scenarios.billundLate;
-
     const scenarioButtons = Array.from(document.querySelectorAll("[data-scenario]"));
     const scenarioRoute = document.getElementById("scenarioRoute");
     const scenarioDays = document.getElementById("scenarioDays");
-    let activeScenario = "aarhusLoop";
+    let activeScenario = "vejleHub";
 
     function renderScenario(key) {
       const scenario = scenarios[key];
@@ -4519,7 +4865,7 @@
     }
 
     scenarioButtons.forEach((button) => button.addEventListener("click", () => renderScenario(button.dataset.scenario)));
-    renderScenario("aarhusLoop");
+    renderScenario("vejleHub");
 
     const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
     const hotelCards = Array.from(document.querySelectorAll(".hotel-card[data-area]"));
@@ -4590,7 +4936,7 @@ CORE DATES
 • ECCV workshops/tutorials: September 8–9
 • ECCV main conference: September 10–12
 • Malmö: September 7–13
-• Denmark road trip: September 13–15 · LEGOLAND, Aarhus, and optional Funen stop
+• Denmark road trip: September 12–15 · three-night Vejle hub, full LEGOLAND day, and optional Aarhus/Jelling/Funen stops
 • Copenhagen Airport final night: September 15
 • Fly home nonstop: Wednesday, September 16 on SK935
 • Family: four travelers with two young children
@@ -4620,15 +4966,16 @@ CURRENT RECOMMENDATION
 • Live family fares checked August 9 ranged from SEK 2,196 to SEK 2,978 for early direct trains
 • Home Hotel Baltzar Junior Suite is booked September 7–13; confirm the sofa bed is prepared for both children
 • Baltzar → ECCV is about 22–28 minutes door to venue via Malmö C and Hyllie
-• Sleep in Malmö after ECCV on September 12; take the direct train to Copenhagen Airport early September 13
-• Collect a reserved car at CPH Airport around 08:00; airport desks have much better Sunday hours than central Copenhagen branches
-• Sunday September 13: drive about 2h50 to LEGOLAND, visit during the 10:00–18:00 opening window, then drive about 70 minutes to Aarhus
-• Sleep in Aarhus September 13–15; use Den Gamle By or Moesgaard as Monday's anchor, with Dokk1 as an easy family release valve
-• Tuesday September 15: choose Odense, Egeskov, or a direct drive east; return the car at CPH Airport and sleep beside Terminal 3
-• Aarhus first choice: Comwell Aarhus Quadruple; Scandic Aarhus City is the walkable backup and Scandic The Mayor the space splurge
+• Check out September 12, store bags during essential ECCV sessions, then take the direct train to Copenhagen Airport for the rental and drive about 2¼ hours to Vejle
+• Baltzar is paid through September 13; leaving September 12 may forfeit the last night unless the hotel grants a change
+• Sleep in Vejle September 12–15; The Note is the first hotel comparison, followed by Munkebjerg, CABINN, and BB-Hotel Vejle Park
+• Sunday September 13: drive about 30 minutes to LEGOLAND and use the complete 10:00–18:00 park window
+• Monday September 14: choose Aarhus + Den Gamle By or a closer Jelling + Givskud/Økolariet day based on energy and weather
+• Tuesday September 15: choose Egeskov, Odense, or a direct drive east; return the car at CPH Airport and sleep beside Terminal 3
 • Airport first choice: Clarion Copenhagen Airport Family Room for maximum ease; compare the two-bed Family Room at Comfort Copenhagen Airport
-• Transport verdict: rail through Stockholm and Malmö, then a same-location CPH Airport rental September 13–15; reserve two child restraints and budget two Great Belt tolls
-• Book now: direct SJ Stockholm → Malmö, the CPH Airport rental, two Aarhus nights, the final airport night, and LEGOLAND September 13; local Öresund trains remain flexible
+• Transport verdict: rail through Stockholm and Malmö, then a same-location CPH Airport rental September 12–15; return September 15, not flight morning
+• Toll budget: Great Belt twice at DKK 410 with eligible automatic payment or DKK 470 by card/cash; Little Belt is free; train-to-CPH pickup avoids the Øresund car toll
+• Book now: direct SJ Stockholm → Malmö, the CPH Airport rental, three Vejle nights, the final airport night, and LEGOLAND September 13; local Öresund trains remain flexible
 
 ECCV ATTENDANCE PLAN
 • Sep 8 primary: Multimodal Digital Agents, full day
@@ -4657,10 +5004,10 @@ FLIGHTS
 OPEN DECISIONS
 • Preferred September 7 Stockholm → Malmö departure and live fare
 • Confirm Baltzar sofa-bed preparation and any property-collected mandatory fees before Sep 5
-• Aarhus-loop versus LEGO House: giving LEGO House priority would create three consecutive one-night stays
-• Exact Aarhus and Copenhagen Airport room types, live rates, and cancellation terms
-• Rental company, car class, child-seat details, toll handling, and September 13–15 price
-• Tuesday choice: Odense, Egeskov, or a direct low-energy drive to Copenhagen Airport
+• Exact Vejle and Copenhagen Airport room types, live rates, bedding, parking, and cancellation terms
+• Rental company, car class, child-seat details, Great Belt toll handling, and September 12–15 price
+• Monday choice: Aarhus or the lower-energy Jelling + Givskud/Økolariet combination
+• Tuesday choice: Egeskov, Odense, or a direct low-energy drive to Copenhagen Airport
 • Preferred direct SJ Stockholm → Malmö departure and live fare
 • Exact ECCV poster assignment and main-program selections
 
@@ -4668,7 +5015,7 @@ CHECKLIST ITEMS COMPLETED ON THIS DEVICE
 ${selectedChecks.length ? selectedChecks.map((item) => `• ${item}`).join("\n") : "• None yet"}
 
 RESEARCH CHECKED
-August 18, 2026. Flights, Scandic Continental, and Home Hotel Baltzar are confirmed. The Denmark road-loop plan, official attraction hours, CPH rental logistics, child-restraint rule, Aarhus family activities, and hotel room capacities were refreshed from primary sources; live room and car inventory or rates are not asserted.`;
+September 1, 2026. Flights, Scandic Continental, and Home Hotel Baltzar are confirmed. The four-night Denmark alternatives, Vejle family bases, attraction hours, CPH rental logistics, and 2026 bridge tolls were refreshed from primary sources; live room and car inventory or rates are not asserted.`;
     }
 
     function openExportModal() {
@@ -4722,7 +5069,8 @@ August 18, 2026. Flights, Scandic Continental, and Home Hotel Baltzar are confir
     };
     const mapLocations = [
       { name: "Billund", note: "LEGOLAND stop", coordinates: [9.1157, 55.7284], offset: [-18, -24], mobileOffset: [12, -20] },
-      { name: "Aarhus", note: "2-night family base", coordinates: [10.2039, 56.1629], offset: [-22, -28], mobileOffset: [18, -24] },
+      { name: "Vejle", note: "3-night road-trip hub", coordinates: [9.5357, 55.7113], offset: [18, 31], mobileOffset: [18, 31] },
+      { name: "Aarhus", note: "day-trip option", coordinates: [10.2039, 56.1629], offset: [-22, -28], mobileOffset: [18, -24] },
       { name: "Copenhagen / CPH", note: "rental loop + SK935", coordinates: [12.6508, 55.6181], offset: [-62, 33], mobileOffset: [-12, 44] },
       { name: "Malmö / Hyllie", note: "Baltzar + ECCV", coordinates: [12.9764, 55.5631], offset: [54, 28], mobileOffset: [22, 38] },
       { name: "Lund", note: "easy family day", coordinates: [13.1870, 55.7047], offset: [50, -30], mobileOffset: [22, -28] },
@@ -4730,7 +5078,7 @@ August 18, 2026. Flights, Scandic Continental, and Home Hotel Baltzar are confir
     ];
     const coreRoute = {
       type: "LineString",
-      coordinates: [[12.9764, 55.5631], [12.6508, 55.6181], [9.1157, 55.7284], [10.2039, 56.1629], [12.6508, 55.6181]]
+      coordinates: [[12.9764, 55.5631], [12.6508, 55.6181], [9.5357, 55.7113], [9.1157, 55.7284], [9.5357, 55.7113], [10.2039, 56.1629], [9.5357, 55.7113], [10.3883, 55.4038], [12.6508, 55.6181]]
     };
     const stockholmRoute = {
       type: "LineString",
@@ -4740,6 +5088,103 @@ August 18, 2026. Flights, Scandic Continental, and Home Hotel Baltzar are confir
       type: "LineString",
       coordinates: [[12.6508, 55.6181], [17.9186, 59.6519]]
     };
+
+    const decisionMapElement = document.getElementById("denmarkDecisionMap");
+    const decisionMapFrame = {
+      type: "MultiPoint",
+      coordinates: [[8.0, 54.8], [13.25, 54.8], [13.25, 56.55], [8.0, 56.55]]
+    };
+    const decisionMapPlaces = {
+      cph: { name: "CPH Airport", coordinates: [12.6508, 55.6181], offset: [-10, 27] },
+      vejle: { name: "Vejle", coordinates: [9.5357, 55.7113], offset: [11, 25] },
+      billund: { name: "LEGOLAND", coordinates: [9.1157, 55.7284], offset: [-8, -19] },
+      aarhus: { name: "Aarhus", coordinates: [10.2039, 56.1629], offset: [9, -16] },
+      odense: { name: "Funen", coordinates: [10.3883, 55.4038], offset: [10, 23] }
+    };
+    const decisionMapPlans = {
+      vejleHub: {
+        title: "Vejle hub + airport night",
+        note: "CPH Airport → Vejle, with LEGOLAND and Aarhus as day trips, then east through Funen.",
+        returnText: "September 15 · before the airport hotel",
+        tollText: "Two Great Belt crossings · Little Belt is free",
+        route: ["cph", "vejle", "billund", "vejle", "aarhus", "vejle", "odense", "cph"],
+        stops: ["cph", "vejle", "billund", "aarhus", "odense"]
+      },
+      aarhusCph: {
+        title: "Aarhus 2 + Copenhagen 2",
+        note: "Drive CPH → Aarhus, commute to LEGOLAND Sunday, then return east for two car-free Copenhagen nights.",
+        returnText: "September 14 · before two Copenhagen nights",
+        tollText: "Two Great Belt crossings · Little Belt is free",
+        route: ["cph", "aarhus", "billund", "aarhus", "cph"],
+        stops: ["cph", "aarhus", "billund"]
+      },
+      legoMax: {
+        title: "Billund 2 + Aarhus 1 + airport 1",
+        note: "Drive to Billund for both LEGO anchors, move north to Aarhus, then cross Denmark to the airport.",
+        returnText: "September 15 · before the airport hotel",
+        tollText: "Two Great Belt crossings · Little Belt is free",
+        route: ["cph", "billund", "aarhus", "cph"],
+        stops: ["cph", "billund", "aarhus"]
+      },
+      vejleFour: {
+        title: "Four nights in Vejle",
+        note: "Use one Vejle base for LEGOLAND and Aarhus, then make the full eastbound drive on flight morning.",
+        returnText: "September 16 · before SK935 · not recommended",
+        tollText: "Two Great Belt crossings · second is flight morning",
+        route: ["cph", "vejle", "billund", "vejle", "aarhus", "vejle", "cph"],
+        stops: ["cph", "vejle", "billund", "aarhus"]
+      }
+    };
+    let activeDecisionMap = "vejleHub";
+
+    function drawDecisionMap(key = activeDecisionMap) {
+      if (!decisionMapElement) return;
+      activeDecisionMap = decisionMapPlans[key] ? key : "vejleHub";
+      const plan = decisionMapPlans[activeDecisionMap];
+      const width = Math.max(320, decisionMapElement.clientWidth || 720);
+      const height = Math.max(400, decisionMapElement.clientHeight || 440);
+      const projection = d3.geoMercator().fitExtent([[24, 24], [width - 24, height - 24]], decisionMapFrame);
+      const path = d3.geoPath(projection);
+      const svg = d3.select(decisionMapElement);
+      svg.selectAll("*").remove();
+      svg.attr("viewBox", `0 0 ${width} ${height}`);
+
+      svg.append("g")
+        .selectAll("path")
+        .data(visibleCountries.filter((country) => ["DNK", "SWE"].includes(country.properties.id)))
+        .join("path")
+        .attr("class", (country) => `option-map-country${country.properties.id === "DNK" ? " is-focus" : ""}`)
+        .attr("d", path);
+
+      svg.append("path")
+        .datum({ type: "LineString", coordinates: plan.route.map((place) => decisionMapPlaces[place].coordinates) })
+        .attr("class", "option-map-route")
+        .attr("d", path);
+
+      const markers = svg.append("g")
+        .selectAll("g")
+        .data(plan.stops.map((place) => decisionMapPlaces[place]))
+        .join("g")
+        .attr("transform", (place) => `translate(${projection(place.coordinates).join(",")})`);
+
+      markers.append("circle").attr("class", "option-map-marker-halo").attr("r", 8);
+      markers.append("circle").attr("class", "option-map-marker-core").attr("r", 4.5);
+      markers.append("text")
+        .attr("class", "option-map-label")
+        .attr("x", (place) => place.offset[0])
+        .attr("y", (place) => place.offset[1])
+        .attr("text-anchor", (place) => place.offset[0] < 0 ? "end" : "start")
+        .text((place) => place.name);
+
+      document.getElementById("decisionMapTitle").textContent = plan.title;
+      document.getElementById("decisionMapNote").textContent = plan.note;
+      document.getElementById("decisionMapReturn").textContent = plan.returnText;
+      document.getElementById("decisionMapToll").textContent = plan.tollText;
+    }
+
+    document.querySelectorAll("[data-scenario]").forEach((button) => {
+      button.addEventListener("click", () => drawDecisionMap(button.dataset.scenario));
+    });
 
     function drawNordicMap() {
       const width = Math.max(320, mapElement.clientWidth || 800);
@@ -4811,8 +5256,11 @@ August 18, 2026. Flights, Scandic Continental, and Home Hotel Baltzar are confir
     }
 
     drawNordicMap();
+    drawDecisionMap("vejleHub");
     const mapObserver = new ResizeObserver(drawNordicMap);
     mapObserver.observe(mapElement);
+    const decisionMapObserver = new ResizeObserver(() => drawDecisionMap(activeDecisionMap));
+    decisionMapObserver.observe(decisionMapElement);
   </script>
 
 
