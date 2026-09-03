@@ -4,7 +4,7 @@
 
 Research scientist who has led teams and shipped at global scale: the vision-language systems behind Amazon Lens and visual navigation features in Amazon product search reach hundreds of millions of customers. I believe world-model-grounded, full-duplex interfaces are where computing is heading, and want to work on the hardest problems to get there: multimodal reasoning, agentic retrieval, generative models, and real-time interfaces.
 
-Last updated: 08/21/2026
+Last updated: 09/02/2026
 
 Contact:
 - Email: douglas.ryan.gray@gmail.com
