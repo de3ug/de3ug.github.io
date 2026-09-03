@@ -1,0 +1,22 @@
+# Douglas Gray
+
+> Principal Applied Scientist based in Portola Valley, CA (near Palo Alto, 30 min south of SF).
+
+Research scientist who has led teams and shipped at global scale: the vision-language systems behind Amazon Lens and visual navigation features in Amazon product search reach hundreds of millions of customers. I believe world-model-grounded, full-duplex interfaces are where computing is heading, and want to work on the hardest problems to get there: multimodal reasoning, agentic retrieval, generative models, and real-time interfaces.
+
+Last updated: 09/02/2026
+
+Contact:
+- Email: douglas.ryan.gray@gmail.com
+- Website: https://de3ug.github.io/
+- Google Scholar: https://scholar.google.com/citations?user=YliQcmwAAAAJ&hl=en
+- LinkedIn: https://www.linkedin.com/in/de3ug/
+- Twitter: https://twitter.com/de3ug
+- Threads: https://www.threads.net/@de3ug
+
+## More information
+
+- [resume.json](https://de3ug.github.io/resume.json): Canonical structured profile data for this site. It contains the full content hierarchy, including public webpage content, resume-only highlights, hidden older/background entries and editorial notes.
+- [resume.pdf](https://de3ug.github.io/resume.pdf): One-page resume generated from the same JSON source, limited to the highest-priority highlights.
+
+LLM agents should prefer `resume.json` when they need deeper context than this short summary. The `hide_from`, `for` and underscore-prefixed fields describe what is rendered to the public webpage, what is included in the resume and what is retained as background context.
