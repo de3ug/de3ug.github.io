@@ -2,7 +2,7 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A public, privacy-safe September 2026 family trip guide for Stockholm, ECCV in Malmö, and a three-night western Denmark finish.">
+  <meta name="description" content="A public, privacy-safe September 2026 family trip field guide for Stockholm, ECCV in Malmö, LEGOLAND Billund, Louisiana, and Skodsborg.">
   <meta name="robots" content="noindex,nofollow,noarchive,noimageindex">
   <meta name="googlebot" content="noindex,nofollow,noarchive,noimageindex">
   <meta name="referrer" content="no-referrer">
@@ -1749,14 +1749,21 @@
     }
 
     .option-map-stage,
-    #denmarkDecisionMap {
+    #denmarkDecisionMap,
+    #denmarkDriveMap {
       width: 100%;
       min-height: 440px;
     }
 
-    #denmarkDecisionMap {
+    #denmarkDecisionMap,
+    #denmarkDriveMap {
       display: block;
       background: #d7edf0;
+    }
+
+    .drive-map-shell .option-map-stage,
+    #denmarkDriveMap {
+      min-height: 360px;
     }
 
     .option-map-country {
@@ -1844,6 +1851,28 @@
       font-size: 0.67rem;
       letter-spacing: 0.07em;
       text-transform: uppercase;
+    }
+
+    .drive-map-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .drive-map-links a {
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 0.69rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .drive-map-links a:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
     }
 
     .option-matrix-shell {
@@ -1955,7 +1984,8 @@
 
       .decision-photo-art,
       .option-map-stage,
-      #denmarkDecisionMap {
+      #denmarkDecisionMap,
+      #denmarkDriveMap {
         min-height: 330px;
       }
     }
@@ -3225,28 +3255,28 @@
     <div class="hero-copy-panel">
       <p class="kicker">Public planning edition · September 2026</p>
       <h1>A Scandi ECCV 2026<span>Stockholm → Malmö → western Denmark · nonstop home</span></h1>
-      <p class="hero-deck">A north-to-west Nordic family trip built around ECCV: three nights in Stockholm, six nights in central Malmö, two booked nights at Hotel LEGOLAND, then one protected airport night still to choose.</p>
+      <p class="hero-deck">A north-to-west Nordic family trip built around ECCV: three nights in Stockholm, six nights in central Malmö, two nights at Hotel LEGOLAND, then Louisiana and a final coastal night at Kurhotel Skodsborg.</p>
       <div class="hero-meta" aria-label="Trip facts">
         <span class="pill">September 3–16, 2026</span>
         <span class="pill">Family of four · two young children</span>
         <span class="pill">About 8 missed school days</span>
         <span class="pill">ECCV September 8–12</span>
-        <span class="pill">Flights + 11 hotel nights + rental + SJ booked · about $11.2k + rail fare pending</span>
+        <span class="pill">Flights + 12 hotel nights + rental + SJ booked · about $11.8k + rail fare pending</span>
       </div>
       <div class="hero-actions">
-        <a class="button button-primary" href="#verdict">See the recommendation</a>
+        <a class="button button-primary" href="#routes">Open the day-by-day plan</a>
         <button class="button button-ghost" id="openExport" type="button">Copy trip brief</button>
       </div>
     </div>
     <div class="hero-photo" role="img" aria-label="The Öresund Bridge connecting Denmark and Sweden">
-      <div class="photo-note">The organizing idea: keep every booked Malmö night, settle into Hotel LEGOLAND for two nights, then protect the flight with one final Kastrup night.</div>
+      <div class="photo-note">The fixed finish: keep every Malmö night, spend two nights at Hotel LEGOLAND, cross Denmark Tuesday for Louisiana and Skodsborg, then return the car at CPH Wednesday morning.</div>
     </div>
   </header>
 
   <nav class="site-nav" aria-label="Page sections">
     <div class="wrap">
-      <a href="#verdict">Verdict</a>
-      <a href="#routes">Route + calendar</a>
+      <a href="#verdict">At a glance</a>
+      <a href="#routes">Day by day</a>
       <a href="#map">Map</a>
       <a href="#bookings">Booked + costs</a>
       <a href="#stockholm">Stockholm</a>
@@ -3254,7 +3284,7 @@
       <a href="#conference">ECCV plan</a>
       <a href="#family">Malmö family days</a>
       <a href="#billund">Denmark road trip</a>
-      <a href="#book">Book next</a>
+      <a href="#book">Trip checklist</a>
       <a href="#sources">Sources</a>
       <a href="#archive">Decision archive</a>
     </div>
@@ -3265,10 +3295,10 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="eyebrow">The short answer</p>
-            <h2>Stockholm first. Malmö through Sunday checkout. Then western Denmark.</h2>
+            <p class="eyebrow">The fixed route</p>
+            <h2>The complete Stockholm–Malmö–Denmark framework is booked.</h2>
           </div>
-          <p>The reversed September 3–16 shape is stronger for the family: the only flight connection happens on arrival with a sensible buffer, Stockholm gets two full days, and the final night protects SK935 nonstop to SFO.</p>
+          <p>The only flight connection happens on arrival, Stockholm gets two full days, Malmö remains intact through Sunday checkout, and the final coastal night keeps the long cross-Denmark drive away from flight morning.</p>
         </div>
 
         <div class="grid grid-4">
@@ -3282,9 +3312,9 @@
           <article class="card stat-card">
             <div>
               <div class="stat-label">Hotels · booked</div>
-              <div class="stat-value">9 nights</div>
+              <div class="stat-value">12 nights</div>
             </div>
-            <div class="stat-note">Scandic Continental covers Stockholm September 4–7; Baltzar covers Malmö September 7–13.</div>
+            <div class="stat-note">Scandic Continental, Home Hotel Baltzar, Hotel LEGOLAND, and Kurhotel Skodsborg cover every night from September 4–16.</div>
           </article>
           <article class="card stat-card">
             <div>
@@ -3298,17 +3328,17 @@
               <div class="stat-label">Booked nonstop return · SK935</div>
               <div class="stat-value">Sep 16</div>
             </div>
-            <div class="stat-note">The confirmed flight departs Copenhagen at 12:45. Keep the booked rental overnight at a Kastrup hotel with parking, then return it at CPH Airport Wednesday morning.</div>
+            <div class="stat-note">The confirmed flight departs Copenhagen at 12:45. Leave Skodsborg early, drop the family and bags, and return the booked rental at CPH Airport Wednesday morning.</div>
           </article>
         </div>
 
         <div class="recommendation">
           <div class="recommendation-mark" aria-hidden="true">R</div>
           <div>
-            <h3>Recommended working plan</h3>
-            <p>Hotel LEGOLAND is booked for September 13–15, locking Sunday as transfer-and-check-in only and Monday as the full park day. The only remaining hotel decision is one night near Copenhagen Airport with parking on September 15.</p>
+            <h3>Locked working plan</h3>
+            <p>Hotel LEGOLAND is booked for September 13–15, locking Sunday as transfer-and-check-in only and Monday as the full park day. Tuesday is the eastbound drive, luggage drop at Kurhotel Skodsborg, Louisiana visit, and final hotel night.</p>
           </div>
-          <span class="tag blue">Best balance</span>
+          <span class="tag blue">All lodging booked</span>
         </div>
 
         <p class="decision-note"><strong>Planning rule:</strong> confirmed flights and hotel nights are locked constraints. Home Hotel Baltzar remains booked through checkout on Sunday, September 13; no booked segment moves unless explicitly changed.</p>
@@ -3318,38 +3348,34 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Confirmed trip framework</p>
-            <h2>The flights and eleven booked hotel nights anchor the calendar.</h2>
+            <h2>The flights and twelve booked hotel nights anchor the calendar.</h2>
           </div>
-          <p>The booked framework now runs through Hotel LEGOLAND checkout on September 15, and the Hertz rental is fixed from September 13 at 11:00 through September 16 at 10:00. The remaining lodging decision is the final Kastrup night with parking.</p>
-        </div>
-
-        <div class="scenario-controls" role="group" aria-label="Denmark road-trip scenarios">
-          <button class="scenario-button" type="button" data-scenario="billundTwo" aria-pressed="true">Locked · Hotel LEGOLAND 2 + Kastrup 1</button>
+          <p>The Hertz rental runs from September 13 at 11:00 through September 16 at 10:00. Kurhotel Skodsborg now fixes the final night, so the remaining work is operational: tickets, child restraints, toll handling, and day-of navigation.</p>
         </div>
 
         <div class="scenario-shell" aria-live="polite">
           <div class="scenario-top">
             <div>
-              <span class="tag blue" id="scenarioDates">Sep 13–16 · Hotel LEGOLAND booked + 1 Kastrup night</span>
-              <h3 id="scenarioTitle">Hotel LEGOLAND for two nights, then Kastrup—with the car</h3>
-              <p id="scenarioSummary">Sunday is only the westbound transfer and Hotel LEGOLAND check-in. Monday is the full park day; Tuesday moves east to the final airport-area hotel with parking.</p>
+              <span class="tag blue" id="scenarioDates">Sep 13–16 · all lodging and the rental booked</span>
+              <h3 id="scenarioTitle">Hotel LEGOLAND, Louisiana, then Kurhotel Skodsborg</h3>
+              <p id="scenarioSummary">Sunday is the westbound transfer, Monday is the full park day, and Tuesday crosses Denmark for Louisiana before the final coastal hotel night.</p>
             </div>
             <div class="scenario-verdict">
               <strong id="scenarioVerdictTitle">Booked</strong>
-              <span id="scenarioVerdictCopy">The Park View Room protects every booked Malmö night, keeps luggage out of the park, and uses LEGOLAND's confirmed Monday 10:00–17:00 opening.</span>
+              <span id="scenarioVerdictCopy">The route protects every booked Malmö night, keeps luggage out of the park and museum lots, and completes the long drive one day before SK935.</span>
             </div>
           </div>
           <div class="route-line" id="scenarioRoute" aria-label="Selected scenario route">
             <div class="route-stop"><div class="route-dot">01</div><strong>Stockholm</strong><span>Sep 4–7 · 3 nights</span></div>
             <div class="route-stop"><div class="route-dot">02</div><strong>Malmö</strong><span>Sep 7–13 · 6 booked nights</span></div>
             <div class="route-stop"><div class="route-dot">03</div><strong>Hotel LEGOLAND</strong><span>Sep 13–15 · 2 booked nights</span></div>
-            <div class="route-stop"><div class="route-dot">04</div><strong>Kastrup → CPH → SFO</strong><span>Sep 15–16 · park overnight + return car</span></div>
+            <div class="route-stop"><div class="route-dot">04</div><strong>Skodsborg ⇄ Louisiana → CPH</strong><span>Sep 15–16 · bag drop, museum, final night</span></div>
           </div>
           <div class="scenario-days" id="scenarioDays">
             <article class="scenario-day"><div class="scenario-day-date">Sat · Sep 12</div><strong>Finish ECCV + sleep at Baltzar</strong><p>Use the final conference day without a hotel move. The confirmed Malmö stay remains unchanged.</p></article>
             <article class="scenario-day"><div class="scenario-day-date">Sun · Sep 13</div><strong>Check out → CPH rental → Hotel LEGOLAND</strong><p>Take the direct train to Copenhagen Airport, collect Hertz at 11:00, drive west, and check into the booked Park View Room from 15:00. No park visit and no luggage left in the car at an attraction.</p></article>
             <article class="scenario-day"><div class="scenario-day-date">Mon · Sep 14</div><strong>Full LEGOLAND day</strong><p>Use the confirmed 10:00–17:00 park day; rides are scheduled to close one hour before the park.</p></article>
-            <article class="scenario-day"><div class="scenario-day-date">Tue · Sep 15</div><strong>Drive east → Kastrup hotel with parking</strong><p>Choose one modest Funen stop or drive directly. Keep the Hertz car overnight and pre-book hotel parking.</p></article>
+            <article class="scenario-day"><div class="scenario-day-date">Tue · Sep 15</div><strong>Billund → Skodsborg bag drop → Louisiana</strong><p>Leave around 08:30–09:00, cross the Great Belt, store the luggage at Kurhotel Skodsborg, then visit Louisiana before its Children’s Wing closes.</p></article>
             <article class="scenario-day"><div class="scenario-day-date">Wed · Sep 16</div><strong>Return Hertz → SK935 nonstop</strong><p>Drop the family and bags at Terminal 3, return the car before the booked 10:00 time, take the free terminal bus back, and depart at 12:45.</p></article>
           </div>
         </div>
@@ -3376,7 +3402,7 @@
             <div class="calendar-day"><strong>12</strong><span class="day-label conf">Main conference</span><span class="day-label home">Sleep at Baltzar</span></div>
             <div class="calendar-day"><strong>13</strong><span class="day-label travel">CPH car → Hotel LEGOLAND</span></div>
             <div class="calendar-day"><strong>14</strong><span class="day-label lego">LEGOLAND · full day</span></div>
-            <div class="calendar-day"><strong>15</strong><span class="day-label travel">Hotel checkout → Kastrup</span></div>
+            <div class="calendar-day"><strong>15</strong><span class="day-label travel">Louisiana → Kurhotel Skodsborg</span></div>
             <div class="calendar-day"><strong>16</strong><span class="day-label travel">Return Hertz · SK935 home</span></div>
             <div class="calendar-day"><strong>17</strong></div>
             <div class="calendar-day"><strong>18</strong></div>
@@ -3403,24 +3429,24 @@
             <p class="eyebrow">The Nordic corridor</p>
             <h2>Fly north first, then work south and west.</h2>
           </div>
-          <p>The route avoids a connection on the way home: CPH to Stockholm by air, Stockholm to Malmö by rail, then a three-night airport rental loop through LEGOLAND and the selected western base.</p>
+          <p>The route avoids a connection on the way home: CPH to Stockholm by air, Stockholm to Malmö by rail, then a booked rental loop through LEGOLAND, Louisiana, and Skodsborg.</p>
         </div>
 
         <div class="map-shell">
           <div class="map-stage">
             <svg id="nordicMap" role="img" aria-labelledby="mapTitle mapDescription" viewBox="0 0 894 620">
               <title id="mapTitle">Southern Nordic map of the ECCV family trip</title>
-              <desc id="mapDescription">A map highlighting Copenhagen Airport, Vejle, Billund, Aarhus, Malmö and Hyllie, Lund, and the route to Stockholm.</desc>
+              <desc id="mapDescription">A map highlighting Stockholm, Malmö and Hyllie, Copenhagen Airport, Billund, Louisiana, and Skodsborg.</desc>
             <g><g><path class="map-country" d="M1216.915,-906.105L1141.341,-855.603L1105.551,-843.931L1124.245,-932.715L1067.365,-984.234L998.501,-940.079L976.612,-847.384L934.272,-792.865L886.658,-822.662L828.82,-816.463L779.449,-882.158L752.766,-849.112L725.285,-844.147L718.734,-763.6L635.171,-782.935L623.348,-716.057L580.688,-716.469L551.449,-633.541L507.031,-508.772L438.168,-358.255L454.305,-322.838L438.807,-282.396L394.869,-284.158L366.109,-190.56L368.825,-63.006L397.106,-15.772L382.406,90.873L345.498,151.348L326.005,201.236L296.127,148.012L208.57,247.367L149.293,267.109L87.94,224.095L72.122,131.124L58.062,-79.033L98.964,-140.53L156.679,-181.883L216.08,-222.625L303.797,-327.129L384.963,-474.427L436.225,-581.824L491.693,-692.49L565.989,-782.513L625.188,-860.404L687.897,-939.185L785.361,-996.07L858.378,-989.008L925.963,-1099.782L1006.81,-1093.862L1086.538,-1121.204L1157.237,-1072.143L1225.383,-1022.202L1168.183,-986.961ZM508.629,-2662.832L525.406,-2748.949L590.594,-2757.855L646.516,-2669.72L722.136,-2579.898L792.71,-2491.096L735.902,-2446.43L681.027,-2401.338L656.262,-2241.571L617.436,-2202.398L596.346,-2035.761L542.821,-2028.342L447.275,-2149.303L487.539,-2222.636L421.072,-2283.571L379.413,-2375.981L334.633,-2471.057L300.122,-2657.677L359.544,-2702.963L421.072,-2747.616L445.358,-2659.394ZM1052.985,-2759.193L987.157,-2624.424L922.411,-2610.863L858.378,-2595.778L793.463,-2616.793L727.522,-2636.312L719.533,-2704.876L655.942,-2709.25L607.37,-2827.477L674.919,-2865.543L744.458,-2902.331L808.848,-2838.038L853.745,-2918.42L910.56,-2885.076L965.907,-2850.954ZM933.792,-2247.425L834.731,-2162.387L756.441,-2210.33L786.958,-2264.698L760.276,-2333.444L852.147,-2377.354L869.722,-2295.484Z"></path><path class="map-country is-focus" d="M326.005,201.236L345.498,151.348L382.406,90.873L397.106,-15.772L368.825,-63.006L366.109,-190.56L394.869,-284.158L438.807,-282.396L454.305,-322.838L438.168,-358.255L507.031,-508.772L551.449,-633.541L580.688,-716.469L623.348,-716.057L635.171,-782.935L718.734,-763.6L725.285,-844.147L752.766,-849.112L812.043,-788.846L881.226,-707.221L882.504,-531.2L897.363,-488.228L820.991,-457.505L778.011,-383.333L784.881,-319.624L714.42,-238.187L628.621,-153.629L596.346,-20.268L627.982,44.253L670.322,94.12L629.579,192.73L583.404,212.836L566.468,353.031L541.383,428.442L487.539,420.831L462.294,483.363L411.006,487.026L396.786,412.23L359.718,320.13Z"></path><path class="map-country" d="M709.148,559.261L763.791,567.859L845.436,566.67L868.124,574.853L878.829,598.098L880.747,631.288L893.049,659.517L892.73,688.896L866.207,703.738L879.788,737.353L880.747,769.382L902.956,831.049L898.322,850.704L876.273,858.799L836.01,916.103L847.354,946.683L837.767,942.685L795.586,916.578L763.631,926.17L742.701,919.186L716.338,933.73L693.969,909.573L675.755,918.83L673.198,914.798L652.907,880.929L619.833,876.731L615.679,855.056L585.162,847.315L578.611,865.189L554.485,850.825L557.201,831.657L524.127,825.568L503.037,802.817L484.823,757.455L488.338,732.59L477.313,693.724L461.176,667.591L473.478,647.817L463.253,609.852L493.45,587.745L562.793,552.63L618.715,526.635L662.972,539.593L666.328,558.201Z"></path><path class="map-country" d="M845.436,566.67L841.761,547.182L846.555,526.233L826.902,513.891L780.408,500.421L770.981,434.24L821.79,409.867L896.245,415.007L939.864,407.085L946.095,423.739L969.742,428.856L1012.402,467.167L1016.556,502.175L980.127,526.902L969.902,570.105L921.649,598.622L878.829,598.098L868.124,574.853Z"></path><path class="map-country" d="M1047.553,317.408L1068.963,336.412L1072.797,375.893L1087.017,423.324L1039.404,453.901L1012.402,467.167L969.742,428.856L946.095,423.739L939.864,407.085L896.245,415.007L821.79,409.867L770.981,434.24L772.579,373.924L794.308,322.564L836.169,294.387L871.48,355.863L907.11,354.306L915.578,291.063L953.445,276.278L972.778,286.432L1010.964,317.265Z"></path><path class="map-country" d="M1078.389,147.557L1078.389,147.557L1085.1,162.691L1053.464,212.391L1066.726,291.063L1047.553,317.408L1010.964,317.265L972.778,286.432L953.445,276.278L915.578,291.063L920.691,241.493L904.394,252.059L876.273,222.024L872.438,172.638L928.52,148.315L984.441,135.698L1032.534,150.135L1078.389,147.557Z"></path><path class="map-country" d="M167.987,1040.574L173.579,993.373L195.948,947.271L132.038,934.791L111.107,916.933L113.664,886.917L104.716,871.325L109.829,824.227L102.319,749.729L129.002,749.729L140.186,722.54L151.211,655.536L143.062,630.381L151.69,614.542L188.758,610.504L197.066,627.012L227.104,589.976L217.038,561.512L214.961,518.055L248.514,528.241L276.954,516.444L277.593,546.118L322.49,564.026L322.011,590.894L367.228,576.698L392.153,555.814L442.162,585.906L463.253,609.852L473.478,647.817L461.176,667.591L477.313,693.724L488.338,732.59L484.823,757.455L503.037,802.817L483.225,810.173L471.561,802.08L460.377,815.558L428.422,829.101L411.965,846.589L379.69,861.694L387.519,882.247L392.312,911.237L414.841,927.707L439.926,956.776L424.268,987.804L408.29,996.27L414.681,1039.43L410.527,1050.621L396.626,1037.142L375.376,1035.081L343.581,1046.971L304.436,1044.117L298.204,1061.434L275.676,1043.203L262.415,1046.857L214.802,1026.711L205.694,1041.031Z"></path><path class="map-country is-focus" d="M276.954,516.444L248.514,528.241L214.961,518.055L196.907,474.799L195.628,393.557L202.978,371.813L215.76,347.36L254.745,342.246L270.403,319.557L306.033,296.264L304.595,338.69L291.494,365.33L296.766,387.96L320.893,400.119L310.028,430.238L296.766,421.663L264.811,478.609ZM385.602,427.889L399.662,467.576L373.139,530.514L326.645,486.755L320.413,454.176Z"></path><path class="map-country" d="M1105.551,-843.931L1099,-758.369L1166.905,-679.461L1126.003,-592.503L1177.61,-466.517L1147.732,-375.131L1187.676,-298.114L1169.621,-232.471L1235.289,-165.097L1218.513,-115.84L1177.291,-61.05L1082.384,56.33L1082.384,56.33L1082.384,56.33L1001.857,63.521L923.726,96.282L851.508,114.906L825.784,66.33L782.804,36.699L792.71,-54.05L771.141,-139.86L792.391,-196.534L832.654,-259.07L934.112,-370.221L963.67,-392.292L959.197,-437.148L897.363,-488.228L882.504,-531.2L881.226,-707.221L812.043,-788.846L752.766,-849.112L779.449,-882.158L828.82,-816.463L886.658,-822.662L934.272,-792.865L976.612,-847.384L998.501,-940.079L1067.365,-984.234L1124.245,-932.715Z"></path></g><path class="map-route-core" d="M412.447,471.247L326.956,463.562L241.103,458.246L319.66,461.59L397.997,466.927"></path><path class="map-route-stockholm" d="M638.448,160.28L577.47,239.415L519.624,317.657L464.686,394.948L412.447,471.247"></path><path class="map-route-flight" d="M397.997,466.927L451.699,385.028L508.393,301.893L568.332,217.557L631.79,132.078"></path><g><g class="map-location" transform="translate(241.1027910098316,458.2464342147464)"><line class="map-leader" x2="-18" y2="-24"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="-23" y="-24" text-anchor="end"><tspan x="-23">Billund</tspan><tspan class="map-label-note" x="-23" dy="14">2 nights · LEGO finish</tspan></text></g><g class="map-location" transform="translate(397.9965474945027,466.9274139160475)"><line class="map-leader" x2="-62" y2="33"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="-67" y="33" text-anchor="end"><tspan x="-67">Copenhagen / CPH</tspan><tspan class="map-label-note" x="-67" dy="14">final night + SK935</tspan></text></g><g class="map-location" transform="translate(412.447229826377,471.24697490668586)"><line class="map-leader" x2="54" y2="28"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="59" y="28" text-anchor="start"><tspan x="59">Malmö / Hyllie</tspan><tspan class="map-label-note" x="59" dy="14">Radisson + ECCV</tspan></text></g><g class="map-location" transform="translate(421.79401637150204,460.1137693956457)"><line class="map-leader" x2="50" y2="-30"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="55" y="-30" text-anchor="start"><tspan x="55">Lund</tspan><tspan class="map-label-note" x="55" dy="14">easy family day</tspan></text></g><g class="map-location is-stockholm" transform="translate(638.4477352636325,160.28024557227445)"><line class="map-leader" x2="18" y2="-24"></line><circle class="map-marker-halo" r="9"></circle><circle class="map-marker-core" r="4.5"></circle><text class="map-label" x="23" y="-24" text-anchor="start"><tspan x="23">Stockholm</tspan><tspan class="map-label-note" x="23" dy="14">first 3 nights</tspan></text></g></g></g></svg>
           </div>
           <aside class="map-panel" aria-label="Map legend and route notes">
             <div>
               <h3>Three travel zones</h3>
-              <p>Stockholm is the arrival chapter, Malmö–Lund is the conference corridor, and the CPH–western Denmark loop is the three-night family finish.</p>
+              <p>Stockholm is the arrival chapter, Malmö–Hyllie is the conference corridor, and the CPH–Billund–Louisiana–Skodsborg loop is the family finish.</p>
               <div class="map-legend">
                 <div class="map-key"><span class="map-key-line flight"></span><span>Air · CPH to Stockholm</span></div>
                 <div class="map-key"><span class="map-key-line stockholm"></span><span>Rail · Stockholm to Malmö</span></div>
-                <div class="map-key"><span class="map-key-line"></span><span>Road · CPH to LEGOLAND + selected western base + CPH</span></div>
+                <div class="map-key"><span class="map-key-line"></span><span>Road · CPH → LEGOLAND → Skodsborg ⇄ Louisiana → CPH</span></div>
                 <div class="map-key"><span class="map-key-dot"></span><span>Trip location</span></div>
               </div>
             </div>
@@ -3444,8 +3470,8 @@
         <div class="booking-summary" aria-label="Booked cost summary">
           <article class="booking-summary-card">
             <span>Total booked</span>
-            <strong>≈$11.2k</strong>
-            <p>Confirmed airfare, eleven hotel nights, and the prepaid Hertz rental, plus a booked SJ ticket whose fare is not shown in the ticket PDF.</p>
+            <strong>≈$11.8k</strong>
+            <p>Confirmed airfare, twelve hotel nights, and the prepaid Hertz rental, plus a booked SJ ticket whose fare is not shown in the ticket PDF.</p>
           </article>
           <article class="booking-summary-card">
             <span>Flights</span>
@@ -3454,8 +3480,8 @@
           </article>
           <article class="booking-summary-card">
             <span>Hotels</span>
-            <strong>≈$4.9k</strong>
-            <p>Scandic Continental · 3 nights + Home Hotel Baltzar · 6 nights + Hotel LEGOLAND · 2 nights.</p>
+            <strong>≈$5.5k</strong>
+            <p>Scandic Continental · 3 nights + Home Hotel Baltzar · 6 nights + Hotel LEGOLAND · 2 nights + Kurhotel Skodsborg · 1 night.</p>
           </article>
           <article class="booking-summary-card">
             <span>Rental car</span>
@@ -3610,7 +3636,7 @@
               <div class="flight-leg">
                 <div class="flight-date">Check-out · Tue, Sep 15</div>
                 <h4>11:00am</h4>
-                <p>Drive east, make at most one modest Funen stop, then check into a Kastrup hotel with parking.</p>
+                <p>Leave around 08:30–09:00 for Kurhotel Skodsborg bag drop and an afternoon at Louisiana.</p>
               </div>
             </div>
 
@@ -3623,6 +3649,47 @@
             </ul>
 
             <p class="decision-note"><strong>Operational note:</strong> this locks the preferred two-night Billund plan and keeps luggage out of the car during Monday’s park day. The confirmation does not state whether LEGOLAND admission or hotel parking is included, so verify both before buying park tickets or finalizing the driving budget.</p>
+          </article>
+
+          <article class="booking-group">
+            <div class="booking-group-head">
+              <div>
+                <h3>Kurhotel Skodsborg · North Zealand</h3>
+                <p>Junior Suite with spa access · confirmed for a family of four</p>
+              </div>
+              <span class="booking-reference">Confirmed · 1 night</span>
+            </div>
+
+            <div class="flight-booking-grid" aria-label="Confirmed Kurhotel Skodsborg stay">
+              <div class="flight-leg">
+                <div class="flight-date">Check-in · Tue, Sep 15</div>
+                <h4>3:00pm</h4>
+                <p>Arrival window continues until 2:00am.</p>
+                <p>Stop first to store luggage before visiting Louisiana.</p>
+              </div>
+              <div class="flight-leg">
+                <div class="flight-date">Room · Sep 15–16</div>
+                <h4>Junior Suite · spa access</h4>
+                <p>Non-smoking · 1 room · family of four</p>
+                <p>Maximum occupancy 4.</p>
+              </div>
+              <div class="flight-leg">
+                <div class="flight-date">Check-out · Wed, Sep 16</div>
+                <h4>11:00am</h4>
+                <p>Operational departure is much earlier: about 07:45–08:00 for CPH.</p>
+              </div>
+            </div>
+
+            <ul class="booking-detail-list">
+              <li><strong>Address</strong>Skodsborg Strandvej 139, Skodsborg, 2942 Denmark</li>
+              <li><strong>Approximate paid total</strong>About $564 including taxes and the extra-guest charge</li>
+              <li><strong>Cancellation</strong>Non-refundable; no refunds for late check-in or early check-out</li>
+              <li><strong>Parking</strong>Free surface parking; register the rental’s plate at reception for stays over four hours</li>
+              <li><strong>Family spa rule</strong>Main spa is 15+; children may use the separate warm-water pool 18:00–20:00 on weekdays</li>
+              <li><strong>Public-edition note</strong>Guest name, itinerary number, payment details, and receipt breakdown are omitted</li>
+            </ul>
+
+            <p class="decision-note"><strong>Operational note:</strong> the hotel permits arriving guests to leave luggage in its storage room. Unload before Louisiana, register the car at reception, and confirm the children’s beds and breakfast inclusion before arrival.</p>
           </article>
 
           <article class="booking-group">
@@ -3824,11 +3891,11 @@
                   </tr>
                   <tr>
                     <td>Hotels</td>
-                    <td>Kastrup final night</td>
-                    <td>Sep 15–16 · family room with overnight parking</td>
-                    <td class="num">—</td>
-                    <td class="num">—</td>
-                    <td class="pending">Not yet booked</td>
+                    <td>Kurhotel Skodsborg · Junior Suite</td>
+                    <td>Sep 15–16 · 1 night · family of four</td>
+                    <td class="num">≈$0.56k</td>
+                    <td class="num">≈$0.56k</td>
+                    <td>Paid · non-refundable · reservation and receipt breakdown redacted</td>
                   </tr>
                   <tr>
                     <td>Rail + ground</td>
@@ -3864,8 +3931,8 @@
                   </tr>
                   <tr class="total-row">
                     <td colspan="4">Grand total · confirmed booked costs</td>
-                    <td class="num">≈$11.2k</td>
-                    <td>Flights + eleven hotel nights + Hertz rental. SJ is booked but excluded until its fare receipt is added.</td>
+                    <td class="num">≈$11.8k</td>
+                    <td>Flights + twelve hotel nights + Hertz rental. SJ is booked but excluded until its fare receipt is added.</td>
                   </tr>
                 </tbody>
               </table>
@@ -4033,7 +4100,7 @@
           </div>
         </div>
 
-        <div class="border-warning"><strong>Only remaining Baltzar check:</strong> before September 5 at 11:59pm, confirm that the Junior Suite's sofa bed will be prepared for both children and ask whether any mandatory property-collected fees remain.</div>
+        <div class="border-warning"><strong>Baltzar check-in prep:</strong> the cancellation window has closed and the hotel is fixed through Sunday checkout. Ask reception to prepare the Junior Suite sofa bed for both children and confirm any property-collected fees.</div>
 
         <div class="rail-board">
           <aside class="rail-spine" aria-label="Direct train stations to Hyllie">
@@ -4352,9 +4419,9 @@
         <div class="section-head">
           <div>
             <p class="eyebrow">Three-night Denmark finish · Sep 13–16</p>
-            <h2>Sunday is a transfer day. Monday is the full LEGOLAND day.</h2>
+            <h2>Transfer Sunday, LEGOLAND Monday, Louisiana Tuesday.</h2>
           </div>
-          <p>Baltzar remains locked through Sunday checkout, Hotel LEGOLAND is booked for the next two nights, and Hertz is booked through flight morning. Only the September 15 Kastrup hotel with parking remains to choose.</p>
+          <p>Baltzar remains locked through Sunday checkout, Hotel LEGOLAND covers Sunday and Monday, and Kurhotel Skodsborg closes the trip Tuesday night. The Hertz car stays with the family until flight morning.</p>
         </div>
 
         <div class="image-feature">
@@ -4373,8 +4440,33 @@
         <div class="mini-steps" aria-label="Fixed post-Malmö sequence">
           <article class="mini-step"><strong>Sunday, Sep 13</strong><span>Check out, train Malmö C → CPH Airport, pick up Hertz at 11:00, drive west, and check into the Hotel LEGOLAND Park View Room from 15:00. Eat and recover; no attraction is scheduled.</span></article>
           <article class="mini-step"><strong>Monday, Sep 14</strong><span>Spend the full official 10:00–17:00 day at LEGOLAND, with luggage safely in the booked room. Confirm separately whether park admission is included.</span></article>
-          <article class="mini-step"><strong>Tuesday, Sep 15</strong><span>Check out by 11:00, drive east with one modest Funen stop at most, then check into a Kastrup hotel that has confirmed parking and keep the car overnight.</span></article>
-          <article class="mini-step"><strong>Wednesday, Sep 16</strong><span>Drop the family and luggage at Terminal 3, refuel and return Hertz before 10:00, take the free terminal bus back, and check in for SK935 at 12:45.</span></article>
+          <article class="mini-step"><strong>Tuesday, Sep 15</strong><span>Leave Billund around 08:30–09:00. Drive to Kurhotel Skodsborg, store the luggage, then visit Louisiana before the Children’s Wing closes at 18:00. Return for the family pool window and dinner.</span></article>
+          <article class="mini-step"><strong>Wednesday, Sep 16</strong><span>Breakfast opens at 07:00. Leave around 07:45–08:00, drop the family and luggage at Terminal 3, refuel and return Hertz before 09:30, then regroup for SK935 at 12:45.</span></article>
+        </div>
+
+        <div class="option-map-shell drive-map-shell">
+          <div class="option-map-stage">
+            <svg id="denmarkDriveMap" role="img" aria-labelledby="driveMapTitle driveMapNote">
+              <title>Booked Denmark driving route</title>
+              <desc>Copenhagen Airport to Hotel LEGOLAND, then Kurhotel Skodsborg for a luggage drop, Louisiana Museum, back to Skodsborg, and Copenhagen Airport.</desc>
+            </svg>
+          </div>
+          <div class="option-map-copy">
+            <span class="tag yellow">Booked driving sequence</span>
+            <h3 id="driveMapTitle">CPH → Billund → Skodsborg ⇄ Louisiana → CPH</h3>
+            <p id="driveMapNote">A schematic road map for September 13–16. Distances and times are planning estimates; use live navigation for traffic and closures.</p>
+            <div class="option-map-facts">
+              <div class="option-map-fact"><strong>Sunday</strong><span>CPH Airport → Hotel LEGOLAND · about 268 km; allow 3–3¼ hours after collecting the car</span></div>
+              <div class="option-map-fact"><strong>Tuesday</strong><span>Billund → Skodsborg · about 295 km; allow roughly 3½ hours plus a family stop, then drop the bags</span></div>
+              <div class="option-map-fact"><strong>Final legs</strong><span>Skodsborg ⇄ Louisiana · about 26 km each way; Skodsborg → CPH · allow 50–60 minutes in morning traffic</span></div>
+            </div>
+            <div class="drive-map-links" aria-label="Open Denmark driving legs in Google Maps">
+              <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hertz,+Lufthavnsboulevarden+5,+2770+Kastrup,+Denmark&amp;destination=Hotel+LEGOLAND,+Aastvej+10,+7190+Billund,+Denmark&amp;travelmode=driving" target="_blank" rel="noreferrer">Sun · CPH → Billund ↗</a>
+              <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel+LEGOLAND,+Aastvej+10,+7190+Billund,+Denmark&amp;destination=Kurhotel+Skodsborg,+Skodsborg+Strandvej+139,+2942+Skodsborg,+Denmark&amp;travelmode=driving" target="_blank" rel="noreferrer">Tue · Billund → hotel ↗</a>
+              <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Kurhotel+Skodsborg,+Skodsborg+Strandvej+139,+2942+Skodsborg,+Denmark&amp;destination=Louisiana+Museum+of+Modern+Art,+Gl+Strandvej+13,+3050+Humlebaek,+Denmark&amp;travelmode=driving" target="_blank" rel="noreferrer">Tue · hotel → Louisiana ↗</a>
+              <a href="https://www.google.com/maps/dir/?api=1&amp;origin=Kurhotel+Skodsborg,+Skodsborg+Strandvej+139,+2942+Skodsborg,+Denmark&amp;destination=Copenhagen+Airport,+Lufthavnsboulevarden+5,+2770+Kastrup,+Denmark&amp;travelmode=driving" target="_blank" rel="noreferrer">Wed · hotel → CPH ↗</a>
+            </div>
+          </div>
         </div>
 
         <details class="decision-archive">
@@ -4470,14 +4562,30 @@
           <div>
             <p class="eyebrow">Car return · booked</p>
             <h3>Keep the car overnight and return it September 16 at CPH.</h3>
-            <p>The Hertz contract runs through 10:00 Wednesday. The final-night hotel must therefore have confirmed parking and should be close enough to stage the family-and-bags drop before the rental return.</p>
+            <p>The Hertz contract runs through 10:00 Wednesday. Kurhotel Skodsborg has free registered parking, and its early breakfast makes it practical to stage the family-and-bags drop before returning the rental.</p>
           </div>
           <div class="return-verdict">
-            <div class="return-card recommended"><strong>Sep 15 · move east with the car</strong><span>Cross the Great Belt Tuesday, refuel near Kastrup, and park at the final hotel. The long drive is complete before flight day.</span></div>
-            <div class="return-card"><strong>Sep 16 · return before 10:00</strong><span>The reservation time is workable, but SAS recommends arriving three hours before a flight outside Europe. Drop the family and bags around 09:00, then have the driver return the car before 09:30 and take the free terminal bus back.</span></div>
-            <div class="return-card avoid"><strong>Do not sleep in western Denmark Sep 15</strong><span>That would move the Great Belt crossing, refueling, and rental process onto flight morning. The booked 10:00 return does not make that a sensible risk.</span></div>
+            <div class="return-card recommended"><strong>Sep 15 · finish the long drive</strong><span>Cross the Great Belt, unload at Kurhotel Skodsborg, and visit Louisiana without the family’s suitcases in the museum’s public lot.</span></div>
+            <div class="return-card"><strong>Sep 16 · leave by 08:00</strong><span>Eat when breakfast opens at 07:00, drop the family and bags at Terminal 3, then have the driver return the car before 09:30 and take the free terminal bus back.</span></div>
+            <div class="return-card"><strong>Register the plate</strong><span>Kurhotel lists free surface parking. Register the rental’s license plate at reception when staying longer than four hours.</span></div>
           </div>
         </div>
+
+        <div class="program-watch">
+          <div>
+            <p class="eyebrow">Final night · booked · Sep 15</p>
+            <h3>Use Kurhotel Skodsborg as the luggage-safe Louisiana base.</h3>
+            <p>The Junior Suite is confirmed for all four travelers. Treat the hotel as an operational stop first and a relaxing coastal finish second.</p>
+          </div>
+          <div class="watch-grid">
+            <div class="watch-topic"><strong>Bag drop before the museum</strong><span>The hotel’s terms explicitly permit arriving guests to use its luggage room. Go to Skodsborg first even though it creates a small backtrack north to Louisiana.</span></div>
+            <div class="watch-topic"><strong>Louisiana timing</strong><span>The museum is open Tuesday until 22:00, but the Children’s Wing closes at 18:00. Aim to arrive around 14:00 and make the family spaces the first priority.</span></div>
+            <div class="watch-topic"><strong>Evening at the hotel</strong><span>The main spa is 15+, while children may use the separate warm-water pool from 18:00–20:00 on weekdays. Brasserie Carl serves dinner from 17:30; The Lobby starts at 16:30.</span></div>
+            <div class="watch-topic"><strong>Flight-morning rhythm</strong><span>Breakfast runs 07:00–10:00. Leave around 07:45–08:00 and preserve a full traffic buffer before the 10:00 Hertz return and 12:45 SK935 departure.</span></div>
+          </div>
+        </div>
+
+        <p class="decision-note"><strong>Locked Denmark plan:</strong> Hotel LEGOLAND Sunday and Monday; Kurhotel bag drop and Louisiana Tuesday; Kurhotel overnight; CPH rental return and SK935 Wednesday.</p>
 
         <div class="program-watch">
           <div>
@@ -4506,6 +4614,10 @@
           </div>
         </div>
 
+        <details class="decision-archive">
+          <summary>Archived final-night airport-hotel comparison</summary>
+          <div class="archive-body">
+
         <div class="program-watch">
           <div>
             <p class="eyebrow">Final night with parking · Sep 15</p>
@@ -4520,7 +4632,10 @@
           </div>
         </div>
 
-        <p class="decision-note"><strong>Current recommendation:</strong> keep every locked booking; drive to the booked Hotel LEGOLAND Park View Room on Sunday; use the full Monday 10:00–17:00 park day; then book Tuesday night at Scandic CPH Strandpark with prepaid parking and return the Hertz car Wednesday morning.</p>
+        <p class="decision-note"><strong>Archived recommendation:</strong> the former Kastrup shortlist was superseded when Kurhotel Skodsborg was booked for September 15.</p>
+
+          </div>
+        </details>
 
         <details class="decision-archive">
 
@@ -4612,8 +4727,8 @@
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="eyebrow">Booking sequence</p>
-            <h2>Flights, eleven hotel nights, Hertz, and SJ are locked. Secure the final room and tickets.</h2>
+            <p class="eyebrow">Trip readiness</p>
+            <h2>Flights, twelve hotel nights, Hertz, and SJ are locked.</h2>
           </div>
           <p>The checklist saves locally in this browser. It is ordered by what can break the whole plan, not by what is most fun to shop for.</p>
         </div>
@@ -4632,7 +4747,7 @@
             <label class="check-item"><input type="checkbox" data-check="stockholm-hotel" checked disabled><span class="check-copy"><strong>Scandic Continental Master Suite booked · Sep 4–7</strong><span>Family of four · about $1.5k · non-refundable; reservation and payment details redacted.</span></span><span class="priority later">Booked</span></label>
             <label class="check-item"><input type="checkbox" data-check="transfer" checked disabled><span class="check-copy"><strong>Hertz CPH Airport car booked · Sep 13–16</strong><span>Kodiaq or similar · unlimited kilometers · approximately $228 prepaid · 11:00 pickup / 10:00 return. Confirmation details are redacted.</span></span><span class="priority later">Booked</span></label>
             <label class="check-item"><input type="checkbox" data-check="billund-hotel" checked disabled><span class="check-copy"><strong>Hotel LEGOLAND booked · Sep 13–15</strong><span>Park View Room for four · approximately $574 paid · non-refundable. Confirm parking and whether park admission is included; reservation identifier redacted.</span></span><span class="priority later">Booked</span></label>
-            <label class="check-item"><input type="checkbox" data-check="cph-hotel"><span class="check-copy"><strong>Hold Kastrup parking hotel · Sep 15</strong><span>Start with Scandic CPH Strandpark Family Four + prebooked garage; compare Comfort and Clarion, including the full overnight parking price.</span></span><span class="priority">Now</span></label>
+            <label class="check-item"><input type="checkbox" data-check="cph-hotel" checked disabled><span class="check-copy"><strong>Kurhotel Skodsborg booked · Sep 15</strong><span>Junior Suite with spa access · about $564 paid · non-refundable. Confirm breakfast inclusion and children’s beds.</span></span><span class="priority later">Booked</span></label>
             <label class="check-item"><input type="checkbox" data-check="car-followups"><span class="check-copy"><strong>Add Hertz flight info + child restraints</strong><span>Add SK935, reserve two seats appropriate to the children's current heights/weights, and confirm Great Belt toll handling.</span></span><span class="priority">Now</span></label>
             <label class="check-item"><input type="checkbox" data-check="lego"><span class="check-copy"><strong>Book LEGOLAND · Sep 14</strong><span>The official calendar shows 10:00–17:00 Monday, with rides scheduled to close at 16:00. Do not add LEGO House to the same day.</span></span><span class="priority">Now</span></label>
             <label class="check-item"><input type="checkbox" data-check="eccv"><span class="check-copy"><strong>Register and lock the Sep 8–9 workshop plan</strong><span>Primary plan: Multimodal Digital Agents on Tuesday and World Models for Embodied AI on Wednesday.</span></span><span class="priority">Now</span></label>
@@ -4737,6 +4852,7 @@
             <ul>
               <li>The private booking record confirms Home Hotel Baltzar, Junior Suite, September 7–13 for four guests; the reservation identifier is redacted.</li>
               <li>The private booking record confirms Hotel LEGOLAND, Park View Room, September 13–15 for four guests; identifiers and receipt details are redacted.</li>
+              <li>The private booking record confirms Kurhotel Skodsborg, Junior Suite with spa access, September 15–16 for four guests; identifiers and receipt details are redacted.</li>
               <li><a href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-malmo/rooms" target="_blank" rel="noreferrer">Radisson Blu Malmö room sizes and family occupancy</a></li>
               <li><a href="https://www.radissonhotels.com/en-us/hotels/radisson-blu-malmo" target="_blank" rel="noreferrer">Radisson Blu Malmö location and 600 m station walk</a></li>
               <li><a href="https://www.strawberryhotels.com/hotels/sweden/malmo/comfort-hotel-malmo/" target="_blank" rel="noreferrer">Comfort Hotel Malmö Family Room, meals, and cleaning details</a></li>
@@ -4749,6 +4865,14 @@
               <li><a href="https://thelodge.dk/rooms/" target="_blank" rel="noreferrer">The Lodge Billund rooms for up to four</a></li>
               <li><a href="https://www.bestwestern.com/en_US/book/billund/hotel-rooms/refborg-hotel-billund-sure-hotel-collection-by-best-western/propertyCode.96612.html" target="_blank" rel="noreferrer">Refborg Hotel Family Double occupancy</a></li>
               <li><a href="https://www.lalandia.dk/en/billund/holiday-homes/classic-4" target="_blank" rel="noreferrer">Lalandia Classic 4 space and inclusions</a></li>
+              <li><a href="https://skodsborg.dk/en/rooms/" target="_blank" rel="noreferrer">Kurhotel Skodsborg Junior Suite · four-guest capacity</a></li>
+              <li><a href="https://skodsborg.dk/en/terms-and-conditions/" target="_blank" rel="noreferrer">Kurhotel luggage storage and arrival terms</a></li>
+              <li><a href="https://skodsborg.dk/en/find-your-way/" target="_blank" rel="noreferrer">Kurhotel parking and plate-registration instructions</a></li>
+              <li><a href="https://skodsborg.dk/en/contact/" target="_blank" rel="noreferrer">Kurhotel breakfast and restaurant hours</a></li>
+              <li><a href="https://skodsborg.dk/en/spa/" target="_blank" rel="noreferrer">Kurhotel spa age limit and children’s pool window</a></li>
+              <li><a href="https://louisiana.dk/en/plan-your-visit/opening-hours/" target="_blank" rel="noreferrer">Louisiana Tuesday and Children’s Wing hours</a></li>
+              <li><a href="https://louisiana.dk/en/plan-your-visit/families-and-children/" target="_blank" rel="noreferrer">Louisiana family visit information</a></li>
+              <li><a href="https://louisiana.dk/en/plan-your-visit/getting-here-and-parking/" target="_blank" rel="noreferrer">Louisiana directions and public-parking caution</a></li>
               <li><a href="https://www.scandichotels.com/en/hotels/scandic-spectrum" target="_blank" rel="noreferrer">Scandic Spectrum family rooms and suites</a></li>
               <li><a href="https://www.tivolihotel.com/rooms-and-suites" target="_blank" rel="noreferrer">Tivoli Hotel family and connecting rooms</a></li>
               <li><a href="https://www.tivolihotel.com/facilities-and-services/swimming-pool-and-sauna" target="_blank" rel="noreferrer">Tivoli Hotel indoor pool</a></li>
@@ -4801,7 +4925,7 @@
           <div class="source-group">
             <h3>Important caveats</h3>
             <ul>
-              <li>Home Hotel Baltzar, Scandic Continental, and Hotel LEGOLAND are confirmed; the CPH Airport hotel ranking compares official room types and locations, not live September 2026 inventory or rates.</li>
+              <li>Home Hotel Baltzar, Scandic Continental, Hotel LEGOLAND, and Kurhotel Skodsborg are confirmed. Hotel-comparison material is archived and no longer controls the itinerary.</li>
               <li>The Scandic Continental Master Suite rate is non-refundable; contact the property in advance if arrival may be after midnight.</li>
               <li>Drive time and door-to-door commute times are planning estimates.</li>
               <li>The main-conference program and poster session assignment are not yet public.</li>
@@ -4810,7 +4934,7 @@
             </ul>
           </div>
         </div>
-        <p class="as-of">Public planning edition updated September 5, 2026. The SAS itinerary, Scandic Continental stay, Home Hotel Baltzar stay, Hotel LEGOLAND stay, SJ Train 531, and September 13–16 Hertz CPH Airport rental are confirmed, with known combined booked costs of approximately $11.2k. The SJ fare is not shown in the ticket PDF and is not yet included in that total. Saturday’s Stockholm activities are logged as completed. Passenger names, reservation identifiers, assigned seats, account credits, payment details, and the conference paper identity are omitted. Booked segments are locked: Sunday September 13 is transfer-and-check-in only; Hotel LEGOLAND is booked through Tuesday September 15; the car stays with the family Tuesday night and returns at CPH Airport Wednesday morning.</p>
+        <p class="as-of">Public planning edition updated September 6, 2026. The SAS itinerary, Scandic Continental stay, Home Hotel Baltzar stay, Hotel LEGOLAND stay, Kurhotel Skodsborg stay, SJ Train 531, and September 13–16 Hertz CPH Airport rental are confirmed, with known combined booked costs of approximately $11.8k. The SJ fare is not shown in the ticket PDF and is not yet included in that total. Saturday’s Stockholm activities are logged as completed. Passenger names, reservation identifiers, assigned seats, account credits, payment details, and the conference paper identity are omitted. Booked segments are locked: Sunday September 13 is transfer-and-check-in only; Hotel LEGOLAND is booked through Tuesday September 15; Tuesday finishes with Louisiana and Kurhotel Skodsborg; the car returns at CPH Airport Wednesday morning.</p>
       </div>
     </section><section id="archive" class="archive-section">
       <div class="wrap">
@@ -4832,7 +4956,7 @@
                 <ul>
                   <li>Leave Malmö on September 12 for three Billund nights—more LEGO time, but a rushed final-conference evening.</li>
                   <li>Stay three Billund nights and transfer to CPH on flight morning—rejected because it adds too much risk to SK935.</li>
-                  <li>The retained framework keeps September 12 in Malmö, two Billund nights, and September 15 in Copenhagen.</li>
+                  <li>The retained framework kept September 12 in Malmö and two Billund nights; Kurhotel Skodsborg later replaced the generic Copenhagen-area final night.</li>
                 </ul>
               </div>
             </details>
@@ -4898,23 +5022,23 @@
 
     const scenarios = {
       billundTwo: {
-        dates: "Sep 13–16 · Hotel LEGOLAND booked + 1 Kastrup night",
-        title: "Hotel LEGOLAND for two nights, then Kastrup—with the car",
-        summary: "Sunday is only the westbound transfer and Hotel LEGOLAND check-in. Monday is the full park day; Tuesday moves east to the final airport-area hotel with parking.",
+        dates: "Sep 13–16 · all lodging and the rental booked",
+        title: "Hotel LEGOLAND, Louisiana, then Kurhotel Skodsborg",
+        summary: "Sunday is the westbound transfer, Monday is the full park day, and Tuesday crosses Denmark for Louisiana before the final coastal hotel night.",
         verdictTitle: "Booked",
-        verdictCopy: "The Park View Room protects every Malmö night, keeps luggage out of the park, and uses LEGOLAND's confirmed Monday 10:00–17:00 opening.",
+        verdictCopy: "The route protects every Malmö night, keeps luggage out of the park and museum lots, and completes the long drive one day before SK935.",
         route: [
           ["Stockholm", "Sep 4–7", "3 nights"],
           ["Malmö", "Sep 7–13", "6 booked nights"],
           ["Hotel LEGOLAND", "Sep 13–15", "2 booked nights · park Monday"],
-          ["Kastrup → CPH → SFO", "Sep 15–16", "park overnight + return car"]
+          ["Skodsborg ⇄ Louisiana → CPH", "Sep 15–16", "bag drop, museum, final night"]
         ],
         days: [
           ["Sat · Sep 12", "Finish ECCV + Baltzar", "Use the final conference day without a move and sleep in the booked Malmö room."],
           ["Sun · Sep 13", "Malmö → Hertz → Hotel LEGOLAND", "Collect the car at 11:00, drive west, check into the Park View Room from 15:00, eat, and recover. Do not schedule the park."],
           ["Mon · Sep 14", "Full LEGOLAND day", "Use the official 10:00–17:00 opening; rides are scheduled to close at 16:00."],
-          ["Tue · Sep 15", "Funen → Kastrup parking hotel", "Choose one modest stop or drive directly; keep the Hertz car overnight at a hotel with reserved parking."],
-          ["Wed · Sep 16", "Return Hertz → SK935", "Drop family and bags first, hand the car back before 10:00, then take the free terminal bus for the 12:45 flight."]
+          ["Tue · Sep 15", "Billund → Skodsborg bag drop → Louisiana", "Leave around 08:30–09:00, cross the Great Belt, store the luggage at Kurhotel Skodsborg, then visit Louisiana before the Children's Wing closes."],
+          ["Wed · Sep 16", "Skodsborg → Hertz → SK935", "Breakfast from 07:00, leave by 08:00, drop family and bags first, and hand the car back before 09:30 for the 12:45 flight."]
         ]
       },
       vejleTwo: {
@@ -5042,12 +5166,13 @@
     const progressNumber = document.getElementById("progressNumber");
     const progressFill = document.getElementById("progressFill");
     const storageKey = "eccv-2026-trip-checklist-v2";
+    const lockedChecklistKeys = new Set(["flights", "malmo-hotel", "stockholm-hotel", "transfer", "billund-hotel", "cph-hotel", "rail"]);
 
     function loadChecklist() {
       try {
         const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
         checkboxes.forEach((box) => {
-          if (box.dataset.check === "flights" || box.dataset.check === "malmo-hotel") {
+          if (lockedChecklistKeys.has(box.dataset.check)) {
             box.checked = true;
             return;
           }
@@ -5095,7 +5220,7 @@ CORE DATES
 • ECCV workshops/tutorials: September 8–9
 • ECCV main conference: September 10–12
 • Malmö: September 7–13
-• Denmark finish: Hotel LEGOLAND September 13–15 · one Kastrup parking-hotel night September 15–16
+• Denmark finish: Hotel LEGOLAND September 13–15 · Louisiana + Kurhotel Skodsborg September 15–16
 • Hertz: Copenhagen Airport September 13 at 11:00 to September 16 at 10:00
 • Fly home nonstop: Wednesday, September 16 on SK935
 • Family: four travelers with two young children
@@ -5114,13 +5239,15 @@ COMPLETED BOOKINGS · PUBLIC SUMMARY
 • Approximate Scandic total: $1.5k including prepaid taxes · non-refundable
 • Hotel LEGOLAND: Sep 13–15 · Park View Room · family of four; reservation identifier redacted
 • Approximate Hotel LEGOLAND total: $574 including taxes · paid and non-refundable
+• Kurhotel Skodsborg: Sep 15–16 · Junior Suite with spa access · family of four; reservation identifier redacted
+• Approximate Kurhotel total: $564 including taxes and the extra-guest charge · paid and non-refundable
 • SJ Train 531: Sep 7 · Stockholm Central 11:20 → Malmö Central 15:53 · direct X 2000
 • SJ seating: four table seats in carriage 6 · 2nd class · non-rebookable · identifiers and exact seats redacted
 • SJ fare is not shown in the ticket PDF and is not included in the cost total
 • Hertz CPH Airport rental: Skoda Kodiaq or similar · unlimited kilometers · approximately $228 prepaid; confirmation redacted
-• Approximate known booked-trip total: $11.2k; add the SJ fare once the receipt is available; the final Kastrup hotel, local rail, tolls, parking, registration, and attractions are not yet included
+• Approximate known booked-trip total: $11.8k; add the SJ fare once the receipt is available; local rail, tolls, parking, registration, and attractions are not yet included
 
-CURRENT RECOMMENDATION
+CURRENT OPERATING PLAN
 • SK936 + SK1426 + SK935 are confirmed; the outbound connection is 1h50
 • Scandic Continental Master Suite is booked September 4–7 for the family; the rate is non-refundable
 • Arlanda Express: 18 minutes; current two-adult group fare SEK 460, with children 0–17 free when accompanied
@@ -5134,12 +5261,12 @@ CURRENT RECOMMENDATION
 • Sunday September 13 is transfer and check-in only: direct train to Copenhagen Airport, Hertz pickup at 11:00, then drive west and unload
 • Hotel LEGOLAND Park View Room is booked September 13–15; confirm whether parking and park admission are included
 • Monday September 14: full LEGOLAND day, officially open 10:00–17:00 with rides scheduled to close at 16:00
-• Tuesday September 15: choose one modest Funen stop or drive directly east; keep the car overnight at a Kastrup hotel with reserved parking
-• Final-night first choice: Scandic CPH Strandpark Family Four with prebooked garage parking; compare Comfort and Clarion at the terminal
-• Wednesday September 16: drop family and bags around 09:00, return Hertz before the booked 10:00 time, then take the free terminal bus back
+• Tuesday September 15: leave Billund around 08:30–09:00, cross the Great Belt, store luggage at Kurhotel Skodsborg, and visit Louisiana before the Children’s Wing closes at 18:00
+• Kurhotel Skodsborg Junior Suite is booked for the family; register the car, confirm the children’s beds and breakfast inclusion, and remember the main spa is 15+
+• Wednesday September 16: breakfast starts at 07:00; leave around 07:45–08:00, drop family and bags, return Hertz before 09:30, then take the free terminal bus back
 • Transport verdict: rail through Stockholm and Malmö, then the booked same-location CPH Airport rental September 13–16
 • Toll budget: Great Belt twice at DKK 410 with eligible automatic payment or DKK 470 by card/cash; Little Belt is free; train-to-CPH pickup avoids the Øresund car toll
-• Book now: a September 15 Kastrup family room with parking, two child restraints, and LEGOLAND admission for September 14 if it is not included with the hotel; local Öresund trains remain flexible
+• Act next: arrange two child restraints, LEGOLAND admission for September 14 if it is not included, and the flexible Malmö → CPH Airport train; confirm Kurhotel breakfast and bedding
 
 ECCV ATTENDANCE PLAN
 • Sep 8 primary: Multimodal Digital Agents, full day
@@ -5159,6 +5286,7 @@ LODGING STATUS
 • Stockholm lodging decision is complete: Scandic Continental Master Suite is booked; its old comparison is archived in the page
 • Malmö lodging decision is complete: Home Hotel Baltzar Junior Suite is booked; its old comparison is archived in the page
 • Billund lodging decision is complete: Hotel LEGOLAND Park View Room is booked; the western-base comparison is archived in the page
+• Final-night lodging decision is complete: Kurhotel Skodsborg Junior Suite is booked; the airport-hotel comparison is archived in the page
 
 FLIGHTS
 • Confirmed Sep 3: SK936 SFO → CPH, 16:45–12:00 (+1 day)
@@ -5166,12 +5294,12 @@ FLIGHTS
 • Confirmed Sep 16: SK935 CPH → SFO, 12:45–14:40 nonstop
 • Recheck the private SAS reservation for operational schedule changes before travel
 
-OPEN DECISIONS
-• Confirm Baltzar sofa-bed preparation and any property-collected mandatory fees before Sep 5
-• Exact September 15 Copenhagen Airport room type, live rate, bedding, parking, and cancellation terms
+OPEN TASKS
+• Confirm Baltzar sofa-bed preparation and any property-collected mandatory fees at check-in
 • Whether Hotel LEGOLAND parking and September 14 park admission are included
+• Kurhotel Skodsborg children’s bed setup, breakfast inclusion, and plate registration
 • Hertz child-seat details, luggage fit, flight info, and Great Belt toll handling
-• September 15 choice: Egeskov, Odense, another modest Funen stop, or a direct low-energy drive to the airport hotel
+• Louisiana admission timing and whether to reserve dinner at Kurhotel Skodsborg
 • Malmö → CPH Airport train timing for September 13
 • Exact ECCV poster assignment and main-program selections
 
@@ -5179,7 +5307,7 @@ CHECKLIST ITEMS COMPLETED ON THIS DEVICE
 ${selectedChecks.length ? selectedChecks.map((item) => `• ${item}`).join("\n") : "• None yet"}
 
 RESEARCH CHECKED
-September 5, 2026. Flights, Scandic Continental, Home Hotel Baltzar, Hotel LEGOLAND, SJ Train 531, and Hertz are confirmed and treated as locked constraints. Saturday’s Stockholm activities are logged as completed. The SJ fare is absent from the ticket PDF, so the known cost total is about $11.2k until the receipt is added. Live room inventory or rates are not asserted.`;
+September 6, 2026. Flights, Scandic Continental, Home Hotel Baltzar, Hotel LEGOLAND, Kurhotel Skodsborg, SJ Train 531, and Hertz are confirmed and treated as locked constraints. Saturday’s Stockholm activities are logged as completed. The SJ fare is absent from the ticket PDF, so the known cost total is about $11.8k until the receipt is added.`;
     }
 
     function openExportModal() {
@@ -5232,17 +5360,17 @@ September 5, 2026. Flights, Scandic Continental, Home Hotel Baltzar, Hotel LEGOL
       coordinates: [[7.1, 54.1], [20.5, 54.1], [20.5, 60.75], [7.1, 60.75]]
     };
     const mapLocations = [
-      { name: "Billund", note: "LEGOLAND stop", coordinates: [9.1157, 55.7284], offset: [-18, -24], mobileOffset: [12, -20] },
-      { name: "Vejle", note: "2-night base option", coordinates: [9.5357, 55.7113], offset: [18, 31], mobileOffset: [18, 31] },
-      { name: "Aarhus", note: "day-trip option", coordinates: [10.2039, 56.1629], offset: [-22, -28], mobileOffset: [18, -24] },
-      { name: "Copenhagen / CPH", note: "rental loop + SK935", coordinates: [12.6508, 55.6181], offset: [-62, 33], mobileOffset: [-12, 44] },
+      { name: "Billund", note: "Hotel LEGOLAND · 2 nights", coordinates: [9.1157, 55.7284], offset: [-18, -24], mobileOffset: [12, -20] },
+      { name: "Copenhagen / CPH", note: "rental pickup + return", coordinates: [12.6508, 55.6181], offset: [-62, 33], mobileOffset: [-12, 44] },
       { name: "Malmö / Hyllie", note: "Baltzar + ECCV", coordinates: [12.9764, 55.5631], offset: [54, 28], mobileOffset: [22, 38] },
       { name: "Lund", note: "easy family day", coordinates: [13.1870, 55.7047], offset: [50, -30], mobileOffset: [22, -28] },
+      { name: "Louisiana", note: "Tuesday museum", coordinates: [12.5468, 55.9709], offset: [42, -26], mobileOffset: [20, -24] },
+      { name: "Skodsborg", note: "final booked night", coordinates: [12.5744, 55.8225], offset: [-44, 26], mobileOffset: [-18, 28] },
       { name: "Stockholm", note: "first 3 nights", coordinates: [18.0686, 59.3293], offset: [18, -24], mobileOffset: [-12, -18], stockholm: true }
     ];
     const coreRoute = {
       type: "LineString",
-      coordinates: [[12.9764, 55.5631], [12.6508, 55.6181], [9.5357, 55.7113], [9.1157, 55.7284], [9.5357, 55.7113], [10.2039, 56.1629], [9.5357, 55.7113], [10.3883, 55.4038], [12.6508, 55.6181]]
+      coordinates: [[12.9764, 55.5631], [12.6508, 55.6181], [9.1157, 55.7284], [12.5744, 55.8225], [12.5468, 55.9709], [12.5744, 55.8225], [12.6508, 55.6181]]
     };
     const stockholmRoute = {
       type: "LineString",
@@ -5252,6 +5380,67 @@ September 5, 2026. Flights, Scandic Continental, Home Hotel Baltzar, Hotel LEGOL
       type: "LineString",
       coordinates: [[12.6508, 55.6181], [17.9186, 59.6519]]
     };
+
+    const driveMapElement = document.getElementById("denmarkDriveMap");
+    const driveMapFrame = {
+      type: "MultiPoint",
+      coordinates: [[8.35, 55.15], [13.05, 55.15], [13.05, 56.15], [8.35, 56.15]]
+    };
+    const driveMapPlaces = [
+      { name: "CPH Airport", coordinates: [12.6508, 55.6181], offset: [-12, 26] },
+      { name: "Hotel LEGOLAND", coordinates: [9.1157, 55.7284], offset: [10, -18] },
+      { name: "Louisiana", coordinates: [12.5468, 55.9709], offset: [10, -18] },
+      { name: "Kurhotel Skodsborg", coordinates: [12.5744, 55.8225], offset: [-12, 25] }
+    ];
+    const driveMapRoute = {
+      type: "LineString",
+      coordinates: [
+        driveMapPlaces[0].coordinates,
+        driveMapPlaces[1].coordinates,
+        driveMapPlaces[3].coordinates,
+        driveMapPlaces[2].coordinates,
+        driveMapPlaces[3].coordinates,
+        driveMapPlaces[0].coordinates
+      ]
+    };
+
+    function drawDriveMap() {
+      if (!driveMapElement) return;
+      const width = Math.max(320, driveMapElement.clientWidth || 720);
+      const height = Math.max(330, driveMapElement.clientHeight || 360);
+      const projection = d3.geoMercator().fitExtent([[24, 24], [width - 24, height - 24]], driveMapFrame);
+      const path = d3.geoPath(projection);
+      const svg = d3.select(driveMapElement);
+      svg.selectAll("*").remove();
+      svg.attr("viewBox", `0 0 ${width} ${height}`);
+
+      svg.append("g")
+        .selectAll("path")
+        .data(visibleCountries.filter((country) => ["DNK", "SWE"].includes(country.properties.id)))
+        .join("path")
+        .attr("class", (country) => `option-map-country${country.properties.id === "DNK" ? " is-focus" : ""}`)
+        .attr("d", path);
+
+      svg.append("path")
+        .datum(driveMapRoute)
+        .attr("class", "option-map-route")
+        .attr("d", path);
+
+      const markers = svg.append("g")
+        .selectAll("g")
+        .data(driveMapPlaces)
+        .join("g")
+        .attr("transform", (place) => `translate(${projection(place.coordinates).join(",")})`);
+
+      markers.append("circle").attr("class", "option-map-marker-halo").attr("r", 8);
+      markers.append("circle").attr("class", "option-map-marker-core").attr("r", 4.5);
+      markers.append("text")
+        .attr("class", "option-map-label")
+        .attr("x", (place) => place.offset[0])
+        .attr("y", (place) => place.offset[1])
+        .attr("text-anchor", (place) => place.offset[0] < 0 ? "end" : "start")
+        .text((place) => place.name);
+    }
 
     const decisionMapElement = document.getElementById("denmarkDecisionMap");
     const decisionMapFrame = {
@@ -5428,9 +5617,12 @@ September 5, 2026. Flights, Scandic Continental, Home Hotel Baltzar, Hotel LEGOL
     }
 
     drawNordicMap();
+    drawDriveMap();
     drawDecisionMap("billundTwo");
     const mapObserver = new ResizeObserver(drawNordicMap);
     mapObserver.observe(mapElement);
+    const driveMapObserver = new ResizeObserver(drawDriveMap);
+    driveMapObserver.observe(driveMapElement);
     const decisionMapObserver = new ResizeObserver(() => drawDecisionMap(activeDecisionMap));
     decisionMapObserver.observe(decisionMapElement);
   </script>
