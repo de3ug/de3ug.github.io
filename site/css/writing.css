@@ -30,6 +30,14 @@ figure a { display: block; }
 .dataset-facts { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
 .dataset-facts th, .dataset-facts td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--button-border); }
 .dataset-facts th { width: 30%; }
+.viewpoint-tables { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; margin: 24px 0; align-items: start; }
+.viewpoint-counts { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.viewpoint-counts caption { text-align: left; font-weight: bold; margin-bottom: 10px; }
+.viewpoint-counts th, .viewpoint-counts td { text-align: right; vertical-align: middle; padding: 8px 6px; border-bottom: 1px solid var(--button-border); }
+.viewpoint-counts tr > :first-child { text-align: left; padding-left: 0; }
+.viewpoint-counts thead th { line-height: 1.4; }
+.viewpoint-counts tfoot { font-weight: bold; }
+.viewpoint-note { font-size: 13px; }
 .dataset-page { line-height: 1.65; }
 .dataset-download { display: inline-flex; align-items: center; gap: 8px; font-weight: bold; }
 .dataset-download svg { width: 20px; height: 20px; }
@@ -51,6 +59,7 @@ figure a { display: block; }
   .writing-row { grid-template-columns: 1fr; gap: 16px; }
   .writing-row img { width: 100%; max-width: 320px; }
   .dataset-facts th { width: 36%; }
+  .viewpoint-tables { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 360px) {
   .reading-page h1, [data-theme="dark"] .reading-page h1 { font-size: 26px; }
