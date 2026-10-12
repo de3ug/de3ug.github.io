@@ -12,9 +12,8 @@ if (siteNavigation) {
     </div>
     <a href="${section('about')}">About</a>
     <a href="${section('publications')}">Publications &amp; Service</a>
-    <a href="${section('projects')}">Projects</a>
     <a href="${section('experience')}">Experience</a>
-    <a href="${section('hobbies')}">Personal/Hobbies</a>
+    <a href="${section('hobbies')}">Personal, Hobbies &amp; Writing</a>
     <a href="${section('contact')}">Contact</a>
     <hr class="nav-divider">
     <button class="theme-toggle" type="button" data-theme-toggle>&#127769; Dark</button>

@@ -47,19 +47,6 @@ function renderExperience(entries) {
     }).join('');
 }
 
-function renderWriting(entries) {
-  return entries
-    .filter(entry => visible(entry, 'web'))
-    .map(entry => {
-      const status = entry.status ? `${esc(entry.status)} &middot; ` : '';
-      return `<article class="writing-entry">` +
-        `<p class="writing-meta">${status}${esc(entry.date_display)} &middot; ${esc(entry.reading_time)} read</p>` +
-        `<h3><a href="${esc(entry.path || entry.url)}">${esc(entry.title)}</a></h3>` +
-        `<p class="writing-summary">${esc(entry.summary)}</p>` +
-        `</article>`;
-    }).join('');
-}
-
 function injectJsonLd(r) {
   const ld = {
     '@context': 'https://schema.org',
@@ -98,31 +85,30 @@ async function render() {
     `<p>${esc(r.about)}</p>`;
 
   // Publications
+  const mediaHtml = renderList(r.projects);
   document.querySelector('#publications').innerHTML =
-    `<h2>Selected Publications and Service</h2>` +
+    `<h2>Publications and Service</h2>` +
+    `<h3 class="subsection-title">Selected Publications</h3>` +
     `<p>${renderParts(r.publications_intro.parts)}</p>` +
     renderList([...r.publications, ...(r.datasets || [])]) +
     `<p>${esc(r.reviewer_service)}</p>` +
     `<h3 id="patents" class="subsection-title">Selected Patents</h3>` +
     `<p>${esc(r.patents_intro)}</p>` +
-    renderList(r.patents);
-
-  // Projects
-  const projectsHtml = renderList(r.projects);
-  document.querySelector('#projects').innerHTML = projectsHtml
-    ? `<h2>Selected Media Mentions</h2>${projectsHtml}`
-    : '';
+    renderList(r.patents) +
+    (mediaHtml ? `<h3 id="projects" class="subsection-title">Selected Media Mentions</h3>${mediaHtml}` : '');
 
   // Experience
   document.querySelector('#experience').innerHTML =
     `<h2>Education &amp; Work History</h2>` +
     renderExperience(r.experience);
 
-  // Hobbies
-  const writingHtml = renderWriting(r.writing || []);
-  let hobbiesHtml = `<h2>Personal &amp; Hobbies</h2>` +
-    (writingHtml ? `<h3>Writing</h3>${writingHtml}<p><a href="writing/">All writing</a></p>` : '') +
-    renderList(r.hobbies);
+  // Personal writing and hobbies
+  const writingItems = (r.writing || []).map(entry => ({
+    ...entry,
+    parts: [{text: entry.title, url: entry.path || entry.url}]
+  }));
+  let hobbiesHtml = `<h2>Personal, Hobbies, and Writing</h2>` +
+    renderList([...writingItems, ...r.hobbies]);
   if (r.hobby_poem && visible(r.hobby_poem, 'web')) {
     const p = r.hobby_poem;
     const body = p.lines.map(esc).join('<br>');

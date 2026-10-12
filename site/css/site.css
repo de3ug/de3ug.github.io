@@ -81,18 +81,6 @@ body {
 main { margin-left: 220px; padding: 20px; max-width: 800px; }
 section { margin-bottom: 60px; }
 
-.writing-entry {
-  padding: 18px 0;
-  border-top: 1px solid var(--button-border);
-}
-.writing-entry:last-of-type { border-bottom: 1px solid var(--button-border); }
-.writing-entry h3 { margin: 5px 0 8px; font-size: 1.2em; }
-.writing-entry h3 a { color: var(--text); text-decoration: none; }
-.writing-entry h3 a:hover, .writing-entry h3 a:focus { color: var(--link-hover); }
-.writing-meta { margin: 0; font-size: 12px; color: var(--link); opacity: 0.7; text-transform: uppercase; }
-.writing-summary { margin: 0 0 8px; line-height: 1.55; }
-.writing-more { margin-top: 14px; }
-
 /* ── Hobbies poem ─────────────────────────────────────────── */
 .poem {
   margin: 24px 0 0;
@@ -163,7 +151,7 @@ section { margin-bottom: 60px; }
 [data-theme="dark"] .nfo-header { display: block; }
 
 /* Terminal splash — dark mode only */
-.terminal-splash { display: none; margin-bottom: 16px; opacity: 0.45; }
+.terminal-splash { display: none; margin-bottom: 16px; overflow-x: auto; opacity: 0.45; }
 [data-theme="dark"] .terminal-splash { display: block; }
 
 
