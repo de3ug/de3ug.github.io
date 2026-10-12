@@ -4,11 +4,11 @@
 
 Research scientist who has led teams and shipped at global scale: the vision-language systems behind Amazon Lens and visual navigation features in Amazon product search reach hundreds of millions of customers. I believe world-model-grounded, full-duplex interfaces are where computing is heading, and want to work on the hardest problems to get there: multimodal reasoning, agentic retrieval, generative models, and real-time interfaces.
 
-Last updated: 09/02/2026
+Last updated: 10/12/2026
 
 ## Writing
 
-- [VIPeR, Nearly Twenty Years Later](https://de3ug.github.io/writing/viper-nearly-twenty-years-later/): How a deliberately difficult person re-identification benchmark helped organize a research field, and why I eventually questioned what the work was for.
+- [VIPeR: Twenty Years of Person Re-identification](https://de3ug.github.io/writing/twenty-years-of-person-re-identification/): Why I built VIPeR to measure appearance matching across camera viewpoints, how the field progressed, and the questions that led me away from surveillance research.
 
 Contact:
 - Email: douglas.ryan.gray@gmail.com

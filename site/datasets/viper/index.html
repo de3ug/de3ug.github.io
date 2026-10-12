@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Download the VIPeR person re-identification dataset: 632 paired identities, original evaluation protocol, dataset details, and citation guidelines.">
+  <link rel="canonical" href="https://de3ug.github.io/datasets/viper/">
+  <title>VIPeR Dataset - Douglas Gray</title>
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/writing.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "VIPeR: Viewpoint Invariant Pedestrian Recognition",
+    "description": "632 paired pedestrian identities for evaluating appearance matching across camera viewpoints.",
+    "url": "https://de3ug.github.io/datasets/viper/",
+    "version": "1.0",
+    "datePublished": "2007-09-22",
+    "creator": [
+      {"@type": "Person", "name": "Douglas Gray"},
+      {"@type": "Person", "name": "Shane Brennan"},
+      {"@type": "Person", "name": "Hai Tao"}
+    ],
+    "citation": "D. Gray, S. Brennan, and H. Tao. Evaluating Appearance Models for Recognition, Reacquisition, and Tracking. PETS 2007.",
+    "distribution": {
+      "@type": "DataDownload",
+      "encodingFormat": "application/zip",
+      "contentUrl": "https://de3ug.github.io/datasets/viper/VIPeR.v1.0.zip"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main navigation" data-site-root="../../"></nav>
+  <main class="reading-page dataset-page">
+    <p class="breadcrumb"><a href="../../#publications">Publications &amp; Service</a> / Dataset</p>
+    <h1>VIPeR</h1>
+    <p class="article-deck">Viewpoint Invariant Pedestrian Recognition</p>
+    <p>A benchmark for comparing appearance models across changes in camera viewpoint, pose, and illumination. VIPeR contains two images of each of 632 pedestrians.</p>
+    <p><a class="dataset-download" href="VIPeR.v1.0.zip" download>Download VIPeR v1.0 (ZIP, 18.84 MiB)</a></p>
+    <p><a href="../../writing/twenty-years-of-person-re-identification/">Read: Twenty Years of Person Re-identification</a></p>
+    <nav class="dataset-outline" aria-label="Dataset contents">
+      <a href="#datasheet">Dataset details</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#citation">Citation</a>
+      <a href="#loading">Loading images</a>
+      <a href="#checksums">Checksums</a>
+    </nav>
+
+    <section id="datasheet">
+      <h2>Dataset details</h2>
+      <table class="dataset-facts">
+        <tbody>
+          <tr><th scope="row">Task</th><td>Appearance-based person re-identification: rank gallery images for a probe captured from another camera.</td></tr>
+          <tr><th scope="row">Identities</th><td>632, with two images per identity.</td></tr>
+          <tr><th scope="row">Images</th><td>1,264 RGB BMP images; 48 pixels wide &times; 128 pixels high.</td></tr>
+          <tr><th scope="row">Structure</th><td><code>VIPeR/cam_a/</code>, <code>VIPeR/cam_b/</code>, and the original <code>README.txt</code>.</td></tr>
+          <tr><th scope="row">Pairing</th><td>Match filenames by their numeric identity prefix, such as <code>001</code> in <code>001_45.bmp</code>. Identity numbers have gaps.</td></tr>
+          <tr><th scope="row">Viewpoints</th><td>Arbitrary camera viewpoints; most pairs differ by at least 90 degrees. Filenames include coarse viewpoint labels.</td></tr>
+          <tr><th scope="row">Collection</th><td>Two cameras in an academic setting. The PETS paper states that subjects were notified of the cameras and were not coached.</td></tr>
+          <tr><th scope="row">Release</th><td>Version 1.0, September 22, 2007, UCSC Computer Vision Lab.</td></tr>
+          <tr><th scope="row">Authors</th><td>Douglas Gray, Shane Brennan, and Hai Tao.</td></tr>
+          <tr><th scope="row">Archive</th><td>19,756,977 bytes. Original ZIP and README preserved unchanged.</td></tr>
+        </tbody>
+      </table>
+      <figure class="dataset-figure">
+        <a href="../../writing/twenty-years-of-person-re-identification/assets/viper-paired-sample.png"><img src="../../writing/twenty-years-of-person-re-identification/assets/viper-paired-sample.png" width="900" height="1008" alt="Sample paired images showing viewpoint differences in VIPeR"></a>
+        <figcaption>Twelve identity pairs from the dataset, with one image from each camera in each pair.</figcaption>
+      </figure>
+      <p>VIPeR is a small, closed-world benchmark with hand-cropped, low-resolution images and only one observation per identity per camera. It does not measure detection performance, long-term tracking, changing clothes, open-world identification, or deployment accuracy. It has no demographic annotations and should not be used to infer demographic fairness.</p>
+      <p>The original archive contains no separate license file. For questions about permissions or the dataset, contact <a href="mailto:douglas.ryan.gray@gmail.com">Douglas Gray</a>.</p>
+    </section>
+
+    <section id="evaluation">
+      <h2>Evaluation protocol</h2>
+      <p>Section 4.3 of the <a href="../../papers/gray_pets2007_appearance.pdf">PETS 2007 paper</a> specifies <strong>5x2 cross-validation</strong>:</p>
+      <ol>
+        <li>Randomly divide the 632 identity pairs into two folds of 316 identities.</li>
+        <li>Train on one fold and test on the other, then reverse the train/test folds.</li>
+        <li>Repeat for five randomized rounds, yielding ten train/test evaluations.</li>
+        <li>Randomize image-pair order and image mirroring. Use one image per test identity as gallery and the other as probe; swap their roles and average both directions.</li>
+        <li>Report averaged cumulative matching characteristic (CMC) curves, together with the gallery size.</li>
+      </ol>
+      <p>There are no fixed train/test split files in the original release. Record random seeds and generated identity assignments when reproducing this protocol. State any different protocol explicitly, including external training data, gallery size, or re-ranking.</p>
+      <p>The paper also explains how recognition curves relate to tracking and reacquisition. Rank one measures the top match; higher ranks measure whether the correct identity appears in a candidate list for an operator.</p>
+    </section>
+
+    <section id="citation">
+      <h2>Citation guidelines</h2>
+      <p>If you use VIPeR, please cite the dataset and evaluation paper:</p>
+      <p>D. Gray, S. Brennan, and H. Tao, <a href="../../papers/gray_pets2007_appearance.pdf">Evaluating Appearance Models for Recognition, Reacquisition, and Tracking</a>, IEEE International Workshop on Performance Evaluation for Tracking and Surveillance (PETS), October 2007.</p>
+      <pre><code>@article{gray2007,
+  title={Evaluating Appearance Models for Recognition,
+         Reacquisition, and Tracking},
+  author={Gray, D. and Brennan, S. and Tao, H.},
+  journal={Proc. IEEE International Workshop on Performance
+           Evaluation for Tracking and Surveillance (PETS)},
+  year={2007}
+}</code></pre>
+      <p><a href="citation.bib" download>Download BibTeX</a></p>
+      <p>If discussing or comparing with the ELF method, also cite D. Gray and H. Tao, <a href="../../papers/gray_eccv2008_pedestrian.pdf">Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features</a>, ECCV 2008, <a href="https://doi.org/10.1007/978-3-540-88682-2_21">DOI: 10.1007/978-3-540-88682-2_21</a>.</p>
+    </section>
+
+    <section id="loading">
+      <h2>Loading a pair</h2>
+      <p>After extracting the ZIP, pair images by identity rather than by directory order. This Python example uses Pillow:</p>
+      <pre><code>from pathlib import Path
+from PIL import Image
+
+root = Path("VIPeR")
+def by_identity(camera):
+  return {
+    path.stem.split("_")[0]: path
+    for path in (root / camera).glob("*.bmp")
+  }
+
+a = by_identity("cam_a")
+b = by_identity("cam_b")
+assert a.keys() == b.keys()
+identity = sorted(a)[0]
+image_a = Image.open(a[identity]).convert("RGB")
+image_b = Image.open(b[identity]).convert("RGB")</code></pre>
+      <p>The filename viewpoint labels are coarse annotations. A few labels are exceptions to the published viewpoint bins; filenames are preserved as distributed.</p>
+    </section>
+
+    <section id="checksums">
+      <h2>Archive checksums</h2>
+      <p>SHA-256:</p>
+      <p class="checksum"><code>857e49928a0c74d2da6fbeef372ea2e42b2bce357f87307d74c6601f1a97f267</code></p>
+      <p>Historical MD5:</p>
+      <p class="checksum"><code>1c2d9fc1cc800332567a0da25a1ce68c</code></p>
+    </section>
+    <footer class="page-footer"><a href="../../">Douglas Gray's personal site</a> &middot; <a href="../../writing/twenty-years-of-person-re-identification/">Twenty-year retrospective</a></footer>
+  </main>
+  <script src="../../js/navigation.js" defer></script>
+  <script src="../../js/theme-toggle.js" defer></script>
+</body>
+</html>

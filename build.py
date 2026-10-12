@@ -221,6 +221,7 @@ def render_html(r, target='resume'):
   <h2>Selected Publications &amp; Service</h2>
   <p>{parts_to_html(r['publications_intro']['parts'], target)}</p>
   {ul(r['publications'], target)}
+  <p>{r['reviewer_service']}</p>
 
   <h2>Selected Patents</h2>
   <p>{r['patents_intro']}</p>

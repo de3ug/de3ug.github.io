@@ -97,21 +97,13 @@ async function render() {
     `<h1>${esc(r.name)}</h1>` +
     `<p>${esc(r.about)}</p>`;
 
-  // Writing
-  const writingHtml = renderWriting(r.writing || []);
-  document.querySelector('#writing').innerHTML = writingHtml
-    ? `<h2>Writing</h2>${writingHtml}<p class="writing-more"><a href="writing/">All writing</a></p>`
-    : '';
-
   // Publications
   document.querySelector('#publications').innerHTML =
     `<h2>Selected Publications and Service</h2>` +
     `<p>${renderParts(r.publications_intro.parts)}</p>` +
-    renderList(r.publications);
-
-  // Patents
-  document.querySelector('#patents').innerHTML =
-    `<h2>Selected Patents</h2>` +
+    renderList([...r.publications, ...(r.datasets || [])]) +
+    `<p>${esc(r.reviewer_service)}</p>` +
+    `<h3 id="patents" class="subsection-title">Selected Patents</h3>` +
     `<p>${esc(r.patents_intro)}</p>` +
     renderList(r.patents);
 
@@ -127,7 +119,10 @@ async function render() {
     renderExperience(r.experience);
 
   // Hobbies
-  let hobbiesHtml = `<h2>Personal &amp; Hobbies</h2>` + renderList(r.hobbies);
+  const writingHtml = renderWriting(r.writing || []);
+  let hobbiesHtml = `<h2>Personal &amp; Hobbies</h2>` +
+    (writingHtml ? `<h3>Writing</h3>${writingHtml}<p><a href="writing/">All writing</a></p>` : '') +
+    renderList(r.hobbies);
   if (r.hobby_poem && visible(r.hobby_poem, 'web')) {
     const p = r.hobby_poem;
     const body = p.lines.map(esc).join('<br>');
