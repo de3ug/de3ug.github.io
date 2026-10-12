@@ -6,6 +6,21 @@
   "location": "Portola Valley, CA (near Palo Alto, 30 min south of SF)",
   "email": "douglas.ryan.gray@gmail.com",
   "last_updated": "09/02/2026",
+  "writing": [
+    {
+      "title": "VIPeR, Nearly Twenty Years Later",
+      "url": "https://de3ug.github.io/writing/viper-nearly-twenty-years-later/",
+      "path": "writing/viper-nearly-twenty-years-later/",
+      "date": "2026-10-12",
+      "date_display": "October 2026",
+      "status": "Draft",
+      "reading_time": "14 minute",
+      "summary": "How a deliberately difficult person re-identification benchmark helped organize a research field, and why I eventually questioned what the work was for.",
+      "image": "writing/viper-nearly-twenty-years-later/assets/viper-paired-sample.png",
+      "image_alt": "Paired pedestrian images from the VIPeR dataset showing large changes in viewpoint",
+      "hide_from": ["resume"]
+    }
+  ],
   "career_chronology": [
     {
       "year": 2026,

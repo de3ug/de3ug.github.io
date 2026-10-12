@@ -47,6 +47,19 @@ function renderExperience(entries) {
     }).join('');
 }
 
+function renderWriting(entries) {
+  return entries
+    .filter(entry => visible(entry, 'web'))
+    .map(entry => {
+      const status = entry.status ? `${esc(entry.status)} &middot; ` : '';
+      return `<article class="writing-entry">` +
+        `<p class="writing-meta">${status}${esc(entry.date_display)} &middot; ${esc(entry.reading_time)} read</p>` +
+        `<h3><a href="${esc(entry.path || entry.url)}">${esc(entry.title)}</a></h3>` +
+        `<p class="writing-summary">${esc(entry.summary)}</p>` +
+        `</article>`;
+    }).join('');
+}
+
 function injectJsonLd(r) {
   const ld = {
     '@context': 'https://schema.org',
@@ -58,6 +71,15 @@ function injectJsonLd(r) {
     'url': 'https://de3ug.github.io/',
     'sameAs': r.social.map(s => s.url)
   };
+  const writing = (r.writing || []).filter(entry => visible(entry, 'web'));
+  if (writing.length) {
+    ld.subjectOf = writing.map(entry => ({
+      '@type': 'Article',
+      'headline': entry.title,
+      'url': entry.url,
+      'dateCreated': entry.date
+    }));
+  }
   const script = document.createElement('script');
   script.type = 'application/ld+json';
   script.textContent = JSON.stringify(ld, null, 2);
@@ -74,6 +96,12 @@ async function render() {
   document.querySelector('#about').innerHTML =
     `<h1>${esc(r.name)}</h1>` +
     `<p>${esc(r.about)}</p>`;
+
+  // Writing
+  const writingHtml = renderWriting(r.writing || []);
+  document.querySelector('#writing').innerHTML = writingHtml
+    ? `<h2>Writing</h2>${writingHtml}<p class="writing-more"><a href="writing/">All writing</a></p>`
+    : '';
 
   // Publications
   document.querySelector('#publications').innerHTML =

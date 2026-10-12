@@ -107,6 +107,12 @@ def render_llms(r):
         for s in r['social']
         if visible(s, 'web')
     )
+    writing = '\n'.join(
+        f'- [{entry["title"]}]({entry["url"]}): {entry["summary"]}'
+        for entry in r.get('writing', [])
+        if visible(entry, 'web')
+    )
+    writing_section = f'\n## Writing\n\n{writing}' if writing else ''
 
     return f"""# {r['name']}
 
@@ -115,6 +121,7 @@ def render_llms(r):
 {r['about']}
 
 Last updated: {r['last_updated']}
+{writing_section}
 
 Contact:
 - Email: {r['email']}

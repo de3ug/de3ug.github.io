@@ -2,7 +2,7 @@
 
 This repository contains the sources for [de3ug.github.io](https://de3ug.github.io/). All public files live in the `site/` directory and are deployed automatically to GitHub Pages.
 
-The homepage includes sections for publications, projects, work experience and a Personal/Hobbies area with links to travel, astrophotography and racing content.
+The homepage includes sections for writing, publications, projects, work experience and a Personal/Hobbies area with links to travel, astrophotography and racing content.
 
 ## How the site is structured
 
@@ -13,6 +13,8 @@ The main page is split into a static shell and data-driven content:
 - `site/index.html` defines the layout, navigation, theme styling and empty section containers.
 - `site/js/render.js` fetches `site/resume.json` in the browser and fills the homepage sections.
 - `site/js/theme-toggle.js` handles the light/dark theme toggle.
+- `site/writing/` contains the writing archive and standalone long-form articles.
+- `site/css/writing.css` provides the shared editorial layout used by writing pages.
 - `site/resume.pdf` is the printable one-page resume artifact.
 - `site/llms.txt` is a short LLM-readable summary artifact that points agents to `resume.json`.
 - `site/gcmap/` is a standalone static demo app for mapping great-circle flight routes.
@@ -24,7 +26,7 @@ The main page is split into a static shell and data-driven content:
 
 The JSON has a hierarchy of information:
 
-- It contains the full content inventory, including public profile text, publications, patents, media mentions, experience, hobbies, contact links and background notes.
+- It contains the full content inventory, including public profile text, writing metadata, publications, patents, media mentions, experience, hobbies, contact links and background notes.
 - Most current, public-facing items are rendered into the webpage.
 - Some older school, internship and early-career details are kept in the JSON for context but hidden from the webpage because they are no longer central to the public portfolio.
 - Only the most important highlights are included in the one-page resume PDF.
@@ -32,6 +34,8 @@ The JSON has a hierarchy of information:
 Visibility is controlled with fields such as `hide_from` and `for`. These fields can be applied to a whole item or an individual linked part. For example, an item can appear on the webpage but not the resume, a supplementary link can remain web-only, or an entry can remain in the JSON as background context. Underscore-prefixed fields such as `_notes` are editorial/context notes and are not rendered.
 
 `build.py` reads the same JSON and generates `site/resume.pdf`, keeping the resume concise while preserving a richer content hierarchy for the website and future edits.
+
+Long-form prose does not live in `resume.json`. The `writing` collection stores discoverability metadata such as title, summary, publication date, canonical URL and site-relative path. Each article owns its full content and assets under `site/writing/<slug>/`; this keeps the résumé data useful as a directory without turning it into a document format.
 
 The `last_updated` field in `site/resume.json` is also the source of truth for the "Last updated" text shown on the website, the PDF resume and the generated `llms.txt` summary. When changing profile content or rebuilding artifacts, update this date in the JSON.
 
