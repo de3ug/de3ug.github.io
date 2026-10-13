@@ -6,18 +6,18 @@
   <meta name="description" content="Twenty years after starting VIPeR, Douglas Gray reflects on measuring person re-identification, the methods that advanced it, and the decision to leave surveillance research.">
   <link rel="canonical" href="https://de3ug.github.io/writing/twenty-years-of-person-re-identification/">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="VIPeR: Twenty Years of Person Re-identification">
+  <meta property="og:title" content="Reflections on 20 Years of Person Re-ID">
   <meta property="og:description" content="Measuring the problem, watching the field grow, and reconsidering the purpose of the work.">
   <meta property="og:url" content="https://de3ug.github.io/writing/twenty-years-of-person-re-identification/">
   <meta property="og:image" content="https://de3ug.github.io/writing/twenty-years-of-person-re-identification/assets/viper-paired-sample.png">
-  <title>VIPeR: Twenty Years of Person Re-identification - Douglas Gray</title>
+  <title>Reflections on 20 Years of Person Re-ID - Douglas Gray</title>
   <link rel="stylesheet" href="../../css/site.css">
   <link rel="stylesheet" href="../../css/writing.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "VIPeR: Twenty Years of Person Re-identification",
+    "headline": "Reflections on 20 Years of Person Re-ID",
     "author": {"@type": "Person", "name": "Douglas Gray", "url": "https://de3ug.github.io/"},
     "dateCreated": "2026-10-12",
     "dateModified": "2026-10-12",
@@ -32,14 +32,16 @@
     <article>
       <header>
         <p class="article-meta">Draft for review &middot; Douglas Gray &middot; October 2026</p>
-        <h1>VIPeR: Twenty Years of Person <span>Re-identification</span></h1>
+        <h1>Reflections on 20 Years of Person <span>Re-ID</span></h1>
         <p class="article-deck">Measuring the problem, watching the field grow, and reconsidering the purpose of the work.</p>
         <p><a href="../../datasets/viper/">VIPeR dataset: download, details, and citation</a></p>
       </header>
       <div class="essay">
-        <p class="lede">In 2006, I was reading a paper about recognizing people across cameras. The accuracy looked impressive. Then I looked at the evaluation: fewer than a hundred people, mostly photographed from the front. I had been working with crowd footage as an undergraduate, and that was nothing like the images I was used to seeing. How could we make progress on the real problem without measuring it properly, even if a realistic test seemed impossibly difficult?</p>
+        <p class="lede">In 2006, I read Gheissari and colleagues' paper on recognizing people across cameras. The accuracy looked impressive, but the evaluation used just 44 people, seen largely from the front.<sup><a href="#note-1" aria-label="Source 1">1</a></sup> That was a much easier problem than the one I recognized from my undergraduate work.</p>
 
-        <p>A contemporary example was Gheissari and colleagues' 2006 paper, which evaluated recognition on 44 people across three views.<sup><a href="#note-1" aria-label="Source 1">1</a></sup> The issue was not whether a method could work in that setting. It was what those results told us about recognizing someone from an arbitrary camera angle, with different lighting, a different pose, and hundreds of plausible matches.</p>
+        <p>I had been working on crowd counting: estimating how many people were in a scene, perhaps 50 or 100 of them moving through it, often seen from an awkward camera angle. People faced different directions, overlapped, and appeared at different scales. A collection of mostly frontal images did not represent that variety.</p>
+
+        <p>The issue was not whether a recognition method could work in the setting that paper studied. It was what the results told us about finding someone from an arbitrary camera angle, with different lighting, a different pose, and hundreds of plausible matches. How could we make progress on the real problem without measuring it properly, even if a realistic test seemed impossibly difficult?</p>
 
         <p>That question led me to start collecting the Viewpoint Invariant Pedestrian Recognition dataset, VIPeR. The first paper appeared in 2007, but the work began in 2006. Twenty years later, the benchmark has been cited thousands of times and helped researchers develop methods well beyond anything we could do then. It also made surveillance research a promising career path for me. I had an early foothold in a growing field, a dataset others were adopting, and a clear supply of difficult problems to work on. Continuing would have made sense. I eventually chose a different direction.</p>
 
@@ -55,6 +57,8 @@
 
         <h2>Building VIPeR</h2>
 
+        <p>My adviser had purchased two cameras and made a point of telling us they were three-CCD cameras, with separate sensors for red, green, and blue. It is easy to take good color video for granted now that we all carry cameras in our phones. Back then, the camera hardware and its low-level details were a noticeable part of the experiment, especially when so much of an appearance model depended on color.</p>
+
         <p>We ran two cameras at the same time and hired an undergraduate to help capture footage. I built an annotation tool to draw bounding boxes around people and establish correspondences between the views. The tedious part was finding the same person manually in both recordings. That was precisely the task we wanted the technology to help with.</p>
 
         <p>The final dataset contained two images of each of 632 identities: 1,264 images in total, each normalized to 48 pixels wide by 128 pixels tall. Most pairs differed in viewpoint by at least 90 degrees. The range of identities and the variation between the paired views were what made it useful.<sup><a href="#note-2" aria-label="Source 2">2</a></sup></p>
@@ -64,33 +68,40 @@
           <figcaption>Sample identity pairs from VIPeR. Each pair contains one image from each camera. <a href="../../datasets/viper/">Download the dataset and read its documentation.</a></figcaption>
         </figure>
 
-        <p>We evaluated appearance models by ranking gallery images for each probe and plotting the cumulative matching characteristic, or CMC: how often does the correct person appear within the first <em>k</em> results? The PETS paper prescribed 5x2 cross-validation, averaging five randomized two-fold rounds, randomizing image order and mirroring, and swapping gallery and probe roles.<sup><a href="#note-2" aria-label="Source 2">2</a></sup> This allowed the same appearance model to be studied independently of the other assumptions in a complete tracking system.</p>
+        <p>The evaluation protocol was another contribution of the PETS paper. Ranking was not new; the 2006 paper that prompted this work also reported ranked matches. Other work treated recognition as a binary same-person/different-person decision and reported ROC curves. We argued for evaluating the actual search task: given a probe image and a gallery of candidates, where does the correct person appear? A low false-positive rate on individual pairs does not directly tell you whether the right match will be near the top of a large gallery.</p>
+
+        <p>We used the cumulative matching characteristic, or CMC: how often does the correct person appear within the first <em>k</em> results? We did not invent CMC, but making ranking and gallery size explicit was an important part of the evaluation we proposed. It connected appearance matching to the task of helping an operator find someone, rather than reducing the problem to classifying isolated pairs. We also showed how to relate the curve to simplified tracking and reacquisition scenarios.<sup><a href="#note-2" aria-label="Source 2">2</a></sup></p>
+
+        <p>To compare methods consistently, we prescribed 5x2 cross-validation: five randomized two-fold rounds, with randomized image order and mirroring, and averaging both gallery/probe directions. This let us study the appearance model separately from the geometric and timing assumptions of a complete tracking system.</p>
 
         <h2>Too difficult to publish?</h2>
 
-        <p>Early versions were rejected from CVPR and ICCV. My recollection is that the low accuracy was part of the problem: the benchmark was so difficult that the approach seemed not to work. From my perspective, that difficulty was evidence that we had finally included important parts of the problem. We needed to measure the gap before we could close it.</p>
+        <p>Early versions were rejected from CVPR and ICCV before the work found a home at the PETS workshop in 2007. My recollection is that reviewers cited the low accuracy as one of the main flaws: they did not believe the method worked. From my perspective, that difficulty was evidence that we had finally included important parts of the problem. We needed to measure the gap before we could close it.</p>
 
         <p>The simple baseline models in the 2007 PETS paper began in the low single digits at rank one. Our Ensemble of Localized Features, published at ECCV in 2008, reached about 12 percent. ELF used AdaBoost to select useful local color and texture features and combine their comparisons into a learned similarity function.<sup><a href="#note-3" aria-label="Source 3">3</a></sup> It was progress, but clearly left most of the problem unsolved.</p>
 
-        <p>Ranks beyond the first mattered because we envisioned a system assisting a human operator. If the right person was rarely the top result but often appeared in a short list, the model could still reduce the time spent searching. ELF put the correct match in roughly the first ten percent of a 316-person gallery about 70 percent of the time. That means about 32 candidates, not ten. The paper also studied expected human search time, making the practical point explicit: a useful appearance model could narrow the search while the operator made the final decision.<sup><a href="#note-3" aria-label="Source 3">3</a></sup></p>
+        <p>Ranks beyond the first mattered because we envisioned a system assisting a human operator. The 2008 paper reported that ELF placed the correct match within the first 31 results of a 316-image gallery about 70 percent of the time. The point was not simply to report a larger accuracy number. Sorting the gallery could reduce the work of finding the right person while leaving the final decision to an operator.</p>
+
+        <p>We quantified that idea with an expected-search-time model. Assuming an operator could review one image per second without making mistakes, the expected search took 158 seconds with an unsorted gallery and 28.9 seconds with ELF: an 81.7 percent reduction. These were modeled search times, not timings from a user study, but they made the intended benefit explicit.<sup><a href="#note-3" aria-label="Source 3">3</a></sup></p>
 
         <h2>What changed as the field grew</h2>
 
         <p>VIPeR gave researchers a shared test of appearance matching across viewpoints. A few influential methods show how the field progressed from designing better features to learning how to compare them.</p>
 
-        <h3>SDALF: use the structure of the body</h3>
-        <p>Farenzena and colleagues' <em>Symmetry-Driven Accumulation of Local Features</em>, or SDALF, organized color and texture around body regions and their symmetry. It combined weighted color histograms, stable color regions, and distinctive repeated patches. That retained more of a person's visual structure while allowing changes in pose and viewpoint. Its 2010 paper reported roughly 20 percent rank-one accuracy on VIPeR, compared with about 12 percent for ELF.<sup><a href="#note-4" aria-label="Source 4">4</a></sup></p>
+        <p>In 2010, Farenzena and colleagues' <em>Symmetry-Driven Accumulation of Local Features</em>, or SDALF, organized color and texture around body regions and their symmetry. Weighted color histograms, stable color regions, and distinctive repeated patches retained more of a person's visual structure while allowing changes in pose and viewpoint. The paper reported roughly 20 percent rank-one accuracy on VIPeR, compared with about 12 percent for ELF.<sup><a href="#note-4" aria-label="Source 4">4</a></sup></p>
 
-        <h3>KISSME: learn which differences matter</h3>
-        <p>Köstinger and colleagues' <em>Keep It Simple and Straightforward MEtric</em>, or KISSME, made metric learning computationally simple. Given pairs labeled as the same or different people, it modeled their feature differences and derived a distance metric from a likelihood-ratio test. The important shift was that the same feature difference should not always carry the same weight: some variation is normal between two views of one person, while other variation distinguishes identities. KISSME supplied an efficient, reusable way to learn that distinction.<sup><a href="#note-5" aria-label="Source 5">5</a></sup></p>
+        <p>Köstinger and colleagues' 2012 <em>Keep It Simple and Straightforward MEtric</em>, or KISSME, made metric learning computationally simple. Given pairs labeled as the same or different people, it modeled their feature differences and derived a distance metric from a likelihood-ratio test. Some variation is normal between two views of one person; other variation distinguishes identities. KISSME supplied an efficient, reusable way to learn that distinction. Its VIPeR result was 19.6 percent at rank one, averaged over 100 runs.<sup><a href="#note-5" aria-label="Source 5">5</a></sup></p>
 
-        <h3>LOMO and XQDA: representation and metric together</h3>
         <p>Liao and colleagues' 2015 work paired <em>Local Maximal Occurrence</em> features with <em>Cross-view Quadratic Discriminant Analysis</em>. LOMO pooled local color and texture occurrences across horizontal positions, allowing an informative detail to move as the viewpoint changed. Illumination handling made the representation more stable; XQDA learned a discriminative subspace and comparison metric together. The combination reached 40 percent rank one on VIPeR and became a strong baseline for later work.<sup><a href="#note-6" aria-label="Source 6">6</a></sup></p>
 
-        <h3>GOG and the transition to learned representations</h3>
         <p>Matsukawa and colleagues' 2016 <em>Gaussian of Gaussian</em> descriptor modeled local appearance distributions using both means and covariances, then described how those distributions varied across a region. Combined with XQDA and multiple color spaces, it reached about 50 percent rank one on VIPeR.<sup><a href="#note-7" aria-label="Source 7">7</a></sup> Rich hand-crafted representations still competed well on a dataset with only 316 training identities per fold.</p>
 
         <p>Meanwhile, DeepReID and subsequent neural methods learned representations and matching jointly.<sup><a href="#note-8" aria-label="Source 8">8</a></sup> Larger datasets made that approach increasingly effective. VIPeR continued to appear in tables, often as a transfer target, but no longer provided enough training data to represent the field's main ambitions. The 2016 survey <em>Person Re-Identification: Past, Present and Future</em> offers a useful account of this transition.<sup><a href="#note-9" aria-label="Source 9">9</a></sup></p>
+
+        <figure class="chart-figure" id="rank-one-milestones">
+          <a href="assets/rank-one-over-time.png"><img src="assets/rank-one-over-time.png" width="1620" height="1008" alt="Selected VIPeR rank-one results: ELF about 12 percent in 2008, SDALF about 20 percent in 2010, KISSME 19.6 percent in 2012, LOMO plus XQDA 40 percent in 2015, and GOG plus XQDA 49.7 percent in 2016"></a>
+          <figcaption>Selected reported rank-one results with 316-image galleries. These are historical milestones, not a controlled comparison or a complete state-of-the-art curve: the representations, training, and random-split procedures differ. ELF and SDALF are approximate values stated in their original papers. <a href="assets/rank-one-milestones.json">Values, protocols, and paper references.</a></figcaption>
+        </figure>
 
         <figure class="chart-figure">
           <a href="assets/citations-over-time.png"><img src="assets/citations-over-time.png" alt="Google Scholar citation histories: the PETS paper peaks in 2017 and the ECCV paper in 2018"></a>
@@ -113,15 +124,17 @@
 
         <p>But a few years into the Ph.D., I began questioning the application. Before advancing to candidacy in 2008, I changed my proposed dissertation title to <em>Privacy Preserving Pedestrian Recognition</em>. I was trying to find a way to continue the research while addressing the concern that it would make people easier to track.</p>
 
-        <p>The concern became more concrete through my adviser, Hai Tao. He was spending time in China building Vion, a company selling computer-vision systems for surveillance and related applications. This put the path from our research to commercial camera networks close to home. I came to feel that I was helping advance a capability whose use I could not endorse.</p>
+        <p>The concern became more concrete through my adviser, Hai Tao, who was building Vion, a company selling surveillance software. My understanding at the time was that its biggest customer was the Chinese government. I could see a path from our work on recognizing people across cameras to systems for tracking people across cities. I did not want that to be the purpose of my research.</p>
 
         <p>Vion's later public materials give some context for that concern. The company describes applications in electronic policing, public safety, transportation, and smart-city management. A 2024 article credits Hai and me with VIPeR and describes re-identification as reconstructing movement trajectories. It also presents avoiding face, iris, and gait recognition as a privacy benefit.<sup><a href="#note-13" aria-label="Source 13">13</a></sup><sup><a href="#note-14" aria-label="Source 14">14</a></sup> Those materials do not establish where this particular dataset was used. They do illustrate the distinction I was struggling with: avoiding a particular biometric does not answer whether someone should be tracked.</p>
 
         <p>I could propose technical safeguards, but the decision to preserve privacy depended on policy. Who could search the camera network? Whose movements could be reconstructed? For what purpose, with what oversight, and with what possibility of refusal? Better features or a formal privacy guarantee could answer only part of that. This became one of several reasons I never finished the Ph.D., and probably one of the larger ones.</p>
 
-        <p>The current debate about Flock cameras makes the question feel familiar. Flock's roadside systems search vehicles using license plates and other characteristics; they are a different technology from pedestrian re-identification. The company says its cameras do not use facial recognition.<sup><a href="#note-15" aria-label="Source 15">15</a></sup> Communities are still debating who should have access to the records, how long they should be retained, and what uses are acceptable. Asheville's council voted to end its Flock contract in August 2026 after raising concerns about surveillance, retention, and sharing.<sup><a href="#note-16" aria-label="Source 16">16</a></sup> The disagreement turns on the power to reconstruct movements and the rules governing that power, even when faces are not involved.</p>
+        <p>The current debate about Flock cameras makes that question feel familiar. Reading a license plate is, at its core, optical character recognition: recovering an explicit identifier that is already printed on a vehicle. It has its own difficult imaging conditions, and Flock also searches vehicle characteristics beyond the plate.<sup><a href="#note-15" aria-label="Source 15">15</a></sup> But I do not walk around the city with a license plate on. Person re-identification tries to make someone searchable across cameras using appearance alone. In that sense it could provide a license-plate-like tracking capability for people who carry no such identifier, with the potential to be even more intrusive.</p>
 
-        <p>Twenty years on, I still think it was important to measure the appearance problem properly. VIPeR helped us ask a difficult question and compare answers on shared evidence. I am also more aware of how readily a compelling research problem can draw attention away from the decision to build the system around it. The technical progress and that unresolved question are both part of the history.</p>
+        <p>Last month, in September 2026, my own neighborhood, Ladera in Portola Valley, voted to end its Flock camera contract because of privacy concerns. That brought the question out of research papers and into the place where I live. The decision was about whether we wanted this form of surveillance in our community, not whether the cameras could read plates more accurately.</p>
+
+        <p id="closing-reflection">Looking back, I am proud that VIPeR helped people measure a difficult problem instead of avoiding it. That does not resolve my doubts about what we made easier to do. The question that got me started was whether we could recognize people across cameras. The question I could not set aside was what would happen when we could. The vote in Ladera reminded me that this is not something researchers get to decide for the people who live with the cameras.</p>
 
         <p><a href="../../datasets/viper/">VIPeR dataset download, documentation, and citation guidelines</a></p>
 
@@ -132,7 +145,7 @@
             <li id="note-2">D. Gray, S. Brennan, and H. Tao, <a href="../../papers/gray_pets2007_appearance.pdf">Evaluating Appearance Models for Recognition, Reacquisition, and Tracking</a>, PETS 2007.</li>
             <li id="note-3">D. Gray and H. Tao, <a href="../../papers/gray_eccv2008_pedestrian.pdf">Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features</a>, ECCV 2008.</li>
             <li id="note-4">M. Farenzena et al., <a href="https://iacl.ece.jhu.edu/proceedings/cvpr2010/papers/2173.pdf">Person Re-Identification by Symmetry-Driven Accumulation of Local Features</a>, CVPR 2010.</li>
-            <li id="note-5">M. Köstinger et al., <a href="https://www.tugraz.at/institute/icg/research/team-bischof/learning-recognition-surveillance/downloads/kissme/">Large Scale Metric Learning from Equivalence Constraints</a>, CVPR 2012; authors' code and documentation.</li>
+            <li id="note-5">M. Köstinger et al., <a href="https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Documents/lrs/pubs/koestinger_cvpr_2012.pdf">Large Scale Metric Learning from Equivalence Constraints</a>, CVPR 2012, Table 2(a); <a href="https://www.tugraz.at/institute/icg/research/team-bischof/learning-recognition-surveillance/downloads/kissme/">authors' code and documentation</a>.</li>
             <li id="note-6">S. Liao et al., <a href="https://openaccess.thecvf.com/content_cvpr_2015/html/Liao_Person_Re-Identification_by_2015_CVPR_paper.html">Person Re-Identification by Local Maximal Occurrence Representation and Metric Learning</a>, CVPR 2015; <a href="https://liaosc.wordpress.com/2019/01/13/lomo_xqda/">authors' results</a>.</li>
             <li id="note-7">T. Matsukawa et al., <a href="https://openaccess.thecvf.com/content_cvpr_2016/html/Matsukawa_Hierarchical_Gaussian_Descriptor_CVPR_2016_paper.html">Hierarchical Gaussian Descriptor for Person Re-Identification</a>, CVPR 2016.</li>
             <li id="note-8">W. Li et al., <a href="https://doi.org/10.1109/CVPR.2014.27">DeepReID: Deep Filter Pairing Neural Network for Person Re-identification</a>, CVPR 2014.</li>
@@ -142,8 +155,7 @@
             <li id="note-12">Google Scholar article histories for <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=YliQcmwAAAAJ&amp;citation_for_view=YliQcmwAAAAJ:UeHWp8X0CEIC">PETS 2007</a> and <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=YliQcmwAAAAJ&amp;citation_for_view=YliQcmwAAAAJ:u5HHmVD_uO8C">ECCV 2008</a>, observed October 12, 2026. The plotted range is 2010–2026, the common range displayed in the two histories.</li>
             <li id="note-13">Vion Technology, <a href="https://vion-tech.com/newsinfo/8140756.html">article on its re-identification patents and history</a>, 2024 (Chinese).</li>
             <li id="note-14">Vion Technology, <a href="https://vion-tech.com/gsjs">company history</a>; Beijing Security and Protection Industry Association, <a href="https://bspia.com.cn/show/448/type/company.html">company profile</a> (Chinese).</li>
-            <li id="note-15">Flock Safety, <a href="https://www.flocksafety.com/trust">privacy and trust information</a>, accessed October 2026.</li>
-            <li id="note-16">City of Asheville, <a href="https://www.ashevillenc.gov/news/actions-and-presentations-at-the-august-25-asheville-city-council-meeting/">August 25, 2026 council actions</a>, and <a href="https://engage.ashevillenc.gov/f65124">Technology and Public Safety</a>.</li>
+            <li id="note-15">Flock Safety, <a href="https://www.flocksafety.com/blog/vehicle-recognition-software-for-investigation-grade-lpr">Vehicle Recognition Software for Investigation-grade LPR</a>, 2026; describes plate reading and searches by vehicle appearance.</li>
           </ol>
         </section>
       </div>

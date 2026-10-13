@@ -1,0 +1,54 @@
+{
+  "verified_on": "2026-10-12",
+  "description": "Selected reported VIPeR rank-one results, not a complete state-of-the-art history or a controlled re-evaluation.",
+  "gallery_size": 316,
+  "caveat": "Representations, training, parameter selection, and randomized evaluation procedures differ between papers. Approximate values are labeled explicitly.",
+  "results": [
+    {
+      "year": 2008,
+      "method": "ELF",
+      "rank_one_percent": 12.0,
+      "approximate": true,
+      "source": "https://de3ug.github.io/papers/gray_eccv2008_pedestrian.pdf",
+      "source_location": "Section 4.2, printed pages 9 and 11; Figure 5",
+      "protocol": "An even identity train/test split; randomized assignment of paired images to gallery/probe, averaging both directions. The text states around 12 percent."
+    },
+    {
+      "year": 2010,
+      "method": "SDALF",
+      "rank_one_percent": 20.0,
+      "approximate": true,
+      "source": "https://iacl.ece.jhu.edu/proceedings/cvpr2010/papers/2173.pdf",
+      "source_location": "Section 4, VIPeR experiment, PDF page 6; Figure 4",
+      "protocol": "Average over 10 random sets of 316 pedestrians. Feature weights selected using the first 100 VIPeR pairs. The text states around 20 percent."
+    },
+    {
+      "year": 2012,
+      "method": "KISSME",
+      "rank_one_percent": 19.6,
+      "approximate": false,
+      "source": "https://www.tugraz.at/fileadmin/user_upload/Institute/ICG/Documents/lrs/pubs/koestinger_cvpr_2012.pdf",
+      "source_location": "Section 4.2 and Table 2(a), PDF pages 6-7",
+      "protocol": "Random 316-identity training and test sets, averaged over 100 runs. The chart uses the average, not the best-run 22 percent result."
+    },
+    {
+      "year": 2015,
+      "method": "LOMO + XQDA",
+      "rank_one_percent": 40.0,
+      "approximate": false,
+      "source": "https://openaccess.thecvf.com/content_cvpr_2015/papers/Liao_Person_Re-Identification_by_2015_CVPR_paper.pdf",
+      "source_location": "Sections 5.1 and 5.1.3, Table 1, PDF pages 5-6",
+      "protocol": "Random half-identity train/test splits, averaged over 10 trials. Standalone LOMO + XQDA, excluding the separate LADF fusion result."
+    },
+    {
+      "year": 2016,
+      "method": "GOG + XQDA",
+      "variant": "GOGFusion + XQDA, with patch weights and color-space fusion",
+      "rank_one_percent": 49.7,
+      "approximate": false,
+      "source": "https://openaccess.thecvf.com/content_cvpr_2016/papers/Matsukawa_Hierarchical_Gaussian_Descriptor_CVPR_2016_paper.pdf",
+      "source_location": "Sections 4.1 and 4.3, Table 2, PDF pages 5-7",
+      "protocol": "Random half-identity train/test splits, averaged over 10 splits. Reported result includes GOG color-space fusion and XQDA metric learning."
+    }
+  ]
+}
