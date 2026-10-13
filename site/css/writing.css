@@ -19,6 +19,11 @@
 .reading-page .dataset-figure { width: 100%; max-width: 560px; margin: 32px auto; }
 .reading-page figcaption { margin-top: 12px; font-size: 13px; line-height: 1.5; opacity: 0.8; }
 .reading-page .chart-figure img { border: 1px solid var(--button-border); background: #fff; }
+.milestone-values { margin: 0 0 32px; font-size: 14px; }
+.milestone-values summary { cursor: pointer; padding: 8px 0; }
+.milestone-values table { margin-top: 12px; }
+.milestone-values tbody th { text-align: left; padding-top: 20px; }
+.milestone-values td:last-child { white-space: nowrap; }
 figure a { display: block; }
 .source-notes { border-top: 1px solid var(--button-border); margin-top: 42px; padding-top: 8px; font-size: 14px; }
 .source-notes li { margin-bottom: 12px; }

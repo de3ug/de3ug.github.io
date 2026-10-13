@@ -20,7 +20,7 @@
     "headline": "Reflections on 20 Years of Person Re-ID",
     "author": {"@type": "Person", "name": "Douglas Gray", "url": "https://de3ug.github.io/"},
     "dateCreated": "2026-10-12",
-    "dateModified": "2026-10-12",
+    "dateModified": "2026-10-13",
     "url": "https://de3ug.github.io/writing/twenty-years-of-person-re-identification/"
   }
   </script>
@@ -78,7 +78,7 @@
 
         <p>Early versions were rejected from CVPR and ICCV before the work found a home at the PETS workshop in 2007. My recollection is that reviewers cited the low accuracy as one of the main flaws: they did not believe the method worked. From my perspective, that difficulty was evidence that we had finally included important parts of the problem. We needed to measure the gap before we could close it.</p>
 
-        <p>The simple baseline models in the 2007 PETS paper began in the low single digits at rank one. Our Ensemble of Localized Features, published at ECCV in 2008, reached about 12 percent. ELF used AdaBoost to select useful local color and texture features and combine their comparisons into a learned similarity function.<sup><a href="#note-3" aria-label="Source 3">3</a></sup> It was progress, but clearly left most of the problem unsolved.</p>
+        <p>The best rank-one baseline in the 2007 PETS paper, a color correlogram with manually localized body regions, reached roughly 5 percent, as read from its CMC plot.<sup><a href="#note-2" aria-label="Source 2">2</a></sup> Our Ensemble of Localized Features, published at ECCV in 2008, reached about 12 percent. ELF used AdaBoost to select useful local color and texture features and combine their comparisons into a learned similarity function.<sup><a href="#note-3" aria-label="Source 3">3</a></sup> It was progress, but clearly left most of the problem unsolved.</p>
 
         <p>Ranks beyond the first mattered because we envisioned a system assisting a human operator. The 2008 paper reported that ELF placed the correct match within the first 31 results of a 316-image gallery about 70 percent of the time. The point was not simply to report a larger accuracy number. Sorting the gallery could reduce the work of finding the right person while leaving the final decision to an operator.</p>
 
@@ -92,16 +92,54 @@
 
         <p>Köstinger and colleagues' 2012 <em>Keep It Simple and Straightforward MEtric</em>, or KISSME, made metric learning computationally simple. Given pairs labeled as the same or different people, it modeled their feature differences and derived a distance metric from a likelihood-ratio test. Some variation is normal between two views of one person; other variation distinguishes identities. KISSME supplied an efficient, reusable way to learn that distinction. Its VIPeR result was 19.6 percent at rank one, averaged over 100 runs.<sup><a href="#note-5" aria-label="Source 5">5</a></sup></p>
 
+        <p>The next few years brought more careful treatment of distinctive details and misalignment. Zhao, Ouyang, and Wang's 2013 salience methods emphasized patches that distinguished one person from others, rather than treating every region equally. Their unsupervised eSDC feature combination reached 26.74 percent rank one; supervised SalMatch reached 30.16 percent.<sup><a href="#note-16" aria-label="Source 16">16</a></sup><sup><a href="#note-17" aria-label="Source 17">17</a></sup> In 2014, Yang and colleagues' <em>Salient Color Names</em> work combined color-name distributions and color histograms across color spaces, reaching 37.8 percent with its fused representation.<sup><a href="#note-18" aria-label="Source 18">18</a></sup></p>
+
         <p>Liao and colleagues' 2015 work paired <em>Local Maximal Occurrence</em> features with <em>Cross-view Quadratic Discriminant Analysis</em>. LOMO pooled local color and texture occurrences across horizontal positions, allowing an informative detail to move as the viewpoint changed. Illumination handling made the representation more stable; XQDA learned a discriminative subspace and comparison metric together. The combination reached 40 percent rank one on VIPeR and became a strong baseline for later work.<sup><a href="#note-6" aria-label="Source 6">6</a></sup></p>
+
+        <p>Progress also came from combining comparison models and using the gallery itself. Paisitkriangkrai and colleagues' 2015 metric ensembles optimized ranking across several features and metrics, reaching 45.89 percent. García and colleagues' DCIA used the context of visually similar gallery images to refine an initial ranking, reaching 63.92 percent with KCCA.<sup><a href="#note-19" aria-label="Source 19">19</a></sup><sup><a href="#note-20" aria-label="Source 20">20</a></sup> That distinction matters: re-ranking a gallery has access to information beyond comparing one probe with one candidate.</p>
 
         <p>Matsukawa and colleagues' 2016 <em>Gaussian of Gaussian</em> descriptor modeled local appearance distributions using both means and covariances, then described how those distributions varied across a region. Combined with XQDA and multiple color spaces, it reached about 50 percent rank one on VIPeR.<sup><a href="#note-7" aria-label="Source 7">7</a></sup> Rich hand-crafted representations still competed well on a dataset with only 316 training identities per fold.</p>
 
+        <p>That small training set was also the motivation for Zhang, Xiang, and Gong's 2016 discriminative null-space method. It sought a projection that collapsed same-identity training examples together while preserving separation between identities. Its fused-feature result reached 51.17 percent rank one.<sup><a href="#note-21" aria-label="Source 21">21</a></sup></p>
+
         <p>Meanwhile, DeepReID and subsequent neural methods learned representations and matching jointly.<sup><a href="#note-8" aria-label="Source 8">8</a></sup> Larger datasets made that approach increasingly effective. VIPeR continued to appear in tables, often as a transfer target, but no longer provided enough training data to represent the field's main ambitions. The 2016 survey <em>Person Re-Identification: Past, Present and Future</em> offers a useful account of this transition.<sup><a href="#note-9" aria-label="Source 9">9</a></sup></p>
 
+        <p>Later work asked a different question: could a model trained on other datasets recognize people in VIPeR without training on VIPeR itself? SNR's style normalization and restitution reported 52.9 percent in 2020; RaMoE's relevance-aware mixture of experts reached 56.6 percent in 2021 under the same five-source setting. ACL reached 66.4 percent in 2022 using a different, four-source pool, and ReNorm reached 69.1 percent in 2024.<sup><a href="#note-22" aria-label="Source 22">22</a></sup><sup><a href="#note-23" aria-label="Source 23">23</a></sup><sup><a href="#note-24" aria-label="Source 24">24</a></sup><sup><a href="#note-25" aria-label="Source 25">25</a></sup> In 2025, CLIP-FGDI adapted a pretrained vision-language model using learned prompts and reported 76.0 percent in its main VIPeR comparison.<sup><a href="#note-26" aria-label="Source 26">26</a></sup> These results belong to the benchmark's history, but they are not a continuation of one unchanged experiment.</p>
+
         <figure class="chart-figure" id="rank-one-milestones">
-          <a href="assets/rank-one-over-time.png"><img src="assets/rank-one-over-time.png" width="1620" height="1008" alt="Selected VIPeR rank-one results: ELF about 12 percent in 2008, SDALF about 20 percent in 2010, KISSME 19.6 percent in 2012, LOMO plus XQDA 40 percent in 2015, and GOG plus XQDA 49.7 percent in 2016"></a>
-          <figcaption>Selected reported rank-one results with 316-image galleries. These are historical milestones, not a controlled comparison or a complete state-of-the-art curve: the representations, training, and random-split procedures differ. ELF and SDALF are approximate values stated in their original papers. <a href="assets/rank-one-milestones.json">Values, protocols, and paper references.</a></figcaption>
+          <a href="assets/rank-one-over-time.png"><img src="assets/rank-one-over-time.png" width="1620" height="1584" alt="Seventeen reported VIPeR rank-one results in chronological order, from the PETS 2007 baseline at about 5 percent to CLIP-FGDI in 2025 at 76 percent. Historical benchmark methods and unseen-target domain generalization are shown separately."></a>
+          <figcaption>Selected reported results with 316-image galleries, ordered by publication year. The two groups separate historical benchmark methods from models trained for re-identification on other datasets; training sources, pretraining, tuning, and random splits still differ within each group. The diamond marks gallery-context re-ranking. The 2007 value is read approximately from Figure 6; ELF and SDALF are approximate values stated in their papers. This is a history of selected contributions, not a complete record curve or a controlled comparison. <a href="assets/rank-one-milestones.json">Values, protocols, and paper references.</a></figcaption>
         </figure>
+
+        <details class="milestone-values">
+          <summary>Reported values</summary>
+          <table class="viewpoint-counts">
+            <thead><tr><th scope="col">Year and method</th><th scope="col">Rank one</th></tr></thead>
+            <tbody>
+              <tr><th colspan="2" scope="colgroup">Historical benchmark methods</th></tr>
+              <tr><td>2007 <a href="#note-2">PETS baseline</a></td><td>~5%</td></tr>
+              <tr><td>2008 <a href="#note-3">ELF</a></td><td>~12%</td></tr>
+              <tr><td>2010 <a href="#note-4">SDALF</a></td><td>~20%</td></tr>
+              <tr><td>2012 <a href="#note-5">KISSME</a></td><td>19.6%</td></tr>
+              <tr><td>2013 <a href="#note-16">eSDC</a></td><td>26.74%</td></tr>
+              <tr><td>2013 <a href="#note-17">SalMatch</a></td><td>30.16%</td></tr>
+              <tr><td>2014 <a href="#note-18">SCNCD</a></td><td>37.8%</td></tr>
+              <tr><td>2015 <a href="#note-6">LOMO + XQDA</a></td><td>40.0%</td></tr>
+              <tr><td>2015 <a href="#note-19">Metric ensembles</a></td><td>45.89%</td></tr>
+              <tr><td>2015 <a href="#note-20">KCCA + DCIA (re-ranking)</a></td><td>63.92%</td></tr>
+              <tr><td>2016 <a href="#note-7">GOG + XQDA</a></td><td>49.7%</td></tr>
+              <tr><td>2016 <a href="#note-21">NFST fusion</a></td><td>51.17%</td></tr>
+            </tbody>
+            <tbody>
+              <tr><th colspan="2" scope="colgroup">Unseen-target domain generalization</th></tr>
+              <tr><td>2020 <a href="#note-22">SNR</a></td><td>52.9%</td></tr>
+              <tr><td>2021 <a href="#note-23">RaMoE</a></td><td>56.6%</td></tr>
+              <tr><td>2022 <a href="#note-24">ACL</a></td><td>66.4%</td></tr>
+              <tr><td>2024 <a href="#note-25">ReNorm</a></td><td>69.1%</td></tr>
+              <tr><td>2025 <a href="#note-26">CLIP-FGDI</a></td><td>76.0%</td></tr>
+            </tbody>
+          </table>
+        </details>
 
         <figure class="chart-figure">
           <a href="assets/citations-over-time.png"><img src="assets/citations-over-time.png" alt="Google Scholar citation histories: the PETS paper peaks in 2017 and the ECCV paper in 2018"></a>
@@ -113,6 +151,8 @@
         <h2>Outgrowing the benchmark</h2>
 
         <p>Market-1501 made the limitations of the older benchmarks explicit: small identity sets, few cameras, hand-drawn boxes, and too little variation to represent deployment. It introduced more than 32,000 detector-produced boxes for 1,501 identities across as many as six cameras.<sup><a href="#note-10" aria-label="Source 10">10</a></sup> MARS extended the task to video tracklets.<sup><a href="#note-11" aria-label="Source 11">11</a></sup> Later datasets added occlusion, infrared imagery, larger galleries, domain shift, and people who were absent from the gallery altogether.</p>
+
+        <p>The dataset has not disappeared. A CVPR 2026 study of lifelong re-identification still includes VIPeR among seven unseen test datasets, alongside five training datasets.<sup><a href="#note-27" aria-label="Source 27">27</a></sup> Its headline unseen-domain results are averages across those datasets, not individual VIPeR scores. That is another way the question has changed: from learning a matcher for one camera pair to retaining useful representations as new domains arrive.</p>
 
         <p>VIPeR was superseded, which is a good outcome for an early benchmark. It helped establish a measurable problem and then revealed what the next evaluations needed to include. Its small, carefully cropped images remain useful for studying a particular matching task, but high performance there cannot establish how a system behaves in a city, with detection errors, changing clothes, and an unknown population.</p>
 
@@ -156,6 +196,18 @@
             <li id="note-13">Vion Technology, <a href="https://vion-tech.com/newsinfo/8140756.html">article on its re-identification patents and history</a>, 2024 (Chinese).</li>
             <li id="note-14">Vion Technology, <a href="https://vion-tech.com/gsjs">company history</a>; Beijing Security and Protection Industry Association, <a href="https://bspia.com.cn/show/448/type/company.html">company profile</a> (Chinese).</li>
             <li id="note-15">Flock Safety, <a href="https://www.flocksafety.com/blog/vehicle-recognition-software-for-investigation-grade-lpr">Vehicle Recognition Software for Investigation-grade LPR</a>, 2026; describes plate reading and searches by vehicle appearance.</li>
+            <li id="note-16">R. Zhao, W. Ouyang, and X. Wang, <a href="https://openaccess.thecvf.com/content_cvpr_2013/papers/Zhao_Unsupervised_Salience_Learning_2013_CVPR_paper.pdf">Unsupervised Salience Learning for Person Re-identification</a>, CVPR 2013, Table 1. The chart uses eSDC ocsvm with feature fusion.</li>
+            <li id="note-17">R. Zhao, W. Ouyang, and X. Wang, <a href="https://openaccess.thecvf.com/content_iccv_2013/papers/Zhao_Person_Re-identification_by_2013_ICCV_paper.pdf">Person Re-identification by Salience Matching</a>, ICCV 2013, Section 5 and Figure 5(a).</li>
+            <li id="note-18">Y. Yang et al., <a href="https://doi.org/10.1007/978-3-319-10590-1_35">Salient Color Names for Person Re-identification</a>, ECCV 2014, Table 1. The chart uses Final(ImgF), including color-histogram fusion.</li>
+            <li id="note-19">S. Paisitkriangkrai, C. Shen, and A. van den Hengel, <a href="https://openaccess.thecvf.com/content_cvpr_2015/papers/Paisitkriangkrai_Learning_to_Rank_2015_CVPR_paper.pdf">Learning to Rank in Person Re-identification with Metric Ensembles</a>, CVPR 2015, Figure 1.</li>
+            <li id="note-20">J. García et al., <a href="https://openaccess.thecvf.com/content_iccv_2015/papers/Garcia_Person_Re-Identification_Ranking_ICCV_2015_paper.pdf">Person Re-Identification Ranking Optimisation by Discriminant Context Information Analysis</a>, ICCV 2015, Table 2. Includes gallery-context re-ranking.</li>
+            <li id="note-21">L. Zhang, T. Xiang, and S. Gong, <a href="https://openaccess.thecvf.com/content_cvpr_2016/papers/Zhang_Learning_a_Discriminative_CVPR_2016_paper.pdf">Learning a Discriminative Null Space for Person Re-Identification</a>, CVPR 2016, Table 1, Ours (Fusion).</li>
+            <li id="note-22">X. Jin et al., <a href="https://openaccess.thecvf.com/content_CVPR_2020/html/Jin_Style_Normalization_and_Restitution_for_Generalizable_Person_Re-Identification_CVPR_2020_paper.html">Style Normalization and Restitution for Generalizable Person Re-Identification</a>, CVPR 2020, <a href="https://openaccess.thecvf.com/content_CVPR_2020/supplemental/Jin_Style_Normalization_and_CVPR_2020_supplemental.pdf">supplementary Table 5</a>. The five-source setting includes DukeMTMC-reID; the alternative four-source setting reports 55.1 percent.</li>
+            <li id="note-23">Y. Dai et al., <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Dai_Generalizable_Person_Re-Identification_With_Relevance-Aware_Mixture_of_Experts_CVPR_2021_paper.pdf">Generalizable Person Re-Identification with Relevance-Aware Mixture of Experts</a>, CVPR 2021, Table 2, Protocol 1. Protocol 2 uses different source datasets and reports 63.4 percent.</li>
+            <li id="note-24">P. Zhang et al., <a href="https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136740209.pdf">Adaptive Cross-Domain Learning for Generalizable Person Re-Identification</a>, ECCV 2022, Table 1. Uses four source datasets, omitting DukeMTMC.</li>
+            <li id="note-25">R. Nie et al., <a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08753.pdf">Rethinking Normalization Layers for Domain Generalizable Person Re-Identification</a>, ECCV 2024, Table 1.</li>
+            <li id="note-26">H. Zhao, L. Qi, and X. Geng, <a href="https://arxiv.org/abs/2501.16065v3">CILP-FGDI: Exploiting Vision-Language Model for Generalizable Person Re-Identification</a>, IEEE TIFS 2025, Table I; <a href="https://github.com/Qi5Lei/CLIP-FGDI">authors' implementation</a>. The title spells the acronym CILP-FGDI; the method and code use CLIP-FGDI. The chart uses the main-table 76.0 percent, not the 77.5 percent hyperparameter-ablation result in Table VIII.</li>
+            <li id="note-27">K. Xu et al., <a href="https://arxiv.org/abs/2603.19678">Vision-Language Attribute Disentanglement and Reinforcement for Lifelong Person Re-Identification</a>, CVPR 2026; <a href="https://openaccess.thecvf.com/content/CVPR2026/supplemental/Xu_Vision-Language_Attribute_Disentanglement_CVPR_2026_supplemental.pdf">supplementary Tables 3-4</a>. UnSeen-Avg combines seven datasets and is not a VIPeR rank-one result.</li>
           </ol>
         </section>
       </div>
