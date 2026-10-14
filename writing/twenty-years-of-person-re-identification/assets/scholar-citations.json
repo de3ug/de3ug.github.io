@@ -1,0 +1,108 @@
+{
+  "source": "Google Scholar article citation histograms",
+  "observed_on": "2026-10-12",
+  "plotted_range": [
+    2010,
+    2026
+  ],
+  "notes": "Separate annual series as displayed by Scholar; not a deduplicated count of papers citing either work. 2026 is year-to-date. Earlier years are outside the common displayed range.",
+  "papers": {
+    "eccv2008": {
+      "title": "Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features",
+      "total_citations": 2016,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=YliQcmwAAAAJ&citation_for_view=YliQcmwAAAAJ:u5HHmVD_uO8C"
+    },
+    "pets2007": {
+      "title": "Evaluating Appearance Models for Recognition, Reacquisition, and Tracking",
+      "total_citations": 1405,
+      "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=YliQcmwAAAAJ&citation_for_view=YliQcmwAAAAJ:UeHWp8X0CEIC"
+    }
+  },
+  "annual": [
+    {
+      "year": 2010,
+      "eccv2008": 22,
+      "pets2007": 18
+    },
+    {
+      "year": 2011,
+      "eccv2008": 49,
+      "pets2007": 27
+    },
+    {
+      "year": 2012,
+      "eccv2008": 73,
+      "pets2007": 62
+    },
+    {
+      "year": 2013,
+      "eccv2008": 75,
+      "pets2007": 58
+    },
+    {
+      "year": 2014,
+      "eccv2008": 141,
+      "pets2007": 109
+    },
+    {
+      "year": 2015,
+      "eccv2008": 140,
+      "pets2007": 121
+    },
+    {
+      "year": 2016,
+      "eccv2008": 141,
+      "pets2007": 147
+    },
+    {
+      "year": 2017,
+      "eccv2008": 200,
+      "pets2007": 179
+    },
+    {
+      "year": 2018,
+      "eccv2008": 213,
+      "pets2007": 145
+    },
+    {
+      "year": 2019,
+      "eccv2008": 200,
+      "pets2007": 120
+    },
+    {
+      "year": 2020,
+      "eccv2008": 169,
+      "pets2007": 106
+    },
+    {
+      "year": 2021,
+      "eccv2008": 130,
+      "pets2007": 75
+    },
+    {
+      "year": 2022,
+      "eccv2008": 129,
+      "pets2007": 52
+    },
+    {
+      "year": 2023,
+      "eccv2008": 90,
+      "pets2007": 50
+    },
+    {
+      "year": 2024,
+      "eccv2008": 91,
+      "pets2007": 57
+    },
+    {
+      "year": 2025,
+      "eccv2008": 92,
+      "pets2007": 43
+    },
+    {
+      "year": 2026,
+      "eccv2008": 50,
+      "pets2007": 24
+    }
+  ]
+}
