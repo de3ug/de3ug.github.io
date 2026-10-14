@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Download the VIPeR person re-identification dataset: 632 paired identities, original evaluation protocol, dataset details, and citation guidelines.">
+  <link rel="canonical" href="https://de3ug.github.io/datasets/viper/">
+  <title>VIPeR Dataset - Douglas Gray</title>
+  <link rel="stylesheet" href="../../css/site.css">
+  <link rel="stylesheet" href="../../css/writing.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "VIPeR: Viewpoint Invariant Pedestrian Recognition",
+    "description": "632 paired pedestrian identities for evaluating appearance matching across camera viewpoints.",
+    "url": "https://de3ug.github.io/datasets/viper/",
+    "version": "1.0",
+    "datePublished": "2007-09-22",
+    "creator": [
+      {"@type": "Person", "name": "Douglas Gray"},
+      {"@type": "Person", "name": "Shane Brennan"},
+      {"@type": "Person", "name": "Hai Tao"}
+    ],
+    "citation": "D. Gray, S. Brennan, and H. Tao. Evaluating Appearance Models for Recognition, Reacquisition, and Tracking. PETS 2007.",
+    "distribution": {
+      "@type": "DataDownload",
+      "encodingFormat": "application/zip",
+      "contentUrl": "https://de3ug.github.io/datasets/viper/VIPeR.v1.0.zip"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main navigation" data-site-root="../../"></nav>
+  <main class="reading-page dataset-page">
+    <p class="breadcrumb"><a href="../../#publications">Publications &amp; Service</a> / Dataset</p>
+    <h1>VIPeR</h1>
+    <p class="article-deck">Viewpoint Invariant Pedestrian Recognition</p>
+    <p>We created VIPeR to evaluate appearance models across changes in camera viewpoint, pose, and illumination. It contains two images of each of 632 pedestrians.</p>
+    <p><a class="dataset-download" href="VIPeR.v1.0.zip" download>Download VIPeR v1.0 (ZIP, 18.84 MiB)</a></p>
+    <p>This is the <strong>original archive released on September 22, 2007</strong>, alongside our PETS paper. The ZIP is unchanged, byte for byte, including the images, filenames, and original README. See the <a href="#checksums">checksums</a> below to verify your download.</p>
+    <p><a href="../../writing/twenty-years-of-person-re-identification/">Read: Reflections on 20 Years of Person Re-ID</a></p>
+    <nav class="dataset-outline" aria-label="Dataset contents">
+      <a href="#datasheet">Dataset details</a>
+      <a href="#viewpoints">Viewpoint counts</a>
+      <a href="#evaluation">Evaluation</a>
+      <a href="#citation">Citation</a>
+      <a href="#loading">Loading images</a>
+      <a href="#checksums">Checksums</a>
+    </nav>
+
+    <section id="datasheet">
+      <h2>Dataset details</h2>
+      <table class="dataset-facts">
+        <tbody>
+          <tr><th scope="row">Task</th><td>Appearance-based person re-identification: rank gallery images for a probe captured from another camera.</td></tr>
+          <tr><th scope="row">Identities</th><td>632, with two images per identity.</td></tr>
+          <tr><th scope="row">Images</th><td>1,264 RGB BMP images; 48 pixels wide &times; 128 pixels high.</td></tr>
+          <tr><th scope="row">Structure</th><td><code>VIPeR/cam_a/</code>, <code>VIPeR/cam_b/</code>, and the original <code>README.txt</code>.</td></tr>
+          <tr><th scope="row">Pairing</th><td>Match filenames by their numeric identity prefix, such as <code>001</code> in <code>001_45.bmp</code>. Identity numbers have gaps.</td></tr>
+          <tr><th scope="row">Viewpoints</th><td>Arbitrary camera viewpoints; most pairs differ by at least 90 degrees. Filenames include coarse viewpoint labels.</td></tr>
+          <tr><th scope="row">Collection</th><td>We collected footage with two cameras in an academic setting. Subjects were notified of the cameras and were not coached.</td></tr>
+          <tr><th scope="row">Release</th><td>Version 1.0, September 22, 2007, UCSC Computer Vision Lab.</td></tr>
+          <tr><th scope="row">Authors</th><td>Douglas Gray, Shane Brennan, and Hai Tao.</td></tr>
+          <tr><th scope="row">Archive</th><td>19,756,977 bytes. Original ZIP and README preserved unchanged.</td></tr>
+        </tbody>
+      </table>
+      <figure class="dataset-figure">
+        <a href="../../writing/twenty-years-of-person-re-identification/assets/viper-paired-sample.png"><img src="../../writing/twenty-years-of-person-re-identification/assets/viper-paired-sample.png" width="900" height="1008" alt="Sample paired images showing viewpoint differences in VIPeR"></a>
+        <figcaption>Twelve identity pairs from the dataset, with one image from each camera in each pair.</figcaption>
+      </figure>
+      <p>VIPeR is a small, closed-world benchmark with hand-cropped, low-resolution images and only one observation per identity per camera. It does not measure detection performance, long-term tracking, changing clothes, open-world identification, or deployment accuracy. It has no demographic annotations and should not be used to infer demographic fairness.</p>
+      <p>The original archive contains no separate license file. For questions about permissions or the dataset, <a href="mailto:douglas.ryan.gray@gmail.com">contact me</a>.</p>
+    </section>
+
+    <section id="viewpoints">
+      <h2>Viewpoint distribution</h2>
+      <p>We grouped viewpoints into 45-degree bins, combining left/right-symmetric views. Each entry below counts identity pairs, with the larger angle in the row and the smaller angle in the column. The pairs are unordered: these are viewpoint combinations, not camera A/B assignments.</p>
+      <div class="viewpoint-tables">
+        <table class="viewpoint-counts" id="viewpoint-combinations">
+          <caption>Viewpoint combinations</caption>
+          <thead>
+            <tr><th scope="col">Larger /<br>smaller</th><th scope="col">0&deg;</th><th scope="col">45&deg;</th><th scope="col">90&deg;</th><th scope="col">135&deg;</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">45&deg;</th><td>16</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><th scope="row">90&deg;</th><td>241</td><td>47</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><th scope="row">135&deg;</th><td>43</td><td>72</td><td>4</td><td>&mdash;</td></tr>
+            <tr><th scope="row">180&deg;</th><td>103</td><td>53</td><td>50</td><td>3</td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Total</th><td colspan="4">632 identity pairs</td></tr></tfoot>
+        </table>
+        <table class="viewpoint-counts" id="viewpoint-disparities">
+          <caption>Viewpoint differences</caption>
+          <thead><tr><th scope="col">Angle difference</th><th scope="col">Pairs</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">45&deg;</th><td>70</td></tr>
+            <tr><th scope="row">90&deg;</th><td>363</td></tr>
+            <tr><th scope="row">135&deg;</th><td>96</td></tr>
+            <tr><th scope="row">180&deg;</th><td>103</td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Total</th><td>632</td></tr></tfoot>
+        </table>
+      </div>
+      <p class="viewpoint-note">Original counts from Figures 2 and 3 of our <a href="../../papers/gray_pets2007_appearance.pdf#page=3">PETS 2007 paper</a>. A dash marks a combination omitted because of symmetry or equal angles. Most pairs (562 of 632) differ by at least 90 degrees.</p>
+      <p class="viewpoint-note">A few filename labels differ from these published bins: identities <code>000</code> and <code>339</code> have equal angles in both cameras, and <code>823</code> has a <code>315</code> label. Computing circular angle differences directly from the filenames gives two pairs at 0 degrees and 68 at 45 degrees; the other difference counts are unchanged. Keep these original filenames intact.</p>
+    </section>
+
+    <section id="evaluation">
+      <h2>Evaluation protocol</h2>
+      <p>Use <strong>5x2 cross-validation</strong> to evaluate appearance matching, keeping both images of each identity in the same fold:</p>
+      <ol>
+        <li>Randomly divide the 632 identity pairs into two folds, A and B, of 316 identities each.</li>
+        <li>Train on A and test on B. Then train a fresh model on B and test on A.</li>
+        <li>Repeat with five randomized partitions in total. This gives <strong>five rounds, each with two train/test evaluations</strong>, or ten evaluations per method.</li>
+        <li>Randomize image-pair order and image mirroring. Within each test fold, use one image per identity as gallery and the other as probe; swap gallery and probe and average both directions.</li>
+        <li>Average cumulative matching characteristic (CMC) curves over the folds and rounds. Report the gallery size alongside the curves.</li>
+      </ol>
+      <p>Train/test reversal and gallery/probe reversal are separate steps. The first changes which identities the model learns from; the second changes the matching direction within the same test identities.</p>
+      <p>For details, see Section 4.3 of our <a href="../../papers/gray_pets2007_appearance.pdf#page=4">PETS paper</a> and Section 3.5 of <a href="https://web.engr.oregonstate.edu/~tgd/publications/dietterich-approximate-statistical-tests-nc1998.pdf#page=10">Dietterich (1998)</a>, which defines five repetitions of two-fold cross-validation. Five random train/test splits without reversing the folds are a different protocol.</p>
+      <p>There are no fixed train/test split files in the original release. Record random seeds and generated identity assignments when reproducing this protocol. State any different protocol explicitly, including external training data, gallery size, or re-ranking.</p>
+      <p>Use rank one to measure how often the top match is correct. Higher ranks measure whether the correct identity appears in a shortlist for a human operator. For the relationship between these curves, tracking, and reacquisition, see Section 4.2 of our PETS paper.</p>
+    </section>
+
+    <section id="citation">
+      <h2>Citation guidelines</h2>
+      <p>If you use VIPeR, please cite our dataset and evaluation paper:</p>
+      <p>D. Gray, S. Brennan, and H. Tao, <a href="../../papers/gray_pets2007_appearance.pdf">Evaluating Appearance Models for Recognition, Reacquisition, and Tracking</a>, IEEE International Workshop on Performance Evaluation for Tracking and Surveillance (PETS), October 2007.</p>
+      <pre><code>@article{gray2007,
+  title={Evaluating Appearance Models for Recognition,
+         Reacquisition, and Tracking},
+  author={Gray, D. and Brennan, S. and Tao, H.},
+  journal={Proc. IEEE International Workshop on Performance
+           Evaluation for Tracking and Surveillance (PETS)},
+  year={2007}
+}</code></pre>
+      <p><a href="citation.bib" download>Download BibTeX</a></p>
+      <p>If discussing or comparing with the ELF method, also cite D. Gray and H. Tao, <a href="../../papers/gray_eccv2008_pedestrian.pdf">Viewpoint Invariant Pedestrian Recognition with an Ensemble of Localized Features</a>, ECCV 2008, <a href="https://doi.org/10.1007/978-3-540-88682-2_21">DOI: 10.1007/978-3-540-88682-2_21</a>.</p>
+    </section>
+
+    <section id="loading">
+      <h2>Loading a pair</h2>
+      <p>After extracting the ZIP, pair images by identity rather than by directory order. This Python example uses Pillow:</p>
+      <pre><code>from pathlib import Path
+from PIL import Image
+
+root = Path("VIPeR")
+def by_identity(camera):
+  return {
+    path.stem.split("_")[0]: path
+    for path in (root / camera).glob("*.bmp")
+  }
+
+a = by_identity("cam_a")
+b = by_identity("cam_b")
+assert a.keys() == b.keys()
+identity = sorted(a)[0]
+image_a = Image.open(a[identity]).convert("RGB")
+image_b = Image.open(b[identity]).convert("RGB")</code></pre>
+      <p>Treat filename viewpoint labels as coarse annotations, including the <a href="#viewpoints">label exceptions</a> noted above.</p>
+    </section>
+
+    <section id="checksums">
+      <h2>Archive checksums</h2>
+      <p>SHA-256:</p>
+      <p class="checksum"><code>857e49928a0c74d2da6fbeef372ea2e42b2bce357f87307d74c6601f1a97f267</code></p>
+      <p>Historical MD5:</p>
+      <p class="checksum"><code>1c2d9fc1cc800332567a0da25a1ce68c</code></p>
+    </section>
+    <footer class="page-footer"><a href="../../">Douglas Gray's personal site</a> &middot; <a href="../../writing/twenty-years-of-person-re-identification/">Twenty-year retrospective</a></footer>
+  </main>
+  <script src="../../js/navigation.js" defer></script>
+  <script src="../../js/theme-toggle.js" defer></script>
+</body>
+</html>

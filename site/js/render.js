@@ -58,6 +58,15 @@ function injectJsonLd(r) {
     'url': 'https://de3ug.github.io/',
     'sameAs': r.social.map(s => s.url)
   };
+  const writing = (r.writing || []).filter(entry => visible(entry, 'web'));
+  if (writing.length) {
+    ld.subjectOf = writing.map(entry => ({
+      '@type': 'Article',
+      'headline': entry.title,
+      'url': entry.url,
+      'dateCreated': entry.date
+    }));
+  }
   const script = document.createElement('script');
   script.type = 'application/ld+json';
   script.textContent = JSON.stringify(ld, null, 2);
@@ -76,30 +85,30 @@ async function render() {
     `<p>${esc(r.about)}</p>`;
 
   // Publications
+  const mediaHtml = renderList(r.projects);
   document.querySelector('#publications').innerHTML =
-    `<h2>Selected Publications and Service</h2>` +
+    `<h2>Publications and Service</h2>` +
+    `<h3 class="subsection-title">Selected Publications</h3>` +
     `<p>${renderParts(r.publications_intro.parts)}</p>` +
-    renderList(r.publications);
-
-  // Patents
-  document.querySelector('#patents').innerHTML =
-    `<h2>Selected Patents</h2>` +
+    renderList([...r.publications, ...(r.datasets || [])]) +
+    `<p>${esc(r.reviewer_service)}</p>` +
+    `<h3 id="patents" class="subsection-title">Selected Patents</h3>` +
     `<p>${esc(r.patents_intro)}</p>` +
-    renderList(r.patents);
-
-  // Projects
-  const projectsHtml = renderList(r.projects);
-  document.querySelector('#projects').innerHTML = projectsHtml
-    ? `<h2>Selected Media Mentions</h2>${projectsHtml}`
-    : '';
+    renderList(r.patents) +
+    (mediaHtml ? `<h3 id="projects" class="subsection-title">Selected Media Mentions</h3>${mediaHtml}` : '');
 
   // Experience
   document.querySelector('#experience').innerHTML =
     `<h2>Education &amp; Work History</h2>` +
     renderExperience(r.experience);
 
-  // Hobbies
-  let hobbiesHtml = `<h2>Personal &amp; Hobbies</h2>` + renderList(r.hobbies);
+  // Personal writing and hobbies
+  const writingItems = (r.writing || []).map(entry => ({
+    ...entry,
+    parts: [{text: entry.title, url: entry.path || entry.url}]
+  }));
+  let hobbiesHtml = `<h2>Personal, Hobbies, and Writing</h2>` +
+    renderList([...writingItems, ...r.hobbies]);
   if (r.hobby_poem && visible(r.hobby_poem, 'web')) {
     const p = r.hobby_poem;
     const body = p.lines.map(esc).join('<br>');
