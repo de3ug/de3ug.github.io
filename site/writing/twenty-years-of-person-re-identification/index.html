@@ -20,6 +20,7 @@
     "headline": "Reflections on 20 Years of Person Re-ID",
     "author": {"@type": "Person", "name": "Douglas Gray", "url": "https://de3ug.github.io/"},
     "dateCreated": "2026-10-12",
+    "datePublished": "2026-10-13",
     "dateModified": "2026-10-13",
     "url": "https://de3ug.github.io/writing/twenty-years-of-person-re-identification/"
   }
@@ -31,7 +32,7 @@
     <p class="breadcrumb"><a href="../../#hobbies">Personal, Hobbies, and Writing</a> / <a href="../">Writing</a></p>
     <article>
       <header>
-        <p class="article-meta">Draft for review &middot; Douglas Gray &middot; October 2026</p>
+        <p class="article-meta">Douglas Gray &middot; <time datetime="2026-10-13">October 13, 2026</time></p>
         <h1>Reflections on 20 Years of Person <span>Re-ID</span></h1>
         <p class="article-deck">Measuring the problem, watching the field grow, and reconsidering the purpose of the work.</p>
         <p><a href="../../datasets/viper/">VIPeR dataset: download, details, and citation</a></p>
@@ -104,15 +105,17 @@
 
         <p>Meanwhile, DeepReID and subsequent neural methods learned representations and matching jointly.<sup><a href="#note-8" aria-label="Source 8">8</a></sup> Larger datasets made that approach increasingly effective. VIPeR continued to appear in tables, often as a transfer target, but no longer provided enough training data to represent the field's main ambitions. The 2016 survey <em>Person Re-Identification: Past, Present and Future</em> offers a useful account of this transition.<sup><a href="#note-9" aria-label="Source 9">9</a></sup></p>
 
-        <p>Later work asked a different question: could a model trained on other datasets recognize people in VIPeR without training on VIPeR itself? SNR's style normalization and restitution reported 52.9 percent in 2020; RaMoE's relevance-aware mixture of experts reached 56.6 percent in 2021 under the same five-source setting. ACL reached 66.4 percent in 2022 using a different, four-source pool, and ReNorm reached 69.1 percent in 2024.<sup><a href="#note-22" aria-label="Source 22">22</a></sup><sup><a href="#note-23" aria-label="Source 23">23</a></sup><sup><a href="#note-24" aria-label="Source 24">24</a></sup><sup><a href="#note-25" aria-label="Source 25">25</a></sup> In 2025, CLIP-FGDI adapted a pretrained vision-language model using learned prompts and reported 76.0 percent in its main VIPeR comparison.<sup><a href="#note-26" aria-label="Source 26">26</a></sup> These results belong to the benchmark's history, but they are not a continuation of one unchanged experiment.</p>
+        <p>Later work asked a different question: could a model trained on other datasets recognize people in VIPeR without training on VIPeR itself? DIMN and DualNorm were already testing that idea in 2019, reporting 51.23 and 59.4 percent respectively.<sup><a href="#note-28" aria-label="Source 28">28</a></sup><sup><a href="#note-29" aria-label="Source 29">29</a></sup> Meanwhile, an expanded OSNet study reached 68 percent after fine-tuning on VIPeR, illustrating why the training setting matters.<sup><a href="#note-30" aria-label="Source 30">30</a></sup></p>
+
+        <p>SNR's style normalization and restitution reported 52.9 percent in 2020; RaMoE's relevance-aware mixture of experts reached 56.6 percent in 2021 under the same five-source setting. ACL reached 66.4 percent in 2022 using a different, four-source pool, and ReNorm reached 69.1 percent in 2024.<sup><a href="#note-22" aria-label="Source 22">22</a></sup><sup><a href="#note-23" aria-label="Source 23">23</a></sup><sup><a href="#note-24" aria-label="Source 24">24</a></sup><sup><a href="#note-25" aria-label="Source 25">25</a></sup> In 2025, CLIP-FGDI adapted a pretrained vision-language model using learned prompts and reported 76.0 percent in its main VIPeR comparison.<sup><a href="#note-26" aria-label="Source 26">26</a></sup> These results belong to the benchmark's history, but they are not a continuation of one unchanged experiment.</p>
 
         <figure class="chart-figure" id="rank-one-milestones">
-          <a href="assets/rank-one-over-time.png"><img src="assets/rank-one-over-time.png" width="1620" height="1584" alt="Seventeen reported VIPeR rank-one results in chronological order, from the PETS 2007 baseline at about 5 percent to CLIP-FGDI in 2025 at 76 percent. Historical benchmark methods and unseen-target domain generalization are shown separately."></a>
-          <figcaption>Selected reported results with 316-image galleries, ordered by publication year. The two groups separate historical benchmark methods from models trained for re-identification on other datasets; training sources, pretraining, tuning, and random splits still differ within each group. The diamond marks gallery-context re-ranking. The 2007 value is read approximately from Figure 6; ELF and SDALF are approximate values stated in their papers. This is a history of selected contributions, not a complete record curve or a controlled comparison. <a href="assets/rank-one-milestones.json">Values, protocols, and paper references.</a></figcaption>
+          <a href="assets/rank-one-scatter.png"><img src="assets/rank-one-scatter.png" width="2160" height="1296" alt="Scatter plot of reported VIPeR rank-one accuracy from 2007 to 2026, with selected methods labeled and NK3ML's 99.8 percent marked as a reported claim."></a>
+          <figcaption>Reported VIPeR rank-one accuracy over time. Training data and evaluation settings vary across methods. <a href="assets/rank-one-scatter.json">Data and paper references.</a></figcaption>
         </figure>
 
         <details class="milestone-values">
-          <summary>Reported values</summary>
+          <summary>Values for labeled methods</summary>
           <table class="viewpoint-counts">
             <thead><tr><th scope="col">Year and method</th><th scope="col">Rank one</th></tr></thead>
             <tbody>
@@ -129,14 +132,22 @@
               <tr><td>2015 <a href="#note-20">KCCA + DCIA (re-ranking)</a></td><td>63.92%</td></tr>
               <tr><td>2016 <a href="#note-7">GOG + XQDA</a></td><td>49.7%</td></tr>
               <tr><td>2016 <a href="#note-21">NFST fusion</a></td><td>51.17%</td></tr>
+              <tr><td>2019 <a href="#note-30">OSNet + VIPeR fine-tuning</a></td><td>68.0%</td></tr>
             </tbody>
             <tbody>
               <tr><th colspan="2" scope="colgroup">Unseen-target domain generalization</th></tr>
+              <tr><td>2019 <a href="#note-28">DIMN</a></td><td>51.23%</td></tr>
+              <tr><td>2019 <a href="#note-29">DualNorm (ResNet50)</a></td><td>59.4%</td></tr>
               <tr><td>2020 <a href="#note-22">SNR</a></td><td>52.9%</td></tr>
               <tr><td>2021 <a href="#note-23">RaMoE</a></td><td>56.6%</td></tr>
               <tr><td>2022 <a href="#note-24">ACL</a></td><td>66.4%</td></tr>
               <tr><td>2024 <a href="#note-25">ReNorm</a></td><td>69.1%</td></tr>
               <tr><td>2025 <a href="#note-26">CLIP-FGDI</a></td><td>76.0%</td></tr>
+            </tbody>
+            <tbody>
+              <tr><th colspan="2" scope="colgroup">Other reported results</th></tr>
+              <tr><td>2018 <a href="https://arxiv.org/abs/1807.10908">NK3ML (reported claim)</a></td><td>99.8%</td></tr>
+              <tr><td>2026 <a href="https://www.nature.com/articles/s41598-025-30664-4">RND</a></td><td>73.8%</td></tr>
             </tbody>
           </table>
         </details>
@@ -208,6 +219,9 @@
             <li id="note-25">R. Nie et al., <a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08753.pdf">Rethinking Normalization Layers for Domain Generalizable Person Re-Identification</a>, ECCV 2024, Table 1.</li>
             <li id="note-26">H. Zhao, L. Qi, and X. Geng, <a href="https://arxiv.org/abs/2501.16065v3">CILP-FGDI: Exploiting Vision-Language Model for Generalizable Person Re-Identification</a>, IEEE TIFS 2025, Table I; <a href="https://github.com/Qi5Lei/CLIP-FGDI">authors' implementation</a>. The title spells the acronym CILP-FGDI; the method and code use CLIP-FGDI. The chart uses the main-table 76.0 percent, not the 77.5 percent hyperparameter-ablation result in Table VIII.</li>
             <li id="note-27">K. Xu et al., <a href="https://arxiv.org/abs/2603.19678">Vision-Language Attribute Disentanglement and Reinforcement for Lifelong Person Re-Identification</a>, CVPR 2026; <a href="https://openaccess.thecvf.com/content/CVPR2026/supplemental/Xu_Vision-Language_Attribute_Disentanglement_CVPR_2026_supplemental.pdf">supplementary Tables 3-4</a>. UnSeen-Avg combines seven datasets and is not a VIPeR rank-one result.</li>
+            <li id="note-28">J. Song et al., <a href="https://openaccess.thecvf.com/content_CVPR_2019/papers/Song_Generalizable_Person_Re-Identification_by_Domain-Invariant_Mapping_Network_CVPR_2019_paper.pdf">Generalizable Person Re-Identification by Domain-Invariant Mapping Network</a>, CVPR 2019, Table 2.</li>
+            <li id="note-29">J. Jia, Q. Ruan, and T. M. Hospedales, <a href="https://arxiv.org/abs/1905.03422v3">Frustratingly Easy Person Re-Identification: Generalizing Person Re-ID in Practice</a>, BMVC 2019, Table 5. The chart uses ResNet50 + DualNorm; the main MobileNetV2 configuration reports 53.9 percent.</li>
+            <li id="note-30">K. Zhou et al., <a href="https://arxiv.org/abs/1910.06827v1">Learning Generalisable Omni-Scale Representations for Person Re-Identification</a>, October 2019 preprint, Table 4. Includes VIPeR fine-tuning after external re-identification pretraining.</li>
           </ol>
         </section>
       </div>

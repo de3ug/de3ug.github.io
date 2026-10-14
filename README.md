@@ -43,6 +43,8 @@ Writing appears under Personal/Hobbies on the homepage. The separate `/writing/`
 
 The VIPeR download page is `/datasets/viper/`. Its ZIP is the exact historical v1.0 archive, with checksums and the original citation. The homepage dataset entry is web-only. The essay's citation chart uses manually observed Google Scholar article histograms, stored with source URLs and observation date in `assets/scholar-citations.json`. Run `python3 build_citation_chart.py` with Matplotlib installed to regenerate it.
 
+The essay's performance scatter plot uses `assets/rank-one-scatter.json`, which records reported results, evaluation settings, dates, and paper sources. Run `python3 build_rank_one_chart.py` with Matplotlib installed to regenerate `assets/rank-one-scatter.png`. The plot distinguishes training settings and is not a controlled leaderboard.
+
 The `last_updated` field in `site/resume.json` is also the source of truth for the "Last updated" text shown on the website, the PDF resume and the generated `llms.txt` summary. When changing profile content or rebuilding artifacts, update this date in the JSON.
 
 ## LLM-readable summary
