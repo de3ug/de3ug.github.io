@@ -1,8 +1,0 @@
-# Ignore demo GIF placeholder
-/gcmap/public/demo.gif
-
-# Node modules (not included)
-node_modules/
-
-# Local static server state
-.server/
