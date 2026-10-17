@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Great Circle Mapper - plot great-circle flight paths between airports and total up the distance.">
+  <title>Great Circle Mapper</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="../css/gcmap.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Great Circle Mapper</h1>
+      <button class="theme-toggle" type="button" data-theme-toggle>&#127769; Dark</button>
+    </div>
+    <p class="tagline">
+      Enter airport codes joined by <code>-</code>, e.g. <code>SEA-LHR</code> or <code>JFK-LAX-SFO</code>.
+      Separate independent trips with spaces, commas or newlines. Range rings use
+      <code>500nm@SFO</code>. <a href="../">Back to de3ug.github.io</a>
+    </p>
+
+    <div class="controls">
+      <label class="sr-only" for="route-input">Route</label>
+      <textarea id="route-input" rows="3" placeholder="SFO-SEA, SEA-SFO"></textarea>
+      <button id="draw-btn" type="button">Draw</button>
+    </div>
+
+    <p class="presets"><a href="?file=flight.history.doug.txt">Doug&rsquo;s flight history</a></p>
+
+    <p class="notice" id="notice" role="status" aria-live="polite" hidden></p>
+
+    <div id="map"></div>
+
+    <div class="toggles">
+      <label><input type="checkbox" id="markers-cb" checked> Airport markers</label>
+      <label><input type="checkbox" id="labels-cb" checked> Airport labels</label>
+      <label><input type="checkbox" id="color-cb" checked> Colour by frequency</label>
+    </div>
+
+    <div id="legend" hidden></div>
+
+    <div id="summary"></div>
+
+    <div class="table-scroll">
+      <table id="results">
+        <caption>One row per direction flown. The map merges each pair into a single line; this table keeps them apart. Click a heading to sort.</caption>
+        <thead>
+          <tr>
+            <th scope="col" data-sort="route" aria-sort="none" tabindex="0">Route</th>
+            <th scope="col" data-sort="count" aria-sort="descending" tabindex="0">Flights</th>
+            <th scope="col" data-sort="distance" aria-sort="none" tabindex="0">nm</th>
+            <th scope="col">mi</th>
+            <th scope="col">km</th>
+            <th scope="col" data-sort="total" aria-sort="none" tabindex="0">Total km</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll">
+      <table id="airports">
+        <caption>Every airport in the history, busiest first. A connection counts twice &mdash; once arriving, once leaving. Click a heading to sort.</caption>
+        <thead>
+          <tr>
+            <th scope="col" data-sort="airport" aria-sort="none" tabindex="0">Airport</th>
+            <th scope="col" data-sort="place" aria-sort="none" tabindex="0">Place</th>
+            <th scope="col" data-sort="flights" aria-sort="descending" tabindex="0">Flights</th>
+            <th scope="col" data-sort="arrivals" aria-sort="none" tabindex="0">In</th>
+            <th scope="col" data-sort="departures" aria-sort="none" tabindex="0">Out</th>
+            <th scope="col" data-sort="routes" aria-sort="none" tabindex="0">Routes</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="../js/theme-toggle.js"></script>
+  <script src="main.js" type="module"></script>
+</body>
+</html>
