@@ -45,6 +45,8 @@ The VIPeR download page is `/datasets/viper/`. Its ZIP is the exact historical v
 
 The essay's performance scatter plot uses `assets/rank-one-scatter.json`, which records reported results, evaluation settings, dates, and paper sources. Run `python3 build_rank_one_chart.py` with Matplotlib installed to regenerate `assets/rank-one-scatter.png`. The plot distinguishes training settings and is not a controlled leaderboard.
 
+The essay's informal Haiku/Opus experiment is documented separately in `assets/foundation-model-evaluation.json`, including prompts, aggregate counts, and evaluation limits. It is a single-split observation, not an additional literature-chart milestone or a five-repeat benchmark estimate.
+
 The `last_updated` field in `site/resume.json` is also the source of truth for the "Last updated" text shown on the website, the PDF resume and the generated `llms.txt` summary. When changing profile content or rebuilding artifacts, update this date in the JSON.
 
 ## LLM-readable summary
