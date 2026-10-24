@@ -18,8 +18,9 @@ if (siteNavigation) {
     <hr class="nav-divider">
     <button class="theme-toggle" type="button" data-theme-toggle>&#127769; Dark</button>
     <div class="nav-artifacts">
-      <a href="${base}resume.pdf">pdf</a>
-      <a href="${base}resume.json">json</a>
-      <a href="${base}llms.txt">llms</a>
+      <a href="${base}resume.pdf">R&eacute;sum&eacute;</a>
+      <a href="${base}cv.pdf">Full CV</a>
+      <a href="${base}resume.json">JSON</a>
+      <a href="${base}llms.txt">LLMs</a>
     </div>`;
 }

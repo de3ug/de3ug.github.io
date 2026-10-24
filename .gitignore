@@ -4,5 +4,9 @@
 # Node modules (not included)
 node_modules/
 
+# Python artifact builders
+__pycache__/
+*.py[cod]
+
 # Local static server state
 .server/

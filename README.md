@@ -18,6 +18,7 @@ The main page is split into a static shell and data-driven content:
 - `site/css/writing.css` adds reading and dataset layouts to the common site styles.
 - `site/datasets/viper/` contains the dataset landing page, original ZIP, and citation file.
 - `site/resume.pdf` is the printable one-page resume artifact.
+- `site/cv.pdf` is the full CV, with complete experience, education, service, publications and patents.
 - `site/llms.txt` is a short LLM-readable summary artifact that points agents to `resume.json`.
 - `site/gcmap/` is a standalone static demo app for mapping great-circle flight routes.
 - `site/assets/`, `site/papers/`, `site/privacy.html` and `site/robots.txt` are static public assets.
@@ -33,9 +34,25 @@ The JSON has a hierarchy of information:
 - Some older school, internship and early-career details are kept in the JSON for context but hidden from the webpage because they are no longer central to the public portfolio.
 - Only the most important highlights are included in the one-page resume PDF.
 
-Visibility is controlled with fields such as `hide_from` and `for`. These fields can be applied to a whole item or an individual linked part. For example, an item can appear on the webpage but not the resume, a supplementary link can remain web-only, or an entry can remain in the JSON as background context. Underscore-prefixed fields such as `_notes` are editorial/context notes and are not rendered.
+Visibility is controlled with fields such as `hide_from` and `for`, with targets `web`, `resume` and `cv`. These fields can be applied to a whole item or an individual linked part. For example, an item can appear on the webpage but not the resume, a supplementary link can remain web-only, or an entry can remain in the JSON as background context. Underscore-prefixed fields such as `_notes` are editorial/context notes and are not rendered.
 
-`build.py` reads the same JSON and generates `site/resume.pdf`, keeping the resume concise while preserving a richer content hierarchy for the website and future edits.
+`build.py` reads the same JSON and generates both PDFs, keeping the resume concise while preserving a richer content hierarchy for the website and CV.
+
+The CV uses explicitly curated `cv_bullets` on experience entries, falling back to ordinary `bullets` when no CV override exists. Entries marked `cv_section: "education"` appear in Education rather than the employment history. The combined resume-only education entry stays exclusive to the one-page resume. Older roles hidden from both `web` and `resume` remain eligible for `cv`; exclude an entry from the CV explicitly with `hide_from: ["cv"]` when appropriate. The renderer never copies `_notes`, career stories, writing or hobbies into the CV.
+
+The `cv` collection stores the complete publication and patent catalog, professional service and source provenance. The existing top-level `publications` and `patents` remain the selected summaries used by the website and one-page resume. Maintain the selected summaries and complete metadata together in this one JSON source; the CV does not scrape external sources at build time.
+
+The initial CV reconciles all 66 records in the Google Scholar profile as observed on October 23, 2026: 18 publications, two supplements attached to their papers, 44 patent grants and two published patent applications. Two Scholar application records are represented by their later grants, with application-publication identifiers retained. Related grants remain separate entries, and inventor lists were reconciled against Google Patents. Malformed Scholar volume/page fields for the PETS 2007, BMVC 2005 and ICDAR 2013 records are omitted. Bibliographic links and verification dates are retained in `cv.sources` and on each record so later updates can be audited.
+
+The CV is typeset with ReportLab in `build_cv.py`, with embedded fonts, natural pagination, page numbers and absolute clickable links. It has no page limit and does not shrink text to fit. Install the build dependencies and generate artifacts with:
+
+```bash
+python3 -m pip install playwright reportlab
+python3 -m playwright install chromium
+python3 build.py                  # both PDFs and llms.txt
+python3 build.py --format=cv      # full CV and llms.txt only
+python3 build.py --format=resume  # one-page resume and llms.txt only
+```
 
 Long-form prose does not live in `resume.json`. The `writing` collection stores discoverability metadata such as title, summary, publication date, canonical URL and site-relative path. Each article owns its full content and assets under `site/writing/<slug>/`; this keeps the résumé data useful as a directory without turning it into a document format.
 
@@ -59,9 +76,9 @@ Treat `site/llms.txt` as a generated file. To refresh it after editing `site/res
 python3 build.py --format=llms
 ```
 
-Running `python3 build.py` for the PDF resume also refreshes `site/llms.txt`.
+Running `python3 build.py` for either PDF also refreshes `site/llms.txt`.
 
-Because deployment copies `site/` as-is, generated artifacts such as `site/resume.pdf` and `site/llms.txt` should be committed after they are rebuilt.
+Because deployment copies `site/` as-is, generated artifacts such as `site/resume.pdf`, `site/cv.pdf` and `site/llms.txt` should be committed after they are rebuilt.
 
 ## Local dev
 
