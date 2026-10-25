@@ -5,7 +5,7 @@
   "_about_extended": "Research scientist who has led teams and shipped vision-language systems at global scale. My work at Amazon has been a series of incremental steps toward a longer-term conviction: that the next great leap in computing isn't a better chat interface, but full-duplex interaction — video, audio, and language flowing through systems that persistently model the world. I think world models are the key technology, and the problems I most want to work on are multimodal reasoning, agentic retrieval, generative models, and real-time interfaces. At Amazon I've led the vision-language systems behind Amazon Lens, which lets customers point a camera at anything and find it, along with visual navigation features in Amazon product search used by hundreds of millions of customers globally. My research has appeared at CVPR, KDD, ECCV, and WACV, and I've co-organized the Multimodal Representation and Retrieval workshop at SIGIR and ICCV.",
   "location": "Portola Valley, CA (near Palo Alto, 30 min south of SF)",
   "email": "douglas.ryan.gray@gmail.com",
-  "last_updated": "10/23/2026",
+  "last_updated": "10/24/2026",
   "writing": [
     {
       "title": "Reflections on 20 Years of Person Re-ID",
@@ -309,7 +309,7 @@
         "resume",
         "web"
       ],
-      "role": "Summer Research Intern",
+      "role": "Research Intern",
       "org": "NEC Labs America, Cupertino",
       "years": "2007\u20132008",
       "bullets": [
@@ -319,7 +319,8 @@
       "cv_bullets": [
         "Researched automatic facial beauty prediction and enhancement using web images; developed learning methods operating on image appearance without manually annotated facial landmarks, published at ECCV 2010.",
         "Contributed face alignment software and a demographic recognition demonstration."
-      ]
+      ],
+      "_notes": "The research internship extended beyond summer into subsequent academic terms. Exact end month is not recalled; the 2007-2008 range is retained."
     },
     {
       "hide_from": [
@@ -330,11 +331,11 @@
       "org": "SAIC Advanced Concepts Division",
       "years": "2006",
       "bullets": [
-        "Built a multi-object tracking demo using a multiple hypothesis framework.",
+        "Delivered a multi-object tracking library implementing Reid's multiple-hypothesis tracking algorithm.",
         "Extended to multi-camera tracking and explored homography estimation from tracking data."
       ],
       "cv_bullets": [
-        "Built a multi-object tracking demonstration using a multiple-hypothesis framework.",
+        "Delivered a multi-object tracking library implementing Reid's multiple-hypothesis tracking algorithm.",
         "Extended the approach to multiple cameras and explored homography estimation from tracking data."
       ]
     },
@@ -349,7 +350,11 @@
       "_notes": "Collected the VIPeR (Viewpoint Invariant Pedestrian Recognition) dataset, which became the standard benchmark for person re-identification and is the primary reason the ECCV 2008 and PETS 2007 papers are so highly cited. Worked independently for much of this period while advisor Dr. Hai Tao was away.",
       "cv_bullets": [
         "Conducted research with Hai Tao on viewpoint-invariant person recognition, appearance models, and crowd analysis.",
-        "Collected and released the VIPeR benchmark: 632 pedestrian image pairs across camera viewpoints, with baseline evaluations published at PETS 2007 and ECCV 2008."
+        "Collected and released the VIPeR benchmark: 632 pedestrian image pairs across camera viewpoints, with baseline evaluations published at PETS 2007 and ECCV 2008.",
+        "Developed the Ensemble of Localized Features (ELF), using AdaBoost to select local color and texture features and learn a cross-camera similarity function; evaluated retrieval quality with cumulative matching characteristic (CMC) curves independently of camera geometry and timing."
+      ],
+      "_cv_sources": [
+        "writing/twenty-years-of-person-re-identification/"
       ]
     },
     {
@@ -386,9 +391,9 @@
       "role": "Art Director & CFO",
       "org": "Static Printing Inc.",
       "years": "2003\u20132005",
-      "_notes": "Co-founded custom apparel business. Company later renamed Your Logo Here, LLC and still operates; no longer affiliated.",
+      "_notes": "Co-founded screen printing business. Company later renamed Your Logo Here, LLC and still operates; no longer affiliated.",
       "cv_bullets": [
-        "Co-founded a custom apparel printing business and served as art director and CFO.",
+        "Co-founded a screen printing business and served as art director and CFO.",
         "The business later became Your Logo Here, LLC; no longer affiliated."
       ]
     }
@@ -597,11 +602,12 @@
           "R Manmatha"
         ],
         "year": 2016,
-        "venue": "European Conference on Computer Vision (ECCV)",
+        "venue": "2nd International Workshop on Robust Reading (IWRR), ECCV Workshops",
         "url": "https://link.springer.com/chapter/10.1007/978-3-319-46604-0_31",
         "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=YliQcmwAAAAJ&pagesize=100&citation_for_view=YliQcmwAAAAJ:3fE2CSJIrl8C",
         "pages": "427-439",
-        "doi": "10.1007/978-3-319-46604-0_31"
+        "doi": "10.1007/978-3-319-46604-0_31",
+        "_venue_source": "https://link.springer.com/book/10.1007/978-3-319-46604-0?page=2"
       },
       {
         "title": "Female Facial Beauty Attribute Recognition and Editing",
@@ -627,7 +633,9 @@
         "year": 2013,
         "venue": "International Conference on Document Analysis and Recognition (ICDAR)",
         "url": "https://scholar.google.com/scholar?cluster=7488126141265255121&hl=en&oi=scholarr",
-        "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=YliQcmwAAAAJ&pagesize=100&citation_for_view=YliQcmwAAAAJ:ZHo1McVdvXMC"
+        "scholar_url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&oe=ASCII&user=YliQcmwAAAAJ&pagesize=100&citation_for_view=YliQcmwAAAAJ:ZHo1McVdvXMC",
+        "status": "accepted; withdrawn before publication",
+        "_notes": "Accepted to ICDAR and subsequently withdrawn, according to the author. Retained at the author's request with its status made explicit; the work was later published elsewhere."
       },
       {
         "title": "Predicting Facial Beauty without Landmarks",
@@ -1430,7 +1438,13 @@
       },
       {
         "role": "Conference organizer and advisor",
-        "details": "Amazon Computer Vision Conference (ACVC); lead organizer in 2020, transitioning the event to a virtual format attended by approximately 400 people, and advisor in other years."
+        "details": "Amazon Computer Vision Conference (ACVC); lead organizer on two occasions, including the 2020 event, which moved to a virtual format attended by approximately 400 people; advisor in other years.",
+        "_notes": "The author recalls the earlier lead-organizer year as approximately 2016; confirm before stating an exact year."
+      },
+      {
+        "role": "Area chair",
+        "details": "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV).",
+        "_notes": "Area-chair service confirmed by the author; year not recalled."
       },
       {
         "role": "Peer reviewer",
@@ -1450,8 +1464,11 @@
         "Application US20190138851A1 is represented by grant US10956784B2; application US20210174401A1 is represented by grant US11699174B2.",
         "Inventor lists were reconciled with Google Patents; Yu Lou was restored where missing from Scholar. Patent US10528821B2 uses the Scholar detail record and Google Patents search metadata.",
         "Related granted patents remain distinct; no additional foreign family members were inferred from name-only searches.",
-        "Malformed Scholar volume/page fields for PETS 2007, BMVC 2005 and the ICDAR 2013 entry are omitted; the SIGIR eCommerce workshop venue comes from Amazon Science."
-      ]
+        "Malformed Scholar volume/page fields for PETS 2007, BMVC 2005 and the ICDAR 2013 entry are omitted; the SIGIR eCommerce workshop venue comes from Amazon Science.",
+        "Author corrections on 2026-10-24: the 2016 text-region paper appeared at the 2nd International Workshop on Robust Reading (IWRR), held with ECCV; the ICDAR 2013 entry was accepted and then withdrawn and is labeled accordingly."
+      ],
+      "published_work_count": 17,
+      "accepted_withdrawn_count": 1
     }
   },
   "social": [

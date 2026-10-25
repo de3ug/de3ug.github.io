@@ -198,6 +198,8 @@ def write_cv(r, output, visible):
     if entry.get('pages'):
       details += f', pp. {text(entry["pages"])}'
     details += f', {entry["year"]}.'
+    if entry.get('status'):
+      details += f' <i>{text(entry["status"].capitalize())}.</i>'
     if entry.get('doi'):
       details += f' {link("DOI", "https://doi.org/" + entry["doi"])}.'
     for supplement in entry.get('supplements', []):
@@ -207,32 +209,14 @@ def write_cv(r, output, visible):
   grants = [p for p in cv['patents'] if p['kind'] == 'grant']
   applications = [p for p in cv['patents'] if p['kind'] == 'application']
   story.extend([PageBreak(), section('Patents'), paragraph(
-    f'{len(grants)} U.S. patent grants and {len(applications)} published '
-    'application record' + ('s' if len(applications) != 1 else '') + '. '
-    'Related grants in the same family are listed separately. '
-    'Dates are grant or application-publication dates, respectively.', 'note')])
-  index = 0
-  for kind, title in (('grant', 'Granted U.S. Patents'),
-                      ('application', 'Published U.S. Patent Applications')):
-    entries = [p for p in cv['patents'] if p['kind'] == kind]
-    if not entries:
-      continue
-    story.append(section(title))
-    for entry in entries:
-      index += 1
-      details = (f'[P{index:02d}] <b>{link(entry["title"], entry["url"])}</b>. '
-                 f'{author_names(entry["inventors"])}. '
-                 f'{text(entry["publication_number"])}; {text(entry["date"])}.')
-      if entry.get('application_publication'):
-        publication = entry['application_publication']
-        details += (' Application publication: ' +
-                    link(publication, f'https://patents.google.com/patent/{publication}/en') + '.')
-      story.append(paragraph(details, 'reference'))
-
-  story.extend([Spacer(1, 9), paragraph(
-    f'Bibliographic records verified {text(cv["sources"]["verified_on"])} against '
-    f'{link("Google Scholar", cv["sources"]["scholar"])} and '
-    f'{link("Google Patents", cv["sources"]["patents"])}.', 'note')])
+    f'{len(grants)} U.S. patents and {len(applications)} applications.', 'note')])
+  for index, entry in enumerate([*grants, *applications], 1):
+    application_label = ' (application)' if entry['kind'] == 'application' else ''
+    details = (f'[P{index:02d}] <b>{link(entry["title"], entry["url"])}</b>. '
+               f'{author_names(entry["inventors"])}. '
+               f'{text(entry["publication_number"])}{application_label}; '
+               f'{text(entry["date"])}.')
+    story.append(paragraph(details, 'reference'))
 
   def page_frame(canvas, doc):
     canvas.saveState()
