@@ -6,6 +6,7 @@ Usage:
   python build.py                    # generate both PDFs and site/llms.txt
   python build.py --format=pdf       # same
   python build.py --format=cv        # generate site/cv.pdf and site/llms.txt
+  python build.py --format=cv --cv-output=output/pdf/cv.pdf  # local review PDF only
   python build.py --format=resume    # generate site/resume.pdf and site/llms.txt
   python build.py --format=llms      # generate site/llms.txt only
   python build.py --format=airports  # regenerate site/gcmap/public/airports.json
@@ -303,10 +304,11 @@ def build_llms():
     print(f'llms.txt written -> {OUTPUT_LLMS.relative_to(REPO_ROOT)}')
 
 
-def build_cv():
+def build_cv(output=None):
   from build_cv import write_cv
-  write_cv(load(), OUTPUT_CV, visible)
-  print(f'CV written -> {OUTPUT_CV.relative_to(REPO_ROOT)}')
+  output = Path(output).resolve() if output is not None else OUTPUT_CV
+  write_cv(load(), output, visible)
+  print(f'CV written -> {output}')
 
 
 # OpenFlights airports.dat column indices (headerless CSV).
@@ -389,7 +391,13 @@ def main():
       'resume: generate the one-page resume  |  llms: generate site/llms.txt  |  '
       'airports: regenerate site/gcmap/public/airports.json  |  web: start local dev server'
   )
+  parser.add_argument(
+    '--cv-output', type=Path,
+    help='With --format=cv, write only a local review PDF; leave site artifacts untouched'
+  )
   args = parser.parse_args()
+  if args.cv_output is not None and args.format != 'cv':
+    parser.error('--cv-output requires --format=cv')
 
   if args.format == 'web':
     serve_web()
@@ -398,8 +406,9 @@ def main():
   elif args.format == 'airports':
     build_airports()
   elif args.format == 'cv':
-    build_cv()
-    build_llms()
+    build_cv(args.cv_output)
+    if args.cv_output is None:
+      build_llms()
   elif args.format == 'resume':
     build_pdf()
     build_llms()

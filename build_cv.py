@@ -38,6 +38,23 @@ def author_names(names):
   return ', '.join(rendered)
 
 
+def group_patents(entries):
+  """Group matching titles and inventor sets for display, retaining every record."""
+  def normalized(value):
+    return ' '.join(clean(value).casefold().replace('.', '').split())
+
+  groups = []
+  positions = {}
+  for entry in entries:
+    key = (normalized(entry['title']),
+           tuple(sorted(normalized(name) for name in entry['inventors'])))
+    if key not in positions:
+      positions[key] = len(groups)
+      groups.append([])
+    groups[positions[key]].append(entry)
+  return groups
+
+
 def validate_cv(r, visible):
   """Reject incomplete records rather than silently producing a partial CV."""
   cv = r['cv']
@@ -56,6 +73,8 @@ def validate_cv(r, visible):
     for field in ('title', 'inventors', 'date', 'kind', 'url', 'application_number'):
       if not entry.get(field):
         raise ValueError(f'Missing patent {field}: {number}')
+    if entry['kind'] not in ('grant', 'application'):
+      raise ValueError(f'Unknown patent record kind: {number}')
   for entry in cv['publications']:
     for field in ('title', 'authors', 'year', 'venue', 'url'):
       if not entry.get(field):
@@ -199,7 +218,8 @@ def write_cv(r, output, visible):
       details += f', pp. {text(entry["pages"])}'
     details += f', {entry["year"]}.'
     if entry.get('status'):
-      details += f' <i>{text(entry["status"].capitalize())}.</i>'
+      status = entry['status']
+      details += f' <i>{text(status[:1].upper() + status[1:])}.</i>'
     if entry.get('doi'):
       details += f' {link("DOI", "https://doi.org/" + entry["doi"])}.'
     for supplement in entry.get('supplements', []):
@@ -210,12 +230,24 @@ def write_cv(r, output, visible):
   applications = [p for p in cv['patents'] if p['kind'] == 'application']
   story.extend([PageBreak(), section('Patents'), paragraph(
     f'{len(grants)} U.S. patents and {len(applications)} applications.', 'note')])
-  for index, entry in enumerate([*grants, *applications], 1):
-    application_label = ' (application)' if entry['kind'] == 'application' else ''
+  for index, members in enumerate(group_patents([*grants, *applications]), 1):
+    entry = members[0]
+    identifiers = []
+    for member in members:
+      application_label = ' (application)' if member['kind'] == 'application' else ''
+      identifiers.append(f'{link(member["publication_number"], member["url"])}'
+                         f'{application_label} ({text(member["date"])})')
     details = (f'[P{index:02d}] <b>{link(entry["title"], entry["url"])}</b>. '
                f'{author_names(entry["inventors"])}. '
-               f'{text(entry["publication_number"])}{application_label}; '
-               f'{text(entry["date"])}.')
+               f'{"; ".join(identifiers)}.')
+    if len(members) > 1:
+      kinds = {member['kind'] for member in members}
+      if kinds == {'grant'}:
+        details += ' Related patents.'
+      elif kinds == {'application'}:
+        details += ' Related applications.'
+      else:
+        details += ' Patent and application.'
     story.append(paragraph(details, 'reference'))
 
   def page_frame(canvas, doc):
