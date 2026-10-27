@@ -112,7 +112,7 @@ def write_cv(r, output, visible):
   muted = colors.HexColor('#56636a')
   accent = colors.HexColor('#234f62')
   rule = colors.HexColor('#c4cdd1')
-  base = ParagraphStyle('Body', fontName='CVSans', fontSize=9.7, leading=14,
+  base = ParagraphStyle('Body', fontName='CVSans', fontSize=10.5, leading=15.5,
                         textColor=ink, spaceAfter=5, alignment=TA_LEFT,
                         allowWidows=0, allowOrphans=0)
   styles = {
@@ -123,22 +123,22 @@ def write_cv(r, output, visible):
                               textColor=accent, spaceAfter=8),
     'subtitle': ParagraphStyle('Subtitle', parent=base, fontSize=11, leading=15,
                                spaceAfter=6),
-    'contact': ParagraphStyle('Contact', parent=base, fontSize=8.4, leading=12,
+    'contact': ParagraphStyle('Contact', parent=base, fontSize=10, leading=14,
                               textColor=muted, spaceAfter=3),
     'section': ParagraphStyle('Section', parent=base, fontName='CVSans-Bold',
-                              fontSize=12, leading=16, textColor=accent,
+                              fontSize=12.5, leading=17, textColor=accent,
                               spaceBefore=15, spaceAfter=8, keepWithNext=True),
-    'role': ParagraphStyle('Role', parent=base, fontName='CVSans-Bold', fontSize=10,
-                           leading=14, spaceAfter=0, keepWithNext=True),
-    'date': ParagraphStyle('Date', parent=base, fontSize=8.6, leading=14,
+    'role': ParagraphStyle('Role', parent=base, fontName='CVSans-Bold', fontSize=10.8,
+                           leading=15.5, spaceAfter=0, keepWithNext=True),
+    'date': ParagraphStyle('Date', parent=base, fontSize=9.2, leading=15.5,
                            textColor=muted, spaceAfter=0, alignment=2),
-    'org': ParagraphStyle('Organization', parent=base, fontSize=9.2, leading=13,
+    'org': ParagraphStyle('Organization', parent=base, fontSize=10, leading=14,
                           textColor=muted, spaceAfter=5, keepWithNext=True),
     'bullet': ParagraphStyle('Bullet', parent=base, leftIndent=11, firstLineIndent=0,
                              bulletIndent=0, spaceAfter=4),
-    'reference': ParagraphStyle('Reference', parent=base, fontSize=9.1, leading=13.1,
+    'reference': ParagraphStyle('Reference', parent=base, fontSize=10, leading=14.5,
                                 leftIndent=26, firstLineIndent=-26, spaceAfter=9),
-    'note': ParagraphStyle('Note', parent=base, fontSize=8.3, leading=12,
+    'note': ParagraphStyle('Note', parent=base, fontSize=9.2, leading=13,
                            textColor=muted, spaceAfter=10),
   }
   width, height = letter
@@ -151,7 +151,7 @@ def write_cv(r, output, visible):
   def section(title):
     return paragraph(text(title), 'section')
 
-  def career_entry(entry):
+  def career_entry(entry, section_title=None):
     header = Table([[
       paragraph(text(entry['role']), 'role'),
       paragraph(text(entry['years']), 'date')
@@ -168,9 +168,10 @@ def write_cv(r, output, visible):
     for bullet in bullets:
       bullet.bulletText = '-'
     heading = [header, paragraph(text(entry['org']), 'org')]
-    if sum(len(value) for value in entry.get('cv_bullets', entry.get('bullets', []))) < 900:
-      return [KeepTogether([*heading, *bullets]), Spacer(1, 8)]
-    return [KeepTogether([*heading, bullets[0]]), *bullets[1:], Spacer(1, 8)]
+    if section_title:
+      heading.insert(0, section(section_title))
+    # Keep a role on one page when it fits; ReportLab can split oversized groups.
+    return [KeepTogether([*heading, *bullets]), Spacer(1, 8)]
 
   story = [
     paragraph('CURRICULUM VITAE', 'eyebrow'),
@@ -193,10 +194,11 @@ def write_cv(r, output, visible):
     if visible(entry, 'cv') and entry.get('cv_section') != 'education':
       story.extend(career_entry(entry))
 
-  story.append(section('Education'))
+  education_started = False
   for entry in r['experience']:
     if visible(entry, 'cv') and entry.get('cv_section') == 'education':
-      story.extend(career_entry(entry))
+      story.extend(career_entry(entry, None if education_started else 'Education'))
+      education_started = True
 
   story.extend([section('Professional Service')])
   for entry in cv['service']:
