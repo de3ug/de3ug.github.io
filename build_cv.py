@@ -200,13 +200,6 @@ def write_cv(r, output, visible):
       story.extend(career_entry(entry, None if education_started else 'Education'))
       education_started = True
 
-  story.extend([section('Professional Service')])
-  for entry in cv['service']:
-    details = f'<b>{text(entry["role"])}</b>. {text(entry["details"])}'
-    if entry.get('url'):
-      details += f' {link("Website", entry["url"])}.'
-    story.append(paragraph(details))
-
   story.append(section('Publications'))
   for index, entry in enumerate(cv['publications'], 1):
     details = (f'[{index:02d}] {author_names(entry["authors"])}. '
@@ -227,6 +220,13 @@ def write_cv(r, output, visible):
     for supplement in entry.get('supplements', []):
       details += f' {link("Supplementary material", supplement["url"])}.'
     story.append(paragraph(details, 'reference'))
+
+  story.extend([section('Professional Service')])
+  for entry in cv['service']:
+    details = f'<b>{text(entry["role"])}</b>. {text(entry["details"])}'
+    if entry.get('url'):
+      details += f' {link("Website", entry["url"])}.'
+    story.append(paragraph(details))
 
   grants = [p for p in cv['patents'] if p['kind'] == 'grant']
   applications = [p for p in cv['patents'] if p['kind'] == 'application']
