@@ -12,20 +12,20 @@ The main page is split into a static shell and data-driven content:
 
 - `site/index.html` defines the homepage shell and empty section containers.
 - `site/css/site.css` and `site/js/navigation.js` provide the shared sidebar, layout, and theme styling for the homepage, writing pages, and dataset page.
-- `site/js/render.js` fetches `site/resume.json` in the browser and fills the homepage sections.
+- `site/js/render.js` fetches `site/context.json` in the browser and fills the homepage sections.
 - `site/js/theme-toggle.js` handles the light/dark theme toggle.
 - `site/writing/` contains the writing archive and standalone long-form articles.
 - `site/css/writing.css` adds reading and dataset layouts to the common site styles.
 - `site/datasets/viper/` contains the dataset landing page, original ZIP, and citation file.
 - `site/resume.pdf` is the printable one-page resume artifact.
-- `site/cv.pdf` is the full CV, with complete experience, education, service, publications and patents.
-- `site/llms.txt` is a short LLM-readable summary artifact that points agents to `resume.json`.
+- `site/full-cv.pdf` is the full CV, with complete experience, education, service, publications and patents.
+- `site/llms.txt` is a short LLM-readable summary artifact that points agents to `context.json`.
 - `site/gcmap/` is a standalone static demo app for mapping great-circle flight routes.
 - `site/assets/`, `site/papers/`, `site/privacy.html` and `site/robots.txt` are static public assets.
 
 ## Resume data model
 
-`site/resume.json` is the source of truth for the personal, professional and resume content. It intentionally contains more information than any single output needs.
+`site/context.json` is the source of truth for the personal, professional and resume content. It intentionally contains more information than any single output needs.
 
 The JSON has a hierarchy of information:
 
@@ -59,13 +59,13 @@ python3 build.py --format=resume  # one-page resume and llms.txt only
 During the owner's publication hold, generate only a local review PDF instead:
 
 ```bash
-python3 build.py --format=cv --cv-output=output/pdf/cv.pdf
+python3 build.py --format=cv --cv-output=output/pdf/full-cv.pdf
 python3 -m unittest test_cv.py
 ```
 
-`--cv-output` leaves all existing site artifacts untouched and does not regenerate `llms.txt`. The `output/` directory is ignored by Git and sits outside the served site. Keep the existing site PDF snapshots until publication is explicitly released, then rebuild them from the reviewed source before publishing.
+`--cv-output` leaves all existing site artifacts untouched and does not regenerate `llms.txt`. The `output/` directory is ignored by Git and sits outside the served site. A private Tailscale review requires the owner's explicit authorization and does not release the hold on pushes or public deployment. Rebuild site artifacts from the reviewed source before an authorized publication.
 
-Long-form prose does not live in `resume.json`. The `writing` collection stores discoverability metadata such as title, summary, publication date, canonical URL and site-relative path. Each article owns its full content and assets under `site/writing/<slug>/`; this keeps the résumé data useful as a directory without turning it into a document format.
+Long-form prose does not live in `context.json`. The `writing` collection stores discoverability metadata such as title, summary, publication date, canonical URL and site-relative path. Each article owns its full content and assets under `site/writing/<slug>/`; this keeps the résumé data useful as a directory without turning it into a document format.
 
 Writing appears under Personal/Hobbies on the homepage. The separate `/writing/` archive and article pages use the same sidebar and light/dark controls as the portfolio. The VIPeR article lives at `/writing/twenty-years-of-person-re-identification/`; the previous preview slug redirects there.
 
@@ -75,13 +75,13 @@ The essay's performance scatter plot uses `assets/rank-one-scatter.json`, which 
 
 The essay's informal Haiku/Opus experiment is documented separately in `assets/foundation-model-evaluation.json`, including prompts, aggregate counts, and evaluation limits. It is a single-split observation, not an additional literature-chart milestone or a five-repeat benchmark estimate.
 
-The `last_updated` field in `site/resume.json` is also the source of truth for the "Last updated" text shown on the website, the PDF resume and the generated `llms.txt` summary. When changing profile content or rebuilding artifacts, update this date in the JSON.
+The `last_updated` field in `site/context.json` is also the source of truth for the "Last updated" text shown on the website, the PDF resume and the generated `llms.txt` summary. When changing profile content or rebuilding artifacts, update this date in the JSON.
 
 ## LLM-readable summary
 
-`site/llms.txt` follows the emerging `/llms.txt` convention: it is a short plain-text Markdown guide for LLM agents. It intentionally does not duplicate the whole site. Instead, it includes the name, short about text, contact details and a note that deeper structured information is available in `resume.json`.
+`site/llms.txt` follows the emerging `/llms.txt` convention: it is a short plain-text Markdown guide for LLM agents. It intentionally does not duplicate the whole site. Instead, it includes the name, short about text, contact details and a note that deeper structured information is available in `context.json`.
 
-Treat `site/llms.txt` as a generated file. To refresh it after editing `site/resume.json`, run:
+Treat `site/llms.txt` as a generated file. To refresh it after editing `site/context.json`, run:
 
 ```bash
 python3 build.py --format=llms
@@ -89,7 +89,7 @@ python3 build.py --format=llms
 
 Running `python3 build.py` for either PDF also refreshes `site/llms.txt`.
 
-Because deployment copies `site/` as-is, generated artifacts such as `site/resume.pdf`, `site/cv.pdf` and `site/llms.txt` should be committed after they are rebuilt.
+Because deployment copies `site/` as-is, generated artifacts such as `site/resume.pdf`, `site/full-cv.pdf` and `site/llms.txt` should be committed after they are rebuilt.
 
 ## Local dev
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-build.py — Generate resume artifacts from site/resume.json
+build.py — Generate resume artifacts from site/context.json
 
 Usage:
   python build.py                    # generate both PDFs and site/llms.txt
   python build.py --format=pdf       # same
-  python build.py --format=cv        # generate site/cv.pdf and site/llms.txt
-  python build.py --format=cv --cv-output=output/pdf/cv.pdf  # local review PDF only
+  python build.py --format=cv        # generate site/full-cv.pdf and site/llms.txt
+  python build.py --format=cv --cv-output=output/pdf/full-cv.pdf  # local review PDF only
   python build.py --format=resume    # generate site/resume.pdf and site/llms.txt
   python build.py --format=llms      # generate site/llms.txt only
   python build.py --format=airports  # regenerate site/gcmap/public/airports.json
@@ -24,9 +24,9 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent
-RESUME_JSON = REPO_ROOT / 'site' / 'resume.json'
+CONTEXT_JSON = REPO_ROOT / 'site' / 'context.json'
 OUTPUT_PDF  = REPO_ROOT / 'site' / 'resume.pdf'
-OUTPUT_CV = REPO_ROOT / 'site' / 'cv.pdf'
+OUTPUT_CV = REPO_ROOT / 'site' / 'full-cv.pdf'
 OUTPUT_LLMS = REPO_ROOT / 'site' / 'llms.txt'
 
 AIRPORTS_DAT  = REPO_ROOT / 'data' / 'airports.dat'
@@ -34,7 +34,7 @@ AIRPORTS_JSON = REPO_ROOT / 'site' / 'gcmap' / 'public' / 'airports.json'
 
 
 def load():
-    with open(RESUME_JSON, encoding='utf-8') as f:
+    with open(CONTEXT_JSON, encoding='utf-8') as f:
         return json.load(f)
 
 
@@ -134,11 +134,11 @@ Contact:
 
 ## More information
 
-- [resume.json](https://de3ug.github.io/resume.json): Canonical structured profile data for this site. It contains the full content hierarchy, including public webpage content, resume-only highlights, hidden older/background entries and editorial notes.
+- [context.json](https://de3ug.github.io/context.json): Canonical structured profile data for this site. It contains the full content hierarchy, including public webpage content, resume-only highlights, hidden older/background entries and editorial notes.
 - [resume.pdf](https://de3ug.github.io/resume.pdf): One-page resume generated from the same JSON source, limited to the highest-priority highlights.
-- [cv.pdf](https://de3ug.github.io/cv.pdf): Complete CV with every professional role, expanded achievement bullets, education, service, publications and patents. Stories and editorial notes are excluded.
+- [full-cv.pdf](https://de3ug.github.io/full-cv.pdf): Complete CV with every professional role, expanded achievement bullets, education, service, publications and patents. Stories and editorial notes are excluded.
 
-LLM agents should prefer `resume.json` when they need deeper context than this short summary. The `hide_from`, `for` and underscore-prefixed fields describe what is rendered to the public webpage, what is included in the resume or CV and what is retained as background context.
+LLM agents should prefer `context.json` when they need deeper context than this short summary. The `hide_from`, `for` and underscore-prefixed fields describe what is rendered to the public webpage, what is included in the resume or CV and what is retained as background context.
 """
 
 
@@ -384,7 +384,7 @@ def serve_web():
 
 
 def main():
-  parser = argparse.ArgumentParser(description='Build resume artifacts from resume.json')
+  parser = argparse.ArgumentParser(description='Build resume artifacts from context.json')
   parser.add_argument(
     '--format', choices=['pdf', 'cv', 'resume', 'llms', 'airports', 'web'], default='pdf',
     help='pdf: generate both PDFs and site/llms.txt  |  cv: generate the full CV  |  '

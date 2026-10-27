@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Typeset the complete, curated CV from the shared resume.json inventory."""
+"""Typeset the complete, curated CV from the shared context.json inventory."""
 
 from html import escape
 from pathlib import Path

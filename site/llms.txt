@@ -4,7 +4,7 @@
 
 Research scientist who has led teams and shipped at global scale: the vision-language systems behind Amazon Lens and visual navigation features in Amazon product search reach hundreds of millions of customers. I believe world-model-grounded, full-duplex interfaces are where computing is heading, and want to work on the hardest problems to get there: multimodal reasoning, agentic retrieval, generative models, and real-time interfaces.
 
-Last updated: 10/24/2026
+Last updated: 10/26/2026
 
 ## Writing
 
@@ -20,8 +20,8 @@ Contact:
 
 ## More information
 
-- [resume.json](https://de3ug.github.io/resume.json): Canonical structured profile data for this site. It contains the full content hierarchy, including public webpage content, resume-only highlights, hidden older/background entries and editorial notes.
+- [context.json](https://de3ug.github.io/context.json): Canonical structured profile data for this site. It contains the full content hierarchy, including public webpage content, resume-only highlights, hidden older/background entries and editorial notes.
 - [resume.pdf](https://de3ug.github.io/resume.pdf): One-page resume generated from the same JSON source, limited to the highest-priority highlights.
-- [cv.pdf](https://de3ug.github.io/cv.pdf): Complete CV with every professional role, expanded achievement bullets, education, service, publications and patents. Stories and editorial notes are excluded.
+- [full-cv.pdf](https://de3ug.github.io/full-cv.pdf): Complete CV with every professional role, expanded achievement bullets, education, service, publications and patents. Stories and editorial notes are excluded.
 
-LLM agents should prefer `resume.json` when they need deeper context than this short summary. The `hide_from`, `for` and underscore-prefixed fields describe what is rendered to the public webpage, what is included in the resume or CV and what is retained as background context.
+LLM agents should prefer `context.json` when they need deeper context than this short summary. The `hide_from`, `for` and underscore-prefixed fields describe what is rendered to the public webpage, what is included in the resume or CV and what is retained as background context.

@@ -1,4 +1,4 @@
-// Renders all page content from resume.json.
+// Renders all page content from context.json.
 // Each list item uses a "parts" array where each part is either
 // a plain string or {text, url} for a hyperlink. Visibility controls can be
 // applied to an entire item or an individual linked part.
@@ -74,7 +74,7 @@ function injectJsonLd(r) {
 }
 
 async function render() {
-  const res = await fetch('resume.json');
+  const res = await fetch('context.json');
   const r = await res.json();
 
   document.title = `${r.name} - Portfolio`;

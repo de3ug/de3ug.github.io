@@ -50,7 +50,7 @@ class PatentGroupingTests(unittest.TestCase):
     self.assertEqual([entry['kind'] for entry in groups[0]], ['grant', 'application'])
 
   def test_real_catalog_retains_every_record_and_groups_the_reported_duplicate(self):
-    source = Path(__file__).parent / 'site' / 'resume.json'
+    source = Path(__file__).parent / 'site' / 'context.json'
     cv = json.loads(source.read_text(encoding='utf-8'))['cv']
     entries = cv['patents']
     groups = group_patents(entries)
