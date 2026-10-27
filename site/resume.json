@@ -229,7 +229,7 @@
       "_notes": "Recruited by a former NEC Labs manager after an internship there. Initial project was a video content search engine. After lead investor Max Palevsky died and most of the science team was laid off, the company pivoted to commercializing multimedia summarization technology licensed from NEC. Products included itwips.com (automated 5-line summaries of top news articles, with story/theme clustering) and iBlips (a video summarization API). Added novel IP including the news clustering approach and contributed UX design. All summarization was SVD-based on hand-crafted features. The company folded when the products didn\u2019t gain commercial traction.",
       "cv_bullets": [
         "Built a video content search engine at an early-stage computer vision startup.",
-        "Developed automated news article summarization and story clustering for itwips.com, along with a video summarization API for iBlips.",
+        "Developed summarization tools for iTwips.com, a news website providing article summaries and story clustering, and iBlips, a video summarization API; both used similar algorithms.",
         "Applied singular value decomposition to hand-crafted multimedia features; contributed new clustering approaches and product interface design."
       ]
     },
@@ -281,9 +281,9 @@
       "role": "Research Associate",
       "org": "Smith-Kettlewell Eye Research Institute, San Francisco",
       "years": "2009",
-      "_notes": "Working with Dr. James Coughlan. Prototyped assistive technology for the blind: a Nokia N95 app that recognized fiducial targets to help visually impaired users navigate and identify objects. Summer/fall 2009, between grad school and Akiira. Additional details confirmed by the author on 2026-10-26: developed a one-dimensional barcode below the fiducials to encode information, and used accelerometer-based horizon finding to improve fiducial localization performance.",
+      "_notes": "Worked under Dr. James Coughlan, the principal investigator and manager. Prototyped assistive technology for the blind: a Nokia N95 app that recognized fiducial targets to help visually impaired users navigate and identify objects. Summer/fall 2009, between grad school and Akiira. Additional details confirmed by the author on 2026-10-26: developed a one-dimensional barcode below the fiducials to encode information, and used accelerometer-based horizon finding to improve fiducial localization performance.",
       "cv_bullets": [
-        "Prototyped a Nokia N95 application with James Coughlan to locate fiducial targets for assistive navigation and object identification by people with visual impairments.",
+        "Prototyped a Nokia N95 application to locate fiducial targets for assistive navigation and object identification by people with visual impairments.",
         "Improved target detection using accelerometer data to estimate the horizon; co-developed a one-dimensional barcode beneath the fiducial targets to encode information."
       ]
     },
