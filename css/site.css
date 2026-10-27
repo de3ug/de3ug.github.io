@@ -166,6 +166,7 @@ section { margin-bottom: 60px; }
   font-size: 11px;
   opacity: 0.6;
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .site-nav a[aria-current="page"] { font-weight: bold; }

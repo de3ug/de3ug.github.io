@@ -28,6 +28,6 @@ Disallow: /unlisted/
 Allow: /
 
 # Structured data endpoints
-# resume.json  — machine-readable resume
+# context.json — structured personal and professional context
 # llms.txt     — plain-text summary for LLMs
 # schema.org/Person JSON-LD is embedded in index.html
